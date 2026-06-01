@@ -7,151 +7,243 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', system-ui, sans-serif; }
-        .medical-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
         .header-bg { background: linear-gradient(135deg, #1e40af, #3b82f6); }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="max-w-4xl mx-auto p-8">
+
         <!-- Header -->
         <div class="header-bg rounded-2xl p-10 text-white mb-10 shadow-2xl">
             <div class="flex items-center gap-4 mb-6">
                 <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-4xl">🩺</div>
                 <div>
                     <h1 class="text-4xl font-bold">ClinMd-Tribe</h1>
-                    <p class="text-xl opacity-90">Claude Code do Zero ao Avançado</p>
+                    <p class="text-xl opacity-90">Claude Code do Zero ao Avancado</p>
                 </div>
             </div>
-            <p class="text-lg max-w-lg">Roadmap completo do curso para médicos criarem seu próprio aplicativo clínico pessoal 100% local.</p>
-            <div class="mt-6 flex gap-4">
-                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm">Flet + Python</div>
-                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm">Clean Architecture</div>
-                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm">RAG Local</div>
+            <p class="text-lg max-w-2xl mb-6">31 aulas praticas para medicos criarem seu proprio aplicativo clinico pessoal 100% local, com IA, RAG e automacao.</p>
+            <div class="flex flex-wrap gap-3">
+                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm font-medium">Flet + Python</div>
+                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm font-medium">Clean Architecture</div>
+                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm font-medium">RAG Local</div>
+                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm font-medium">Claude Code + Agents</div>
+                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm font-medium">CI/CD</div>
             </div>
         </div>
 
-        <!-- Introdução -->
-        <div class="mb-12">
-            <h2 class="text-3xl font-semibold mb-4 text-emerald-400">📋 Visão Geral do Curso</h2>
+        <!-- Visao Geral -->
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-8 mb-10">
+            <h2 class="text-2xl font-semibold mb-4 text-emerald-400">Visao Geral do Curso</h2>
             <p class="text-slate-300 leading-relaxed">
-                Este roadmap transforma médicos em desenvolvedores de software clínico.
-                Cada aula tem <strong>aproximadamente 1 hora de duração</strong> e entrega valor real para sua prática
-                enquanto construímos juntos o <strong>ClinMd-Tribe</strong> —
-                um app completo, offline, rodando no navegador e exportável para .exe.
+                Este roadmap transforma medicos em desenvolvedores de software clinico.
+                Sao <strong class="text-white">12 modulos</strong> e <strong class="text-white">31 aulas</strong>,
+                cada uma com aproximadamente <strong class="text-white">1 hora de duracao</strong>.
+                Construimos juntos o <strong class="text-white">ClinMd-Tribe</strong>: um app completo,
+                offline, rodando no navegador e exportavel como <code class="text-amber-400">.exe</code> para Windows.
+                Usamos Claude Code como "residente de plantao 24h", Git para versionamento,
+                RAG para busca semantica em PDFs medicos e CI/CD com Forgejo e Woodpecker.
             </p>
         </div>
 
-        <!-- Épicos -->
-        <div class="space-y-12">
-            <!-- Épico 0 -->
-            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-blue-500 rounded-2xl flex items-center justify-center text-xl">🏗️</div>
+        <!-- Modulos -->
+        <div class="space-y-6">
+
+            <!-- Modulo 00 -->
+            <div class="bg-slate-900 border-l-4 border-blue-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">00</span>
                     <div>
-                        <h3 class="text-2xl font-bold">Épico 0: Fundação</h3>
+                        <h3 class="text-xl font-bold text-white">Fundacao</h3>
+                        <span class="text-xs text-slate-400">2 aulas</span>
                     </div>
                 </div>
-                <ul class="space-y-4 text-slate-300">
-                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Configuração do ambiente com uv</li>
-                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Python básico com analogias clínicas</li>
-                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Estrutura Clean Architecture (4 camadas)</li>
-                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Primeiro app Flet rodando</li>
-                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Big Tech Virtual e Agentes Claude Code</li>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-blue-400 mt-0.5">01.</span> Terminal + uv: seu bisturi digital</li>
+                    <li class="flex gap-2"><span class="text-blue-400 mt-0.5">02.</span> Python com analogias clinicas</li>
                 </ul>
             </div>
 
-            <!-- Épico 1 -->
-            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-purple-500 rounded-2xl flex items-center justify-center text-xl">🧮</div>
+            <!-- Modulo 01 -->
+            <div class="bg-slate-900 border-l-4 border-blue-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">01</span>
                     <div>
-                        <h3 class="text-2xl font-bold">Épico 1: Calculadoras Médicas</h3>
+                        <h3 class="text-xl font-bold text-white">Git</h3>
+                        <span class="text-xs text-slate-400">2 aulas</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-6 text-sm">
-                    <div>
-                        <p class="font-semibold text-amber-400 mb-2">Clínicas</p>
-                        <ul class="space-y-1 text-slate-400">
-                            <li>CHA2DS2-VASc</li>
-                            <li>HAS-BLED</li>
-                            <li>CURB-65, MELD, SOFA, APACHE II</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="font-semibold text-amber-400 mb-2">Psiquiatria (alta prioridade)</p>
-                        <ul class="space-y-1 text-slate-400">
-                            <li>PHQ-9, GAD-7</li>
-                            <li>HAM-D, YMRS, AUDIT, CAGE</li>
-                            <li>MMSE, MoCA, PANSS, CGI</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Épico 2 -->
-            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-rose-500 rounded-2xl flex items-center justify-center text-xl">📝</div>
-                    <div>
-                        <h3 class="text-2xl font-bold">Épico 2: Anotador Clínico</h3>
-                    </div>
-                </div>
-                <ul class="space-y-3 text-slate-300">
-                    <li class="flex gap-3"><span class="text-emerald-400">→</span> Templates profissionais (evolução, atestado, receita)</li>
-                    <li class="flex gap-3"><span class="text-emerald-400">→</span> Salvamento automático em pasta local</li>
-                    <li class="flex gap-3"><span class="text-emerald-400">→</span> Busca rápida nas anotações</li>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-blue-400 mt-0.5">03.</span> git init, add, commit, log</li>
+                    <li class="flex gap-2"><span class="text-blue-400 mt-0.5">04.</span> Branch, merge e Forgejo</li>
                 </ul>
             </div>
 
-            <!-- Épico 3 -->
-            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-cyan-500 rounded-2xl flex items-center justify-center text-xl">🔍</div>
+            <!-- Modulo 02 -->
+            <div class="bg-slate-900 border-l-4 border-purple-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">02</span>
                     <div>
-                        <h3 class="text-2xl font-bold">Épico 3: RAG Tribe</h3>
+                        <h3 class="text-xl font-bold text-white">Python + Flet</h3>
+                        <span class="text-xs text-slate-400">2 aulas</span>
                     </div>
                 </div>
-                <p class="text-slate-300 mb-4">Base de conhecimento pessoal com busca semântica em:</p>
-                <ul class="grid grid-cols-2 gap-2 text-sm text-slate-400">
-                    <li class="flex items-center gap-2">• PDFs de guidelines</li>
-                    <li class="flex items-center gap-2">• Artigos científicos</li>
-                    <li class="flex items-center gap-2">• Protocolos próprios</li>
-                    <li class="flex items-center gap-2">• Suas anotações anteriores</li>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-purple-400 mt-0.5">05.</span> Flet Hello World medico</li>
+                    <li class="flex gap-2"><span class="text-purple-400 mt-0.5">06.</span> Layout, cores e componentes Flet</li>
                 </ul>
             </div>
 
-            <!-- Épico 4 -->
-            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-orange-500 rounded-2xl flex items-center justify-center text-xl">📄</div>
+            <!-- Modulo 03 -->
+            <div class="bg-slate-900 border-l-4 border-purple-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">03</span>
                     <div>
-                        <h3 class="text-2xl font-bold">Épico 4: Gerador de Evolução</h3>
+                        <h3 class="text-xl font-bold text-white">Clean Architecture</h3>
+                        <span class="text-xs text-slate-400">2 aulas</span>
                     </div>
                 </div>
-                <p class="text-slate-300">Gera texto pronto para colar no PEP ou TISS usando RAG + templates profissionais.</p>
-            </div>
-
-            <!-- Épico 5 -->
-            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center text-xl">🚀</div>
-                    <div>
-                        <h3 class="text-2xl font-bold">Épico 5: Polimento Final + Curso</h3>
-                    </div>
-                </div>
-                <ul class="space-y-3">
-                    <li class="flex gap-3"><span class="text-emerald-400 font-bold">→</span> Interface médica limpa e profissional</li>
-                    <li class="flex gap-3"><span class="text-emerald-400 font-bold">→</span> Exportável como .exe</li>
-                    <li class="flex gap-3"><span class="text-emerald-400 font-bold">→</span> Auditoria completa de qualidade</li>
-                    <li class="flex gap-3"><span class="text-emerald-400 font-bold">→</span> Material didático do curso pronto</li>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-purple-400 mt-0.5">07.</span> As 4 camadas: analogia com sistemas do corpo</li>
+                    <li class="flex gap-2"><span class="text-purple-400 mt-0.5">08.</span> Scaffold do ClinMd-Tribe</li>
                 </ul>
             </div>
+
+            <!-- Modulo 04 - Destaque amber -->
+            <div class="bg-slate-900 border-l-4 border-amber-600 border border-amber-900/40 rounded-2xl p-7 shadow-amber-900/20 shadow-lg">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-amber-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">04</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Agents e BigTech Virtual</h3>
+                        <span class="text-xs text-amber-400 font-semibold">4 aulas • modulo especial</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-amber-400 mt-0.5">09.</span> Claude Code: seu residente de plantao 24h</li>
+                    <li class="flex gap-2"><span class="text-amber-400 mt-0.5">10.</span> MCP e Skills: estendendo o bisturi</li>
+                    <li class="flex gap-2"><span class="text-amber-400 mt-0.5">11.</span> BigTech Virtual: montando o time completo</li>
+                    <li class="flex gap-2"><span class="text-amber-400 mt-0.5">12.</span> /tab_pendencias: gestao agil do projeto</li>
+                </ul>
+            </div>
+
+            <!-- Modulo 05 -->
+            <div class="bg-slate-900 border-l-4 border-rose-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-rose-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">05</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Calculadoras Medicas</h3>
+                        <span class="text-xs text-slate-400">4 aulas</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-rose-400 mt-0.5">13.</span> CHA2DS2-VASc e HAS-BLED</li>
+                    <li class="flex gap-2"><span class="text-rose-400 mt-0.5">14.</span> PHQ-9 e GAD-7</li>
+                    <li class="flex gap-2"><span class="text-rose-400 mt-0.5">15.</span> HAM-D, YMRS, AUDIT, CAGE</li>
+                    <li class="flex gap-2"><span class="text-rose-400 mt-0.5">16.</span> MMSE, MoCA, PANSS, CGI, CURB-65, MELD, SOFA</li>
+                </ul>
+            </div>
+
+            <!-- Modulo 06 -->
+            <div class="bg-slate-900 border-l-4 border-rose-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-rose-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">06</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Anotador Clinico</h3>
+                        <span class="text-xs text-slate-400">2 aulas</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-rose-400 mt-0.5">17.</span> Templates profissionais (evolucao, atestado, receita)</li>
+                    <li class="flex gap-2"><span class="text-rose-400 mt-0.5">18.</span> Salvamento automatico e busca</li>
+                </ul>
+            </div>
+
+            <!-- Modulo 07 - Destaque cyan -->
+            <div class="bg-slate-900 border-l-4 border-cyan-600 border border-cyan-900/40 rounded-2xl p-7 shadow-cyan-900/20 shadow-lg">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-cyan-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">07</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">RAG Tribe</h3>
+                        <span class="text-xs text-cyan-400 font-semibold">4 aulas • modulo especial</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-cyan-400 mt-0.5">19.</span> O que e RAG: analogia com memoria medica</li>
+                    <li class="flex gap-2"><span class="text-cyan-400 mt-0.5">20.</span> Indexar PDFs do knowledge_base/</li>
+                    <li class="flex gap-2"><span class="text-cyan-400 mt-0.5">21.</span> Busca semantica em producao</li>
+                    <li class="flex gap-2"><span class="text-cyan-400 mt-0.5">22.</span> Integracao RAG com app Flet</li>
+                </ul>
+            </div>
+
+            <!-- Modulo 08 -->
+            <div class="bg-slate-900 border-l-4 border-orange-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">08</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Gerador de Evolucao</h3>
+                        <span class="text-xs text-slate-400">2 aulas</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-orange-400 mt-0.5">23.</span> Gerador com RAG + templates</li>
+                    <li class="flex gap-2"><span class="text-orange-400 mt-0.5">24.</span> Integracao completa no app</li>
+                </ul>
+            </div>
+
+            <!-- Modulo 09 -->
+            <div class="bg-slate-900 border-l-4 border-green-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">09</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Testes</h3>
+                        <span class="text-xs text-slate-400">2 aulas</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-green-400 mt-0.5">25.</span> TDD e pytest: receita em vez de intuicao</li>
+                    <li class="flex gap-2"><span class="text-green-400 mt-0.5">26.</span> Testes das calculadoras e RAG</li>
+                </ul>
+            </div>
+
+            <!-- Modulo 10 -->
+            <div class="bg-slate-900 border-l-4 border-green-600 border border-slate-700 rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">10</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">CI/CD</h3>
+                        <span class="text-xs text-slate-400">2 aulas</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-green-400 mt-0.5">27.</span> Forgejo e pipeline CI basico</li>
+                    <li class="flex gap-2"><span class="text-green-400 mt-0.5">28.</span> Woodpecker: automatizando builds</li>
+                </ul>
+            </div>
+
+            <!-- Modulo 11 - Destaque emerald -->
+            <div class="bg-slate-900 border-l-4 border-emerald-600 border border-emerald-900/40 rounded-2xl p-7 shadow-emerald-900/20 shadow-lg">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-sm font-bold text-white">11</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Polimento Final</h3>
+                        <span class="text-xs text-emerald-400 font-semibold">3 aulas • modulo especial</span>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-slate-300 text-sm">
+                    <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">29.</span> UI medica: paleta, tipografia, icones</li>
+                    <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">30.</span> Exportar como .exe para Windows</li>
+                    <li class="flex gap-2"><span class="text-emerald-400 mt-0.5">31.</span> Auditoria final e distribuicao</li>
+                </ul>
+            </div>
+
         </div>
 
-        <div class="mt-16 text-center text-slate-500 text-sm">
-            <p>ClinMd-Tribe • Curso Claude Code do Zero ao Avançado</p>
-            <p class="mt-1">Liderado por Dr. Petrus Silva Costa • Construído com Clean Architecture + Flet</p>
+        <!-- Footer -->
+        <div class="mt-12 bg-slate-900 border border-slate-700 rounded-2xl p-6 text-center">
+            <p class="text-white font-semibold text-lg mb-1">Total: 31 aulas / ~31 horas</p>
+            <p class="text-slate-400 text-sm">Dr. Petrus Silva Costa x TribeMD (Luiz Dieckmann)</p>
         </div>
+
     </div>
 </body>
 </html>

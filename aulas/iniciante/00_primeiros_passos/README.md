@@ -1,6 +1,6 @@
 # Módulo 00 — Primeiros Passos sem Medo
 
-**Fase:** Iniciante | **Aulas:** 4 | **Pré-requisito:** Nenhum
+**Fase:** Iniciante | **Aulas:** 5 | **Pré-requisito:** Nenhum
 
 Você vai entender o que é o Claude Code, instalar, fazer sua primeira conversa e aprender a escrever bons prompts para o contexto clínico.
 
@@ -12,3 +12,4 @@ Você vai entender o que é o Claude Code, instalar, fazer sua primeira conversa
 | 02 | Instalação e primeiro contato | 1h |
 | 03 | Como conversar: pedir, anexar, revisar e iterar | 1h |
 | 04 | Bons hábitos de prompt para o contexto clínico | 1h |
+| 05 | Claude Code no celular: acesso remoto via /remote | 1h |

@@ -1,8 +1,8 @@
 # ClinMd-Tribe
 
-App clinico pessoal 100% local. Roda no navegador. Exportavel como .exe.
+App clínico pessoal 100% local. Roda no navegador. Exportável como .exe.
 
-## Instalacao
+## Instalação
 
 ```bash
 uv sync
@@ -14,11 +14,11 @@ uv run python -m src.presentation.main
 ```
 src/
 ├── presentation/    # UI Flet: telas e componentes
-├── application/     # Casos de uso: orquestracao
-├── domain/          # Regras de negocio puras: calculadoras, modelos
-└── infrastructure/  # I/O externo: arquivos, RAG, persistencia
+├── application/     # Casos de uso: orquestração
+├── domain/          # Regras de negócio puras: calculadoras, modelos
+└── infrastructure/  # I/O externo: arquivos, RAG, persistência
 ```
 
-## Modulo do curso
+## Módulo do curso
 
-Cada modulo do curso adiciona uma feature neste app. Veja `../aulas/` para o material didatico.
+Cada módulo do curso adiciona uma feature neste app. Veja `../aulas/` para o material didático.

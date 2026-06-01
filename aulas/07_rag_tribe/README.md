@@ -9,4 +9,4 @@
 | 03 | Busca semântica em produção | 1h |
 | 04 | Integração RAG com app Flet | 1h |
 
-**Pré-requisitos:** Modulos 00-06.
+**Pré-requisitos:** Módulos 00-06.

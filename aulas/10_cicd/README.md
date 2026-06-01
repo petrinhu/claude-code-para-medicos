@@ -7,4 +7,4 @@
 | 01 | Forgejo e pipeline CI básico | 1h |
 | 02 | Woodpecker: automatizando builds | 1h |
 
-**Pré-requisitos:** Modulos 00-09.
+**Pré-requisitos:** Módulos 00-09.

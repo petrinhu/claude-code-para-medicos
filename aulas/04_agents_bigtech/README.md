@@ -9,4 +9,4 @@
 | 03 | BigTech Virtual: montando o time completo | 1h |
 | 04 | /tab_pendencias: gestão agil do projeto | 1h |
 
-**Pré-requisitos:** Modulos 00-03.
+**Pré-requisitos:** Módulos 00-03.

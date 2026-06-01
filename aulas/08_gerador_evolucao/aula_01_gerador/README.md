@@ -4,7 +4,7 @@
 Construir o gerador de evolucoes clínicas combinando RAG, LLM e templates estruturados
 
 ## Pré-requisitos
-Modulos 00-07
+Módulos 00-07
 
 ## O que você vai entregar
 - [ ] Código funcionando

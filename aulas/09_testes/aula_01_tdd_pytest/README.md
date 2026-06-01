@@ -4,7 +4,7 @@
 Aplicar o ciclo red-green-refactor do TDD para escrever código médico confiavel
 
 ## Pré-requisitos
-Modulos 00-08
+Módulos 00-08
 
 ## O que você vai entregar
 - [ ] Código funcionando

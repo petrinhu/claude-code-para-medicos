@@ -7,4 +7,4 @@
 | 01 | As 4 camadas: analogia com sistemas do corpo | 1h |
 | 02 | Scaffold do ClinMd-Tribe | 1h |
 
-**Pré-requisitos:** Modulos 00-02.
+**Pré-requisitos:** Módulos 00-02.

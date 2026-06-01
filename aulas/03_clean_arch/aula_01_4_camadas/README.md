@@ -4,7 +4,7 @@
 Entender as 4 camadas de arquitetura limpa usando analogias com sistemas fisiológicos
 
 ## Pré-requisitos
-Modulos 00-02
+Módulos 00-02
 
 ## O que você vai entregar
 - [ ] Código funcionando

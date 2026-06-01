@@ -7,4 +7,4 @@
 | 01 | TDD e pytest: receita em vez de intuição | 1h |
 | 02 | Testes das calculadoras e RAG | 1h |
 
-**Pré-requisitos:** Modulos 00-08.
+**Pré-requisitos:** Módulos 00-08.

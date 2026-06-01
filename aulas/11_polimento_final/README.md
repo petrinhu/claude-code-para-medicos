@@ -8,4 +8,4 @@
 | 02 | Exportar como .exe para Windows | 1h |
 | 03 | Auditoria final e distribuição | 1h |
 
-**Pré-requisitos:** Modulos 00-10.
+**Pré-requisitos:** Módulos 00-10.

@@ -7,4 +7,4 @@
 | 01 | Gerador com RAG + templates | 1h |
 | 02 | Integração do gerador no app | 1h |
 
-**Pré-requisitos:** Modulos 00-07.
+**Pré-requisitos:** Módulos 00-07.

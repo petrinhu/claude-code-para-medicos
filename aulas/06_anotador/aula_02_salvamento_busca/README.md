@@ -1,7 +1,7 @@
 # Salvamento automático e busca
 
 ## Objetivo
-Implementar persistencia JSON com salvamento automático e busca full-text nas anotacoes
+Implementar persistencia JSON com salvamento automático e busca full-text nas anotações
 
 ## Pré-requisitos
 Aula 01 do Módulo 06

@@ -1,7 +1,7 @@
 # tab_pendencias: gestão agil do projeto
 
 ## Objetivo
-Usar /tab_pendencias para priorizar e sequênciar tarefas com lógica WSJF anti-retrabalho
+Usar /tab_pendencias para priorizar e sequenciar tarefas com lógica WSJF anti-retrabalho
 
 ## Pré-requisitos
 Aula 03 do Módulo 04

@@ -4,7 +4,7 @@
 Entender embeddings e RAG comparando ao processo de busca na memoria clínica do médico
 
 ## Pré-requisitos
-Modulos 00-06
+Módulos 00-06
 
 ## O que você vai entregar
 - [ ] Código funcionando

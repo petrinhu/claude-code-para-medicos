@@ -4,7 +4,7 @@
 Criar a primeira janela grafica com Flet exibindo dados de um paciente ficticio
 
 ## Pré-requisitos
-Modulos 00-01
+Módulos 00-01
 
 ## O que você vai entregar
 - [ ] Código funcionando

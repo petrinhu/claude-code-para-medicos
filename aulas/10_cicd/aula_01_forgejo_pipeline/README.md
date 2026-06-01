@@ -4,7 +4,7 @@
 Configurar pipeline de integração continua no Forgejo para rodar testes automáticamente
 
 ## Pré-requisitos
-Modulos 00-09
+Módulos 00-09
 
 ## O que você vai entregar
 - [ ] Código funcionando

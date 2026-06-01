@@ -9,4 +9,4 @@
 | 03 | HAM-D, YMRS, AUDIT, CAGE | 1h |
 | 04 | MMSE, MoCA, PANSS, CGI, CURB-65, MELD, SOFA | 1h |
 
-**Pré-requisitos:** Modulos 00-04.
+**Pré-requisitos:** Módulos 00-04.

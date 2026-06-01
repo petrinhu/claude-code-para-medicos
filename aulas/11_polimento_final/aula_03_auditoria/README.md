@@ -1,15 +1,15 @@
-# Auditoria final e distribuicao
+# Auditoria final e distribuição
 
 ## Objetivo
-Conduzir checklist de auditoria final e preparar pacote de distribuicao para colegas medicos
+Conduzir checklist de auditoria final e preparar pacote de distribuição para colegas médicos
 
-## Pre-requisitos
-Aula 02 do Modulo 11
+## Pré-requisitos
+Aula 02 do Módulo 11
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

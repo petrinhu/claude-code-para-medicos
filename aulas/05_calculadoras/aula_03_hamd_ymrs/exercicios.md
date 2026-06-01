@@ -1,10 +1,10 @@
-# Exercicios: HAM-D, YMRS, AUDIT, CAGE
+# Exercícios: HAM-D, YMRS, AUDIT, CAGE
 
-## Exercicio 1
-<!-- TODO: descreva o exercicio -->
+## Exercício 1
+<!-- TODO: descreva o exercício -->
 
 ```python
-# TODO: complete o codigo abaixo
+# TODO: complete o código abaixo
 ```
 
 ## Gabarito

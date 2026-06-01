@@ -1,15 +1,15 @@
-# Forgejo e pipeline CI basico
+# Forgejo e pipeline CI básico
 
 ## Objetivo
-Configurar pipeline de integracao continua no Forgejo para rodar testes automaticamente
+Configurar pipeline de integração continua no Forgejo para rodar testes automáticamente
 
-## Pre-requisitos
+## Pré-requisitos
 Modulos 00-09
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

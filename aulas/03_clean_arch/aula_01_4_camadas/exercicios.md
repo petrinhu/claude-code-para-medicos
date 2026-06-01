@@ -1,10 +1,10 @@
-# Exercicios: As 4 camadas: analogia com sistemas do corpo
+# Exercícios: As 4 camadas: analogia com sistemas do corpo
 
-## Exercicio 1
-<!-- TODO: descreva o exercicio -->
+## Exercício 1
+<!-- TODO: descreva o exercício -->
 
 ```python
-# TODO: complete o codigo abaixo
+# TODO: complete o código abaixo
 ```
 
 ## Gabarito

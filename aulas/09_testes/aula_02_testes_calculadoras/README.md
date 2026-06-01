@@ -1,15 +1,15 @@
 # Testes das calculadoras e RAG
 
 ## Objetivo
-Escrever suites de teste completas para todas as calculadoras clinicas e o pipeline RAG
+Escrever suites de teste completas para todas as calculadoras clínicas e o pipeline RAG
 
-## Pre-requisitos
-Aula 01 do Modulo 09
+## Pré-requisitos
+Aula 01 do Módulo 09
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

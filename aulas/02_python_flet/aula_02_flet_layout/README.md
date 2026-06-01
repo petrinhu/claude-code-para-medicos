@@ -1,15 +1,15 @@
 # Layout, cores e componentes Flet
 
 ## Objetivo
-Construir interfaces medicas organizadas com layout responsivo e paleta de cores adequada
+Construir interfaces médicas organizadas com layout responsivo e paleta de cores adequada
 
-## Pre-requisitos
-Aula 01 do Modulo 02
+## Pré-requisitos
+Aula 01 do Módulo 02
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

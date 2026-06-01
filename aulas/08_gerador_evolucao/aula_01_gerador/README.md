@@ -1,15 +1,15 @@
 # Gerador com RAG + templates
 
 ## Objetivo
-Construir o gerador de evolucoes clinicas combinando RAG, LLM e templates estruturados
+Construir o gerador de evolucoes clínicas combinando RAG, LLM e templates estruturados
 
-## Pre-requisitos
+## Pré-requisitos
 Modulos 00-07
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

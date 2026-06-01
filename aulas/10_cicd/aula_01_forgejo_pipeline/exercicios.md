@@ -1,10 +1,10 @@
-# Exercicios: Forgejo e pipeline CI basico
+# Exercícios: Forgejo e pipeline CI básico
 
-## Exercicio 1
-<!-- TODO: descreva o exercicio -->
+## Exercício 1
+<!-- TODO: descreva o exercício -->
 
 ```python
-# TODO: complete o codigo abaixo
+# TODO: complete o código abaixo
 ```
 
 ## Gabarito

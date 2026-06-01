@@ -1,10 +1,10 @@
-# Exercicios: Auditoria final e distribuicao
+# Exercícios: Auditoria final e distribuição
 
-## Exercicio 1
-<!-- TODO: descreva o exercicio -->
+## Exercício 1
+<!-- TODO: descreva o exercício -->
 
 ```python
-# TODO: complete o codigo abaixo
+# TODO: complete o código abaixo
 ```
 
 ## Gabarito

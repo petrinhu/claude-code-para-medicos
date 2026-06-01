@@ -3,13 +3,13 @@
 ## Objetivo
 Completar o set de calculadoras com escalas cognitivas, psiquiatricas e de gravidade
 
-## Pre-requisitos
-Aula 03 do Modulo 05
+## Pré-requisitos
+Aula 03 do Módulo 05
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

@@ -1,15 +1,15 @@
-# Salvamento automatico e busca
+# Salvamento automático e busca
 
 ## Objetivo
-Implementar persistencia JSON com salvamento automatico e busca full-text nas anotacoes
+Implementar persistencia JSON com salvamento automático e busca full-text nas anotacoes
 
-## Pre-requisitos
-Aula 01 do Modulo 06
+## Pré-requisitos
+Aula 01 do Módulo 06
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

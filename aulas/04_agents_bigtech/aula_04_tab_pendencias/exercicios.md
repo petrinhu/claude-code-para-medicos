@@ -1,10 +1,10 @@
-# Exercicios: tab_pendencias: gestao agil do projeto
+# Exercícios: tab_pendencias: gestão agil do projeto
 
-## Exercicio 1
-<!-- TODO: descreva o exercicio -->
+## Exercício 1
+<!-- TODO: descreva o exercício -->
 
 ```python
-# TODO: complete o codigo abaixo
+# TODO: complete o código abaixo
 ```
 
 ## Gabarito

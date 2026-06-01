@@ -1,15 +1,15 @@
-# Integracao RAG com app Flet
+# Integração RAG com app Flet
 
 ## Objetivo
-Conectar o pipeline RAG a interface Flet com campo de pergunta e exibicao de fontes
+Conectar o pipeline RAG a interface Flet com campo de pergunta e exibição de fontes
 
-## Pre-requisitos
-Aula 03 do Modulo 07
+## Pré-requisitos
+Aula 03 do Módulo 07
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

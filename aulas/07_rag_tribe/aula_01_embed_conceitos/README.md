@@ -1,15 +1,15 @@
-# O que e RAG: analogia com memoria medica
+# O que e RAG: analogia com memoria médica
 
 ## Objetivo
-Entender embeddings e RAG comparando ao processo de busca na memoria clinica do medico
+Entender embeddings e RAG comparando ao processo de busca na memoria clínica do médico
 
-## Pre-requisitos
+## Pré-requisitos
 Modulos 00-06
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

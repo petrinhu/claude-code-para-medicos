@@ -1,15 +1,15 @@
-# UI medica: paleta, tipografia, icones
+# UI médica: paleta, tipografia, icones
 
 ## Objetivo
-Aplicar principios de design de interfaces medicas com paleta de cores e tipografia acessivel
+Aplicar principios de design de interfaces médicas com paleta de cores e tipografia acessivel
 
-## Pre-requisitos
+## Pré-requisitos
 Modulos 00-10
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

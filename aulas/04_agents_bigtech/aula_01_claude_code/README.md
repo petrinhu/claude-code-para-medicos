@@ -1,15 +1,15 @@
-# Claude Code: seu residente de plantao 24h
+# Claude Code: seu residente de plantão 24h
 
 ## Objetivo
-Usar Claude Code para delegar tarefas de programacao como um medico sênior delega ao residente
+Usar Claude Code para delegar tarefas de programação como um médico sênior delega ao residente
 
-## Pre-requisitos
+## Pré-requisitos
 Modulos 00-03
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

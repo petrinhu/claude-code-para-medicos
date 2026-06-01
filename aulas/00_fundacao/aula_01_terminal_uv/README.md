@@ -3,13 +3,13 @@
 ## Objetivo
 Configurar o terminal e gerenciar pacotes Python com uv como se fosse preparar o kit cirurgico
 
-## Pre-requisitos
+## Pré-requisitos
 Nenhum
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

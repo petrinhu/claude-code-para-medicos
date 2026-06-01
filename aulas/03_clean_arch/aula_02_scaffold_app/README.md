@@ -1,15 +1,15 @@
 # Scaffold do ClinMd-Tribe
 
 ## Objetivo
-Criar a estrutura de diretorios e modulos base do projeto ClinMd-Tribe
+Criar a estrutura de diretórios e modulos base do projeto ClinMd-Tribe
 
-## Pre-requisitos
-Aula 01 do Modulo 03
+## Pré-requisitos
+Aula 01 do Módulo 03
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

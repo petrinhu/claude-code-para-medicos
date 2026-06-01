@@ -1,15 +1,15 @@
-# Python com analogias clinicas
+# Python com analogias clínicas
 
 ## Objetivo
 Escrever seus primeiros scripts Python usando conceitos familiares da medicina
 
-## Pre-requisitos
-Aula 01 do Modulo 00
+## Pré-requisitos
+Aula 01 do Módulo 00
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

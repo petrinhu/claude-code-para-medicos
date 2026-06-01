@@ -1,15 +1,15 @@
 # git init, add, commit, log
 
 ## Objetivo
-Versionar codigo com git criando um historico rastreavel como um prontuario eletronico
+Versionar código com git criando um histórico rastreavel como um prontuario eletrônico
 
-## Pre-requisitos
-Modulo 00
+## Pré-requisitos
+Módulo 00
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

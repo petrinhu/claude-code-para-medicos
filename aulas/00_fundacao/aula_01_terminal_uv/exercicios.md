@@ -1,10 +1,10 @@
-# Exercicios: Terminal + uv: seu bisturi digital
+# Exercícios: Terminal + uv: seu bisturi digital
 
-## Exercicio 1
-<!-- TODO: descreva o exercicio -->
+## Exercício 1
+<!-- TODO: descreva o exercício -->
 
 ```python
-# TODO: complete o codigo abaixo
+# TODO: complete o código abaixo
 ```
 
 ## Gabarito

@@ -1,15 +1,15 @@
-# Flet Hello World medico
+# Flet Hello World médico
 
 ## Objetivo
 Criar a primeira janela grafica com Flet exibindo dados de um paciente ficticio
 
-## Pre-requisitos
+## Pré-requisitos
 Modulos 00-01
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

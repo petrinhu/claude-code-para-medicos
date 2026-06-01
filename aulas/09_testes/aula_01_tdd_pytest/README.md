@@ -1,15 +1,15 @@
-# TDD e pytest: receita em vez de intuicao
+# TDD e pytest: receita em vez de intuição
 
 ## Objetivo
-Aplicar o ciclo red-green-refactor do TDD para escrever codigo medico confiavel
+Aplicar o ciclo red-green-refactor do TDD para escrever código médico confiavel
 
-## Pre-requisitos
+## Pré-requisitos
 Modulos 00-08
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

@@ -1,15 +1,15 @@
-# Integracao do gerador no app
+# Integração do gerador no app
 
 ## Objetivo
-Integrar o gerador ao app Flet com formulario de entrada e botao de gerar evolucao
+Integrar o gerador ao app Flet com formulario de entrada e botão de gerar evolução
 
-## Pre-requisitos
-Aula 01 do Modulo 08
+## Pré-requisitos
+Aula 01 do Módulo 08
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

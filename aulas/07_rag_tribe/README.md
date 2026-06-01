@@ -1,12 +1,12 @@
-# Modulo 07: RAG Tribe
+# Módulo 07: RAG Tribe
 
-**Objetivo:** Implementar busca semantica sobre PDFs medicos usando Retrieval-Augmented Generation.
+**Objetivo:** Implementar busca semântica sobre PDFs médicos usando Retrieval-Augmented Generation.
 
-| No | Titulo | Duracao |
+| No | Título | Duração |
 |----|--------|---------|
-| 01 | O que e RAG: analogia com memoria medica | 1h |
+| 01 | O que e RAG: analogia com memoria médica | 1h |
 | 02 | Indexar PDFs do knowledge_base/ | 1h |
-| 03 | Busca semantica em producao | 1h |
-| 04 | Integracao RAG com app Flet | 1h |
+| 03 | Busca semântica em produção | 1h |
+| 04 | Integração RAG com app Flet | 1h |
 
-**Pre-requisitos:** Modulos 00-06.
+**Pré-requisitos:** Modulos 00-06.

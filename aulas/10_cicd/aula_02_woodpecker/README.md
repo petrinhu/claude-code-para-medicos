@@ -3,13 +3,13 @@
 ## Objetivo
 Criar workflows Woodpecker CI para build, teste e empacotamento automatizados
 
-## Pre-requisitos
-Aula 01 do Modulo 10
+## Pré-requisitos
+Aula 01 do Módulo 10
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

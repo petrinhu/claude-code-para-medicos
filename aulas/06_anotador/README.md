@@ -1,10 +1,10 @@
-# Modulo 06: Anotador Clinico
+# Módulo 06: Anotador Clínico
 
-**Objetivo:** Construir o modulo de anotacoes com templates profissionais e salvamento automatico.
+**Objetivo:** Construir o módulo de anotacoes com templates profissionais e salvamento automático.
 
-| No | Titulo | Duracao |
+| No | Título | Duração |
 |----|--------|---------|
-| 01 | Templates profissionais (evolucao, atestado, receita) | 1h |
-| 02 | Salvamento automatico e busca | 1h |
+| 01 | Templates profissionais (evolução, atestado, receita) | 1h |
+| 02 | Salvamento automático e busca | 1h |
 
-**Pre-requisitos:** Modulos 00-05.
+**Pré-requisitos:** Modulos 00-05.

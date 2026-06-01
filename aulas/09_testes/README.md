@@ -1,10 +1,10 @@
-# Modulo 09: Testes
+# Módulo 09: Testes
 
 **Objetivo:** Aplicar TDD com pytest para garantir confiabilidade das calculadoras e do RAG.
 
-| No | Titulo | Duracao |
+| No | Título | Duração |
 |----|--------|---------|
-| 01 | TDD e pytest: receita em vez de intuicao | 1h |
+| 01 | TDD e pytest: receita em vez de intuição | 1h |
 | 02 | Testes das calculadoras e RAG | 1h |
 
-**Pre-requisitos:** Modulos 00-08.
+**Pré-requisitos:** Modulos 00-08.

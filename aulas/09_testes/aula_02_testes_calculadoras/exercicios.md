@@ -1,10 +1,10 @@
-# Exercicios: Testes das calculadoras e RAG
+# Exercícios: Testes das calculadoras e RAG
 
-## Exercicio 1
-<!-- TODO: descreva o exercicio -->
+## Exercício 1
+<!-- TODO: descreva o exercício -->
 
 ```python
-# TODO: complete o codigo abaixo
+# TODO: complete o código abaixo
 ```
 
 ## Gabarito

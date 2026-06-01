@@ -1,20 +1,20 @@
-# Roteiro do Professor: Flet Hello World medico
+# Roteiro do Professor: Flet Hello World médico
 
 ## Abertura (5 min)
-<!-- Motivacao: por que isso importa para o medico -->
+<!-- Motivação: por que isso importa para o médico -->
 
-## Teoria com Analogia Clinica (15 min)
-<!-- Explicar o conceito tecnico usando linguagem medica -->
+## Teoria com Analogia Clínica (15 min)
+<!-- Explicar o conceito técnico usando linguagem médica -->
 
 ## Demo ao Vivo (25 min)
-<!-- Passo a passo com comandos copiaveis -->
+<!-- Passo a passo com comandos copiáveis -->
 
 ```bash
 # Comandos da aula aqui
 ```
 
-## Exercicio Guiado (10 min)
+## Exercício Guiado (10 min)
 <!-- Aluno faz junto, professor guia -->
 
 ## Fechamento (5 min)
-<!-- Resumo + proxima aula -->
+<!-- Resumo + próxima aula -->

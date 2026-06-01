@@ -3,13 +3,13 @@
 ## Objetivo
 Implementar as calculadoras de risco trombotico e hemorragico em Python com TDD
 
-## Pre-requisitos
+## Pré-requisitos
 Modulos 00-04
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

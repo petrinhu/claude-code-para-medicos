@@ -1,15 +1,15 @@
 # BigTech Virtual: montando o time completo
 
 ## Objetivo
-Ativar a constelacao de agents C-level para organizar o projeto como uma empresa de tecnologia
+Ativar a constelação de agents C-level para organizar o projeto como uma empresa de tecnologia
 
-## Pre-requisitos
-Aula 02 do Modulo 04
+## Pré-requisitos
+Aula 02 do Módulo 04
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

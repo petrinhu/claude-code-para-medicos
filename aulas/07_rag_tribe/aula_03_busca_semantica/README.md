@@ -1,15 +1,15 @@
-# Busca semantica em producao
+# Busca semântica em produção
 
 ## Objetivo
-Realizar buscas por significado clinico sobre o knowledge base indexado
+Realizar buscas por significado clínico sobre o knowledge base indexado
 
-## Pre-requisitos
-Aula 02 do Modulo 07
+## Pré-requisitos
+Aula 02 do Módulo 07
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

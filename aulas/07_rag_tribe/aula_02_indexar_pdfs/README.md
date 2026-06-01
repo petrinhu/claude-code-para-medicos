@@ -1,15 +1,15 @@
 # Indexar PDFs do knowledge_base/
 
 ## Objetivo
-Processar PDFs medicos e criar indice vetorial pesquisavel com ChromaDB
+Processar PDFs médicos e criar índice vetorial pesquisavel com ChromaDB
 
-## Pre-requisitos
-Aula 01 do Modulo 07
+## Pré-requisitos
+Aula 01 do Módulo 07
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

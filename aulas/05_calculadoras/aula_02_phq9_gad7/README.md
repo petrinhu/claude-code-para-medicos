@@ -1,15 +1,15 @@
 # PHQ-9 e GAD-7
 
 ## Objetivo
-Codificar os questionarios de rastreio de depressao e ansiedade com interpretacao automatica
+Codificar os questionários de rastreio de depressão e ansiedade com interpretação automática
 
-## Pre-requisitos
-Aula 01 do Modulo 05
+## Pré-requisitos
+Aula 01 do Módulo 05
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

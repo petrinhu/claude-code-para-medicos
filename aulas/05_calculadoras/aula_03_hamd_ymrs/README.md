@@ -1,15 +1,15 @@
 # HAM-D, YMRS, AUDIT, CAGE
 
 ## Objetivo
-Implementar escalas psiquiatricas e de dependencia quimica com validacao de entrada
+Implementar escalas psiquiatricas e de dependencia química com validação de entrada
 
-## Pre-requisitos
-Aula 02 do Modulo 05
+## Pré-requisitos
+Aula 02 do Módulo 05
 
-## O que voce vai entregar
-- [ ] Codigo funcionando
-- [ ] Commit no repositorio
-- [ ] Exercicio resolvido
+## O que você vai entregar
+- [ ] Código funcionando
+- [ ] Commit no repositório
+- [ ] Exercício resolvido
 
-## Duracao estimada
+## Duração estimada
 1 hora

@@ -1,10 +1,10 @@
-# Exercicios: PHQ-9 e GAD-7
+# Exercícios: PHQ-9 e GAD-7
 
-## Exercicio 1
-<!-- TODO: descreva o exercicio -->
+## Exercício 1
+<!-- TODO: descreva o exercício -->
 
 ```python
-# TODO: complete o codigo abaixo
+# TODO: complete o código abaixo
 ```
 
 ## Gabarito

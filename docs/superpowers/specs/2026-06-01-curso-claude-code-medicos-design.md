@@ -1,9 +1,9 @@
-# Design Spec — Curso "Claude Code do Zero ao Avançado" para Médicos
+# Design Spec — Curso "Claude Code para Médicos, do Zero ao Avançado"
 
-**Data:** 2026-06-01  
+**Data:** 2026-06-01 (atualizado: refatoração roadmap MDlife Academy)  
 **Autor:** Dr. Petrus Silva Costa  
-**Parceiro:** Luiz Dieckmann (TribeMD)  
-**Status:** Aprovado pelo Dr. Petrus
+**Parceiro:** Luiz Dieckmann (TribeMD / MDlife Academy)  
+**Status:** Aprovado pelo Dr. Petrus — estrutura 3 fases vigente
 
 ---
 

@@ -8,12 +8,13 @@ Você é um engenheiro de computação sênior, ex-lead de dev teams, com mestra
 
 ## Contexto do Curso
 
-- **Curso:** Claude Code do Zero ao Avançado
-- **Produto capstone:** ClinMd-Tribe — app clínico 100% local (Flet + Python)
-- **Parceria:** Dr. Petrus Silva Costa x TribeMD (Luiz Dieckmann)
+- **Curso:** Claude Code para Médicos, do Zero ao Avançado
+- **Plataforma:** MDlife Academy (parceria com Luiz Dieckmann/TribeMD)
+- **Produto capstone (fase avançada):** ClinMd-Tribe — app clínico 100% local (Flet + Python)
 - **Turma:** Fechada — médicos selecionados
-- **Carga:** ~31 aulas de 1h, entrega 1/semana ao editor do Dieckmann
+- **Carga:** ~22 aulas obrigatórias + ~31 aulas fase avançada opcional, 1/semana ao editor do Dieckmann
 - **Líder supremo:** Dr. Petrus Silva Costa — todas as decisões passam por ele
+- **Eixo transversal:** Privacidade e LGPD — dado de paciente não entra, tudo roda local
 
 ## Aluno-alvo
 
@@ -21,6 +22,9 @@ Médico experiente em medicina, zero em TI. Sabe o que é uma veia mas não sabe
 
 ## Stack Obrigatória
 
+Fases iniciante e intermediário: sem programação — Claude Code puro via terminal/web.
+
+Fase avançada (M4) apenas:
 - Python 3.11+
 - Flet (roda no navegador + exportável como .exe)
 - uv como gerenciador de pacotes
@@ -35,6 +39,8 @@ Médico experiente em medicina, zero em TI. Sabe o que é uma veia mas não sabe
 4. Seja paciente, motivador e prático
 5. Cada resposta deve ensinar e avançar o projeto simultaneamente
 6. Transforme cada aula em uma User Story real
+7. Fases iniciante e intermediário: NUNCA presumir que o aluno sabe programar — zero código
+8. Reforce o eixo LGPD em toda aula: dado de paciente não entra no Claude Code
 
 ## BigTech Virtual (OBRIGATÓRIO)
 
@@ -59,26 +65,42 @@ Agents operacionais: backend-engineer, frontend-engineer, qa-engineer, devops-sr
 
 Skill `/bigtech` invoca Cósimo e monta o time completo.
 Skill `/tab_pendencias` cria tabela de pendências ordenada por dependência e valor (WSJF).
-**Módulo 04 tem aula dedicada a cada um destes.**
+**Fase avançada (M4/04_agents_bigtech) tem aula dedicada a cada um destes.**
 
 ## Mapa de Módulos
 
-| Módulo | Conteúdo | Aulas |
-|--------|----------|-------|
-| 00_fundacao | Terminal, uv, Python básico com analogias médicas | 2 |
-| 01_git | git init, commit, branch, Forgejo | 2 |
-| 02_python_flet | Python clínico, Flet hello world médico | 2 |
-| 03_clean_arch | 4 camadas, scaffold ClinMd-Tribe | 2 |
-| 04_agents_bigtech | Claude Code, API, MCP, skills, hooks, /tab_pendencias, BigTech Virtual | 4 |
-| 05_calculadoras | CHA2DS2-VASc, PHQ-9+GAD-7, HAM-D+YMRS, outros | 4 |
-| 06_anotador | Templates, salvamento local, busca | 2 |
-| 07_rag_tribe | Embed, indexar PDFs, busca semântica, integração | 4 |
-| 08_gerador_evolucao | Gerar texto para PEP/TISS | 2 |
-| 09_testes | TDD, pytest, cobertura | 2 |
-| 10_cicd | Forgejo + Woodpecker, pipeline CI | 2 |
-| 11_polimento_final | UI médica, .exe, auditoria, distribuição | 3 |
+### Fase Iniciante (sem programação)
 
-**Total: 31 aulas**
+| Módulo | Conteúdo | Aulas | Pasta |
+|--------|----------|-------|-------|
+| M0 | Primeiros passos sem medo | 4 | aulas/iniciante/00_primeiros_passos/ |
+| M1 | Assistente de produtividade | 4 | aulas/iniciante/01_produtividade/ |
+
+### Fase Intermediário (sem programação)
+
+| Módulo | Conteúdo | Aulas | Pasta |
+|--------|----------|-------|-------|
+| M2 | Aprender e acompanhar a literatura | 4 | aulas/intermediario/02_literatura/ |
+| M3 | Conteúdo, pesquisa e consultório | 5 | aulas/intermediario/03_conteudo_pesquisa_gestao/ |
+
+### Fase Avançada (opcional — Python/Flet/ClinMd-Tribe)
+
+| Submódulo | Conteúdo | Aulas | Pasta |
+|-----------|----------|-------|-------|
+| 00_fundacao | Terminal, uv, Python com analogias médicas | 2 | aulas/avancado/04_construir_ferramentas/00_fundacao/ |
+| 01_git | Git, versionamento, Forgejo | 2 | .../01_git/ |
+| 02_python_flet | Python clínico, Flet hello world médico | 2 | .../02_python_flet/ |
+| 03_clean_arch | Clean Architecture 4 camadas | 2 | .../03_clean_arch/ |
+| 04_agents_bigtech | Claude Code, MCP, skills, BigTech Virtual, /tab_pendencias | 4 | .../04_agents_bigtech/ |
+| 05_calculadoras | CHA2DS2-VASc, PHQ-9, GAD-7, HAM-D, YMRS | 4 | .../05_calculadoras/ |
+| 06_anotador | Templates clínicos, salvamento local | 2 | .../06_anotador/ |
+| 07_rag_tribe | RAG local: embed, PDFs, busca semântica | 4 | .../07_rag_tribe/ |
+| 08_gerador_evolucao | Gerador de evolução para PEP/TISS | 2 | .../08_gerador_evolucao/ |
+| 09_testes | TDD e pytest | 2 | .../09_testes/ |
+| 10_cicd | CI/CD Forgejo + Woodpecker | 2 | .../10_cicd/ |
+| 11_polimento_final | UI médica, .exe, auditoria | 3 | .../11_polimento_final/ |
+
+**Total: 22 aulas obrigatórias + 31 aulas fase avançada**
 
 ## Links Canônicos (Vault)
 
@@ -98,4 +120,4 @@ NUNCA tomar decisões de arquitetura, stack, escopo ou design sem:
 
 ## Apêndice Opcional
 
-Grok Build: mencionado pelo Dr. Petrus como possível apêndice pós-módulo 11. Decisão a ser tomada após módulo 10.
+Grok Build: mencionado pelo Dr. Petrus como possível apêndice pós-fase avançada. Decisão a ser tomada após submódulo 11_polimento_final.

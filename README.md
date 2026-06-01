@@ -1,26 +1,32 @@
-# Claude Code do Zero ao Avançado
+# Claude Code para Médicos, do Zero ao Avançado
 
-Curso prático de Claude Code para médicos.
-Produto final: **ClinMd-Tribe**, app clínico 100% local.
+Curso prático de Claude Code para médicos. Sem programação nas fases iniciante e intermediário. Programação completa na fase avançada (opcional).
 
+**Plataforma:** MDlife Academy  
 **Parceria:** Dr. Petrus Silva Costa x TribeMD (Luiz Dieckmann)
 
 ## Estrutura
 
 ```
-aulas/          # 12 módulos, 31 aulas de 1h
-clinmd_tribe/   # app capstone (cresce a cada módulo)
-workshop_iago/  # material de referência (Dieckmann)
-docs/           # specs e planos do projeto
+aulas/
+  iniciante/          # M0 (4 aulas) + M1 (4 aulas): sem código
+  intermediario/      # M2 (4 aulas) + M3 (5 aulas): sem código
+  avancado/           # M4 com 12 submódulos: Python/Flet/ClinMd-Tribe
+clinmd_tribe/         # app capstone da fase avançada (Clean Architecture)
+workshop_iago/        # material de referência (Dieckmann)
+docs/                 # specs e planos do projeto
+roadmap.html          # visualização do curso (design MDlife Academy)
 ```
 
 ## Como usar
 
 ```bash
-# Acesse a aula pelo módulo
-ls aulas/05_calculadoras/
+# Ver aulas de uma fase
+ls aulas/iniciante/
+ls aulas/intermediario/
+ls aulas/avancado/04_construir_ferramentas/
 
-# Rode o app capstone
+# Rodar o app capstone (fase avançada)
 cd clinmd_tribe
 uv sync
 uv run python -m src.presentation.main
@@ -28,8 +34,24 @@ uv run python -m src.presentation.main
 
 ## Módulos
 
+### Iniciante (sem programação)
+
 | # | Módulo | Aulas |
 |---|--------|-------|
+| M0 | Primeiros passos sem medo | 4 |
+| M1 | Assistente de produtividade | 4 |
+
+### Intermediário (sem programação)
+
+| # | Módulo | Aulas |
+|---|--------|-------|
+| M2 | Aprender e acompanhar a literatura | 4 |
+| M3 | Conteúdo, pesquisa e consultório | 5 |
+
+### Avançado, opcional (Python + Flet + ClinMd-Tribe)
+
+| # | Submódulo | Aulas |
+|---|-----------|-------|
 | 00 | Fundação (terminal, uv, Python) | 2 |
 | 01 | Git | 2 |
 | 02 | Python + Flet | 2 |
@@ -43,6 +65,6 @@ uv run python -m src.presentation.main
 | 10 | CI/CD | 2 |
 | 11 | Polimento Final | 3 |
 
-**Total: 31 aulas**
+**Total: 22 aulas obrigatórias + 31 aulas fase avançada**
 
 Veja o [roadmap.html](roadmap.html) para visualização completa.

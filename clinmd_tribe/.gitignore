@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+.coverage
+htmlcov/
+data/*.db
+data/*.sqlite
+knowledge_base/*.pdf

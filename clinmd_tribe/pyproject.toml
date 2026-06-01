@@ -1,0 +1,27 @@
+[project]
+name = "clinmd-tribe"
+version = "0.1.0"
+description = "App clínico pessoal 100% local - capstone do curso Claude Code do Zero ao Avançado"
+requires-python = ">=3.11"
+dependencies = [
+    "flet>=0.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+]
+rag = [
+    "sentence-transformers>=3.0.0",
+    "chromadb>=0.5.0",
+    "pypdf>=4.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

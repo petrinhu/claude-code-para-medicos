@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClinMd-Tribe • Roadmap do Curso Claude Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .medical-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
+        .header-bg { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    <div class="max-w-4xl mx-auto p-8">
+        <!-- Header -->
+        <div class="header-bg rounded-2xl p-10 text-white mb-10 shadow-2xl">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-4xl">🩺</div>
+                <div>
+                    <h1 class="text-4xl font-bold">ClinMd-Tribe</h1>
+                    <p class="text-xl opacity-90">Claude Code do Zero ao Avançado</p>
+                </div>
+            </div>
+            <p class="text-lg max-w-lg">Roadmap completo do curso para médicos criarem seu próprio aplicativo clínico pessoal 100% local.</p>
+            <div class="mt-6 flex gap-4">
+                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm">Flet + Python</div>
+                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm">Clean Architecture</div>
+                <div class="bg-white/20 px-4 py-2 rounded-xl text-sm">RAG Local</div>
+            </div>
+        </div>
+
+        <!-- Introdução -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-semibold mb-4 text-emerald-400">📋 Visão Geral do Curso</h2>
+            <p class="text-slate-300 leading-relaxed">
+                Este roadmap transforma médicos em desenvolvedores de software clínico.
+                Cada aula tem <strong>aproximadamente 1 hora de duração</strong> e entrega valor real para sua prática
+                enquanto construímos juntos o <strong>ClinMd-Tribe</strong> —
+                um app completo, offline, rodando no navegador e exportável para .exe.
+            </p>
+        </div>
+
+        <!-- Épicos -->
+        <div class="space-y-12">
+            <!-- Épico 0 -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-blue-500 rounded-2xl flex items-center justify-center text-xl">🏗️</div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Épico 0: Fundação</h3>
+                    </div>
+                </div>
+                <ul class="space-y-4 text-slate-300">
+                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Configuração do ambiente com uv</li>
+                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Python básico com analogias clínicas</li>
+                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Estrutura Clean Architecture (4 camadas)</li>
+                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Primeiro app Flet rodando</li>
+                    <li class="flex gap-3"><span class="text-emerald-400 font-mono">✓</span> Big Tech Virtual e Agentes Claude Code</li>
+                </ul>
+            </div>
+
+            <!-- Épico 1 -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-purple-500 rounded-2xl flex items-center justify-center text-xl">🧮</div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Épico 1: Calculadoras Médicas</h3>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6 text-sm">
+                    <div>
+                        <p class="font-semibold text-amber-400 mb-2">Clínicas</p>
+                        <ul class="space-y-1 text-slate-400">
+                            <li>CHA2DS2-VASc</li>
+                            <li>HAS-BLED</li>
+                            <li>CURB-65, MELD, SOFA, APACHE II</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-amber-400 mb-2">Psiquiatria (alta prioridade)</p>
+                        <ul class="space-y-1 text-slate-400">
+                            <li>PHQ-9, GAD-7</li>
+                            <li>HAM-D, YMRS, AUDIT, CAGE</li>
+                            <li>MMSE, MoCA, PANSS, CGI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Épico 2 -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-rose-500 rounded-2xl flex items-center justify-center text-xl">📝</div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Épico 2: Anotador Clínico</h3>
+                    </div>
+                </div>
+                <ul class="space-y-3 text-slate-300">
+                    <li class="flex gap-3"><span class="text-emerald-400">→</span> Templates profissionais (evolução, atestado, receita)</li>
+                    <li class="flex gap-3"><span class="text-emerald-400">→</span> Salvamento automático em pasta local</li>
+                    <li class="flex gap-3"><span class="text-emerald-400">→</span> Busca rápida nas anotações</li>
+                </ul>
+            </div>
+
+            <!-- Épico 3 -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-cyan-500 rounded-2xl flex items-center justify-center text-xl">🔍</div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Épico 3: RAG Tribe</h3>
+                    </div>
+                </div>
+                <p class="text-slate-300 mb-4">Base de conhecimento pessoal com busca semântica em:</p>
+                <ul class="grid grid-cols-2 gap-2 text-sm text-slate-400">
+                    <li class="flex items-center gap-2">• PDFs de guidelines</li>
+                    <li class="flex items-center gap-2">• Artigos científicos</li>
+                    <li class="flex items-center gap-2">• Protocolos próprios</li>
+                    <li class="flex items-center gap-2">• Suas anotações anteriores</li>
+                </ul>
+            </div>
+
+            <!-- Épico 4 -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-orange-500 rounded-2xl flex items-center justify-center text-xl">📄</div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Épico 4: Gerador de Evolução</h3>
+                    </div>
+                </div>
+                <p class="text-slate-300">Gera texto pronto para colar no PEP ou TISS usando RAG + templates profissionais.</p>
+            </div>
+
+            <!-- Épico 5 -->
+            <div class="bg-slate-900 border border-slate-700 rounded-3xl p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center text-xl">🚀</div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Épico 5: Polimento Final + Curso</h3>
+                    </div>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex gap-3"><span class="text-emerald-400 font-bold">→</span> Interface médica limpa e profissional</li>
+                    <li class="flex gap-3"><span class="text-emerald-400 font-bold">→</span> Exportável como .exe</li>
+                    <li class="flex gap-3"><span class="text-emerald-400 font-bold">→</span> Auditoria completa de qualidade</li>
+                    <li class="flex gap-3"><span class="text-emerald-400 font-bold">→</span> Material didático do curso pronto</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center text-slate-500 text-sm">
+            <p>ClinMd-Tribe • Curso Claude Code do Zero ao Avançado</p>
+            <p class="mt-1">Liderado por Dr. Petrus Silva Costa • Construído com Clean Architecture + Flet</p>
+        </div>
+    </div>
+</body>
+</html>

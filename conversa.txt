@@ -1,0 +1,35 @@
+[22:19, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: As aulas?
+[22:38, 31/05/2026] Luiz Dieckmann: um curso de claude hahaha
+[22:47, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Pode ser. Claude code. Mas só sei no Linux.
+[22:48, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Posso colocar grok build (tá muito foda!) como um apendice.
+[22:49, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Antes preparo um plano de aulas e submeto a vc ou a quem vc determinar.
+[22:51, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Mas vamos negociar? Você me
+dá a assinatura de um ano full do tribe md assist, como contrapartida. Eu pago 550 no claude, já ajudaria. E te entrego uma aula por semana, ou a seu editor, dentro do plano de aula aprovado
+[22:52, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: E o direito de colocar o logo (?) de vcs como professor seu no meu site profissional. Submeto pra aprovação o design.
+[22:56, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Assino contrato, se quiser.
+[22:57, 31/05/2026] Luiz Dieckmann: uauuuuu
+[22:57, 31/05/2026] Luiz Dieckmann: eu amei!!!!
+[23:01, 31/05/2026] Luiz Dieckmann: vc consegue ir do zero ao básico? ou tem dificuldade de falar pra quem é iniciante?
+[23:01, 31/05/2026] Luiz Dieckmann: zero ao avancado
+[23:01, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Do zero
+[23:01, 31/05/2026] Luiz Dieckmann: hahahha
+[23:01, 31/05/2026] Luiz Dieckmann: desculpa
+[23:01, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Passando por arquitetura de software
+[23:01, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Testes
+[23:02, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Git
+[23:02, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Ci/cd
+[23:03, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: De como abrir o terminal, instalar, a projetar (com agentes!!!!), desenvolver, testar, subir pro repo, empacotar e distribuir
+[23:03, 31/05/2026] Luiz Dieckmann: isso mesmo!
+[23:03, 31/05/2026] Luiz Dieckmann: esse é o espirito
+[23:04, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Usar api, mcp com claude, agentes, skills, hooks, agentes em paralelo com orquestacao
+[23:04, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Agentes executores: backend, frontend, vários outros.
+Orquetrador C-liner: cto, ceo, cso etc
+Tenho acho que 63 diferentes
+[23:06, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Será prático: criar um app BOM, funcional. Aí preciso pensar algum que dê audiência. Não vai ser hello-word 😂
+[23:07, 31/05/2026] Luiz Dieckmann: e tudo que conseguir levar pra area da saude como insight, melhor ainda irmão
+[23:07, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: e tudo que conseguir levar pra area da saude como insight, melhor ainda irmão
+Sim!!!
+[23:11, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: Chefe, vou me aprontar pra dormir. Mas acho que a ideia tá aquecida. Tá aqui tudo escrito, pra gente não esquecer os detalhes. Amanhã preparo o plano de aulas.
+[23:12, 31/05/2026] 𝔓𝔢𝔱𝔯𝔲𝔰 𝔖𝔦𝔩𝔳𝔞: A princípio, mando pra você
+[23:15, 31/05/2026] Luiz Dieckmann: fechado irmão!!!!
+[23:15, 31/05/2026] Luiz Dieckmann: vai ser top!!!

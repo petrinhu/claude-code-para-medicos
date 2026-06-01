@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árvore de Aulas - MDlife Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #1B3A5E; }
+        .phase-header { background: #1B3A5E; color: #fff; border-radius: 12px; padding: 10px 18px; margin: 24px 0 12px; display: flex; align-items: center; }
+        .phase-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(255,255,255,0.15); border-radius: 999px; padding: 3px 10px; margin-right: 10px; flex-shrink: 0; }
+        .phase-opt { background: #F47920 !important; }
+        .module-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+        .module-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; }
+        .module-header:hover { background: #fafafa; }
+        .mod-num { width: 36px; height: 36px; border-radius: 8px; background: #1B3A5E; color: #fff; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .mod-num-adv { background: #F47920; }
+        .mod-num-sub { width: 28px; height: 28px; border-radius: 6px; background: #e2e8f0; color: #1B3A5E; font-weight: 700; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .mod-title { font-weight: 700; font-size: 0.95rem; color: #1B3A5E; }
+        .mod-cat { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #F47920; }
+        .mod-count { margin-left: auto; font-size: 0.75rem; color: #94a3b8; font-weight: 600; white-space: nowrap; }
+        .chevron { color: #94a3b8; font-size: 0.8rem; margin-left: 8px; transition: transform 0.2s; display: inline-block; }
+        .aula-list { border-top: 1px solid #f1f5f9; }
+        .aula-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 16px 9px 22px; border-bottom: 1px solid #f8fafc; }
+        .aula-item:last-child { border-bottom: none; }
+        .aula-num { font-size: 0.7rem; font-weight: 700; color: #F47920; width: 20px; flex-shrink: 0; padding-top: 1px; }
+        .aula-title { font-size: 0.85rem; color: #334155; line-height: 1.4; }
+        .submod-block { border-top: 1px solid #f1f5f9; }
+        .submod-header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; background: #f8fafc; cursor: pointer; user-select: none; }
+        .submod-header:hover { background: #f1f5f9; }
+        .submod-title { font-weight: 600; font-size: 0.85rem; color: #1B3A5E; }
+        .submod-count { margin-left: auto; font-size: 0.7rem; color: #94a3b8; }
+        .submod-aulas { background: #fff; }
+        .submod-aula { display: flex; align-items: flex-start; gap: 10px; padding: 8px 16px 8px 56px; border-bottom: 1px solid #f8fafc; }
+        .submod-aula:last-child { border-bottom: none; }
+        .total-bar { background: #1B3A5E; color: #fff; border-radius: 12px; padding: 14px 20px; margin-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .total-num { font-size: 1.5rem; font-weight: 800; color: #F47920; }
+        .total-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; }
+        .lgpd-bar { background: #fff8f2; border: 1px solid #fde9d4; border-left: 4px solid #F47920; border-radius: 10px; padding: 12px 16px; margin-top: 12px; font-size: 0.82rem; color: #64748b; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] > summary .chevron { transform: rotate(90deg); }
+    </style>
+</head>
+<body>
+<div class="max-w-lg mx-auto px-4 py-8">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl font-extrabold" style="color:#F47920">MD</span>
+            <span class="text-2xl font-light" style="color:#1B3A5E">life</span>
+        </div>
+        <span class="border border-slate-300 text-slate-400 text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full">Academy</span>
+    </div>
+    <h1 class="text-xl font-extrabold mb-1" style="color:#1B3A5E">Árvore de Aulas</h1>
+    <p class="text-sm text-slate-400 mb-6">Claude Code para Médicos, do Zero ao Avançado</p>
+
+    <!-- FASE INICIANTE -->
+    <div class="phase-header">
+        <span class="phase-tag">Iniciante</span>
+        <span class="font-semibold text-sm">Sem programação · 9 aulas</span>
+    </div>
+
+    <div class="module-card">
+        <details open>
+            <summary class="module-header">
+                <div class="mod-num">0</div>
+                <div>
+                    <div class="mod-cat">Zero Absoluto</div>
+                    <div class="mod-title">Primeiros Passos sem Medo</div>
+                </div>
+                <span class="mod-count">5 aulas</span>
+                <span class="chevron">›</span>
+            </summary>
+            <div class="aula-list">
+                <div class="aula-item"><span class="aula-num">01</span><span class="aula-title">O que é o Claude Code</span></div>
+                <div class="aula-item"><span class="aula-num">02</span><span class="aula-title">Instalação e primeiro contato</span></div>
+                <div class="aula-item"><span class="aula-num">03</span><span class="aula-title">Como conversar: pedir, anexar, revisar e iterar</span></div>
+                <div class="aula-item"><span class="aula-num">04</span><span class="aula-title">Bons hábitos de prompt para o contexto clínico</span></div>
+                <div class="aula-item"><span class="aula-num">05</span><span class="aula-title">Claude Code no celular: acesso remoto via /remote</span></div>
+            </div>
+        </details>
+    </div>
+
+    <div class="module-card">
+        <details open>
+            <summary class="module-header">
+                <div class="mod-num">1</div>
+                <div>
+                    <div class="mod-cat">Usar no Dia a Dia</div>
+                    <div class="mod-title">Assistente de Produtividade</div>
+                </div>
+                <span class="mod-count">4 aulas</span>
+                <span class="chevron">›</span>
+            </summary>
+            <div class="aula-list">
+                <div class="aula-item"><span class="aula-num">01</span><span class="aula-title">Trabalhar com arquivos: resumir, comparar e extrair tabelas de PDFs</span></div>
+                <div class="aula-item"><span class="aula-num">02</span><span class="aula-title">Gerar documentos: folhetos, ofícios e modelos administrativos</span></div>
+                <div class="aula-item"><span class="aula-num">03</span><span class="aula-title">Montar slides e apresentações a partir de tópicos soltos</span></div>
+                <div class="aula-item"><span class="aula-num">04</span><span class="aula-title">Planilhas: organizar, limpar e gerar gráficos simples</span></div>
+            </div>
+        </details>
+    </div>
+
+    <!-- FASE INTERMEDIÁRIO -->
+    <div class="phase-header">
+        <span class="phase-tag">Intermediário</span>
+        <span class="font-semibold text-sm">Sem programação · 9 aulas</span>
+    </div>
+
+    <div class="module-card">
+        <details open>
+            <summary class="module-header">
+                <div class="mod-num">2</div>
+                <div>
+                    <div class="mod-cat">Estudo e Evidência</div>
+                    <div class="mod-title">Aprender e Acompanhar a Literatura</div>
+                </div>
+                <span class="mod-count">4 aulas</span>
+                <span class="chevron">›</span>
+            </summary>
+            <div class="aula-list">
+                <div class="aula-item"><span class="aula-num">01</span><span class="aula-title">Buscar e triar artigos pelo conector de PubMed</span></div>
+                <div class="aula-item"><span class="aula-num">02</span><span class="aula-title">Fichamento e leitura crítica: PICO, nível de evidência, vieses</span></div>
+                <div class="aula-item"><span class="aula-num">03</span><span class="aula-title">Flashcards (Anki) e simulados a partir de guidelines</span></div>
+                <div class="aula-item"><span class="aula-num">04</span><span class="aula-title">Briefing automático: resumo das novidades toda manhã</span></div>
+            </div>
+        </details>
+    </div>
+
+    <div class="module-card">
+        <details open>
+            <summary class="module-header">
+                <div class="mod-num">3</div>
+                <div>
+                    <div class="mod-cat">Produzir, Pesquisar e Gerir</div>
+                    <div class="mod-title">Conteúdo, Pesquisa e Consultório</div>
+                </div>
+                <span class="mod-count">5 aulas</span>
+                <span class="chevron">›</span>
+            </summary>
+            <div class="aula-list">
+                <div class="aula-item"><span class="aula-num">01</span><span class="aula-title">Posts e carrosséis para redes sociais</span></div>
+                <div class="aula-item"><span class="aula-num">02</span><span class="aula-title">Newsletter e blog com SEO</span></div>
+                <div class="aula-item"><span class="aula-num">03</span><span class="aula-title">Pôster e slides de congresso</span></div>
+                <div class="aula-item"><span class="aula-num">04</span><span class="aula-title">Estatística de dados anonimizados e gráficos para publicação</span></div>
+                <div class="aula-item"><span class="aula-num">05</span><span class="aula-title">Gestão do consultório: indicadores, faturamento e automação</span></div>
+            </div>
+        </details>
+    </div>
+
+    <!-- FASE AVANÇADO -->
+    <div class="phase-header">
+        <span class="phase-tag phase-opt">Avançado</span>
+        <span class="font-semibold text-sm">Opcional · Python + Flet · 31 aulas</span>
+    </div>
+
+    <div class="module-card">
+        <details>
+            <summary class="module-header">
+                <div class="mod-num mod-num-adv">4</div>
+                <div>
+                    <div class="mod-cat">Avançado · Opcional</div>
+                    <div class="mod-title">Construir suas Próprias Ferramentas</div>
+                </div>
+                <span class="mod-count">12 submódulos</span>
+                <span class="chevron">›</span>
+            </summary>
+
+            <div class="submod-block"><details open><summary class="submod-header"><div class="mod-num-sub">00</div><span class="submod-title">Fundação</span><span class="submod-count">2 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">Terminal + uv: seu bisturi digital</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Python com analogias clínicas</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">01</div><span class="submod-title">Git</span><span class="submod-count">2 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">git init, add, commit, log</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Branch, merge e Forgejo</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">02</div><span class="submod-title">Python + Flet</span><span class="submod-count">2 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">Flet Hello World médico</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Layout, cores e componentes Flet</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">03</div><span class="submod-title">Clean Architecture</span><span class="submod-count">2 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">As 4 camadas: analogia com sistemas do corpo</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Scaffold do ClinMd-Tribe</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">04</div><span class="submod-title">Agents e BigTech Virtual</span><span class="submod-count">4 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">Claude Code: seu residente de plantão 24h</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">MCP e Skills: estendendo o bisturi</span></div><div class="submod-aula"><span class="aula-num">03</span><span class="aula-title">BigTech Virtual: montando o time completo</span></div><div class="submod-aula"><span class="aula-num">04</span><span class="aula-title">/tab_pendencias: gestão ágil do projeto</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">05</div><span class="submod-title">Calculadoras Médicas</span><span class="submod-count">4 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">CHA2DS2-VASc e HAS-BLED</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">PHQ-9 e GAD-7</span></div><div class="submod-aula"><span class="aula-num">03</span><span class="aula-title">HAM-D, YMRS, AUDIT, CAGE</span></div><div class="submod-aula"><span class="aula-num">04</span><span class="aula-title">MMSE, MoCA, PANSS, CGI, CURB-65, MELD, SOFA</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">06</div><span class="submod-title">Anotador Clínico</span><span class="submod-count">2 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">Templates profissionais (evolução, atestado, receita)</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Salvamento automático e busca</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">07</div><span class="submod-title">RAG Tribe</span><span class="submod-count">4 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">O que é RAG: analogia com memória médica</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Indexar PDFs do knowledge_base/</span></div><div class="submod-aula"><span class="aula-num">03</span><span class="aula-title">Busca semântica em produção</span></div><div class="submod-aula"><span class="aula-num">04</span><span class="aula-title">Integração RAG com app Flet</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">08</div><span class="submod-title">Gerador de Evolução</span><span class="submod-count">2 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">Gerador com RAG + templates</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Integração completa no app</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">09</div><span class="submod-title">Testes</span><span class="submod-count">2 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">TDD e pytest: receita em vez de intuição</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Testes das calculadoras e RAG</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">10</div><span class="submod-title">CI/CD</span><span class="submod-count">2 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">Forgejo e pipeline CI básico</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Woodpecker: automatizando builds</span></div></div></details></div>
+
+            <div class="submod-block"><details><summary class="submod-header"><div class="mod-num-sub">11</div><span class="submod-title">Polimento Final</span><span class="submod-count">3 aulas</span><span class="chevron" style="margin-left:6px">›</span></summary><div class="submod-aulas"><div class="submod-aula"><span class="aula-num">01</span><span class="aula-title">UI médica: paleta, tipografia, ícones</span></div><div class="submod-aula"><span class="aula-num">02</span><span class="aula-title">Exportar como .exe para Windows</span></div><div class="submod-aula"><span class="aula-num">03</span><span class="aula-title">Auditoria final e distribuição</span></div></div></details></div>
+
+        </details>
+    </div>
+
+    <!-- LGPD -->
+    <div class="lgpd-bar">
+        🛡️ <strong>Eixo transversal em todas as aulas:</strong> Privacidade e LGPD. Dado de paciente não entra. Tudo roda local.
+    </div>
+
+    <!-- Totais -->
+    <div class="total-bar">
+        <div class="text-center">
+            <div class="total-num">18</div>
+            <div class="total-label">Aulas obrigatórias</div>
+        </div>
+        <div class="text-center">
+            <div class="total-num">31</div>
+            <div class="total-label">Aulas avançadas</div>
+        </div>
+        <div class="text-center">
+            <div class="total-num">49</div>
+            <div class="total-label">Total</div>
+        </div>
+        <div class="text-center">
+            <div class="total-num">~49h</div>
+            <div class="total-label">Carga horária</div>
+        </div>
+    </div>
+
+    <div class="mt-8 text-center text-slate-400 text-xs">
+        <p>MDlife Academy · Claude Code para Médicos, do Zero ao Avançado</p>
+        <p class="mt-1">Liderado por Dr. Petrus Silva Costa</p>
+    </div>
+
+</div>
+</body>
+</html>

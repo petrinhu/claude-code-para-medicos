@@ -1,0 +1,308 @@
+<h1 id="aula-18--mcp-skills-hooks-e-plugins-estendendo-o-bisturi">Aula
+18 — MCP, Skills, Hooks e Plugins: Estendendo o Bisturi</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~38 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — aprofundar o
+que já existe e apresentar o único conceito novo: hooks</p>
+<hr />
+<h2 id="seção-1-revisão-relâmpago--os-três-conhecidos-3-min">SEÇÃO 1:
+REVISÃO RELÂMPAGO — OS TRÊS CONHECIDOS (3 min)</h2>
+<p><strong>Tom:</strong> Reconexão, não introdução — o aluno já sabe, só
+precisa nomear</p>
+<p>"Você já usa três dessas extensões há semanas.</p>
+<p>Na aula_03 você instalou o MCP do PubMed — o cabo que conecta o
+Claude a uma fonte de dados externa. Você pediu artigos sem abrir o
+navegador.</p>
+<p>Na aula_10 você instalou o plugin superpowers e três skills:
+/forgejo, /memo_persistente, /tab_pendencias. Desde então você usa
+/tab_pendencias toda aula.</p>
+<p>Então você já sabe:</p>
+<p>MCP — cabo que conecta o Claude a ferramentas externas. Skill —
+protocolo que você invoca pelo nome. Plugin — kit que empacotou skills e
+MCPs numa instalação só.</p>
+<hr />
+<p>Hoje tem dois objetivos.</p>
+<p>Primeiro: aprofundar esses três no contexto do ClinMd-Tribe. Não como
+conceito isolado — como ferramenta que você vai usar no projeto.</p>
+<p>Segundo: apresentar o quarto. O único que você ainda não conhece.</p>
+<p>[mostrar a tabela vazia na tela]</p>
+<table>
+<thead>
+<tr>
+<th>Conceito</th>
+<th>O que é</th>
+<th>Como acionar</th>
+<th>Análogo no plantão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skill</td>
+<td>?</td>
+<td>/nome</td>
+<td>?</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>?</td>
+<td>@nome</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Hook</td>
+<td>?</td>
+<td>?</td>
+<td>?</td>
+</tr>
+<tr>
+<td>Plugin</td>
+<td>?</td>
+<td>plugin install</td>
+<td>?</td>
+</tr>
+</tbody>
+</table>
+<p>Vamos preencher essa tabela juntos."</p>
+<hr />
+<h2 id="seção-2-skills--lendo-o-protocolo-por-dentro-7-min">SEÇÃO 2:
+SKILLS — LENDO O PROTOCOLO POR DENTRO (7 min)</h2>
+<p><strong>Tom:</strong> Aprofundamento — desmistificar o que a skill é
+de verdade</p>
+<p>"Você usa /tab_pendencias toda semana.</p>
+<p>Mas o que é esse comando por dentro?</p>
+<p>Prompt ao Claude Code:</p>
+<pre><code>Leia o arquivo da skill tab_pendencias e me mostre o conteúdo completo.</code></pre>
+<p>[aguardar e mostrar o conteúdo do arquivo]</p>
+<hr />
+<p>Olha o que apareceu.</p>
+<p>É texto. Em português. Sem código.</p>
+<p>Uma skill é um protocolo escrito que alguém deixou pronto. Igual ao
+POP da UTI — Procedimento Operacional Padrão. Quando um residente novo
+entra no serviço, ele lê o POP e segue. Não é mágica. É instrução
+formalizada.</p>
+<p>O Claude lê esse arquivo no início da sessão e passa a saber o que
+fazer quando você digita /tab_pendencias.</p>
+<hr />
+<p>Isso tem uma implicação importante.</p>
+<p>Qualquer protocolo clínico que você usa repetidamente no ClinMd-Tribe
+pode virar uma skill.</p>
+<p>'Toda vez que eu pedir uma análise de escore clínico, quero que o
+Claude siga este roteiro: verificar os critérios, calcular, classificar
+o risco, sugerir conduta.'</p>
+<p>Isso pode ser escrito num arquivo de skill. O Claude vai seguir cada
+vez que você invocar.</p>
+<p>Não é escopo desta aula criar uma skill — mas agora você sabe que não
+é mágica. É um arquivo de texto que você pode ler e entender.</p>
+<p>[preencher linha 1 da tabela]</p>
+<p>| Skill | Protocolo institucional invocado pelo nome | /nome | POP da
+UTI |"</p>
+<hr />
+<h2 id="seção-3-mcp--github-no-clinmd-tribe-8-min">SEÇÃO 3: MCP — GITHUB
+NO CLINMD-TRIBE (8 min)</h2>
+<p><strong>Tom:</strong> Do conceito ao uso real no projeto — o MCP que
+já existe trabalhando</p>
+<p>"Na aula_10 você viu a lista de MCPs disponíveis. GitHub estava lá.
+Mas você nunca usou no projeto.</p>
+<p>Hoje usa.</p>
+<p>[entrar na pasta do ClinMd-Tribe e abrir o Claude Code]</p>
+<pre><code>cd Documents\projetos\clinmd-tribe
+claude</code></pre>
+<p>Prompt:</p>
+<pre><code>@github liste os últimos 5 commits do repositório ClinMd-Tribe
+e me diga em qual camada da Clean Architecture cada mudança aconteceu.</code></pre>
+<p>[aguardar e mostrar o resultado]</p>
+<hr />
+<p>O Claude acessou o repositório remoto. Sem você abrir o GitHub no
+browser. Sem copiar e colar URL. Sem navegar pelo histórico
+manualmente.</p>
+<p>E ainda cruzou com o que ele sabe sobre o projeto: mapeou cada commit
+na camada da Clean Architecture correspondente.</p>
+<p>Isso é o MCP no trabalho real.</p>
+<hr />
+<p>O residente passou a ter acesso ao prontuário histórico do
+projeto.</p>
+<p>Sabe quando cada andar do hospital foi construído. Sabe o que mudou
+na Recepção, o que mudou no Domínio.</p>
+<p>Conforme o ClinMd-Tribe crescer — mais commits, mais features — você
+vai usar isso para se orientar:</p>
+<pre><code>@github o que mudou no domain/ nos últimos 10 commits?</code></pre>
+<pre><code>@github existe alguma issue aberta no repositório?</code></pre>
+<p>O GitHub MCP é o arquivo do hospital. O residente consulta sem você
+precisar abrir uma nova aba.</p>
+<p>[preencher linha 2 da tabela]</p>
+<p>| MCP | Cabo que conecta a ferramentas externas | @nome | PACS,
+laboratório, arquivo |"</p>
+<hr />
+<h2 id="seção-4-hooks--a-rotina-automática-6-min">SEÇÃO 4: HOOKS — A
+ROTINA AUTOMÁTICA (6 min)</h2>
+<p><strong>Tom:</strong> Introdução do conceito novo — o único que o
+aluno ainda não conhece</p>
+<p>"Agora o quarto.</p>
+<p>Skills e MCPs têm algo em comum: você convoca. Você digita
+/tab_pendencias. Você escreve @github. Você pede. O Claude responde.</p>
+<p>Hooks são diferentes.</p>
+<hr />
+<p>Pensa numa rotina do plantão que dispara sem você pedir.</p>
+<p>'Antes de toda alta, confere a prescrição.'</p>
+<p>Não é você que lembra. Não é o residente que você precisa instruir na
+hora. É uma ordem permanente que já existe no sistema. Quando o evento
+acontece — alta confirmada — o checklist roda sozinho.</p>
+<p>Hook é isso.</p>
+<p>É uma instrução que você configura uma vez e que dispara
+automaticamente quando um evento específico acontece no Claude Code.</p>
+<hr />
+<p>Os eventos que um hook pode monitorar:</p>
+<p>PreToolUse — antes de o Claude usar uma ferramenta. PostToolUse —
+depois de o Claude usar uma ferramenta. Notification — quando o Claude
+envia uma notificação. Stop — quando o Claude termina de responder.</p>
+<p>Você escolhe o evento. Você define o que deve rodar quando ele
+acontece.</p>
+<hr />
+<p>Onde fica a configuração?</p>
+<p>No arquivo <code>.claude/settings.json</code> dentro do projeto.</p>
+<p>[mostrar o arquivo na tela — ou mostrar como seria]</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">\</span><span class="dt">&quot;hooks</span><span class="ch">\&quot;</span><span class="dt">: {</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">    </span><span class="ch">\&quot;</span><span class="dt">PostToolUse</span><span class="ch">\&quot;</span><span class="dt">: [</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">      {</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">        </span><span class="ch">\&quot;</span><span class="dt">matcher</span><span class="ch">\&quot;</span><span class="dt">: </span><span class="ch">\&quot;</span><span class="dt">Write</span><span class="ch">\&quot;</span><span class="dt">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dt">        </span><span class="ch">\&quot;</span><span class="dt">hooks</span><span class="ch">\&quot;</span><span class="dt">: [</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dt">          {</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dt">            </span><span class="ch">\&quot;</span><span class="dt">type</span><span class="ch">\&quot;</span><span class="dt">: </span><span class="ch">\&quot;</span><span class="dt">command</span><span class="ch">\&quot;</span><span class="dt">,</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="dt">            </span><span class="ch">\&quot;</span><span class="dt">command</span><span class="ch">\&quot;</span><span class="dt">: </span><span class="ch">\&quot;</span><span class="dt">echo &#39;✓ residente salvou um arquivo&#39;</span><span class="ch">\&quot;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dt">          }</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="dt">        ]</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="dt">      }</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="dt">    ]</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="dt">  }</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="dt">}</span></span></code></pre></div>
+<p>Leia junto comigo.</p>
+<p>PostToolUse — depois de usar uma ferramenta. matcher: Write — quando
+a ferramenta for a de escrita de arquivo. command — execute este comando
+no terminal.</p>
+<p>Toda vez que o Claude salvar um arquivo, essa mensagem aparece. Sem
+você pedir. Automático.</p>
+<p>[preencher linha 3 da tabela — mas ainda sem demo]</p>
+<p>| Hook | Rotina automática disparada por evento | Automático |
+Checklist cirúrgico |"</p>
+<hr />
+<h2 id="seção-5-hook-ao-vivo--demo-no-clinmd-tribe-6-min">SEÇÃO 5: HOOK
+AO VIVO — DEMO NO CLINMD-TRIBE (6 min)</h2>
+<p><strong>Tom:</strong> Revelar — o aluno vê acontecer sem pedir</p>
+<p>"Agora vamos criar esse hook no ClinMd-Tribe.</p>
+<p>Prompt ao Claude Code:</p>
+<pre><code>No arquivo .claude/settings.json do projeto ClinMd-Tribe,
+adiciona um hook PostToolUse que executa após qualquer operação Write
+e imprime no terminal a mensagem:
+&#39;✓ residente salvou: arquivo modificado no projeto&#39;
+Cria o arquivo se não existir.</code></pre>
+<p>[aguardar o Claude criar ou modificar o settings.json]</p>
+<hr />
+<p>Agora faça qualquer modificação no projeto. Vou pedir ao Claude para
+atualizar o arquitetura.txt:</p>
+<pre><code>Atualiza o arquitetura.txt para incluir uma linha indicando
+que o scaffold foi concluído na aula_16.</code></pre>
+<p>[aguardar — e mostrar a mensagem aparecendo no terminal]</p>
+<pre><code>✓ residente salvou: arquivo modificado no projeto</code></pre>
+<hr />
+<p>Aconteceu sem você pedir.</p>
+<p>Você pediu uma atualização de arquivo. O residente atualizou. E o
+hook disparou sozinho, confirmando que o arquivo foi tocado.</p>
+<p>É pequeno. Mas o princípio é poderoso.</p>
+<p>Conforme o ClinMd-Tribe crescer, você pode usar hooks para: — avisar
+quando um arquivo do domain/ for modificado — rodar uma verificação
+automática antes de qualquer commit — registrar em log toda vez que o
+Claude escrever na infrastructure/</p>
+<p>O residente tem reflexos agora. Você treinou ele para ter checklist
+automático."</p>
+<hr />
+<h2 id="seção-6-tabela-completa--os-quatro-juntos-4-min">SEÇÃO 6: TABELA
+COMPLETA — OS QUATRO JUNTOS (4 min)</h2>
+<p><strong>Tom:</strong> Consolidação visual — fechar o ciclo dos 4
+conceitos</p>
+<p>"Tabela completa.</p>
+<p>[mostrar a tabela preenchida]</p>
+<table>
+<thead>
+<tr>
+<th>Conceito</th>
+<th>O que é</th>
+<th>Como acionar</th>
+<th>Análogo no plantão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skill</td>
+<td>Protocolo institucional escrito</td>
+<td>/nome</td>
+<td>POP da UTI</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>Cabo para ferramentas externas</td>
+<td>@nome</td>
+<td>PACS, arquivo, laboratório</td>
+</tr>
+<tr>
+<td>Hook</td>
+<td>Rotina automática por evento</td>
+<td>Automático</td>
+<td>Checklist cirúrgico</td>
+</tr>
+<tr>
+<td>Plugin</td>
+<td>Kit com skills + MCPs + hooks</td>
+<td>plugin install</td>
+<td>Maleta de admissão completa</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Três perguntas rápidas. Responda antes de eu falar.</p>
+<p>Para buscar um artigo no PubMed direto do Claude Code, que tipo de
+extensão uso?</p>
+<p>[pausa]</p>
+<p>MCP. O cabo que conecta o Claude ao PubMed.</p>
+<hr />
+<p>Para gerar a tabela de pendências do projeto, que tipo?</p>
+<p>[pausa]</p>
+<p>Skill. Você digita /tab_pendencias e o protocolo roda.</p>
+<hr />
+<p>Para registrar automaticamente toda vez que o Claude modificar um
+arquivo no domain/ do ClinMd-Tribe, que tipo?</p>
+<p>[pausa]</p>
+<p>Hook. Você configura uma vez e ele dispara sozinho no evento."</p>
+<hr />
+<h2 id="seção-7-tab_pendencias--encerramento-4-min">SEÇÃO 7:
+/TAB_PENDENCIAS + ENCERRAMENTO (4 min)</h2>
+<p><strong>Tom:</strong> Registro e ponte para BigTech Virtual</p>
+<p>"Atualize as pendências:</p>
+<pre><code>/tab_pendencias</code></pre>
+<p>[mostrar a tabela — aula_18 concluída, BigTech Virtual como
+próxima]</p>
+<hr />
+<p>Resumo do que ficou claro hoje.</p>
+<p>Você já sabia três — agora conhece os três mais fundo.</p>
+<p>Skill é um arquivo de texto que qualquer residente lê e segue. MCP
+conecta o Claude ao GitHub, ao PubMed, ao que você precisar, sem abrir o
+browser, no contexto do projeto. Hook é o checklist automático — dispara
+no evento, sem você pedir. Plugin é a maleta que trouxe tudo junto.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Pensa num evento do ClinMd-Tribe que deveria disparar
+automaticamente.</p>
+<p>Pode ser: 'toda vez que o Claude modificar um arquivo em domain/,
+quero um aviso' 'antes de qualquer commit, quero que apareça uma
+mensagem de confirmação' 'quando o Claude terminar de responder, quero
+um som de notificação'</p>
+<p>Escreva o prompt que você daria ao Claude Code para criar esse hook.
+Não precisa executar — só o prompt.</p>
+<p>Na próxima aula: BigTech Virtual. Você vai conhecer o time completo
+de C-levels e agents operacionais que está disponível dentro do Claude
+Code — e vai aprender a consultar o especialista certo para cada decisão
+do ClinMd-Tribe.</p>
+<p>Até lá."</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

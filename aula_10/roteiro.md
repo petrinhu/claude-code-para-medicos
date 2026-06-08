@@ -53,8 +53,35 @@ Você pergunta em linguagem natural, ele acha.
 É isso. Um app para uso diário no consultório.
 Construído do zero, por você, com o Claude como par de programação.
 
-Nas próximas aulas você vai entender como ele funciona por dentro.
-Hoje você prepara o ambiente para construir."
+---
+
+Antes de seguir, deixa eu mostrar a planta da casa que vamos construir.
+
+Todo sistema bem feito tem camadas. Como o corpo humano.
+Pele, tecido, músculo, osso — cada camada tem função específica.
+
+O ClinMd-Tribe tem quatro camadas:
+
+**Apresentação** — o que você vê: telas, botões, formulários.
+É a pele. É com o Flet que vamos construir essa camada.
+
+**Aplicação** — as regras de negócio: 'calcular CHA2DS2-VASc',
+'salvar evolução', 'buscar no PDF'. É o tecido que conecta tela e dados.
+
+**Domínio** — as entidades clínicas: o que é um Paciente, um Cálculo,
+uma Nota de Evolução. É a anatomia do sistema.
+
+**Infraestrutura** — onde os dados são guardados: arquivos no disco,
+banco de dados local, indexação de PDFs. É o osso — sustenta tudo.
+
+[mostrar diagrama simples: 4 caixas empilhadas com os nomes]
+
+Você não precisa memorizar isso agora.
+O que precisa saber: quando chegar na aula de Clean Architecture,
+você vai reconhecer esse diagrama.
+E vai entender por que cada peça do ClinMd-Tribe está onde está.
+
+Por enquanto: a planta existe. Agora vamos montar o laboratório."
 
 ---
 

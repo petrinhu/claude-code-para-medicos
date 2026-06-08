@@ -79,7 +79,23 @@ Vocês têm o problema clínico, descrevem pro colega especialista,
 ele dá a solução baseado na experiência dele. 
 Claude funciona assim — mas é especialista em código, terminal, IA.
 
-Fácil? Fácil."
+Fácil? Fácil.
+
+---
+
+Tem um nome para o que vocês vão fazer aqui.
+
+Existe algo chamado 'vibe coding' — quando alguém manda um prompt pra IA e espera que ela faça tudo,
+sem entender se o resultado ficou bom ou ruim. Sem supervisão. Sem critério.
+É pedir ao residente que opere sem supervisão. Arriscado.
+
+O que vocês vão aprender aqui é diferente. É **desenvolvimento assistido por IA**.
+Vocês têm o diagnóstico — o problema que querem resolver.
+A IA tem as ferramentas — código, estrutura, automação.
+Vocês supervisionam o resultado e decidem se ficou bom.
+
+A diferença: um médico que delega com critério versus um médico que assina sem ler.
+Vocês vão ser o primeiro tipo."
 
 ---
 
@@ -133,7 +149,39 @@ e coloca pra trabalhar pra vocês."
 
 **Tom:** Claro, direto, transparência sobre expectativas
 
-"Deixa eu ser direto sobre o que é este curso e o que não é.
+"Antes de fechar o contrato, deixa eu ser honesto sobre um dado que a maioria dos cursos não conta.
+
+Existe algo chamado J-Curve de adoção de IA. Uma pesquisa chamada DORA 2026,
+que acompanha times de tecnologia no mundo inteiro, mede o que acontece quando
+alguém começa a usar IA de verdade no trabalho.
+
+O que eles encontraram: no início, a produtividade CAI.
+
+[pausa]
+
+Não é falha sua. Não é porque a ferramenta é ruim.
+É porque você ainda está aprendendo a pedir bem. Ainda está errando o prompt.
+Ainda está entendendo o que funciona e o que não funciona.
+
+É como a primeira semana com um novo equipamento cirúrgico.
+Você era mais rápido com a técnica antiga. O equipamento novo demora para virar reflexo.
+
+[pausa]
+
+Mas por volta do terceiro ao oitavo mês, a curva vira.
+Quem persiste chega a 39% de ganho de produtividade no primeiro ano.
+
+39% é muito. É quase dois dias de trabalho por semana que voltam para você.
+
+A maioria das pessoas abandona na fase difícil. Você não vai abandonar.
+Porque agora você sabe que a dificuldade inicial faz parte do processo.
+Ela tem nome. Ela é temporária. Ela passa.
+
+---
+
+Dito isso: o contrato.
+
+Deixa eu ser direto sobre o que é este curso e o que não é.
 
 Este curso tem 22 aulas obrigatórias + 31 aulas opcionais na fase avançada.
 Cada aula dura cerca de 1 hora. Idealmente, uma aula por semana.

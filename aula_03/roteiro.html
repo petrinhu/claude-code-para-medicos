@@ -1,0 +1,232 @@
+<h1 id="aula-03-pubmed-fichamento-e-leitura-crítica">Aula 03 — PubMed +
+Fichamento e Leitura Crítica</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~55 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático</p>
+<hr />
+<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
+<p><strong>Tom:</strong> Direto, conectando com a aula anterior,
+elevando o nível</p>
+<p>“Na aula passada a gente trabalhou com arquivos locais — PDFs que
+estavam no seu computador, planilhas que você já tinha, slides que você
+montou.</p>
+<p>Hoje a gente sobe um degrau.</p>
+<p>Ao invés de trabalhar com o que você já tem, a gente vai buscar
+evidência científica diretamente do PubMed — sem abrir o navegador, sem
+copiar e colar resumo, sem perder tempo em interface.</p>
+<p>Tudo dentro do Claude Code.</p>
+<p>E no final, você vai sair com uma ficha de leitura crítica pronta
+para apresentar em reunião clínica.</p>
+<p>Vamos lá.”</p>
+<hr />
+<h2 id="seção-2-o-cenário-3-min">SEÇÃO 2: O CENÁRIO (3 min)</h2>
+<p><strong>Tom:</strong> Situação real, tensão clínica, resolução com
+Claude Code</p>
+<p>“Cenário de hoje.</p>
+<p>Você está na visita da enfermaria, terça de manhã. O chefe de equipe
+vira pra você e fala: ‘Na reunião clínica de amanhã quero evidência
+atual sobre anticoagulação em fibrilação atrial não-valvar. Me traz o
+que saiu de novo nos últimos 2 anos.’</p>
+<p>Silêncio.</p>
+<p>Você podia abrir o PubMed, pesquisar manualmente, filtrar por data,
+baixar 10 artigos, ler os abstracts um por um, selecionar os relevantes,
+fazer fichamento à mão, classificar nível de evidência…</p>
+<p>São facilmente 3 horas de trabalho.</p>
+<p>Ou.</p>
+<p>Você abre o Claude Code, conecta no PubMed, e deixa ele fazer isso
+por você enquanto você termina a visita.</p>
+<p>É isso que a gente vai fazer agora.”</p>
+<hr />
+<h2 id="seção-3-o-que-é-mcp-5-min">SEÇÃO 3: O QUE É MCP (5 min)</h2>
+<p><strong>Tom:</strong> Explicativo, analogia clínica forte, sem
+jargão</p>
+<p>“Antes de conectar no PubMed, preciso explicar uma coisa.</p>
+<p>Como é que o Claude Code consegue acessar o PubMed se ele é só um
+assistente de texto?</p>
+<p>A resposta se chama MCP — Model Context Protocol.</p>
+<p>Não precisa decorar o nome. Precisa entender o conceito.</p>
+<p>Pensa assim: você tem um eletrocardiógrafo no consultório. O
+equipamento sabe interpretar sinais elétricos. Mas pra registrar o
+traçado do coração do paciente, você precisa de cabos — os eletrodos —
+que conectam o paciente à máquina.</p>
+<p>O Claude Code é a máquina. Ele já sabe raciocinar, sintetizar,
+responder. O MCP é o cabo que conecta ele a uma fonte de dados
+externa.</p>
+<p>Neste caso: o PubMed.</p>
+<p>Existem conectores MCP pra muita coisa além do PubMed. Google
+Calendar. Planilhas online. Banco de dados de medicamentos. Sistemas de
+agendamento. Cada um é um ‘cabo’ diferente.</p>
+<p>A gente instala o cabo uma vez — e o Claude passa a enxergar aquela
+fonte em todas as conversas futuras.</p>
+<p>É como calibrar o ECG uma vez e usar pra sempre.</p>
+<p>Entendeu o conceito? Ótimo. Vamos instalar.”</p>
+<hr />
+<h2 id="seção-4-setup-do-mcp-pubmed-8-min">SEÇÃO 4: SETUP DO MCP PUBMED
+(8 min)</h2>
+<p><strong>Tom:</strong> Pausado, didático, mostrando cada passo com
+calma</p>
+<p>“Para instalar o conector PubMed no Claude Code, vocês vão copiar
+este comando exato no terminal:</p>
+<pre><code>claude mcp add pubmed -- npx -y @modelcontextprotocol/server-pubmed</code></pre>
+<p>[colar e executar]</p>
+<p>Pode aparecer uma mensagem de confirmação — digitem ‘y’ e Enter se
+pedir.</p>
+<p>[aguardar instalação]</p>
+<p>Pronto. O conector está instalado.</p>
+<p>Agora reiniciem o Claude Code para ele reconhecer o novo
+conector:</p>
+<pre><code>claude</code></pre>
+<p>[reiniciar e mostrar que o PubMed aparece disponível]</p>
+<p>Uma coisa importante: isso foi feito uma única vez. Da próxima vez
+que vocês abrirem o Claude Code, o PubMed já vai estar lá. Não precisam
+repetir este passo.</p>
+<p>É como instalar o cabo do ECG na primeira vez — depois fica
+plugado.</p>
+<p>Vamos testar? Vou digitar uma pergunta simples pra confirmar que está
+funcionando:</p>
+<pre><code>O conector do PubMed está ativo? Faça uma busca rápida por &#39;atrial fibrillation&#39; 
+e me mostre o título do primeiro artigo encontrado.</code></pre>
+<p>[executar e mostrar que o Claude acessou o PubMed]</p>
+<p>Funcionou. O Claude está conectado ao PubMed.</p>
+<p>Agora a busca de verdade.”</p>
+<hr />
+<h2 id="seção-5-demo-busca-no-pubmed-10-min">SEÇÃO 5: DEMO — BUSCA NO
+PUBMED (10 min)</h2>
+<p><strong>Tom:</strong> Focado, mostrando a construção do prompt de
+busca</p>
+<p>“Vamos buscar evidência atual sobre anticoagulação em FA
+não-valvar.</p>
+<p>A chave aqui é o prompt. Quanto mais específico, melhor o resultado.
+Lembra da regra de ouro da aula de abertura? Prompt vago, resposta
+vaga.</p>
+<p>Vou construir o prompt em camadas, pra vocês verem a diferença.</p>
+<p>Prompt básico — ruim:</p>
+<pre><code>Busque artigos sobre fibrilação atrial.</code></pre>
+<p>Isso vai trazer 50 mil resultados. Inútil.</p>
+<p>Agora o prompt que vou usar de verdade:</p>
+<pre><code>Use o PubMed para buscar artigos sobre anticoagulação em fibrilação atrial não-valvar.
+Filtros obrigatórios:
+- Publicados entre 2022 e 2024
+- Tipos de estudo: ensaios clínicos randomizados, metanálises ou revisões sistemáticas
+- Idioma: inglês ou português
+Me retorne os 5 artigos mais relevantes com: título, autores, ano, revista e abstract resumido em 3 bullets.</code></pre>
+<p>[executar e mostrar resultado]</p>
+<p>Olha a diferença.</p>
+<p>5 artigos. Todos recentes. Todos com design metodológico forte — RCT
+ou metanálise. Cada um com abstract resumido em bullets, pronto para eu
+ler.</p>
+<p>Isso que levaria 40 minutos de pesquisa manual saiu em 30
+segundos.</p>
+<p>E lembrem: os artigos que aparecem pra vocês podem ser diferentes dos
+meus. O PubMed tem milhões de papers, o Claude seleciona com base nos
+critérios, mas a seleção pode variar. Isso é normal — o processo é o que
+importa, não a lista exata.”</p>
+<hr />
+<h2 id="seção-6-demo-triagem-dos-resultados-7-min">SEÇÃO 6: DEMO —
+TRIAGEM DOS RESULTADOS (7 min)</h2>
+<p><strong>Tom:</strong> Crítico, ensinando a hierarquia de evidência de
+forma prática</p>
+<p>“Tenho 5 artigos. Mas pra reunião clínica de amanhã, preciso de no
+máximo 2. Quais são os mais relevantes?</p>
+<p>Eu poderia ler todos os abstracts e decidir. Ou posso pedir pro
+Claude fazer a triagem com critério clínico.</p>
+<p>Prompt de triagem:</p>
+<pre><code>Dos 5 artigos que você encontrou, selecione os 2 mais relevantes para apresentar
+em uma reunião clínica sobre anticoagulação em FA não-valvar.
+Critérios de prioridade, nesta ordem:
+1. Metanálise ou revisão sistemática com metanálise
+2. Ensaio clínico randomizado de alta qualidade
+3. Guideline de sociedade internacional (ESC, AHA, SBC)
+Descarte: relato de caso, carta ao editor, opinião de especialista sem dados.
+Justifique a escolha de cada um em 2 frases.</code></pre>
+<p>[executar e mostrar resultado]</p>
+<p>Pronto. Dois artigos, com justificativa clínica da escolha.</p>
+<p>Isso é hierarquia de evidência aplicada na prática — Oxford, GRADE, o
+que for. O princípio é o mesmo: metanálise &gt; RCT &gt; coorte &gt;
+caso-controle &gt; relato de caso.</p>
+<p>O Claude não inventa isso — ele aplica o que já está na literatura de
+metodologia.</p>
+<p>Agora pego o artigo mais relevante e faço o fichamento completo.”</p>
+<hr />
+<h2 id="seção-7-demo-fichamento-e-leitura-crítica-15-min">SEÇÃO 7: DEMO
+— FICHAMENTO E LEITURA CRÍTICA (15 min)</h2>
+<p><strong>Tom:</strong> Metódico, ensinando cada componente da leitura
+crítica</p>
+<p>“Aqui está o coração da aula.</p>
+<p>Leitura crítica não é ler o artigo inteiro. É extrair o que importa
+de forma estruturada — PICO, nível de evidência, vieses.</p>
+<p>Vou pegar o artigo mais relevante da triagem e fazer o fichamento
+completo.</p>
+<p>Prompt:</p>
+<pre><code>Faça um fichamento completo de leitura crítica do artigo mais relevante que você selecionou.
+Estruture assim:
+
+1. REFERÊNCIA COMPLETA
+   Título, autores, revista, ano, DOI
+
+2. PICO
+   P — Pacientes/População: quem foram os participantes?
+   I — Intervenção: o que foi testado?
+   C — Comparação: qual foi o controle ou comparador?
+   O — Outcome/Desfecho: o que foi medido? Qual foi o resultado principal?
+
+3. DESENHO DO ESTUDO
+   Tipo de estudo, tamanho amostral, duração do seguimento
+
+4. NÍVEL DE EVIDÊNCIA
+   Classificação Oxford (1a a 5) ou GRADE (alta/moderada/baixa/muito baixa)
+   Justifique a classificação
+
+5. VIESES PRINCIPAIS
+   Para cada viés abaixo, avalie se está presente, ausente ou incerto:
+   - Viés de seleção (randomização adequada?)
+   - Viés de aferição (desfechos cegos?)
+   - Viés de confundimento (grupos comparáveis no baseline?)
+   - Viés de publicação (resultados negativos suprimidos?)
+
+6. MENSAGEM CLÍNICA PRINCIPAL
+   Em 2 frases: o que este artigo muda (ou não muda) na prática clínica?</code></pre>
+<p>[executar e mostrar resultado]</p>
+<p>Olha o que saiu.</p>
+<p>PICO completo. Nível de evidência com justificativa. Vieses avaliados
+um a um. Mensagem clínica em 2 frases.</p>
+<p>Isso é exatamente o que o chefe de equipe quer amanhã na reunião.</p>
+<p>E percebam o tempo que isso levou — menos de 1 minuto. Versus fazer
+isso à mão: 20, 30 minutos por artigo.</p>
+<p>Uma observação importante: o Claude está fazendo essa análise com
+base no abstract e nos metadados disponíveis no PubMed. Para uma análise
+mais profunda, você pode baixar o PDF do artigo, anexar ao Claude e
+pedir o mesmo fichamento com acesso ao texto completo. O resultado vai
+ser ainda mais detalhado.</p>
+<p>Mas pra triagem inicial? O que saiu aqui já é ouro.”</p>
+<hr />
+<h2 id="seção-8-encerramento-dever-de-casa-5-min">SEÇÃO 8: ENCERRAMENTO
++ DEVER DE CASA (5 min)</h2>
+<p><strong>Tom:</strong> Motivador, resumo rápido, desafio concreto</p>
+<p>“Resumo do que a gente fez hoje.</p>
+<p>Saímos de um pedido do chefe — ‘me traz evidência sobre
+anticoagulação em FA’ — e chegamos em ficha de leitura crítica pronta,
+em menos de 1 hora.</p>
+<p>O fluxo foi: 1. Entender o que é MCP — o cabo que conecta Claude a
+fontes externas 2. Instalar o conector do PubMed — uma vez só 3. Busca
+estruturada com filtros — tipo de estudo, ano, idioma 4. Triagem com
+hierarquia de evidência — o que priorizar e por quê 5. Fichamento
+completo — PICO, nível de evidência, vieses, mensagem clínica</p>
+<p>Esse fluxo funciona pra qualquer tema. FA hoje, sepse amanhã,
+diabetes depois. O processo é idêntico.</p>
+<p>Agora o dever de casa.</p>
+<p>Antes da próxima aula, quero que vocês façam isso:</p>
+<p>Pensem em um tema da sua especialidade que vocês precisam se
+atualizar. Abram o Claude Code, conectem no PubMed, e busquem 3 artigos
+recentes com este prompt:</p>
+<pre><code>Use o PubMed para buscar os 3 artigos mais recentes e relevantes sobre [SEU TEMA].
+Filtre por: últimos 2 anos, ensaios clínicos ou metanálises.
+Me retorne título, ano e abstract em 3 bullets para cada.</code></pre>
+<p>Depois peçam a triagem: qual dos 3 é o mais relevante e por quê.</p>
+<p>Só isso. 10 minutos.</p>
+<p>Na aula_04: a gente vai transformar os artigos que você leu em
+flashcards do Anki e montar um briefing automático que chega todo dia de
+manhã com as novidades do seu tema.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

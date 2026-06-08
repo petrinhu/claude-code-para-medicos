@@ -1,0 +1,183 @@
+<h1 id="aula-04-flashcards-anki-briefing-automático">Aula 04 —
+Flashcards Anki + Briefing Automático</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~50 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático</p>
+<hr />
+<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
+<p><strong>Tom:</strong> Direto, conectando com aula_03, anunciando as
+duas entregas do dia</p>
+<p>“Na aula passada a gente foi ao PubMed, buscou artigos sobre
+fibrilação atrial, triou por hierarquia de evidência e fez um fichamento
+completo com PICO, nível de evidência e vieses.</p>
+<p>Você saiu de lá com uma ficha pronta pra reunião clínica.</p>
+<p>Hoje a gente vai um passo além.</p>
+<p>Vamos pegar esse mesmo fluxo e transformar em duas coisas: primeiro,
+uma ferramenta de estudo — flashcards no Anki, gerados automaticamente;
+segundo, uma rotina de atualização que funciona sozinha, todo dia, sem
+você precisar lembrar de nada.</p>
+<p>Diabetes tipo 2 é o tema de hoje. Guideline da ADA.</p>
+<p>Vamos lá.”</p>
+<hr />
+<h2 id="seção-2-o-cenário-3-min">SEÇÃO 2: O CENÁRIO (3 min)</h2>
+<p><strong>Tom:</strong> Situação real, pressão clínica com humor, duas
+necessidades claras</p>
+<p>“Cenário.</p>
+<p>Você decidiu fazer a prova de título em endocrinologia. Daqui a 3
+meses.</p>
+<p>Você tem dois problemas ao mesmo tempo:</p>
+<p>Problema 1: você precisa dominar o conteúdo. Guideline da ADA,
+critérios diagnósticos, alvos glicêmicos, escalonamento de terapia,
+complicações. É muita coisa pra decorar só lendo uma vez.</p>
+<p>Problema 2: a prova de título pede literatura atualizada. E o campo
+de DM2 publica estudos novos toda semana. Você não tem 1 hora por dia
+pra varrer o PubMed.</p>
+<p>O Anki resolve o problema 1. O briefing automático resolve o problema
+2.</p>
+<p>E o Claude Code resolve os dois.</p>
+<p>Vamos começar pelo Anki.”</p>
+<hr />
+<h2 id="seção-3-demo-flashcards-anki-15-min">SEÇÃO 3: DEMO — FLASHCARDS
+ANKI (15 min)</h2>
+<p><strong>Tom:</strong> Didático, explicando o Anki antes da demo,
+depois mostrando passo a passo</p>
+<p>“Antes de gerar os flashcards, deixa eu apresentar o Anki pra quem
+não conhece.</p>
+<p>Anki é um aplicativo gratuito de repetição espaçada.</p>
+<p>Repetição espaçada é uma técnica de memorização baseada em evidência:
+você revisa cada card no momento certo — antes de esquecer, não depois.
+É como fazer um esquema de reforço vacinal personalizado pra cada
+informação.</p>
+<p>Você baixa no site oficial: apps.ankiweb.net. Gratuito, roda em
+Windows, Mac e Linux.</p>
+<p>[mostrar o Anki aberto na tela]</p>
+<p>O Anki importa cards em arquivo de texto simples — um card por linha,
+frente e verso separados por ponto-e-vírgula.</p>
+<p>Agora vamos gerar esses cards com o Claude Code.</p>
+<p>Vou usar o guideline da ADA 2024 sobre Standards of Care in Diabetes.
+É documento público, em PDF.</p>
+<p>[mostrar PDF anexado]</p>
+<p>Prompt:</p>
+<pre><code>Você é um especialista em educação médica e em diabetes.
+Analise este guideline da ADA (Standards of Care in Diabetes 2024) e gere
+20 flashcards para uma prova de título em endocrinologia.
+
+Regras dos flashcards:
+- Frente: pergunta clínica objetiva (como a prova vai perguntar)
+- Verso: resposta concisa, máxima de 3 linhas
+- Cobrir obrigatoriamente: critérios diagnósticos, alvos glicêmicos por perfil,
+  primeira linha de tratamento, quando adicionar GLP-1 ou SGLT2, metas de HbA1c,
+  triagem de complicações microvasculares
+- Formato de saída: uma linha por card, frente;verso (separado por ponto-e-vírgula)
+- Sem cabeçalhos, sem numeração, sem markdown — só as linhas de texto</code></pre>
+<p>[executar e mostrar resultado]</p>
+<p>Olha o formato.</p>
+<p>Cada linha é um card: pergunta, ponto-e-vírgula, resposta. Exatamente
+o que o Anki precisa pra importar.</p>
+<p>Agora vou salvar esse resultado em arquivo.</p>
+<pre><code>Salve o resultado acima em um arquivo chamado anki_dm2.txt na pasta atual.</code></pre>
+<p>[executar]</p>
+<p>Pronto. Arquivo criado.</p>
+<p>Agora importo no Anki:</p>
+<p>[mostrar no Anki: Arquivo → Importar → selecionar anki_dm2.txt →
+separador ponto-e-vírgula → importar]</p>
+<p>Viu? 20 cards importados em 10 segundos.</p>
+<p>Já pode começar a revisar hoje à noite.”</p>
+<hr />
+<h2 id="seção-4-demo-briefing-manual-8-min">SEÇÃO 4: DEMO — BRIEFING
+MANUAL (8 min)</h2>
+<p><strong>Tom:</strong> Prático, mostrando a construção de uma rotina
+reutilizável</p>
+<p>“Agora o segundo problema: se manter atualizado sem perder horas toda
+semana.</p>
+<p>A solução mais simples é ter um prompt pronto — você abre o Claude
+Code de manhã, cola o prompt, e em 30 segundos tem o resumo das
+novidades da semana.</p>
+<p>Vou criar esse prompt agora e salvar em arquivo pra reusar todo
+dia.</p>
+<p>Prompt que vou usar:</p>
+<pre><code>Use o PubMed para buscar artigos sobre diabetes tipo 2 publicados nos últimos 7 dias.
+Filtros: ensaios clínicos, metanálises, revisões sistemáticas ou guidelines.
+Me retorne um briefing matinal com:
+- Número de publicações encontradas
+- Os 3 mais relevantes clinicamente: título, autores, revista, resumo em 2 bullets
+- Uma frase final: &#39;O que muda na prática?&#39; (ou &#39;Nada muda por enquanto&#39; se não houver impacto)
+Tom: direto, para especialista em endocrinologia.</code></pre>
+<p>[executar e mostrar resultado]</p>
+<p>Isso é o briefing. Em 30 segundos.</p>
+<p>Agora vou salvar esse prompt em arquivo pra não precisar redigitar
+todo dia:</p>
+<pre><code>Salve o prompt de briefing acima em um arquivo chamado briefing_dm2.txt na pasta atual.</code></pre>
+<p>[executar]</p>
+<p>Toda manhã: você abre o Claude Code, digita:</p>
+<pre><code>claude &lt; briefing_dm2.txt</code></pre>
+<p>E ele executa o prompt e entrega o resumo.</p>
+<p>Mas espera — isso ainda é manual. Vou mostrar como automatizar de
+verdade.”</p>
+<hr />
+<h2 id="seção-5-demo-briefing-automático-12-min">SEÇÃO 5: DEMO —
+BRIEFING AUTOMÁTICO (12 min)</h2>
+<p><strong>Tom:</strong> Técnico mas acessível, analogia com alarme de
+celular, mostrando Linux e Windows</p>
+<p>“O prompt salvo já é uma melhora enorme. Mas você ainda precisa
+lembrar de rodar.</p>
+<p>Vamos automatizar: o computador roda o briefing sozinho toda manhã às
+7h e salva o resultado em arquivo com a data do dia.</p>
+<p>É como configurar o alarme do celular — você faz uma vez e ele
+dispara sozinho.</p>
+<p><strong>No Linux (cron):</strong></p>
+<p>Abro o terminal e digito:</p>
+<pre><code>crontab -e</code></pre>
+<p>Isso abre o agendador de tarefas do Linux. Adiciono esta linha:</p>
+<pre><code>0 7 * * * cd ~/briefings &amp;&amp; claude &lt; ~/briefing_dm2.txt &gt; briefing_$(date +%Y-%m-%d).txt 2&gt;&amp;1</code></pre>
+<p>[explicar lendo a linha em voz alta]</p>
+<p>’0 7 * * *’ significa: todo dia às 7h em ponto. ‘cd ~/briefings’
+entra na pasta onde quero salvar. ‘claude &lt; briefing_dm2.txt’ roda o
+prompt. ‘&gt; briefing_2024-01-15.txt’ salva o resultado com a data de
+hoje.</p>
+<p>Salvo, fecho. Pronto.</p>
+<p>[mostrar que o cron está ativo]</p>
+<p><strong>No Windows (Task Scheduler):</strong></p>
+<p>Vou no menu Iniciar, busco ‘Agendador de Tarefas’.</p>
+<p>[mostrar Task Scheduler aberto]</p>
+<p>Clico em ‘Criar Tarefa Básica’. Nome: ‘Briefing DM2’. Disparador:
+diariamente, às 7h00. Ação: iniciar programa. Programa:
+<code>cmd.exe</code> Argumentos:</p>
+<pre><code>/c &quot;cd /d C:\Users\SeuNome\briefings &amp;&amp; claude &lt; C:\Users\SeuNome\briefing_dm2.txt &gt; briefing_%date:~-4,4%-%date:~-7,2%-%date:~0,2%.txt&quot;</code></pre>
+<p>[configurar e salvar]</p>
+<p>Pronto. Windows ou Linux — resultado igual.</p>
+<p>Todo dia de manhã, antes de você acordar, o Claude já foi ao PubMed,
+buscou as novidades, resumiu, e deixou o arquivo na pasta.</p>
+<p>Você acorda, abre o arquivo, lê em 2 minutos, e está atualizado.</p>
+<p>Isso é o que eu chamo de medicina baseada em evidência
+automatizada.”</p>
+<hr />
+<h2 id="seção-6-encerramento-dever-de-casa-5-min">SEÇÃO 6: ENCERRAMENTO
++ DEVER DE CASA (5 min)</h2>
+<p><strong>Tom:</strong> Motivador, resumo das duas entregas, desafio
+concreto</p>
+<p>“Resumo do que a gente fez hoje.</p>
+<p>Dois problemas reais do médico que estuda pra título — ou que só quer
+se manter atualizado sem morrer afogado em literatura:</p>
+<p><strong>Problema 1 — dominar o conteúdo:</strong> Anki com 20
+flashcards gerados da guideline ADA, exportados em formato importável,
+prontos pra revisar hoje à noite. Repetição espaçada, evidência sólida
+de retenção.</p>
+<p><strong>Problema 2 — se manter atualizado:</strong> Briefing
+automático que roda sozinho todo dia às 7h, busca no PubMed, resumo em
+30 segundos, salvo em arquivo com a data do dia.</p>
+<p>Tudo isso sem programar. Sem saber de cron. Sem saber de Task
+Scheduler. Só descrevendo o que quer em linguagem natural.</p>
+<p>Agora o dever de casa.</p>
+<p>Pegue um tema da sua especialidade — pode ser o mesmo que você usou
+na aula_03 ou um novo — e faça isso:</p>
+<pre><code>Você é especialista em [SUA ESPECIALIDADE].
+Analise este documento e gere 10 flashcards para revisão clínica.
+Formato: frente;verso, uma linha por card, sem markdown.</code></pre>
+<p>Só 10 cards. Importe no Anki. Revise hoje.</p>
+<p>Na próxima aula entramos no M3 — conteúdo, pesquisa e consultório.
+Vamos aprender a criar posts e carrosséis para redes sociais, newsletter
+com SEO, pôster de congresso e muito mais.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

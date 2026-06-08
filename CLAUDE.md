@@ -118,6 +118,22 @@ NUNCA tomar decisões de arquitetura, stack, escopo ou design sem:
 2. Indicar qual é a opção recomendada
 3. Aguardar aprovação do Dr. Petrus
 
+## Identidade Visual TribeMD
+
+Para materiais do curso (slides, HTML, templates), usar sempre a identidade TribeMD:
+
+- **Cor primária:** `#5213B9` (purple — botões, links, CTAs)
+- **Cor de texto:** `#2E3233` (heading/body)
+- **Texto secundário:** `#646C6F`
+- **Background principal:** `#FAFAFA` / `#FFFFFF`
+- **Background seção:** `#E5E9EA`
+- **Hover/chip:** `#E9E1F5`
+- **Footer/escuro:** `#1F0646`
+- **Fonte:** `Inter, "Open Sans", sans-serif` — 16px base
+- **Estilo:** light, card-based, editorial médico, sem sombras pesadas
+
+Referência completa: [memória tribemd_identidade_visual.md](~/.claude/projects/-home-petrus-IDrive-V-deos-Dieckmann-aulas-claude-dieckmann/memory/tribemd_identidade_visual.md)
+
 ## Apêndice Opcional
 
 Grok Build: mencionado pelo Dr. Petrus como possível apêndice pós-fase avançada. Decisão a ser tomada após submódulo 11_polimento_final.

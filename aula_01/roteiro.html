@@ -1,191 +1,427 @@
-<h1 id="aula-01-windows-linux-cli-vs-web-ui-e-bons-hábitos">Aula 01 —
-Windows, Linux, CLI vs Web UI e Bons Hábitos</h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 01 — O que é o Claude Code</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 01 — O que é o Claude Code</h1>
+</header>
+<h1 id="aula-01-o-que-é-o-claude-code">Aula 01 — O que é o Claude
+Code</h1>
 <p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
-<strong>Duração:</strong> ~30-35 min<br />
-<strong>Tom:</strong> Colega com humor leve e didático</p>
+<strong>Duração:</strong> ~50-55 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — primeiro dia,
+criar confiança sem assustar<br />
+<strong>Analogia central:</strong> CC = prontuário eletrônico | Web UI =
+post-it</p>
 <hr />
-<h2 id="seção-1-windows-vs-linux-3-5-min">SEÇÃO 1: WINDOWS VS LINUX (3-5
-min)</h2>
-<p><strong>Tom:</strong> Descontraído, “não é tão diferente assim”</p>
-<p>“Na aula de abertura a gente instalou no Windows e ficou lá.</p>
-<p>Agora vou mostrar o meu Linux — porque eu uso Linux no dia a dia e
-vocês vão me ver nele durante todo o curso.</p>
-<p>Vocês olham e falam: ‘Ué, mudou tudo?’</p>
-<p>Não mudou não. Terminal é terminal. O conceito é idêntico.</p>
-<p>Única coisa que muda é o NOME dos comandos e como o computador
-organiza as pastas.</p>
-<p>No Windows, vocês digitam ‘dir’. No Linux, vocês digitam ‘ls’.
-Windows organiza pastas como <code>C:\Users\Petrus\Documents</code>.
-Linux organiza como <code>/home/petrus/Documents</code>.</p>
-<p>É tipo dois dialetos do mesmo idioma. Alemão e holandês — parecem
-diferentes, mas o nativo entende os dois.</p>
-<p>Por que as diferenças? Porque Windows é propriedade da Microsoft e
-Linux é código aberto. Histórias diferentes.</p>
-<p><strong>MAS</strong> — e isto é importante — para o que vocês vão
-fazer com Claude Code, não importa NADA qual sistema vocês usam.</p>
-<p>Claude Code funciona igual no Windows, igual no Mac, igual no Linux.
-O comando de instalação é o mesmo. O comando ‘claude –version’ é o
-mesmo. O arquivo que vocês anexam funciona igual em qualquer um.</p>
-<p>Então não se preocupem com isto. Vocês podem usar Windows, vocês
-podem usar Mac, vocês podem usar Linux. Eu usei todos os três, funciona
-em qualquer um.</p>
-<p>Vocês vão aprender UMA VEZ e usar em qualquer máquina.</p>
-<p>Próxima seção: CLI vs Web UI. Qual a diferença?”</p>
+<h2 id="seção-1-âncora-o-que-é-o-claude-code-m0.01-10-min">SEÇÃO 1:
+ÂNCORA + O QUE É O CLAUDE CODE (M0.01) — 10 min</h2>
+<p><strong>Tom:</strong> Abre com a dor real do médico — 60 segundos
+antes de qualquer tecnologia</p>
+<p>“Você já ficou até meia-noite reformatando um relatório que podia ter
+feito em 10 minutos?</p>
+<p>Ou procurando aquela referência que sumiu do slide — a que você tinha
+certeza que tinha salvo, mas sumiu?</p>
+<p>Esta aula é sobre uma ferramenta que vai mudar isso.</p>
+<p>E não precisa saber nada de computação para usar.</p>
 <hr />
-<h2 id="seção-2-cli-vs-web-ui-5-7-min">SEÇÃO 2: CLI VS WEB UI (5-7
-min)</h2>
-<p><strong>Tom:</strong> Prático, “Code é o profissional, Web UI é pra
-brincar”</p>
-<p>“Agora vocês têm duas formas de usar Claude.</p>
-<p><strong>FORMA 1: Claude Code</strong> — terminal, CLI. É o que a
-gente está aprendendo neste curso inteiro.</p>
-<p><strong>FORMA 2: Claude.ai Web</strong> — no navegador, conversinha
-simples.</p>
-<p>Qual a diferença?</p>
-<p>Claude.ai Web é tipo conversar com um colega no café. Vocês fazem
-pergunta, ele responde. Conversinha, voltinha, tudo bem.</p>
-<p>MAS — e isto é crítico — Web UI é quase incapaz de criar um app
-real.</p>
-<p>Por quê? Porque app real é MODULAR. Tem vários arquivos, várias
-pastas, dependências, testes, configuração. Não é um script simples.</p>
-<p>Web UI não consegue navegar uma estrutura assim. Ela vê arquivo por
-arquivo, mas não consegue orquestrar um projeto de 10, 20, 100
-arquivos.</p>
-<p>Claude Code consegue.</p>
-<p>Claude Code faz o que? Claude Code <strong>vê toda a estrutura do
-projeto</strong>. Vocês têm um app com 50 arquivos? Claude Code lê
-todos, entende a relação entre eles, monta quebra-cabeça.</p>
-<p>Claude Code <strong>mantém contexto</strong>. Ao longo de uma sessão,
-Claude lembra de tudo que aconteceu — qual foi o bug que vocês tiveram,
-qual foi a solução, como isto afeta outro arquivo.</p>
-<p>Web UI? Não. Web UI é conversa desconectada. Vocês perguntam algo,
-ela responde, vocês perguntam outra coisa, ela não lembra do contexto
-anterior.</p>
-<p>Exemplo: - <strong>Web UI:</strong> vocês pedem ‘faz um código de
-login’. Ela faz um arquivo .py simples. Fim. - <strong>Claude
-Code:</strong> vocês pedem ‘faz um app com login, dashboard e
-relatórios’. Claude vê a arquitetura toda, cria 15 arquivos
-interconectados, testa tudo, e no final vocês têm um app que funciona de
-verdade.</p>
-<p>Por isto este curso é Claude Code, não Web UI.</p>
-<p>Web UI é pra você conversar, fazer perguntas rápidas, brincar. Claude
-Code é pra você <strong>construir coisas reais</strong>.</p>
-<p>E é isto que vocês vão aprender.”</p>
+<p>Antes de começar: eu uso Linux. Vocês usam Windows.</p>
+<p>Isso é como dialeto de idioma — terminal é terminal, Claude Code
+funciona igual nos dois sistemas.</p>
+<p>Dito isso. Assunto encerrado. Nunca mais voltamos nesse tema.</p>
 <hr />
-<h2 id="seção-3-claude-code-no-celular-acesso-remoto-5-min">SEÇÃO 3:
-CLAUDE CODE NO CELULAR — ACESSO REMOTO (5 min)</h2>
-<p><strong>Tom:</strong> Prático, cenário real, mostrando uma solução
-elegante</p>
-<p>“Agora que você entende a diferença entre CLI e Web UI, deixa eu te
-mostrar um recurso que une os dois mundos.</p>
-<p>Você tem um projeto acontecendo. Está no meio de algo importante. Aí
-você precisa sair de casa, vai pra uma consulta, pra uma viagem, e não
-vai levar o notebook.</p>
-<p>O que você faz?</p>
-<p>Você abre o Claude.ai no celular pelo navegador? Pode. Mas você perde
-o contexto do projeto que está rodando no seu computador. É uma conversa
-nova, sem os arquivos, sem o histórico.</p>
-<p>Existe uma solução melhor.</p>
-<p>O Claude Code tem um comando chamado /remote.</p>
-<p>Você digita no terminal do seu computador:</p>
-<pre><code>/remote</code></pre>
-<p>Ele gera um link — tipo um link de acesso temporário. Você abre esse
-link no celular, no navegador mesmo, e pronto: você está dentro do seu
-Claude Code, com acesso ao projeto, aos arquivos, ao contexto que estava
-rodando.</p>
-<p>De qualquer lugar. Sem instalar nada no celular.</p>
-<p>[mostrar ao vivo: rodar /remote, copiar link, abrir no celular e
-fazer um prompt simples]</p>
-<p>Viu? É o mesmo projeto, o mesmo contexto, agora na tela do
-celular.</p>
-<p>Isso é especialmente útil quando você está entre consultas e quer
-checar como está o andamento de algo que o Claude estava processando, ou
-quando surge uma ideia e você quer continuar de onde parou.</p>
-<p>O computador continua rodando. Você acessa de onde estiver.</p>
-<p>Simples assim.”</p>
+<p>Agora: o que é o Claude Code?</p>
+<p>Vocês já conhecem o Claude.ai — aquele que você abre no navegador,
+faz uma pergunta, ele responde.</p>
+<p>Quero que vocês pensem nele como um post-it.</p>
+<p>Você escreve uma coisa, ele responde, você fecha. Post-it. Funciona
+pra uma pergunta rápida.</p>
+<p>Mas post-it não tem memória. Post-it não sabe quem você é. Post-it
+não sabe nada do seu projeto. Toda conversa começa do zero.</p>
 <hr />
-<h2 id="seção-4-como-conversar-bons-hábitos-de-prompt-10-min">SEÇÃO 4:
-COMO CONVERSAR + BONS HÁBITOS DE PROMPT (10 min)</h2>
-<p><strong>Tom:</strong> Didático, com analogia clínica e exemplo
-contrastante</p>
-<p>“Agora vocês sabem instalar, abrir o terminal e a diferença entre
-Claude Code e Web UI.</p>
-<p>Mas ainda falta o mais importante: como conversar com o Claude de
-forma que ele entenda exatamente o que você quer.</p>
-<p>Isso parece óbvio. Não é.</p>
-<p><strong>O ciclo de uma boa conversa com o Claude tem 4
-passos:</strong></p>
-<p>Primeiro: <strong>pedir</strong>. Você descreve o que quer em
-linguagem natural — não é comando técnico, não é programação. É como
-você falaria com um colega.</p>
-<p>Segundo: <strong>anexar</strong>. Se você tem um arquivo — PDF,
-planilha, texto — arraste pro Claude ou use o comando de anexar. Claude
-lê o arquivo antes de responder.</p>
-<p>Terceiro: <strong>revisar</strong>. Você lê a resposta com olho
-clínico. Está correto? Está completo? Está no tom certo? Você valida,
-como valida um resultado de exame.</p>
-<p>Quarto: <strong>iterar</strong>. Se não ficou bom, você não desiste —
-você ajusta o pedido. Mesma lógica de quando você manda um colega buscar
-algo e ele entendeu errado. Você não troca de colega, você reformula o
+<p>O Claude Code é diferente.</p>
+<p>O Claude Code é o prontuário eletrônico do seu projeto.</p>
+<p>Tem histórico. Tem contexto. Você fecha às 23h, abre no dia seguinte
+às 7h — ele sabe exatamente onde estava. Sabe o que foi feito, o que
+está pendente, o que você pediu ontem.</p>
+<p>E não só isso.</p>
+<p>Claude Code <strong>vê toda a estrutura do projeto</strong>. Você tem
+um app com 50 arquivos? Claude Code lê todos, entende a relação entre
+eles, monta o quebra-cabeça.</p>
+<p>Claude.ai Web? Não. Ele vê um arquivo por vez, como conversa
+isolada.</p>
+<hr />
+<p>[mostrar na tela: Claude.ai aberto no navegador | Claude Code no
+terminal]</p>
+<p>Mesma pergunta. Dois contextos diferentes.</p>
+<p>Web UI: responde sua pergunta, fecha, sumiu. Claude Code: responde
+sua pergunta, lembra, continua.</p>
+<p>Post-it vs prontuário.</p>
+<p>É por isso que este curso é Claude Code, não Web UI.”</p>
+<hr />
+<h2 id="seção-2-primeiro-contato-ao-vivo-m0.02-8-min">SEÇÃO 2: PRIMEIRO
+CONTATO AO VIVO (M0.02) — 8 min</h2>
+<p><strong>Tom:</strong> Prático, “vamos confirmar que está funcionando”
+— sem drama</p>
+<p>“Na aula de abertura a gente instalou o Claude Code no
+computador.</p>
+<p>Vamos confirmar que está tudo certo com um comando simples.</p>
+<p>[abrir o terminal]</p>
+<pre><code>claude --version</code></pre>
+<p>[mostrar a versão aparecendo na tela]</p>
+<p>Apareceu a versão? Perfeito. Instalação confirmada.</p>
+<hr />
+<p>Agora: primeira conversa real.</p>
+<p>[digitar no terminal]</p>
+<pre><code>claude</code></pre>
+<p>[aguardar o prompt aparecer]</p>
+<p>Vou fazer uma pergunta clínica real — do tipo que você usaria no
+consultório.</p>
+<p>[digitar o prompt]</p>
+<pre><code>Qual a diferença entre FA paroxística e persistente em termos de manejo?</code></pre>
+<p>[aguardar e mostrar a resposta]</p>
+<hr />
+<p>Olha o que aconteceu.</p>
+<p>Resposta estruturada, linguagem clínica, critérios de manejo.</p>
+<p>Agora vou abrir o Claude.ai no navegador — a mesma pergunta.</p>
+<p>[mostrar Web UI lado a lado na tela]</p>
+<p>[digitar a mesma pergunta no Web UI]</p>
+<p>O resultado é parecido. É o mesmo cérebro.</p>
+<p>A diferença não está na resposta desta pergunta isolada.</p>
+<p>A diferença está no que acontece quando você tem um projeto: quando
+você tem arquivos, contexto, histórico.</p>
+<p>Aí o prontuário bate o post-it por KO.”</p>
+<hr />
+<h2 id="seção-3-o-ciclo-de-conversa-m0.03-12-min">SEÇÃO 3: O CICLO DE
+CONVERSA (M0.03) — 12 min</h2>
+<p><strong>Tom:</strong> Didático com demo — cada passo demonstrado, não
+só explicado</p>
+<p>“Agora que você viu o Claude Code respondendo, precisa aprender a
+conversar com ele de forma eficiente.</p>
+<p>O ciclo tem quatro passos.</p>
+<p>Pedir. Anexar. Revisar. Iterar.</p>
+<p>Cada um tem um propósito específico. Vou mostrar cada um ao vivo.</p>
+<hr />
+<p><strong>Passo 1: Pedir.</strong></p>
+<p>Você descreve o que quer em linguagem natural. Não é código. Não é
+comando técnico. É como você falaria com um colega.</p>
+<p>[digitar no terminal]</p>
+<pre><code>Liste as principais causas de síncope no adulto
+em ordem de probabilidade para o pronto-socorro,
+com o sinal clínico diferenciador de cada uma.</code></pre>
+<p>[mostrar a resposta]</p>
+<p>Pedido claro, resposta útil.</p>
+<hr />
+<p><strong>Passo 2: Anexar.</strong></p>
+<p>Quando você tem um arquivo — PDF, texto, planilha — você passa para o
+Claude antes de pedir.</p>
+<p>Vou usar um trecho de guideline público que preparei.</p>
+<p>[mostrar o arquivo texto.txt na tela]</p>
+<p>[anexar o arquivo na sessão]</p>
+<pre><code>Resumo este texto em 3 bullets para alunos de medicina.</code></pre>
+<p>[mostrar a resposta]</p>
+<p>Claude leu o arquivo e resumiu com base no conteúdo dele. Não
+inventou. Usou o que estava no arquivo.</p>
+<hr />
+<p><strong>Passo 3: Revisar.</strong></p>
+<p>Você avalia a resposta com olho clínico.</p>
+<p>Está correto? Está completo? Está no tom certo?</p>
+<p>Você é o responsável pelo laudo. Claude é o residente. O residente
+faz — você assina.</p>
+<p>[avaliar a resposta em voz alta]</p>
+<p>‘Aqui está bom. Aqui eu quero mais detalhe. Esse tom está formal
+demais.’</p>
+<hr />
+<p><strong>Passo 4: Iterar.</strong></p>
+<p>Se não ficou do jeito que você queria, você não desiste. Você
+reformula o pedido.</p>
+<p>[digitar no terminal]</p>
+<pre><code>Mais conciso. Foco em aplicação clínica no consultório.
+Máximo 3 linhas por bullet.</code></pre>
+<p>[mostrar a nova resposta]</p>
+<p>Compara antes e depois.</p>
+<p>O Claude não mudou de opinião — você reformulou a instrução.</p>
+<hr />
+<p>Frase que vou repetir várias vezes neste curso:</p>
+<p>Você não troca de colega quando ele entendeu errado. Você reformula o
 pedido.</p>
-<p>Esse ciclo — pedir, anexar, revisar, iterar — é o núcleo de tudo que
-vocês vão fazer.</p>
-<p>[pausa]</p>
-<p>Agora: bons hábitos de prompt. Três regras de ouro.</p>
-<p><strong>Regra 1: dê contexto clínico sempre.</strong></p>
-<p>Compare esses dois prompts:</p>
-<p>Prompt ruim: ‘Me fala sobre depressão.’</p>
-<p>Prompt bom: ‘Você é um psiquiatra experiente. Preciso preparar uma
-aula de 30 minutos sobre depressão para residentes de clínica médica.
-Foque em diagnóstico precoce e quando encaminhar para psiquiatria. Use
-linguagem acessível para não especialistas.’</p>
-<p>Qual resposta vai ser mais útil? A segunda. Sempre.</p>
-<p>O Claude não sabe quem você é, pra quem você está fazendo, nem qual é
-o objetivo. Você precisa falar. É como dar anamnese pro colega
-especialista antes de pedir conduta. Sem anamnese, a conduta vai ser
-vaga.</p>
-<p><strong>Regra 2: dado de paciente não entra. Nunca.</strong></p>
-<p>Isso é LGPD, é ética médica, e é bom senso.</p>
-<p>Se você quer analisar um caso, você anonimiza. Troca o nome, troca a
-data. O Claude não precisa saber que é o João da sala 3 — ele precisa do
-quadro clínico.</p>
-<p>Esse princípio vai aparecer em toda aula deste curso. Vou repetir até
-vocês sonharem.</p>
-<p><strong>Regra 3: prompt vago, resposta vaga.</strong></p>
-<p>O Claude é tão específico quanto você for.</p>
-<p>Se você pede ‘faça um resumo’, ele vai fazer algum resumo. Se você
-pede ‘faça um resumo em 5 bullets para residentes de psiquiatria com
-foco em critérios diagnósticos do DSM-5’, ele vai fazer exatamente
-isso.</p>
-<p>A qualidade da saída depende da qualidade da entrada. É lei de
-qualquer sistema médico: garbage in, garbage out.</p>
-<p>Três regras. Contexto clínico. Zero dado de paciente. Seja
-específico.”</p>
+<p>Pedir. Anexar. Revisar. Iterar. Esse ciclo é o núcleo de tudo que
+você vai fazer.”</p>
 <hr />
-<h2 id="seção-5-encerramento-3-min">SEÇÃO 5: ENCERRAMENTO (3 min)</h2>
-<p><strong>Tom:</strong> Motivador, resumo rápido, próximos passos
-claros</p>
-<p>“Pronto. Fim de papo da aula_01.</p>
-<p>Deixa eu resumir o que a gente fez hoje:</p>
+<h2 id="seção-4-bons-hábitos-kata-de-prompt-m0.04-12-min">SEÇÃO 4: BONS
+HÁBITOS + KATA DE PROMPT (M0.04) — 12 min</h2>
+<p><strong>Tom:</strong> Revelar regras depois do aluno já ter visto o
+ciclo funcionando — mais concreto</p>
+<p>“Você já viu o ciclo funcionando.</p>
+<p>Agora: três regras que fazem a diferença entre uma resposta mediana e
+uma resposta que você realmente usa.</p>
+<hr />
+<p><strong>Regra 1: Dê contexto clínico sempre.</strong></p>
+<p>Deixa eu mostrar a diferença.</p>
+<p>[digitar no terminal]</p>
+<pre><code>Me fala sobre depressão.</code></pre>
+<p>[mostrar a resposta]</p>
+<p>Genérico. Poderia ser para qualquer pessoa. Você como psiquiatra com
+residentes na frente não usaria isso.</p>
+<hr />
+<p>Agora com contexto:</p>
+<p>[digitar no terminal]</p>
+<pre><code>Sou psiquiatra. Preciso preparar uma aula de 30 minutos
+sobre diagnóstico de depressão para residentes de clínica médica.
+Foco em critérios DSM-5 e quando encaminhar para psiquiatria.
+Linguagem acessível para não especialistas.</code></pre>
+<p>[mostrar a resposta]</p>
+<p>Compara.</p>
+<p>A segunda resposta é o que você usaria. A primeira, não.</p>
+<p>A diferença? Você deu contexto: quem você é, para quem é, qual é o
+objetivo, qual é o nível do público.</p>
+<p>O Claude não sabe nada disso até você falar. É como pedir conduta sem
+dar anamnese. Sem anamnese, a conduta vai ser genérica.</p>
+<hr />
+<p><strong>Regra 2: Dado de paciente não entra. Nunca.</strong></p>
+<p>Isso é LGPD. É ética médica. É bom senso.</p>
+<p>Deixa eu mostrar o que NÃO fazer:</p>
+<p>[mostrar na tela — não digitar no Claude]</p>
+<pre><code>João da Silva, 45 anos, RG 123456, nascido em 12/03/1980,
+queixa de dor torácica há 2 horas...</code></pre>
+<p>Para. Nome, RG, data de nascimento — dados identificáveis.</p>
+<p>Isso viola a LGPD e vai contra os termos de uso da ferramenta.</p>
+<p>A versão correta:</p>
+<p>[digitar no terminal]</p>
+<pre><code>Paciente do sexo masculino, 45 anos,
+sem comorbidades conhecidas,
+queixa de dor torácica há 2 horas com irradiação para membro superior esquerdo.
+Qual o protocolo de triagem inicial no pronto-socorro?</code></pre>
+<p>[mostrar a resposta]</p>
+<p>Mesmo resultado clínico. Zero dado identificável.</p>
+<p>Isso vai aparecer em toda aula deste curso. Vou repetir até vocês
+sonharem.</p>
+<hr />
+<p><strong>Regra 3: Seja específico.</strong></p>
+<p>O Claude é tão específico quanto você for.</p>
+<p>Prompt vago: resposta vaga. Prompt específico: resposta
+utilizável.</p>
+<p>É lei de qualquer sistema médico: garbage in, garbage out.</p>
+<p>[mostrar contraste rápido — prompt curto vs prompt com critérios]</p>
+<hr />
+<p>Três regras. Contexto clínico. Zero dado de paciente. Seja
+específico.</p>
+<p><strong>Dever de casa desta seção:</strong></p>
+<p>Escreva 3 prompts sobre situações do seu dia a dia clínico. Para cada
+um: a versão ruim e a versão melhorada. Não precisa rodar. Só
+escrever.</p>
+<p>Traga para a aula_02.”</p>
+<hr />
+<h2 id="seção-5-claude-code-no-celular-fechamento-m0.05-8-min">SEÇÃO 5:
+CLAUDE CODE NO CELULAR + FECHAMENTO (M0.05) — 8 min</h2>
+<p><strong>Tom:</strong> Prático, “isso vai mudar sua rotina entre
+consultas”</p>
+<p>“Última parte.</p>
+<p>Você está trabalhando num projeto. Projeto andando, contexto
+acumulado. Aí você precisa sair — uma consulta, uma viagem, um
+deslocamento.</p>
+<p>Não vai levar o notebook.</p>
+<p>Você abre o Claude.ai no celular? Pode. Mas perdeu o contexto. Nova
+conversa, sem os arquivos, sem o histórico.</p>
+<p>Existe uma solução melhor.</p>
+<hr />
+<p>[no terminal, digitar]</p>
+<pre><code>/remote</code></pre>
+<p>[mostrar o link gerado na tela]</p>
+<p>Ele gerou um link temporário.</p>
+<p>[abrir o link no celular, mostrar na câmera ou espelhar a tela]</p>
+<p>Vou abrir no meu celular agora.</p>
+<p>[acessar e mostrar a interface]</p>
+<p>É o mesmo projeto. O mesmo contexto. A sessão que estava rodando no
+computador. De qualquer lugar, sem instalar nada no celular.</p>
+<p>Isso é especialmente útil quando você está entre consultas e quer
+continuar de onde parou.</p>
+<hr />
+<p><strong>Resumo da aula_01:</strong></p>
 <ol type="1">
-<li>Windows e Linux — mesma lógica, nomes diferentes. Claude Code
-funciona em qualquer um.</li>
-<li>CLI vs Web UI — Code é o profissional, mantém contexto, constrói
-projetos reais. Web é pra brincar.</li>
-<li>/remote — acesso ao projeto pelo celular, de qualquer lugar, sem
-perder contexto.</li>
-<li>O ciclo de conversa — pedir, anexar, revisar, iterar.</li>
-<li>As 3 regras de ouro — contexto clínico, zero dado de paciente, seja
-específico.</li>
+<li>CC = prontuário eletrônico | Web UI = post-it</li>
+<li>Ciclo: pedir → anexar → revisar → iterar</li>
+<li>Três regras: contexto clínico / zero dado de paciente / seja
+específico</li>
+<li>/remote: mesmo projeto, de qualquer lugar</li>
 </ol>
-<p>Agora vem a aula_02.</p>
-<p><strong>AULA 2 — ‘Assistente de Produtividade’</strong> — a gente
-vai: — Abrir o Claude Code de verdade pela primeira vez com um arquivo
-real — Resumir um PDF clínico — Gerar slides de aula a partir de um
-texto — Analisar uma planilha do consultório — Entender tokens, modelos
-e quando usar Haiku vs Sonnet</p>
-<p>Se vocês tiverem dúvidas antes: [canal de dúvidas — Discord, fórum,
-email]</p>
-<p>Até a aula_02!”</p>
+<p>Quatro coisas. Simples.</p>
+<hr />
+<p><strong>Na próxima aula:</strong></p>
+<p>Você vai usar o Claude Code com arquivos reais.</p>
+<p>PDF clínico: resumir, extrair tabela, identificar vieses. Planilha do
+consultório: organizar, limpar, gerar gráfico. Slides: gerar
+apresentação a partir de tópicos soltos.</p>
+<p>Você já sabe conversar. Na aula_02 você começa a trabalhar.</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<h1 id="aula-15--clean-architecture-quem-decide-o-quê-no-plantão">Aula
+15 — Clean Architecture: Quem Decide o Quê no Plantão</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~46 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — o conceito que
+organiza tudo que vem depois</p>
+<hr />
+<h2 id="seção-1-abertura--o-código-embolado-5-min">SEÇÃO 1: ABERTURA — O
+CÓDIGO EMBOLADO (5 min)</h2>
+<p><strong>Tom:</strong> Gancho da dor — mostrar o problema antes de
+nomear a solução</p>
+<p>"Você tem uma calculadora de IMC funcionando. Botão roxo, campos de
+peso e altura, resultado na tela.</p>
+<p>Agora imagina que saiu uma diretriz nova da ABESO: obesidade grau 2
+agora começa em IMC &gt; 35, e grau 3 em IMC &gt; 40.</p>
+<p>Fácil, certo? Você pede ao Claude Code:</p>
+<pre><code>No main.py da calculadora de IMC, muda o critério de obesidade grau 2
+para IMC &gt; 35 e adiciona obesidade grau 3 para IMC &gt; 40.</code></pre>
+<p>[aguardar o Claude atualizar]</p>
+<p>[mostrar o código modificado]</p>
+<p>Olha o que aconteceu.</p>
+<p>O Claude mexeu num bloco de código. Mas esse bloco fica onde? No meio
+do handler do botão. Junto com o código que verifica se o campo está
+vazio. Junto com o código que decide a cor do texto de resultado.</p>
+<p>Você quer mudar uma regra clínica — e precisa navegar por código de
+interface.</p>
+<hr />
+<p>Isso tem um nome: código embolado.</p>
+<p>É o equivalente a um prontuário onde a anamnese, a prescrição e a
+conta do hospital estão escritas no mesmo parágrafo.</p>
+<p>Você quer mudar a prescrição. Mas pra achar ela, precisa ler o
+prontuário inteiro. E se você editar no lugar errado, a conta sai com
+dados da anamnese.</p>
+<p>Desenvolvimento de software com código embolado é exatamente isso.
+Funciona. Mas é frágil. Cada mudança é um risco.</p>
+<p>Existe uma solução para isso. Ela tem um nome. E é o que a gente vai
+aprender hoje."</p>
+<hr />
+<h2 id="seção-2-ponte-da-analogia--do-corpo-ao-plantão-3-min">SEÇÃO 2:
+PONTE DA ANALOGIA — DO CORPO AO PLANTÃO (3 min)</h2>
+<p><strong>Tom:</strong> Transição narrada — upgrade pedagógico, não
+contradição</p>
+<p>"Lá na aula de setup eu dei a foto rápida de como o ClinMd-Tribe vai
+se organizar.</p>
+<p>Apresentação, Aplicação, Domínio, Infraestrutura. E eu usei a
+analogia do corpo: pele, tecido, músculo, osso.</p>
+<p>Essa analogia foi boa pra mostrar que existem camadas empilhadas.
+Serviu pra isso.</p>
+<p>Hoje a gente troca ela.</p>
+<p>Porque arquitetura não é sobre empilhamento — é sobre FLUXO. Quem
+chama quem. Quem decide o quê. Quem pode mudar sem quebrar o resto.</p>
+<p>E para fluxo, a melhor analogia não é o corpo.</p>
+<p>É o plantão hospitalar.</p>
+<hr />
+<p>Plantão hospitalar tem papéis. Cada papel tem responsabilidade
+definida. O fluxo é direcional: o paciente entra, percorre o sistema,
+sai com diagnóstico e conduta.</p>
+<p>É exatamente como o código vai funcionar no ClinMd-Tribe.</p>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Plantão</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apresentação</strong></td>
+<td>Recepção / balcão</td>
+<td>Recebe o paciente, mostra a tela, coleta o que foi digitado. Não
+decide nada clínico.</td>
+</tr>
+<tr>
+<td><strong>Aplicação</strong></td>
+<td>Enfermagem de triagem</td>
+<td>Orquestra: pega o pedido, aciona quem precisa, organiza a ordem. Não
+é dona da regra.</td>
+</tr>
+<tr>
+<td><strong>Domínio</strong></td>
+<td>O médico / protocolo clínico</td>
+<td>A regra de decisão pura: o escore, o critério. Não sabe se há tela
+ou banco de dados.</td>
+</tr>
+<tr>
+<td><strong>Infraestrutura</strong></td>
+<td>Laboratório / arquivo / farmácia</td>
+<td>Guarda no disco, busca no banco, lê PDFs. Executa pedidos, não
+pensa.</td>
+</tr>
+</tbody>
+</table>
+<p>A regra de ouro da arquitetura: a dependência aponta para dentro.</p>
+<p>O protocolo clínico — o Domínio — existe independente de tela ou
+banco. Você pode trocar a recepção sem mudar o protocolo. Você pode
+trocar o laboratório sem mudar o diagnóstico.</p>
+<p>Isso é a Clean Architecture."</p>
+<hr />
+<h2 id="seção-3-as-4-camadas-no-plantão--um-fio-narrativo-9-min">SEÇÃO
+3: AS 4 CAMADAS NO PLANTÃO — UM FIO NARRATIVO (9 min)</h2>
+<p><strong>Tom:</strong> Didático — um único caso percorrendo as 4
+camadas do início ao fim</p>
+<p>"Vamos seguir um caso clínico real pelo sistema.</p>
+<p>O caso: calcular o CHA2DS2-VASc de um paciente com fibrilação
+atrial.</p>
+<hr />
+<p><strong>Passo 1 — O paciente chega na Recepção
+(Apresentação).</strong></p>
+<p>O formulário aparece na tela. Campos: idade, fibrilação atrial, AVC
+prévio, HAS, diabetes, ICC, sexo feminino.</p>
+<p>A Recepção coleta os dados. Não calcula nada. Não sabe o que é um
+escore. Não sabe onde os dados vão ser salvos. Só recebe e exibe.</p>
+<hr />
+<p><strong>Passo 2 — A Triagem recebe os dados (Aplicação).</strong></p>
+<p>O botão 'Calcular' é clicado. A Triagem acorda.</p>
+<p>Ela pega os dados do formulário, chama o protocolo CHA2DS2-VASc, pede
+para o Laboratório salvar o resultado depois.</p>
+<p>A Triagem orquestra. Ela não sabe calcular o escore. Ela sabe quem
+sabe — e aciona.</p>
+<hr />
+<p><strong>Passo 3 — O Médico calcula (Domínio).</strong></p>
+<p>O protocolo CHA2DS2-VASc entra em ação.</p>
+<p>Idade &gt; 75 anos: 2 pontos. AVC ou TIA prévio: 2 pontos. Idade
+entre 65 e 74: 1 ponto. HAS, diabetes, ICC, sexo feminino: 1 ponto
+cada.</p>
+<p>O Médico calcula. Devolve o escore para a Triagem.</p>
+<p>Ele não sabe se há uma janela bonita ou um terminal feio. Não sabe se
+o resultado vai para um arquivo ou para um banco de dados. Só sabe
+medicina.</p>
+<hr />
+<p><strong>Passo 4 — O Laboratório guarda (Infraestrutura).</strong></p>
+<p>A Triagem pede: 'salva esse resultado'. O Laboratório abre o arquivo
+local, salva, confirma.</p>
+<p>Ele não sabe calcular escore. Não sabe o que é fibrilação atrial. Só
+executa o pedido.</p>
+<hr />
+<p>Agora: voltando ao problema da diretriz nova.</p>
+<p>Mudou a diretriz: idade &gt; 75 agora vale 2 pontos em vez de 1.</p>
+<p>Onde você mexe?</p>
+<p>Só no Médico — no Domínio.</p>
+<p>A Recepção não sabe que existiu mudança. A Triagem continua
+orquestrando do mesmo jeito. O Laboratório continua salvando do mesmo
+jeito.</p>
+<p>Apenas o protocolo clínico mudou.</p>
+<p>Isso é o que a arquitetura em camadas compra para você."</p>
+<hr />
+<h2
+id="seção-4-mapa-de-arquiteturas--do-monólito-ao-microsserviço-9-min">SEÇÃO
+4: MAPA DE ARQUITETURAS — DO MONÓLITO AO MICROSSERVIÇO (9 min)</h2>
+<p><strong>Tom:</strong> Contextual — situar o Clean Architecture no
+landscape, não decorar definições</p>
+<p>"Antes de seguir, deixa eu mostrar o mapa completo.</p>
+<p>Porque Clean Architecture não é a única forma de organizar código. É
+uma entre várias. E cada uma faz sentido num contexto diferente.</p>
+<hr />
+<p><strong>Monolítico — o consultório solo.</strong></p>
+<p>O médico faz tudo: atende, receita, cobra, arquiva. Funciona quando
+há poucos pacientes. Quando cresce, vira caos.</p>
+<p>No código: tudo num único arquivo ou projeto. Funciona? Sim. Mas
+mudar uma coisa pode quebrar outra.</p>
+<p>Ainda faz sentido hoje? Sim — scripts de automação interna,
+ferramentas de uso próprio, MVPs de validação rápida. O problema não é o
+monólito. É usar monólito num projeto que vai crescer.</p>
+<hr />
+<p><strong>3 camadas — a clínica simples.</strong></p>
+<p>Recepção, consultório, farmácia. Separação básica, mas a regra
+clínica ainda fica misturada no 'consultório'.</p>
+<p>No código: front-end, back-end, banco de dados. O padrão mais comum
+na web. Funciona bem para sistemas de tamanho médio.</p>
+<hr />
+<p><strong>4 camadas + Foundation — o hospital completo.</strong></p>
+<p>Balcão, triagem, médico, laboratório. É o que usamos. Apresentação,
+Aplicação, Domínio, Infraestrutura.</p>
+<p>Clean Architecture é o refinamento desse modelo: coloca o Domínio no
+centro, torna explícito que as dependências apontam sempre para
+dentro.</p>
+<hr />
+<p><strong>Hexagonal — o hospital com múltiplas entradas.</strong></p>
+<p>O mesmo hospital, mas com pronto-socorro, ambulatório e telemedicina
+como entradas intercambiáveis.</p>
+<p>No código: você pode trocar a interface Flet por uma API REST sem
+mudar uma linha do Domínio. Mais poderoso — e mais abstrato. Dificulta
+para iniciantes.</p>
+<hr />
+<p><strong>Microsserviços — a rede hospitalar.</strong></p>
+<p>Oncologia, cardiologia e ortopedia como hospitais separados que se
+comunicam por protocolos.</p>
+<p>No código: cada parte do sistema é um serviço independente.
+Necessário para sistemas de grande escala com múltiplos times.</p>
+<p>Para o ClinMd-Tribe? Over-engineering. A complexidade de coordenação
+seria maior que o benefício.</p>
+<hr />
+<p>Por que Clean Architecture para o ClinMd-Tribe?</p>
+<p>Porque os protocolos clínicos — CHA2DS2-VASc, PHQ-9, GAD-7 — precisam
+ser isolados, testáveis e independentes de interface.</p>
+<p>Quando a diretriz muda, só o protocolo muda. Quando o layout muda, o
+protocolo não sabe.</p>
+<p>Essa independência é o que torna o app seguro de manter."</p>
+<hr />
+<h2 id="seção-5-recuperação-ativa-3-min">SEÇÃO 5: RECUPERAÇÃO ATIVA (3
+min)</h2>
+<p><strong>Tom:</strong> Consolidação — o aluno verbaliza antes de
+aplicar</p>
+<p>"Fecha a tela por um momento.</p>
+<p>Três perguntas rápidas.</p>
+<p><strong>Primeira: o que faz a Triagem — a camada de
+Aplicação?</strong></p>
+<p>[pausa]</p>
+<p>Orquestra o fluxo. Pega os dados da tela, aciona o protocolo, pede
+para salvar. Não decide a conduta clínica.</p>
+<p><strong>Segunda: o que o Médico — o Domínio — sabe
+fazer?</strong></p>
+<p>[pausa]</p>
+<p>O protocolo clínico puro. O cálculo do escore. Não sabe se há
+interface gráfica ou terminal. Não sabe onde os dados vão ser
+salvos.</p>
+<p><strong>Terceira: o Laboratório — a Infraestrutura — calcula o
+CHA2DS2-VASc?</strong></p>
+<p>[pausa]</p>
+<p>Não. O Laboratório só executa pedidos de armazenamento e busca.
+Calcular escore é trabalho do Médico.</p>
+<hr />
+<p>Três respostas. Você acabou de descrever Clean Architecture sem
+precisar de definição formal."</p>
+<hr />
+<h2 id="seção-6-jogo--em-que-camada-eu-mexo-10-min">SEÇÃO 6: JOGO — EM
+QUE CAMADA EU MEXO? (10 min)</h2>
+<p><strong>Tom:</strong> Prática ativa — o aluno classifica antes de ver
+a resposta</p>
+<p>"Agora a parte mais importante da aula.</p>
+<p>Cinco pedidos clínicos reais. Para cada um você vai dizer: em que
+camada eu mexo — e por quê?</p>
+<p>Classifique antes de eu revelar.</p>
+<hr />
+<p><strong>Pedido 1:</strong> 'Quero o botão Calcular em roxo escuro em
+vez de roxo claro.'</p>
+<p>[pausa para o aluno classificar]</p>
+<p><strong>Apresentação.</strong> A cor do botão é responsabilidade do
+balcão — da recepção. O protocolo clínico não sabe que o botão
+existe.</p>
+<hr />
+<p><strong>Pedido 2:</strong> 'Saiu nova diretriz: no CHA2DS2-VASc,
+idade &gt; 75 agora vale 2 pontos.'</p>
+<p>[pausa]</p>
+<p><strong>Domínio.</strong> É exatamente a dor do gancho desta aula. A
+regra clínica mudou — só o Médico precisa saber disso. Recepção, Triagem
+e Laboratório não mudam uma linha.</p>
+<hr />
+<p><strong>Pedido 3:</strong> 'Quero que o resultado do cálculo seja
+salvo num arquivo TXT no Desktop.'</p>
+<p>[pausa]</p>
+<p><strong>Infraestrutura.</strong> Onde e como salvar é
+responsabilidade do Laboratório. O Médico não precisa saber se é TXT,
+SQLite ou PDF.</p>
+<hr />
+<p><strong>Pedido 4:</strong> 'Ao salvar o resultado, quero que apareça
+uma mensagem de confirmação na tela.'</p>
+<p>[pausa — este é propositalmente ambíguo]</p>
+<p><strong>Aplicação + Apresentação.</strong></p>
+<p>A Triagem orquestra: 'ao salvar com sucesso, peça à Recepção para
+exibir a confirmação.' A Recepção exibe o texto de confirmação.</p>
+<p>Dois papéis. Um fluxo.</p>
+<p>Não existe resposta errada aqui — o importante é entender que salvar
+e exibir confirmação são responsabilidades separadas que se
+coordenam.</p>
+<hr />
+<p><strong>Pedido 5:</strong> 'Quero adicionar o PHQ-9 ao app, do lado
+do CHA2DS2-VASc.'</p>
+<p>[pausa]</p>
+<p><strong>Atravessa tudo.</strong></p>
+<p>Apresentação: novo formulário com os campos do PHQ-9. Aplicação: nova
+orquestração para o fluxo do PHQ-9. Domínio: o protocolo do PHQ-9 com
+seus critérios e pontuação. Infraestrutura: salvar o resultado do PHQ-9
+junto com o do CHA2DS2-VASc.</p>
+<p>Features grandes tocam o sistema inteiro. E tá tudo bem. Cada camada
+sabe o que é sua responsabilidade.</p>
+<hr />
+<p>Uma saída honesta para quando você não sabe a camada certa:</p>
+<p>Descreva a feature em linguagem clínica e pergunte diretamente ao
+Claude Code:</p>
+<pre><code>Em que camada da Clean Architecture fica a feature de [descreva aqui]?
+Por que essa camada e não outra?</code></pre>
+<p>O Claude explica. Você valida. Você aprende. Não saber a camada de
+cabeça é normal — saber como descobrir é o skill."</p>
+<hr />
+<h2 id="seção-7-mini-demo--prompt-ao-claude-code-5-min">SEÇÃO 7:
+MINI-DEMO — PROMPT AO CLAUDE CODE (5 min)</h2>
+<p><strong>Tom:</strong> Conectar conceito ao uso real — o mapa de
+referência do projeto</p>
+<p>"Agora vamos registrar essa estrutura no projeto.</p>
+<p>No Claude Code:</p>
+<pre><code>Cria um arquivo chamado arquitetura.txt mostrando a estrutura de pastas
+do ClinMd-Tribe com as 4 camadas da Clean Architecture.
+Para cada pasta, adiciona um comentário explicando o que vai ali.
+Use nomes em inglês com comentários em português.</code></pre>
+<p>[aguardar o Claude gerar o arquivo]</p>
+<p>[mostrar o conteúdo do arquitetura.txt]</p>
+<p>O Claude gerou algo parecido com isso:</p>
+<pre><code>clinmd-tribe/
+  presentation/     # telas Flet: botões, campos, janelas, AppBar
+  application/      # orquestração: lê tela, chama domínio, pede pra salvar
+  domain/           # regras clínicas: CHA2DS2-VASc, PHQ-9, critérios diagnósticos
+  infrastructure/   # arquivos, banco de dados SQLite, indexação de PDFs</code></pre>
+<p>Guarde esse arquivo.</p>
+<p>Na próxima aula, esse mapa vai se tornar código real. O Claude Code
+vai gerar o scaffold completo do ClinMd-Tribe — as pastas, os
+arquivos-base de cada camada, a estrutura que vai sustentar todas as
+calculadoras, o anotador e o RAG.</p>
+<hr />
+<p>Veja as pendências do projeto:</p>
+<pre><code>/tab_pendencias</code></pre>
+<p>[mostrar a tabela — Clean Architecture conceitual como concluído,
+scaffold do ClinMd-Tribe como próxima tarefa]</p>
+<p>E consulte o Caetano para validar a escolha arquitetural:</p>
+<pre><code>@caetano-cto, vamos usar Clean Architecture com 4 camadas
+(presentation, application, domain, infrastructure) para o ClinMd-Tribe.
+Essa estrutura é adequada para um app clínico local em Python + Flet?</code></pre>
+<p>[mostrar a validação do Caetano]"</p>
+<hr />
+<h2 id="seção-8-encerramento-2-min">SEÇÃO 8: ENCERRAMENTO (2 min)</h2>
+<p><strong>Tom:</strong> Síntese pelo aluno, motivação e dever de
+casa</p>
+<p>"Resumo do que ficou pronto hoje.</p>
+<p>Você entendeu por que separar o código em camadas — não como teoria,
+mas como solução para um problema que você viu acontecer.</p>
+<p>Você conheceu a analogia do plantão: recepção, triagem, médico,
+laboratório.</p>
+<p>Você posicionou o Clean Architecture no mapa de seis abordagens — do
+monólito ao microsserviço.</p>
+<p>E você jogou o jogo das cinco features — classificando onde cada
+mudança mexe.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Pensa numa feature que você quer no ClinMd-Tribe — não precisa ser
+técnica, pode ser clínica.</p>
+<p>Escreve no papel ou num arquivo de texto: em qual das quatro camadas
+essa feature mexe, e por quê.</p>
+<p>Depois escreve o prompt que você daria ao Claude Code para pedir essa
+feature sabendo a camada.</p>
+<p>Na próxima aula: o scaffold real. O Claude Code vai gerar a estrutura
+completa de pastas e arquivos do ClinMd-Tribe — e você vai ver o
+arquitetura.txt desta aula se tornar código vivo.</p>
+<p>Até lá."</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

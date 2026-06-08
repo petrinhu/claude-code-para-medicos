@@ -223,6 +223,41 @@ Um prompt. Um app clínico completo."
 
 ---
 
+## SEÇÃO 5.5: FRONTEND-ENGINEER — VALIDANDO A INTERFACE (2 min)
+
+**Tom:** Consulta especializada — o aluno tem um time técnico disponível
+
+"Você tem uma calculadora de IMC funcional com interface gráfica.
+
+Antes de encerrar: vamos consultar o frontend-engineer para validar
+a abordagem e antecipar melhorias.
+
+No Claude Code:
+
+```
+@frontend-engineer, construi uma calculadora de IMC em Flet com campos
+de texto, botão roxo e área de resultado. A interface funciona mas está
+sem layout organizado. Quais são as próximas melhorias de interface
+mais importantes para um app clínico?
+```
+
+[mostrar a resposta do frontend-engineer]
+
+O frontend-engineer vai listar prioridades de layout —
+que é exatamente o que a próxima aula vai resolver.
+
+---
+
+Veja as pendências:
+
+```
+/tab_pendencias
+```
+
+[mostrar a tabela — layout e arquitetura vão aparecer como próximas tarefas]"
+
+---
+
 ## SEÇÃO 6: ENCERRAMENTO (3 min)
 
 **Tom:** Resumo, motivação e o que vem a seguir

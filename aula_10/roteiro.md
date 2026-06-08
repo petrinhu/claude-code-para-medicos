@@ -406,10 +406,40 @@ cat clinmd-tribe/pyproject.toml
 
 Você vê o nome 'clinmd-tribe'. Esse é o início do ClinMd-Tribe.
 
-A partir da próxima aula, você vai adicionar a primeira dependência
-e escrever as primeiras linhas de Python.
+---
 
-Mas hoje o que importa é que o campo operatório está pronto.
+Agora que o projeto existe, vamos usar a skill que vai acompanhar
+o ClinMd-Tribe do começo ao fim.
+
+```
+/tab_pendencias
+```
+
+[mostrar a tabela gerada]
+
+A `/tab_pendencias` gerou a tabela com as tarefas pendentes do projeto,
+ordenadas por dependência e valor — as mais críticas primeiro.
+
+Você vai abrir o Claude Code com esse comando toda semana.
+Ele diz o que fazer antes de você perguntar.
+
+---
+
+E antes de fechar: vamos consultar o Cósimo — o Chief of Staff —
+para montar o time certo para o ClinMd-Tribe.
+
+```
+Cósimo, meu projeto é o ClinMd-Tribe: app clínico 100% local em Python + Flet,
+fase inicial de desenvolvimento. Quais agents devo priorizar agora?
+```
+
+[mostrar a resposta do Cósimo — ele lista os agents prioritários para esta fase]
+
+Você não precisa acionar os 65 agents manualmente.
+O Cósimo classifica o porte do projeto e monta o time certo.
+
+---
+
 Ambiente instalado. Projeto criado. Time de desenvolvimento no lugar."
 
 ---

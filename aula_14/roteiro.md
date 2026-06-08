@@ -295,6 +295,41 @@ agora com cara de software profissional."
 
 ---
 
+## SEÇÃO 6.5: TIME DE DESIGN — VALIDANDO O LAYOUT (2 min)
+
+**Tom:** Consulta ao especialista — o designer valida, o aluno aprende
+
+"Você aplicou cinco conceitos de layout.
+
+Antes de encerrar: vamos consultar o UX designer do time.
+
+No Claude Code:
+
+```
+@ux-ui-designer, apliquei Column com spacing, Container com padding,
+Card com elevation, Row com expand e AppBar roxo na calculadora de IMC.
+A interface está funcional. O que mais pode melhorar a experiência
+do médico que vai usar esse app no consultório?
+```
+
+[mostrar a resposta do UX designer]
+
+O designer vai sugerir melhorias de usabilidade clínica — tipografia,
+espaçamento, hierarquia visual, estados de feedback.
+Guarde as sugestões: elas vão aparecer no módulo de polimento final.
+
+---
+
+Atualize as pendências:
+
+```
+/tab_pendencias
+```
+
+[mostrar a tabela — layout concluído, Clean Architecture como próxima grande tarefa]"
+
+---
+
 ## SEÇÃO 7: ENCERRAMENTO (3 min)
 
 **Tom:** Resumo, motivação e dever de casa

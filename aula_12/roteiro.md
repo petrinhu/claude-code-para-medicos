@@ -288,6 +288,40 @@ Você é o médico. O Claude é o residente que executa."
 
 ---
 
+## SEÇÃO 7.5: ENGINEERING COACH — DÚVIDA CLÍNICA SOBRE PYTHON (2 min)
+
+**Tom:** Recurso disponível — o aluno não precisa travar sozinho
+
+"Você acabou de ver quatro conceitos em Python.
+
+Se algum ficou com dúvida — retornar vs imprimir, função vs variável,
+qualquer coisa — existe um agent específico para aprendizado técnico.
+
+No Claude Code:
+
+```
+@engineering-coach, achei difícil entender a diferença entre return e print
+em Python. Pode me explicar com uma analogia clínica?
+```
+
+[mostrar a resposta do engineering-coach]
+
+O engineering-coach vai explicar com analogias do seu domínio.
+Você não precisa travar numa dúvida. Tem um coach disponível 24h.
+
+---
+
+E antes de encerrar: veja o que está pendente no projeto.
+
+```
+/tab_pendencias
+```
+
+[mostrar a tabela — vai listar Python básico como concluído e
+interface Flet como próxima tarefa]"
+
+---
+
 ## SEÇÃO 8: ENCERRAMENTO (2 min)
 
 **Tom:** Resumo e ponte para Flet

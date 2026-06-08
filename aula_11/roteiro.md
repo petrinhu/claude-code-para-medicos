@@ -131,7 +131,25 @@ o uv.lock garante que as versões serão idênticas.
 
 É como o registro da dispensação: remédio X, lote Y, validade Z.
 
-Você não precisa editar esse arquivo nunca. O uv cuida dele."
+Você não precisa editar esse arquivo nunca. O uv cuida dele.
+
+---
+
+Antes de seguir: vamos consultar o Caetano — nosso CTO virtual.
+
+No Claude Code:
+
+```
+@caetano-cto, acabei de instalar o Flet com uv add flet para o ClinMd-Tribe.
+Essa é a escolha técnica certa para um app clínico local em Windows?
+Tem alguma dependência adicional que você recomenda para esta fase inicial?
+```
+
+[mostrar a resposta do Caetano]
+
+O Caetano vai confirmar a escolha e pode recomendar dependências adicionais.
+Você não precisa tomar essa decisão técnica sozinho — tem um CTO disponível
+para consultar antes de cada passo."
 
 ---
 
@@ -274,6 +292,17 @@ O objetivo é ver o prontuário sendo atualizado em tempo real.
 
 Na próxima aula, Python com analogias clínicas — as estruturas básicas da linguagem
 do jeito que você aprendeu anatomia: um sistema de cada vez.
+
+---
+
+Antes de fechar: veja as pendências do projeto.
+
+```
+/tab_pendencias
+```
+
+[mostrar a tabela — vai listar Flet instalado como concluído e
+Python + interface como próximas tarefas]
 
 Até lá."
 

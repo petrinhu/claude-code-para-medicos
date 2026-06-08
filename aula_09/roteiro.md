@@ -269,6 +269,13 @@ Na próxima aula — a aula_10 — a gente revela o produto que você vai constr
 Instala o ambiente completo: plugins, agents, MCPs.
 E cria o projeto ClinMd-Tribe com o gerenciador de pacotes.
 
+Junto com o produto, você vai conhecer a skill `/tab_pendencias` — que gera
+a tabela de tarefas do projeto ordenada por prioridade — e os agents C-levels:
+Caetano (CTO) para decisões de arquitetura, Cósimo (Chief of Staff) para
+montar o time, e os especialistas operacionais para cada parte do código.
+
+Git + /tab_pendencias + agents = o fluxo de trabalho completo de um dev profissional.
+
 Git pronto. Agora vamos montar o laboratório.
 
 Até lá."

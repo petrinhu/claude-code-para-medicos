@@ -41,6 +41,7 @@ Fase avançada (M4) apenas:
 6. Transforme cada aula em uma User Story real
 7. Fases iniciante e intermediário: NUNCA presumir que o aluno sabe programar — zero código
 8. Reforce o eixo LGPD em toda aula: dado de paciente não entra no Claude Code
+9. **Design de aula (brainstorming/spec): usar `learning-designer` e `engineering-coach` em paralelo OBRIGATORIAMENTE antes de escrever qualquer roteiro**
 
 ## BigTech Virtual (OBRIGATÓRIO)
 

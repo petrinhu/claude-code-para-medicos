@@ -1,0 +1,243 @@
+<h1 id="aula-20--tab_pendencias-a-escala-cirúrgica-do-projeto">Aula 20 —
+/tab_pendencias: A Escala Cirúrgica do Projeto</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~35 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — fechar o bloco
+de agents como quem fecha um plantão bem coordenado</p>
+<hr />
+<h2
+id="seção-1-reconexão--o-chefe-de-equipe-que-você-se-tornou-3-min">SEÇÃO
+1: RECONEXÃO — O CHEFE DE EQUIPE QUE VOCÊ SE TORNOU (3 min)</h2>
+<p><strong>Tom:</strong> Callback narrativo — fechar o arco do submódulo
+com satisfação</p>
+<p>"Vamos fazer um balanço rápido do que aconteceu nas últimas quatro
+aulas.</p>
+<p>aula_17: você recebeu um residente. Competente, incansável, sem
+reclamar do plantão duplo. Mas que chuta com confiança e você assina o
+laudo.</p>
+<p>aula_18: você equipou esse residente. Maleta com skills, MCPs para
+conectar ferramentas, hooks para o checklist automático.</p>
+<p>aula_19: você descobriu o hospital inteiro. Narciso na segurança,
+Caetano na tecnologia, Cósimo que convoca a junta certa. E você usou o
+/bigtech para montar o time do ClinMd-Tribe.</p>
+<hr />
+<p>Hoje: a última peça.</p>
+<p>Você tem um residente equipado. Você tem um hospital de especialistas
+para interconsulta.</p>
+<p>O que falta é o quadro de gestão — o que cada um vai fazer, em que
+ordem, e por quê.</p>
+<p>Hoje você aprende a priorizar o trabalho do seu time do mesmo jeito
+que você prioriza a escala cirúrgica do dia."</p>
+<hr />
+<h2 id="seção-2-a-escala-cirúrgica-do-projeto-6-min">SEÇÃO 2: A ESCALA
+CIRÚRGICA DO PROJETO (6 min)</h2>
+<p><strong>Tom:</strong> Construir a intuição clínica antes de qualquer
+sigla</p>
+<p>"Você já conhece esse problema.</p>
+<p>Terça-feira de manhã. Cinco cirurgias na escala. Paciente do leito 3:
+revascularização de miocárdio, coronária comprometida, FA em curso.
+Paciente do leito 7: colecistectomia laparoscópica eletiva, calculosa
+assintomática. Paciente do leito 11: artroscopia de joelho, dor crônica,
+paciente estável. Paciente do leito 14: apendicectomia, irritação
+peritoneal leve, temperatura 37.8. Paciente do leito 2: cataratas
+bilateral, sem impacto em atividade funcional.</p>
+<p>Qual sobe na escala?</p>
+<hr />
+<p>Você não precisou de planilha para responder.</p>
+<p>Você avaliou três critérios:</p>
+<p>Urgência — o que piora se eu adiar? O paciente do leito 3 tem FA
+ativa e coronária comprometida. O custo de atraso é alto: risco de
+desfecho ruim.</p>
+<p>Complexidade — quanto tempo e recurso o procedimento exige? A
+revascularização é o mais complexo, mas o risco de atraso supera
+qualquer outro. A artroscopia é simples, mas não urgente — o WSJF dela é
+baixo.</p>
+<p>Sequência obrigatória — o que não posso operar sem antes resolver?
+Não opero sem tipagem, ECG, consentimento. Essas são as dependências —
+os pré-requisitos.</p>
+<hr />
+<p>[mostrar a tabela na tela]</p>
+<table>
+<thead>
+<tr>
+<th>Escala cirúrgica</th>
+<th>/tab_pendencias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Urgência do procedimento</td>
+<td>Custo de atraso — o que piora se adiar</td>
+</tr>
+<tr>
+<td>Complexidade da cirurgia</td>
+<td>Tamanho do trabalho — esforço para implementar</td>
+</tr>
+<tr>
+<td>Exame obrigatório antes de operar</td>
+<td>Pré-requisito — dependência técnica</td>
+</tr>
+<tr>
+<td>Duas salas ao mesmo tempo</td>
+<td>Onda — o que pode rodar em paralelo</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>/tab_pendencias</code> faz triagem de sala cirúrgica para as
+tarefas do seu projeto. O mais urgente e o mais rápido de resolver sobe
+ao topo. O que depende de outra coisa espera a vez."</p>
+<hr />
+<h2
+id="seção-3-wsjf--o-nome-que-a-engenharia-deu-para-a-triagem-4-min">SEÇÃO
+3: WSJF — O NOME QUE A ENGENHARIA DEU PARA A TRIAGEM (4 min)</h2>
+<p><strong>Tom:</strong> Revelar o nome como recompensa — o aluno já
+sabe o conceito</p>
+<p>"Esse critério que você acabou de usar tem um nome em engenharia de
+software.</p>
+<p>WSJF. Weighted Shortest Job First.</p>
+<p>Tradução direta: o trabalho mais curto e mais custoso de atrasar vai
+primeiro.</p>
+<p>Fórmula:</p>
+<pre><code>WSJF = Custo de Atraso ÷ Tamanho do Trabalho</code></pre>
+<p>Custo de Atraso é o quanto você perde esperando. Tamanho do Trabalho
+é o esforço para entregar.</p>
+<p>Alto custo de atraso, baixo esforço: sobe ao topo. Baixo custo, alto
+esforço: espera na fila.</p>
+<hr />
+<p>Você viu isso na <code>/tab_pendencias</code> desde a aula_10.</p>
+<p>Só que nunca tinha o nome.</p>
+<p>E se você lembra da aula_18, quando a gente abriu o arquivo da skill
+— era exatamente esse o método de ordenação que estava escrito lá
+dentro.</p>
+<p>WSJF é a triagem de sala cirúrgica que a skill aplica automaticamente
+toda vez que você chama <code>/tab_pendencias --create</code> ou
+<code>--reorder</code>.</p>
+<p>E a coluna Onda — as tarefas que podem correr em paralelo — é o
+equivalente das salas cirúrgicas disponíveis ao mesmo tempo: sem
+conflito, sem dependência mútua, podem avançar juntas."</p>
+<hr />
+<h2 id="seção-4-demo--tab_pendencias---create-10-min">SEÇÃO 4: DEMO —
+/TAB_PENDENCIAS --CREATE (10 min)</h2>
+<p><strong>Tom:</strong> Revelar — o aluno vê a triagem funcionando no
+projeto real</p>
+<p>"Agora vamos criar a primeira tabela real do ClinMd-Tribe.</p>
+<p>[entrar no projeto]</p>
+<pre><code>cd Documents\projetos\clinmd-tribe
+claude</code></pre>
+<p>Prompt:</p>
+<pre><code>/tab_pendencias --create</code></pre>
+<p>[a skill vai pedir os itens — fornecer as 5 calculadoras]</p>
+<hr />
+<p>Quando a skill pedir os itens, vou fornecer as cinco calculadoras que
+estão no próximo módulo do curso:</p>
+<p>CHA₂DS₂-VASc — escore de risco de AVC em fibrilação atrial PHQ-9 —
+escala de depressão de Patient Health Questionnaire GAD-7 — escala de
+ansiedade generalizada HAM-D — escala de Hamilton para depressão YMRS —
+Young Mania Rating Scale</p>
+<p>[aguardar o Claude processar e mostrar a tabela]</p>
+<hr />
+<p>Olha o que apareceu.</p>
+<p>Noves colunas. ID, Onda, Grupo, Descrição, Prioridade, Pré-requisito,
+Dificuldade, Status, Estado Auditado.</p>
+<p>E a tabela já saiu ordenada.</p>
+<p>Não foi o Claude chutando. Foi o WSJF aplicando a triagem cirúrgica
+nos seus dados."</p>
+<hr />
+<h2
+id="seção-5-dissecar-a-tabela--por-que-ficou-nessa-ordem-5-min">SEÇÃO 5:
+DISSECAR A TABELA — POR QUE FICOU NESSA ORDEM? (5 min)</h2>
+<p><strong>Tom:</strong> Analisar — o aluno entende o critério que gerou
+a ordem</p>
+<p>"Vamos dissecar a primeira linha.</p>
+<p>[mostrar o CHA₂DS₂-VASc no topo]</p>
+<p>Por que o CHA₂DS₂-VASc ficou primeiro?</p>
+<p>Custo de Atraso: alto. FA é a arritmia mais prevalente em
+consultório. O risco tromboembólico é real e urgente. De todas as
+calculadoras, essa é a que você mais usa — e a que mais impacto tem se
+não existir.</p>
+<p>Tamanho do Trabalho: baixo. A fórmula está definida, os critérios
+estão no ADR-001 que a gente criou na aula_19. Sete parâmetros
+booleanos, um inteiro, retorna um número. Sem pré-requisito.</p>
+<p>WSJF alto ÷ esforço baixo = sobe ao topo. A triagem cirúrgica foi
+exata.</p>
+<hr />
+<p>Agora olha a coluna Onda.</p>
+<p>Algumas calculadoras estão na mesma Onda. Isso significa que podem
+ser implementadas em paralelo — como dois procedimentos em salas
+cirúrgicas diferentes, sem que um precise esperar o outro terminar.</p>
+<p>Você não precisa fazer uma por vez. A tabela já te disse o que pode
+rodar junto.</p>
+<hr />
+<p>É isso que a <code>/tab_pendencias</code> entrega: não só uma lista —
+uma sequência de execução que minimiza retrabalho e maximiza o que você
+consegue avançar em paralelo."</p>
+<hr />
+<h2 id="seção-6-quiz-relâmpago-do-módulo-04--ponte-4-min">SEÇÃO 6: QUIZ
+RELÂMPAGO DO MÓDULO 04 + PONTE (4 min)</h2>
+<p><strong>Tom:</strong> Recuperação ativa — fechar o arco com o aluno
+respondendo, não só ouvindo</p>
+<p>"Quatro perguntas rápidas do módulo inteiro. Responda antes de eu
+falar.</p>
+<hr />
+<p>O residente de plantão tem quanto de memória quando você abre uma
+sessão nova no Claude Code?</p>
+<p>[pausa]</p>
+<p>Zero. O que persiste é o que está escrito nos arquivos do projeto. O
+plantonista novo só sabe o que está no prontuário.</p>
+<hr />
+<p>O que o <code>/bigtech</code> faz?</p>
+<p>[pausa]</p>
+<p>Chama o Cósimo, que classifica o porte do projeto e convoca o time
+certo para aquele tamanho.</p>
+<hr />
+<p>O que é a coluna Onda na tabela?</p>
+<p>[pausa]</p>
+<p>O que pode rodar em paralelo sem conflito — como procedimentos em
+salas cirúrgicas diferentes ao mesmo tempo.</p>
+<hr />
+<p>O que é WSJF?</p>
+<p>[pausa]</p>
+<p>Custo de Atraso dividido pelo Tamanho do Trabalho. A triagem de sala
+cirúrgica aplicada às tarefas do projeto.</p>
+<hr />
+<p>Agora olha a primeira linha do TODO.md.</p>
+<p>[mostrar o topo da tabela]</p>
+<p>CHA₂DS₂-VASc.</p>
+<p>Não fui eu que escolhi a próxima aula. Foi o WSJF do seu projeto.</p>
+<p>A triagem fez o trabalho. Você só precisa executar."</p>
+<hr />
+<h2 id="seção-7-tab_pendencias--encerramento-3-min">SEÇÃO 7:
+/TAB_PENDENCIAS + ENCERRAMENTO (3 min)</h2>
+<p><strong>Tom:</strong> Fechamento de bloco — sensação de controle e
+clareza antes do próximo módulo</p>
+<p>"Atualiza as pendências:</p>
+<pre><code>/tab_pendencias</code></pre>
+<p>[mostrar a tabela — aula_20 concluída, submódulo 04 fechado,
+submódulo 05 calculadoras como próximo]</p>
+<hr />
+<p>Resumo do submódulo 04.</p>
+<p>Você entrou com um residente. Saiu como chefe de equipe.</p>
+<p>O residente é o Claude Code — brilhante, incansável, erra com
+confiança, você assina o laudo. A maleta é a stack de extensões —
+skills, MCPs, hooks, plugins. O hospital é a BigTech Virtual —
+interconsulta com o especialista certo via <code>/bigtech</code>. E a
+escala cirúrgica é a <code>/tab_pendencias</code> — WSJF ordenando o
+trabalho do time.</p>
+<p>Você não precisa mais improviso. Você tem protocolo.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>A triagem da semana.</p>
+<p>Abra o ClinMd-Tribe, rode <code>/tab_pendencias</code> e olhe os dois
+itens no topo da tabela.</p>
+<p>Responda em uma frase cada: por que esse subiu? Qual foi o custo de
+atraso? Qual foi o tamanho do trabalho?</p>
+<p>Não execute código. Só explique a triagem.</p>
+<hr />
+<p>Na próxima aula: a primeira calculadora.</p>
+<p>Você vai implementar o CHA₂DS₂-VASc no ClinMd-Tribe — escore de risco
+de AVC em fibrilação atrial.</p>
+<p>O WSJF escolheu. O protocolo está pronto. Na próxima aula você
+opera.</p>
+<p>Até lá."</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

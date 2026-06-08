@@ -1,0 +1,312 @@
+<h1 id="aula-17--claude-code-seu-residente-de-plantão-24h">Aula 17 —
+Claude Code: Seu Residente de Plantão 24h</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~44 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — aprofundar o
+que o aluno já usa sem perceber que usa errado</p>
+<hr />
+<h2 id="seção-1-abertura--oráculo-vs-residente-3-min">SEÇÃO 1: ABERTURA
+— ORÁCULO VS RESIDENTE (3 min)</h2>
+<p><strong>Tom:</strong> Dissonância produtiva — revelar o erro antes de
+ensinar o modelo certo</p>
+<p>"Desde a aula_01 você usa o Claude Code.</p>
+<p>Você pediu textos, criou código Python, montou interfaces Flet, gerou
+a arquitetura completa do ClinMd-Tribe.</p>
+<p>Mas deixa eu te fazer uma pergunta honesta:</p>
+<p>Como você trata o Claude Code?</p>
+<p>Como um oráculo — uma entidade que tem todas as respostas e que você
+consulta esperando a verdade?</p>
+<p>Ou como um residente — um profissional competente, treinado, que
+executa o que você pede, comete erros e precisa de supervisão?</p>
+<hr />
+<p>[abrir o Claude Code numa sessão nova]</p>
+<p>Deixa eu mostrar a diferença.</p>
+<p>Prompt:</p>
+<pre><code>Faz uma calculadora de escore clínico</code></pre>
+<p>[aguardar e mostrar o resultado]</p>
+<p>O Claude entregou algo. Funciona? Talvez. Está certo clinicamente?
+Não sei.</p>
+<p>Ele não perguntou qual escore. Não perguntou os critérios. Não
+perguntou os pesos de cada item.</p>
+<p>Mas respondeu com confiança, como se soubesse exatamente o que você
+queria.</p>
+<p>Isso é o comportamento de oráculo. E é o comportamento que vai te dar
+dor de cabeça.</p>
+<hr />
+<p>Hoje a gente corrige isso.</p>
+<p>Você vai entender o que o Claude Code é por dentro, por que ele erra,
+o que ele lembra e o que esquece — e como usar esse residente brilhante
+do jeito que ele foi feito pra ser usado."</p>
+<hr />
+<h2 id="seção-2-o-que-é-um-llm--analogia-médica-7-min">SEÇÃO 2: O QUE É
+UM LLM — ANALOGIA MÉDICA (7 min)</h2>
+<p><strong>Tom:</strong> Conceitual — explicar o mecanismo sem
+tecnicalismo</p>
+<p>"LLM. Large Language Model. Modelo de linguagem de grande escala.</p>
+<p>Esse nome não ajuda muito. Então deixa eu traduzir.</p>
+<hr />
+<p>Pensa num radiologista que leu 100 milhões de laudos.</p>
+<p>Ele reconhece padrões com uma precisão que nenhum humano sozinho
+consegue. Nódulo pulmonar com essa densidade, essa borda, esse tamanho —
+ele já viu esse padrão dezenas de milhares de vezes.</p>
+<p>Mas tem um detalhe importante:</p>
+<p>Ele não tem um livro de respostas. Ele tem padrões.</p>
+<p>O laudo que ele escreve é a resposta mais provável dado tudo que ele
+já viu.</p>
+<hr />
+<p>O Claude Code funciona exatamente assim.</p>
+<p>Ele foi treinado num volume imenso de texto — código, documentação,
+artigos médicos, livros, fóruns.</p>
+<p>Quando você escreve um prompt, ele não consulta um banco de dados de
+verdades. Ele prevê: qual seria a próxima palavra mais provável? Qual
+seria o próximo bloco de código mais provável?</p>
+<p>Por isso ele 'sabe medicina' — leu o suficiente para reconhecer
+padrões. Mas também pode inventar uma dose de remédio que não existe em
+nenhuma diretriz.</p>
+<p>Não é malícia. Não é descuido. É o mecanismo.</p>
+<hr />
+<p>O radiologista brilhante pode errar num caso atípico. O Claude
+brilhante pode errar num pedido impreciso.</p>
+<p>A diferença entre os dois e os que erram mais? O contexto que você
+fornece.</p>
+<p>Laudo bom vem de clínica boa. Código bom vem de prompt bom."</p>
+<hr />
+<h2 id="seção-3-contexto-e-memória--troca-de-plantão-6-min">SEÇÃO 3:
+CONTEXTO E MEMÓRIA — TROCA DE PLANTÃO (6 min)</h2>
+<p><strong>Tom:</strong> Prático — explicar o que persiste e o que
+some</p>
+<p>"Segunda coisa que você precisa entender: o que o Claude lembra.</p>
+<hr />
+<p>Pensa na memória de trabalho de um plantonista.</p>
+<p>Você entra às 7h. Recebe 12 pacientes. Durante aquele plantão, você
+lembra de tudo: o paciente do leito 4 que teve febre às 10h, a evolução
+do pós-operatório do leito 7, o resultado de gasometria que veio às
+14h.</p>
+<p>Às 19h o plantão passa. O plantonista que entra sabe o quê?</p>
+<p>Só o que está escrito no prontuário.</p>
+<hr />
+<p>O Claude Code funciona exatamente igual.</p>
+<p>Dentro de uma sessão — enquanto você está no mesmo terminal, no mesmo
+chat — ele lembra tudo que foi dito. Cada arquivo que você mostrou. Cada
+código que ele gerou. Cada correção.</p>
+<p>Quando a sessão termina ou você abre uma nova janela, o plantonista
+novo entra.</p>
+<p>Ele não sabe nada do plantão anterior.</p>
+<p>O que ele sabe? O que está escrito nos arquivos do projeto. O
+CLAUDE.md, o main.py, os arquivos da Clean Architecture. Esse é o
+prontuário.</p>
+<hr />
+<p>Por isso o CLAUDE.md existe no projeto.</p>
+<p>Ele é o resumo de admissão. O que o próximo plantonista precisa saber
+antes de começar a trabalhar.</p>
+<p>E existe um comando para chamar um plantonista novo no meio do
+turno:</p>
+<pre><code>/clear</code></pre>
+<p>[executar /clear no terminal]</p>
+<p>Contexto limpo. O Claude não lembra mais de nada do que foi dito
+nesta sessão. Útil quando a conversa ficou longa e confusa, quando você
+quer recomeçar sem vieses do histórico."</p>
+<hr />
+<h2 id="seção-4-por-que-o-claude-erra-5-min">SEÇÃO 4: POR QUE O CLAUDE
+ERRA (5 min)</h2>
+<p><strong>Tom:</strong> Calibrar expectativa sem minar confiança — você
+é o atestante final</p>
+<p>"Você já conhece um colega assim.</p>
+<p>Aquele que quando você pergunta qualquer coisa, responde
+imediatamente, com segurança absoluta.</p>
+<p>Às vezes está certo. Às vezes está completamente errado. Mas o tom é
+sempre o mesmo.</p>
+<hr />
+<p>O Claude tem esse comportamento.</p>
+<p>Ele não sabe que não sabe. Não existe incerteza explícita na resposta
+dele a não ser que você peça.</p>
+<p>Ele não vai dizer 'olha, não tenho certeza sobre essa dose'. Vai
+responder com a mesma confiança que usa quando sabe com certeza.</p>
+<hr />
+<p>Isso não é um defeito que vai ser corrigido. É uma característica do
+mecanismo.</p>
+<p>Então como lidar?</p>
+<p>A mesma regra que você aplica no trabalho: você não assina um laudo
+sem revisar.</p>
+<p>O Claude é o aparelho que gerou o resultado. Você é o médico que
+assina.</p>
+<hr />
+<p>E quando você suspeitar que tem algo errado, use isso:</p>
+<pre><code>Revise a resposta anterior. Algum dado clínico pode estar incorreto?</code></pre>
+<p>[mostrar o Claude revisando e encontrando um erro]</p>
+<p>Peça a revisão antes de aceitar. Especialmente para qualquer coisa
+com dado numérico clínico: dose, escore, critério diagnóstico.</p>
+<p>O residente bom é o que você treina para ter dúvida. E o treino
+começa no seu prompt."</p>
+<hr />
+<h2 id="seção-5-demo-ab--prompt-ruim-vs-bom-8-min">SEÇÃO 5: DEMO A/B —
+PROMPT RUIM VS BOM (8 min)</h2>
+<p><strong>Tom:</strong> Demonstrar — o delta visível entre os dois
+resultados é o professor</p>
+<p>"Agora o momento mais importante da aula.</p>
+<p>Vou fazer o mesmo pedido clínico duas vezes. Você vai ver a
+diferença.</p>
+<p>[abrir sessão nova no Claude Code — fora da pasta do
+ClinMd-Tribe]</p>
+<hr />
+<p>Prompt ruim:</p>
+<pre><code>faz uma calculadora de escore cardíaco</code></pre>
+<p>[aguardar e mostrar o resultado]</p>
+<p>O Claude entregou alguma coisa. Olha o que ele fez: inventou os
+itens, inventou os pesos, pode ter misturado critérios de escores
+diferentes.</p>
+<p>Funciona? Provavelmente. Está clinicamente correto? Não dá pra saber
+sem revisar tudo.</p>
+<hr />
+<p>Agora o mesmo pedido, do jeito certo.</p>
+<p>Prompt bom:</p>
+<pre><code>Cria uma função Python chamada calcular_cha2ds2vasc.
+Ela recebe os seguintes parâmetros:
+- fibrilacao_atrial: booleano
+- avc_previo: booleano
+- has: booleano
+- diabetes: booleano
+- icc: booleano
+- sexo_feminino: booleano
+- idade: inteiro
+
+Retorna o escore total com esta pontuação:
+- avc_previo: 2 pontos
+- idade maior que 75: 2 pontos
+- idade entre 65 e 74: 1 ponto
+- has, diabetes, icc, sexo_feminino: 1 ponto cada
+
+Inclua um exemplo de chamada com valores fictícios.
+Sem interface gráfica — só a função.</code></pre>
+<p>[aguardar e mostrar o resultado]</p>
+<hr />
+<p>Olha a diferença.</p>
+<p>O segundo tem os itens certos. Os pesos certos. É testável — você
+sabe exatamente o que entra e o que sai.</p>
+<p>O que mudou?</p>
+<p>Você descreveu o resultado clínico, não o código. Você especificou os
+tipos de dado. Você disse o que não queria: 'sem interface'.</p>
+<p>Você foi o médico que passou o caso. O residente executou o
+protocolo.</p>
+<p>Esse é o padrão para qualquer prompt de código clínico: descreva o
+resultado que você quer ver, não a solução que você imagina."</p>
+<hr />
+<h2 id="seção-6-demo-cli-vs-web--lendo-arquivos-5-min">SEÇÃO 6: DEMO CLI
+VS WEB — LENDO ARQUIVOS (5 min)</h2>
+<p><strong>Tom:</strong> Revelar o diferencial concreto do Claude Code
+sobre o Claude.ai web</p>
+<p>"Uma coisa que o Claude.ai no navegador não consegue fazer.</p>
+<p>[entrar na pasta do ClinMd-Tribe e abrir o Claude Code]</p>
+<pre><code>cd Documents\projetos\clinmd-tribe
+claude</code></pre>
+<p>Prompt:</p>
+<pre><code>Leia os arquivos presentation/tela_inicial.py, application/orquestrador.py,
+domain/calculadoras.py e infrastructure/armazenamento.py.
+Me diga qual camada ainda não tem nenhuma lógica clínica implementada.</code></pre>
+<p>[aguardar e mostrar o resultado]</p>
+<p>O Claude leu os 4 arquivos. Cruzou o conteúdo. Respondeu com
+precisão.</p>
+<p>No Claude.ai web isso é impossível — ele não tem acesso aos arquivos
+do seu computador.</p>
+<p>O Claude Code CLI lê, escreve e navega no projeto inteiro. Esse é o
+diferencial que justifica usar o terminal.</p>
+<hr />
+<p>Conforme o ClinMd-Tribe crescer — mais arquivos, mais camadas, mais
+calculadoras implementadas — você vai usar esse padrão
+constantemente:</p>
+<pre><code>Leia [arquivo X] e [arquivo Y] e me diga [o que você quer saber]</code></pre>
+<p>O residente que lê o prontuário antes de fazer a visita é
+infinitamente mais útil do que o que entra no quarto sem contexto."</p>
+<hr />
+<h2 id="seção-7-lgpd-como-skill-de-prompt-4-min">SEÇÃO 7: LGPD COMO
+SKILL DE PROMPT (4 min)</h2>
+<p><strong>Tom:</strong> Prático — ensinar a anonimizar como técnica,
+não como palestra</p>
+<p>"LGPD.</p>
+<p>Em toda aula você ouviu: dado de paciente não entra no Claude
+Code.</p>
+<p>Hoje você aprende como fazer isso na prática.</p>
+<hr />
+<p>Existe uma técnica simples que resolve o problema e preserva todo o
+contexto clínico que você precisa.</p>
+<p>O padrão de anonimização.</p>
+<p>Em vez de:</p>
+<pre><code>Paciente João Silva, 64 anos, CPF 123.456.789-00,
+internado em 15/03, com FA e HAS. Dr. Petrus, CRM 12345.</code></pre>
+<p>Use:</p>
+<pre><code>Paciente fictício: 64 anos, sexo masculino, FA + HAS.
+Sem nome real, sem CPF, sem data real.</code></pre>
+<p>O contexto clínico está inteiro. A identidade está protegida.</p>
+<hr />
+<p>[mostrar os dois prompts lado a lado no Claude Code]</p>
+<p>Prompt com dado real — resultado idêntico ao anonimizado. A qualidade
+do código não muda. O risco clínico e legal é completamente
+diferente.</p>
+<hr />
+<p>Incorpore esse padrão como reflexo. Antes de qualquer prompt clínico,
+uma pergunta:</p>
+<p>'Tem algum dado que identifica uma pessoa real aqui?'</p>
+<p>Se sim, substitua por dado fictício equivalente.</p>
+<p>O Claude não precisa saber que o paciente é o João. Ele precisa saber
+que é um homem de 64 anos com FA e HAS. Isso é suficiente para um prompt
+excelente."</p>
+<hr />
+<h2 id="seção-8-clear-e-help-3-min">SEÇÃO 8: /CLEAR E /HELP (3 min)</h2>
+<p><strong>Tom:</strong> Referência prática — dois comandos de higiene
+de sessão</p>
+<p>"/clear você já viu — troca de plantonista no meio do turno.</p>
+<p>Quando usar: — a conversa ficou longa e confusa — você quer começar
+um assunto novo sem o contexto anterior interferindo — o Claude começou
+a repetir soluções que não funcionaram</p>
+<pre><code>/clear</code></pre>
+<p>[executar e mostrar que o histórico some]</p>
+<hr />
+<p>/help é o manual do residente.</p>
+<pre><code>/help</code></pre>
+<p>[mostrar o output]</p>
+<p>Lista o que o Claude Code consegue fazer nesta sessão: comandos
+disponíveis, capacidades, atalhos.</p>
+<p>Consulte quando não souber se existe um comando para o que você
+quer.</p>
+<hr />
+<p>Esses dois fazem parte da higiene de sessão. Como lavar as mãos antes
+de um procedimento — não são obrigatórios em cada momento, mas quando
+você precisa, precisa."</p>
+<hr />
+<h2 id="seção-9-tab_pendencias--encerramento-3-min">SEÇÃO 9:
+/TAB_PENDENCIAS + ENCERRAMENTO (3 min)</h2>
+<p><strong>Tom:</strong> Registro canônico e ponte para a aula_18</p>
+<p>"Atualize as pendências:</p>
+<pre><code>/tab_pendencias</code></pre>
+<p>[mostrar a tabela — aula_17 concluída, aula_18
+MCP/Skills/Hooks/Plugins como próxima]</p>
+<hr />
+<p>Resumo do que ficou claro hoje.</p>
+<p>O Claude Code é um residente brilhante e incansável. Lê rápido,
+escreve rápido, nunca reclama do plantão duplo. Mas chuta com confiança
+— e você assina o laudo.</p>
+<p>LLM é o radiologista de 100 milhões de laudos: padrões, não
+verdades.</p>
+<p>Contexto é a memória do plantão: some quando a sessão termina,
+persiste só no que está escrito nos arquivos.</p>
+<p>Prompt bom descreve o resultado clínico — não o código.</p>
+<p>LGPD é uma skill de prompt: dado fictício, contexto clínico
+preservado.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Escolha um pedido clínico que você faria ao Claude Code. Escreva três
+versões:</p>
+<p>A primeira do jeito que você escreveria hoje — sem pensar. A segunda
+um pouco mais específica. A terceira com todos os elementos: resultado
+descrito, tipos de dado, sem dado real, sem ambiguidade.</p>
+<p>Execute as três e compare os resultados.</p>
+<p>Não é exercício de código — é exercício de comunicação com o
+residente.</p>
+<hr />
+<p>Na próxima aula: MCP, Skills, Hooks e Plugins. Você vai entender como
+estender o bisturi do Claude Code — como ele se conecta a ferramentas
+externas, como as skills do curso funcionam por dentro, e como os hooks
+automatizam ações no seu projeto.</p>
+<p>Até lá."</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

@@ -1,4 +1,4 @@
-# Aula 08 — Setup do Ambiente Dev + ClinMd-Tribe Reveal
+# Aula 10 — Setup do Ambiente Dev + ClinMd-Tribe Reveal
 
 **Formato:** Gravada em um take no OBS Studio  
 **Duração:** ~48 min  
@@ -10,7 +10,7 @@
 
 **Tom:** Virada de página — a fase avançada começa
 
-"Nas últimas sete aulas você dominou o Claude Code sem escrever uma linha de código.
+"Nas últimas nove aulas você dominou o Claude Code — sete sem programação, duas aprendendo Git.
 
 Você pesquisou literatura no PubMed, criou flashcards, gerou um pôster de congresso,
 publicou carrossel no Instagram e fez um dashboard de gestão do consultório.

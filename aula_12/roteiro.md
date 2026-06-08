@@ -22,9 +22,12 @@ Você aprendeu a ler uma gasometria. Você aprendeu anatomia com nomes em latim.
 
 Python é mais fácil do que qualquer um desses.
 
-Mas tem um detalhe: você precisa parar de tentar aprender Python como programador.
-Você vai aprender Python como médico aprende um protocolo novo —
-do básico ao avançado, um conceito de cada vez, com lógica clínica.
+Mas tem um detalhe importante: você não vai escrever Python.
+Você vai pedir ao Claude Code para escrever.
+E você vai entender o que ele escreveu — para poder validar, corrigir e evoluir.
+
+É como laudar um exame que o aparelho gerou.
+Você não calibrou o aparelho. Mas você entende o resultado e assina se estiver certo.
 
 Hoje: quatro conceitos. Só quatro.
 Variáveis, funções, condições e listas.
@@ -51,12 +54,12 @@ def calcular_imc(peso, altura):
     return peso / (altura ** 2)
 ```
 
-Parece estranho agora. Mas daqui a 20 minutos você vai entender cada símbolo.
+Daqui a 20 minutos você vai entender cada símbolo desse código.
 
 Python foi criado com um princípio: ser legível.
 O criador, Guido van Rossum, queria que código Python lesse quase como inglês.
 
-Você vai ver isso na prática agora."
+Você vai ver isso agora — lendo o que o Claude Code escreve para você."
 
 ---
 
@@ -69,125 +72,106 @@ Você vai ver isso na prática agora."
 Pense como um campo do prontuário eletrônico.
 
 No prontuário você tem: Nome, Idade, Peso, Diabético.
-Em Python:
+Em Python é exatamente isso — cada campo tem um nome e um valor.
 
-```python
-nome = 'João Silva'
-idade = 45
-peso = 82.5
-diabetico = True
-```
+Existem quatro tipos principais:
 
-Veja a simplicidade. Você escreve o nome, um sinal de igual, e o valor.
-Acabou.
+**String** — texto. Campo 'Queixa Principal': texto livre, entre aspas.
 
-[mostrar no main.py, salvar, rodar com uv run python main.py]
+**Integer** — número inteiro. Número do leito: não tem 'leito 12.5'.
 
----
+**Float** — número com decimal. Resultado de laboratório: sempre tem decimal.
+Python usa ponto, não vírgula: 82.5, não 82,5.
 
-Mas os tipos importam. Cada tipo de dado em Python se comporta diferente.
-
-**String** — texto. Sempre entre aspas simples ou duplas.
-```python
-nome = 'João Silva'
-especialidade = 'Cardiologia'
-```
-Analogia: o campo 'Queixa Principal' do prontuário. Texto livre.
-
-**Integer** — número inteiro. Sem ponto decimal.
-```python
-idade = 45
-numero_consultas = 12
-```
-Analogia: número do leito. Não tem 'leito 12.5'.
-
-**Float** — número com decimal. Com ponto (não vírgula — Python usa ponto).
-```python
-peso = 82.5
-hemoglobina = 13.2
-```
-Analogia: resultado de laboratório. Sempre tem decimal.
-
-**Boolean** — verdadeiro ou falso. Só dois valores possíveis: True ou False.
-```python
-diabetico = True
-hipertenso = False
-gestante = False
-```
-Analogia: checkbox do prontuário. Marcado ou não marcado.
-
-[digitar cada um no main.py e mostrar rodando]
+**Boolean** — verdadeiro ou falso. Checkbox do prontuário: marcado ou não marcado.
+Em Python: True ou False, com letra maiúscula.
 
 ---
 
-Para mostrar o valor de uma variável no terminal, use print:
+Agora veja esses conceitos em código real.
 
-```python
-print(nome)
-print(idade)
-print(diabetico)
+Abra o PowerShell, entre na pasta do projeto e abra o Claude Code:
+
+```
+cd Documents\projetos\clinmd-tribe
+claude
 ```
 
-[executar e mostrar]
+Dê este prompt:
 
-print é como mandar o resultado pra tela. É o display do monitor cardíaco."
+```
+Crie um arquivo chamado conceitos.py com exemplos de variáveis Python
+para um paciente clínico: nome (string), idade (int), peso (float)
+e diabetico (bool). Adicione um print para cada variável mostrando
+o nome do campo e o valor. Use nomes de variáveis em português.
+```
+
+[aguardar o Claude gerar o arquivo]
+
+[mostrar o arquivo gerado]
+
+Leia o código gerado comigo.
+
+Veja: 'nome = João Silva' — a variável se chama 'nome' e guarda o texto.
+'idade = 45' — número inteiro, sem ponto decimal.
+'peso = 82.5' — número com decimal, ponto como separador.
+'diabetico = True' — boolean, começa com maiúscula.
+
+Agora execute:
+
+```
+uv run python conceitos.py
+```
+
+[mostrar o resultado no terminal]
+
+Cada print mostrou o valor da variável correspondente.
+
+print é como o display do monitor cardíaco — você manda exibir, ele exibe."
 
 ---
 
 ## SEÇÃO 4: FUNÇÕES — O PROTOCOLO CLÍNICO (10 min)
 
-**Tom:** Conceito de reutilização — escreva uma vez, use muitas vezes
+**Tom:** Conceito de reutilização — defina uma vez, aplique sempre
 
 "Você tem um protocolo para avaliar risco de AVC em fibrilação atrial.
 Toda vez que um paciente novo chega, você segue o mesmo protocolo.
 
 Não reescreve o protocolo do zero. Você aplica.
 
-Função em Python é isso: você escreve o protocolo uma vez,
-e aplica quantas vezes quiser.
+Função em Python é isso: um protocolo escrito uma vez que você aplica quantas vezes quiser.
 
-Veja um exemplo:
+Prompt ao Claude Code:
 
-```python
-def calcular_imc(peso, altura):
-    imc = peso / (altura ** 2)
-    return imc
+```
+No arquivo conceitos.py, adicione uma função chamada calcular_imc
+que recebe peso e altura e retorna o IMC calculado.
+Depois chame essa função com três pacientes diferentes e imprima os resultados.
 ```
 
-Leia em voz alta como uma instrução médica:
+[aguardar o Claude atualizar o arquivo]
 
-**def** — 'defina um protocolo chamado...'
-**calcular_imc** — esse é o nome do protocolo
-**(peso, altura)** — você precisa dessas informações para aplicar
-**imc = peso / (altura ** 2)** — o cálculo em si
-**return imc** — devolva o resultado
+[mostrar o código gerado]
 
-[digitar no main.py]
+Leia comigo o que o Claude escreveu.
 
-Agora como você usa esse protocolo:
+A linha que começa com 'def' define o protocolo.
+'def calcular_imc(peso, altura):' — defina um protocolo chamado calcular_imc
+que precisa de peso e altura para funcionar.
 
-```python
-resultado = calcular_imc(82.5, 1.75)
-print(resultado)
+'return' — devolva o resultado calculado.
+
+Abaixo, três chamadas com pacientes diferentes.
+O protocolo foi escrito uma vez e aplicado três vezes.
+
+Execute:
+
+```
+uv run python conceitos.py
 ```
 
-[executar e mostrar o resultado]
-
-O Python calculou o IMC. Você escreveu o protocolo uma vez.
-Pode chamar com qualquer paciente:
-
-```python
-print(calcular_imc(70, 1.68))
-print(calcular_imc(95, 1.80))
-print(calcular_imc(55, 1.60))
-```
-
-[executar]
-
-Três IMCs calculados em três linhas.
-Sem copiar o cálculo. Sem repetir a fórmula.
-
-Isso é o poder da função: escreva uma vez, use sempre."
+Três IMCs calculados. A mesma função. Três pacientes."
 
 ---
 
@@ -195,49 +179,48 @@ Isso é o poder da função: escreva uma vez, use sempre."
 
 **Tom:** Lógica clínica direta — if/elif/else
 
-"Agora combinamos variável e função com tomada de decisão.
+"Agora o conceito mais parecido com raciocínio clínico.
 
-Em clínica você faz isso o tempo todo:
+Em medicina você faz isso o tempo todo:
 
 Se PA sistólica maior que 180: crise hipertensiva.
 Se entre 140 e 180: hipertensão grau 2.
 Se entre 120 e 140: hipertensão grau 1.
 Se menor que 120: normal.
 
-Em Python:
+Python escreve exatamente essa lógica.
 
-```python
-def classificar_pressao(pas):
-    if pas >= 180:
-        return 'Crise hipertensiva'
-    elif pas >= 140:
-        return 'Hipertensao grau 2'
-    elif pas >= 120:
-        return 'Hipertensao grau 1'
-    else:
-        return 'Normal'
+Prompt ao Claude Code:
+
+```
+No arquivo conceitos.py, adicione uma função chamada classificar_pressao
+que recebe a pressao arterial sistolica e retorna a classificacao:
+acima de 180 crise hipertensiva, entre 140 e 180 hipertensao grau 2,
+entre 120 e 140 hipertensao grau 1, abaixo de 120 normal.
+Teste com os valores 185, 150, 125 e 110.
 ```
 
-Leia:
+[aguardar o Claude atualizar o arquivo]
 
-**if** — se
-**elif** — senão, se (abreviação de 'else if')
-**else** — em qualquer outro caso
+[mostrar o código gerado]
 
-A indentação — os espaços no começo das linhas — é obrigatória em Python.
+Leia comigo.
+
+'if' — se.
+'elif' — senão, se. Abreviação de 'else if'.
+'else' — em qualquer outro caso.
+
+Percebe como lê quase como português?
+
+Os espaços no início de cada linha — a indentação — são obrigatórios.
+Python usa isso para saber o que pertence a qual condição.
 É como a hierarquia do prontuário: seção e subseção.
-Python usa espaços para entender o que pertence a quem.
 
-[digitar e testar com alguns valores]
+Execute:
 
-```python
-print(classificar_pressao(185))
-print(classificar_pressao(150))
-print(classificar_pressao(125))
-print(classificar_pressao(110))
 ```
-
-[executar e mostrar]
+uv run python conceitos.py
+```
 
 Quatro valores, quatro classificações corretas."
 
@@ -245,90 +228,63 @@ Quatro valores, quatro classificações corretas."
 
 ## SEÇÃO 6: LISTAS — A ENFERMARIA DO CÓDIGO (5 min)
 
-**Tom:** Rápido — conceito de coleção, loop simples
+**Tom:** Rápido — conceito de coleção e loop
 
 "Última estrutura básica: lista.
 
-Uma lista é uma coleção de valores na mesma variável.
-
+Uma lista guarda vários valores na mesma variável.
 É como uma enfermaria — vários pacientes, um registro.
 
-```python
-pacientes = ['João', 'Maria', 'Carlos', 'Ana']
+Prompt ao Claude Code:
+
+```
+No arquivo conceitos.py, adicione uma lista com quatro nomes de pacientes
+e um loop que imprime cada nome com o numero do paciente na lista.
+Depois mostre como adicionar um paciente novo à lista e contar quantos tem.
 ```
 
-Para percorrer cada paciente:
+[aguardar e mostrar o código gerado]
 
-```python
-for paciente in pacientes:
-    print(paciente)
-```
+Leia comigo.
 
-Leia: para cada paciente na lista, execute o print.
+Colchetes marcam a lista. Cada item separado por vírgula.
+'for paciente in pacientes' — para cada paciente na lista, execute este bloco.
+'.append' adiciona um item ao final. 'len' conta quantos itens existem.
 
-[executar]
-
-João. Maria. Carlos. Ana. Cada um na sua vez.
-
-Adicionar um paciente novo:
-
-```python
-pacientes.append('Beatriz')
-print(pacientes)
-```
-
-[executar]
-
-Beatriz entrou para a lista.
-
-Quantos pacientes:
-
-```python
-print(len(pacientes))
-```
-
-Cinco.
-
-Esses quatro conceitos — variável, função, condição, lista —
-são 80% do que o ClinMd-Tribe vai usar.
-O resto você vai aprender no contexto de cada funcionalidade."
+Execute e veja a lista percorrida, o paciente novo adicionado, a contagem final."
 
 ---
 
-## SEÇÃO 7: JUNTANDO TUDO — MINI PROTOCOLO CLÍNICO (5 min)
+## SEÇÃO 7: JUNTANDO TUDO (5 min)
 
-**Tom:** Síntese motivacional — ver os quatro conceitos em ação
+**Tom:** Síntese — ver os quatro conceitos integrados num protocolo real
 
-"Vamos juntar os quatro conceitos num mini protocolo.
+"Agora peça ao Claude Code para integrar tudo num mini protocolo clínico.
 
-```python
-def avaliar_paciente(nome, peso, altura, pas):
-    imc = calcular_imc(peso, altura)
-    pressao = classificar_pressao(pas)
-    print(f'{nome}: IMC {imc:.1f}, Pressao: {pressao}')
+Prompt:
 
-pacientes = [
-    ('Joao', 82.5, 1.75, 150),
-    ('Maria', 65.0, 1.62, 118),
-    ('Carlos', 98.0, 1.80, 185),
-]
-
-for nome, peso, altura, pas in pacientes:
-    avaliar_paciente(nome, peso, altura, pas)
+```
+No arquivo conceitos.py, crie uma função avaliar_paciente que recebe
+nome, peso, altura e pressao arterial sistolica. Ela deve calcular o IMC
+usando calcular_imc, classificar a pressao usando classificar_pressao
+e imprimir um resumo do paciente. Crie uma lista com tres pacientes
+e aplique a funcao para cada um usando um loop.
 ```
 
-[digitar e executar]
+[aguardar e mostrar o código gerado]
+
+[executar]
 
 Três pacientes avaliados. IMC e pressão de cada um.
-Em doze linhas de código.
 
-Você escreveu isso. Você entendeu cada linha.
+Olha o que o Claude escreveu — e olha o que você reconhece:
+variáveis, funções, condições, lista, loop.
 
-Nas próximas aulas, o Claude Code vai escrever código Python por você —
-mas você vai reconhecer o padrão. Variáveis, funções, condições, listas.
-É sempre isso.
+Você não escreveu uma linha. Mas você entendeu cada uma.
 
-Você não precisa mais ter medo do Python."
+Isso é exatamente o que vai acontecer no ClinMd-Tribe:
+o Claude escreve, você lê, valida, e pede ajustes.
+Você é o médico. O Claude é o residente que executa."
 
 ---
 
@@ -338,22 +294,28 @@ Você não precisa mais ter medo do Python."
 
 "Resumo do que ficou pronto hoje.
 
-Quatro conceitos aprendidos com analogias clínicas:
+Quatro conceitos lidos e entendidos com analogias clínicas:
 — Variável: campo do prontuário
 — Função: protocolo clínico reutilizável
-— Condição: tomada de decisão clínica (if/elif/else)
-— Lista: enfermaria do código
+— Condição: tomada de decisão com if/elif/else
+— Lista: enfermaria do código com loop
 
-Um mini protocolo completo rodando no terminal.
+Um mini protocolo completo gerado pelo Claude e rodando no terminal.
 
 ---
 
 Dever de casa.
 
-Adicione uma quinta variável ao paciente: glicemia.
-Crie uma função 'classificar_glicemia(glicemia)' com a lógica:
-abaixo de 70: hipoglicemia, 70-99: normal, 100-125: pré-diabetes, acima de 126: diabetes.
-Teste com três valores.
+Peça ao Claude Code:
+
+```
+No arquivo conceitos.py, adicione uma função classificar_glicemia
+que recebe o valor da glicemia e retorna: hipoglicemia (abaixo de 70),
+normal (70 a 99), pre-diabetes (100 a 125) ou diabetes (acima de 126).
+Teste com os valores 60, 90, 110 e 140.
+```
+
+Execute, leia o código gerado e valide se as classificações estão corretas.
 
 Na próxima aula: Flet. A interface gráfica do ClinMd-Tribe.
 Você vai ver na tela o que hoje está só no terminal.

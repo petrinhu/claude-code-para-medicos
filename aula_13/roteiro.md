@@ -10,18 +10,17 @@
 
 **Tom:** Virada de página — do terminal para a tela
 
-"Nas últimas aulas você escreveu Python no terminal.
+"Na aula passada você entendeu os conceitos básicos de Python.
 Variáveis, funções, condições, listas.
 Tudo apareceu em texto numa tela preta.
 
 Hoje isso muda.
 
-Hoje você vai criar uma janela. Com botões. Com campos de texto.
-Com cores. Com a identidade visual do ClinMd-Tribe.
+Você vai pedir ao Claude Code para criar uma janela.
+Com botões. Com campos de texto. Com cores.
+Com a identidade visual do ClinMd-Tribe.
 
-Em Python. Sem instalar nada além do que já está instalado.
-
-A biblioteca que vai fazer isso se chama Flet.
+A biblioteca que torna isso possível se chama Flet.
 E você já instalou ela na aula_11 com 'uv add flet'.
 
 Vamos abrir a primeira janela."
@@ -34,7 +33,7 @@ Vamos abrir a primeira janela."
 
 "Flet é uma biblioteca Python que cria interfaces gráficas.
 
-Pense numa analogia: você conhece o prontuário em papel versus o PEP.
+Pense assim: você conhece o prontuário em papel versus o PEP.
 
 O prontuário em papel é o Python puro no terminal — funciona,
 mas é texto, linha por linha, sem interface.
@@ -44,62 +43,41 @@ A lógica é a mesma. A apresentação é radicalmente diferente.
 
 Por que Flet e não outras bibliotecas?
 
-Três razões.
-
 Primeira: funciona no Windows, Mac e Linux sem modificar o código.
-Você desenvolve uma vez, roda em qualquer sistema.
 
 Segunda: exporta como .exe para Windows. O ClinMd-Tribe vai rodar
-com um duplo clique, sem precisar do Python instalado.
+com um duplo clique, sem precisar do Python instalado no computador do paciente.
 
-Terceira: a sintaxe é legível. Você vai ver agora e vai entender."
+Terceira: a sintaxe que o Claude gera em Flet é legível.
+Você vai conseguir ler o código gerado e entender o que cada parte faz."
 
 ---
 
 ## SEÇÃO 3: HELLO WORLD MÉDICO — PRIMEIRA JANELA (12 min)
 
-**Tom:** Mão na massa — cada linha explicada com analogia
+**Tom:** Primeiro prompt Flet — explicar o resultado gerado
 
-"Abra o PowerShell, entre na pasta do projeto:
+"Abra o PowerShell, entre na pasta do projeto e abra o Claude Code:
 
 ```
 cd Documents\projetos\clinmd-tribe
+claude
 ```
 
-Abra o main.py no Notepad:
+Prompt:
 
 ```
-notepad main.py
+Crie um arquivo main.py com um app Flet que abre uma janela com o titulo
+ClinMd-Tribe. A janela deve ter fundo branco (#FAFAFA) e mostrar dois textos:
+o titulo ClinMd-Tribe em roxo (#5213B9), tamanho 32, negrito;
+e o subtitulo 'Seu assistente clinico local' em cinza (#646C6F), tamanho 16.
 ```
 
-Apague o conteúdo anterior e substitua por:
+[aguardar o Claude gerar o arquivo]
 
-```python
-import flet as ft
+[mostrar o arquivo gerado no terminal]
 
-def main(page: ft.Page):
-    page.title = 'ClinMd-Tribe'
-    page.bgcolor = '#FAFAFA'
-
-    titulo = ft.Text(
-        value='ClinMd-Tribe',
-        size=32,
-        weight=ft.FontWeight.BOLD,
-        color='#5213B9'
-    )
-
-    subtitulo = ft.Text(
-        value='Seu assistente clinico local',
-        size=16,
-        color='#646C6F'
-    )
-
-    page.add(titulo, subtitulo)
-
-ft.app(main)
-```
-
-Salve. Execute:
+Agora execute:
 
 ```
 uv run python main.py
@@ -109,36 +87,33 @@ uv run python main.py
 
 [mostrar a janela aberta]
 
-Você criou sua primeira janela.
+Você tem sua primeira janela.
 
 ---
 
-Agora leia o código linha por linha.
+Agora leia o código gerado comigo — você precisa reconhecer as partes
+para saber o que pedir nas próximas aulas.
 
-**import flet as ft** — importa a biblioteca. 'as ft' é um apelido.
+**import flet as ft** — importa a biblioteca com o apelido 'ft'.
 Em vez de escrever 'flet.Text', você escreve 'ft.Text'.
-Como chamar um colega pelo apelido em vez do nome completo.
+Como chamar um colega pelo apelido.
 
 **def main(page: ft.Page):** — função principal do app.
 O Flet chama essa função quando o app abre.
-'page' é a janela — o canvas onde você vai colocar os elementos.
+'page' é a janela — o canvas onde os elementos são colocados.
 
-**page.title** — o título que aparece na barra da janela.
+**page.title** — o texto na barra de título da janela.
 
-**page.bgcolor** — cor de fundo. Usamos #FAFAFA — o fundo do TribeMD.
+**page.bgcolor** — cor de fundo. #FAFAFA é o branco-gelo do TribeMD.
 
 **ft.Text(...)** — um elemento de texto na tela.
-value é o texto. size é o tamanho. weight é o peso (bold = negrito).
-color é a cor — usamos #5213B9, o roxo do TribeMD.
+'value' é o texto, 'size' é o tamanho, 'color' é a cor.
 
-**page.add(...)** — coloca os elementos na janela.
-É como adicionar itens ao prontuário. Você adiciona na ordem que quer exibir.
+**page.add(...)** — coloca os elementos na janela, na ordem que você listar.
 
 **ft.app(main)** — inicia o app chamando a função main.
-É o 'ligar a máquina'.
 
-Agora você tem uma janela. Dois textos. Cores TribeMD.
-Doze linhas de código."
+Doze linhas. Janela com identidade visual TribeMD."
 
 ---
 
@@ -148,28 +123,15 @@ Doze linhas de código."
 
 "Uma interface sem interatividade é um cartaz.
 
-Vamos adicionar um botão.
+Prompt ao Claude Code:
 
-Modifique o main.py — adicione abaixo do subtitulo:
-
-```python
-    def ao_clicar(e):
-        mensagem.value = 'Sistema iniciado. Bem-vindo, doutor.'
-        page.update()
-
-    botao = ft.ElevatedButton(
-        text='Iniciar sistema',
-        on_click=ao_clicar,
-        bgcolor='#5213B9',
-        color='white'
-    )
-
-    mensagem = ft.Text(value='', color='#2E3233')
-
-    page.add(titulo, subtitulo, botao, mensagem)
+```
+No main.py, adicione um botao 'Iniciar sistema' com fundo roxo (#5213B9)
+e texto branco. Quando clicar, deve aparecer a mensagem
+'Sistema iniciado. Bem-vindo, doutor.' em texto escuro (#2E3233).
 ```
 
-(Substitua o 'page.add' anterior por este novo que inclui botao e mensagem)
+[aguardar e mostrar o código atualizado]
 
 Execute:
 
@@ -177,96 +139,55 @@ Execute:
 uv run python main.py
 ```
 
-[mostrar — clicar no botão]
-
-Clicou no botão, apareceu a mensagem.
+[mostrar — clicar no botão e ver a mensagem aparecer]
 
 ---
 
-O padrão que você está vendo é fundamental em toda interface:
+Leia o padrão no código gerado.
 
-**Evento** — algo acontece (clique, digitação, enter)
-**Handler** — uma função que responde ao evento (ao_clicar)
-**Atualização** — a tela é redesenhada (page.update)
+O Claude criou uma função que responde ao clique — isso se chama handler.
+Quando o botão é clicado, a função executa, muda o texto e chama page.update()
+para a tela redesenhar.
 
-É como o ciclo diagnóstico: estímulo, processamento, resposta.
+O padrão é sempre o mesmo:
+
+**Evento** — algo acontece: clique, digitação, tecla pressionada.
+**Handler** — uma função que responde ao evento.
+**Atualização** — page.update() redesenha a tela com as mudanças.
+
+É o ciclo diagnóstico: estímulo, processamento, resposta.
 O paciente apresenta o sintoma. Você processa. Você age.
 
-Em Flet: o usuário clica. A função processa. A tela atualiza."
+Você não escreveu esse padrão. Mas agora você reconhece quando o Claude usa."
 
 ---
 
-## SEÇÃO 5: MINI CALCULADORA DE IMC — JUNTANDO TUDO (12 min)
+## SEÇÃO 5: CALCULADORA DE IMC — PEDINDO AO CLAUDE O APP COMPLETO (12 min)
 
-**Tom:** Síntese — Python + Flet + lógica clínica numa tela real
+**Tom:** Síntese — um prompt claro gera um app clínico funcional
 
-"Agora vamos construir algo real: uma calculadora de IMC com interface.
+"Agora o momento principal da aula.
 
-Substitua o conteúdo do main.py por:
+Você vai pedir ao Claude Code para construir uma calculadora de IMC com interface.
+Num único prompt, descrevendo o resultado que quer.
 
-```python
-import flet as ft
+Prompt:
 
-def calcular_imc(peso, altura):
-    return peso / (altura ** 2)
-
-def classificar_imc(imc):
-    if imc < 18.5:
-        return 'Abaixo do peso'
-    elif imc < 25.0:
-        return 'Peso normal'
-    elif imc < 30.0:
-        return 'Sobrepeso'
-    else:
-        return 'Obesidade'
-
-def main(page: ft.Page):
-    page.title = 'ClinMd-Tribe — Calculadora de IMC'
-    page.bgcolor = '#FAFAFA'
-    page.padding = 30
-
-    campo_peso = ft.TextField(
-        label='Peso (kg)',
-        hint_text='Ex: 82.5',
-        width=200
-    )
-
-    campo_altura = ft.TextField(
-        label='Altura (m)',
-        hint_text='Ex: 1.75',
-        width=200
-    )
-
-    resultado = ft.Text(value='', size=18, color='#5213B9')
-
-    def calcular(e):
-        try:
-            peso = float(campo_peso.value)
-            altura = float(campo_altura.value)
-            imc = calcular_imc(peso, altura)
-            classificacao = classificar_imc(imc)
-            resultado.value = f'IMC: {imc:.1f} — {classificacao}'
-        except ValueError:
-            resultado.value = 'Preencha os campos corretamente.'
-        page.update()
-
-    botao = ft.ElevatedButton(
-        text='Calcular IMC',
-        on_click=calcular,
-        bgcolor='#5213B9',
-        color='white'
-    )
-
-    page.add(
-        ft.Text('Calculadora de IMC', size=24, weight=ft.FontWeight.BOLD),
-        campo_peso,
-        campo_altura,
-        botao,
-        resultado
-    )
-
-ft.app(main)
 ```
+Reescreve o main.py como uma calculadora de IMC com interface Flet.
+O app deve ter:
+- titulo 'ClinMd-Tribe - Calculadora de IMC' na janela
+- fundo branco (#FAFAFA) com padding de 30
+- campo de texto para Peso em kg
+- campo de texto para Altura em metros
+- botao 'Calcular IMC' com fundo roxo (#5213B9) e texto branco
+- area de resultado que mostra o IMC calculado e a classificacao:
+  abaixo de 18.5 abaixo do peso, 18.5 a 24.9 peso normal,
+  25 a 29.9 sobrepeso, acima de 30 obesidade
+- se o usuario digitar algo que nao e numero, mostrar mensagem de erro
+```
+
+[aguardar o Claude gerar o app completo]
 
 Execute:
 
@@ -276,28 +197,29 @@ uv run python main.py
 
 [mostrar — preencher peso e altura, clicar em Calcular]
 
+[mostrar resultado correto e depois testar com texto para ver o erro]
+
 Você tem uma calculadora de IMC funcional com interface gráfica.
 
 ---
 
-Olha o que você usou aqui.
+Leia o código gerado e reconheça as partes.
 
-Da aula de Python: calcular_imc, classificar_imc, if/elif/else, float().
+Da aula de Python: função de cálculo, função de classificação, if/elif/else, float().
 
-Do Flet: ft.TextField (campo de texto), ft.ElevatedButton, ft.Text,
-page.add, page.update.
+Do Flet: ft.TextField para os campos, ft.ElevatedButton para o botão,
+ft.Text para o resultado, page.add, page.update.
 
-E uma novidade: o bloco try/except.
+E um bloco que o Claude adicionou por conta própria: try/except.
 
-**try** — tente executar isso
-**except ValueError** — se der erro de valor (usuário digitou letra, por exemplo): faça isso
+'try' — tente executar.
+'except ValueError' — se o usuário digitar texto onde esperava número, faça isso.
 
-É como um protocolo de segurança: tente o procedimento, se der erro, acione o plano B.
+É um protocolo de segurança. O Claude adicionou porque é boa prática.
+Você validou que funciona — digitou texto e viu a mensagem de erro.
+Isso é validar o que o Claude gerou.
 
-Você não precisa decorar tudo isso.
-O Claude Code vai escrever esse tipo de código por você.
-
-Mas agora você sabe o que está olhando quando ele escreve."
+Um prompt. Um app clínico completo."
 
 ---
 
@@ -307,24 +229,33 @@ Mas agora você sabe o que está olhando quando ele escreve."
 
 "Resumo do que ficou pronto hoje.
 
-Primeira janela Flet criada com cores TribeMD.
-Botão com evento e resposta na tela.
-Calculadora de IMC com interface gráfica — campos, botão, resultado.
+Primeira janela Flet criada com cores TribeMD — via prompt ao Claude Code.
+Botão com evento e resposta — via prompt.
+Calculadora de IMC com interface gráfica completa — via prompt.
 
-Você juntou Python da aula_12 com Flet desta aula.
-O resultado é um software clínico funcional.
+Em nenhum momento você abriu um editor e digitou Python.
+Você descreveu o que queria. O Claude construiu. Você validou.
+
+Esse é o fluxo do ClinMd-Tribe inteiro.
 
 ---
 
 Dever de casa.
 
-Adicione um campo 'Nome do Paciente' à calculadora.
-Quando clicar em Calcular, a mensagem deve incluir o nome:
-'João Silva — IMC: 26.8 — Sobrepeso'.
+Peça ao Claude Code:
 
-Na próxima aula: layout, organização de telas e componentes do Flet.
-Você vai aprender a organizar os elementos em colunas e linhas
-do jeito que um bom PEP organiza as seções do prontuário.
+```
+No main.py da calculadora de IMC, adiciona um campo de texto
+para o nome do paciente. Quando calcular, o resultado deve incluir
+o nome: por exemplo 'Joao Silva — IMC: 26.8 — Sobrepeso'.
+```
+
+Execute. Valide que o nome aparece no resultado.
+Se não estiver certo, corrija o prompt e peça de novo.
+
+Na próxima aula: layout. Você vai ver que a calculadora está funcional
+mas visualmente desorganizada — e vai pedir ao Claude para deixá-la
+com cara de software profissional.
 
 Até lá."
 

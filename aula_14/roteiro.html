@@ -1,0 +1,229 @@
+<h1 id="aula-14--layout-flet-do-caos-à-clareza-clínica">Aula 14 — Layout
+Flet: Do Caos à Clareza Clínica</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~42 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — transformar o
+funcional em profissional</p>
+<hr />
+<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
+<p><strong>Tom:</strong> Diagnóstico visual — a calculadora funciona mas
+não impressiona</p>
+<p>"Na aula passada você criou uma calculadora de IMC com interface
+gráfica.</p>
+<p>Ela funciona. Calcula correto. Trata o erro de entrada.</p>
+<p>Mas se você abrir ela agora e mostrar para um colega médico, ele vai
+dizer: 'isso parece um software dos anos 90.'</p>
+<p>Os elementos estão colados. Sem margem. Sem organização. É como um
+prontuário em papel amassado na gaveta — os dados estão lá, mas a
+apresentação compromete a credibilidade.</p>
+<p>Hoje você vai pedir ao Claude Code para transformar essa tela. Cinco
+prompts. Cinco conceitos de layout. O mesmo app, mas com cara de
+software profissional.</p>
+<p>Vamos lá."</p>
+<hr />
+<h2 id="seção-2-column-com-spacing--o-espaço-que-organiza-8-min">SEÇÃO
+2: COLUMN COM SPACING — O ESPAÇO QUE ORGANIZA (8 min)</h2>
+<p><strong>Tom:</strong> Conceito central de layout vertical — o
+esqueleto da interface</p>
+<p>"Primeiro conceito: Column.</p>
+<p>Você conhece a lista de problemas do PEP — Prontuário Eletrônico do
+Paciente. Cada problema na sua linha. Espaçados. Um embaixo do outro,
+com respiro visual.</p>
+<p>No Flet, Column é exatamente isso: um container que empilha elementos
+verticalmente, com espaço controlado entre eles.</p>
+<p>O problema visual na sua calculadora agora: os campos, o botão e o
+resultado estão amontoados sem respiro. Parece uma lista de tarefas sem
+espaçamento — denso, sufocante.</p>
+<p>Prompt ao Claude Code:</p>
+<pre><code>No main.py da calculadora de IMC, organiza todos os elementos
+dentro de uma ft.Column com spacing=15 e horizontal_alignment
+centralizado na tela. Mantém a lógica de cálculo intacta.</code></pre>
+<p>[aguardar o Claude atualizar o arquivo]</p>
+<p>Execute:</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[mostrar — os elementos agora têm espaço entre eles]</p>
+<hr />
+<p>Leia o código gerado comigo.</p>
+<p>O Claude envolveu os elementos em
+<code>ft.Column(controls=[...], spacing=15, horizontal_alignment=ft.CrossAxisAlignment.CENTER)</code>.</p>
+<p><code>controls</code> — a lista de elementos filhos da Column.
+<code>spacing=15</code> — 15 pixels de espaço entre cada filho.
+<code>horizontal_alignment</code> — centraliza os filhos no eixo
+horizontal.</p>
+<p>Note: spacing é o espaço ENTRE os filhos. Não é o espaço interno de
+cada elemento. Isso vem no próximo conceito.</p>
+<p>A Column com spacing resolveu o problema do amontoamento. Mas os
+elementos ainda encostam na borda da janela."</p>
+<hr />
+<h2
+id="seção-3-container-com-padding--a-margem-do-receituário-7-min">SEÇÃO
+3: CONTAINER COM PADDING — A MARGEM DO RECEITUÁRIO (7 min)</h2>
+<p><strong>Tom:</strong> Conceito de respiro interno — a caixa que dá ar
+ao conteúdo</p>
+<p>"Segundo conceito: Container com padding.</p>
+<p>Você usa receituário? Aquela margem branca em volta do conteúdo — ela
+existe para que o texto não encoste na borda do papel. O conteúdo
+respira. A leitura é confortável.</p>
+<p>Container no Flet é a moldura com margem interna. Padding é o tamanho
+dessa margem.</p>
+<p>O problema visual agora: a Column está no canto da janela, sem
+respiro nas bordas. Parece um formulário sem moldura.</p>
+<p>Prompt ao Claude Code:</p>
+<pre><code>No main.py, envolve a Column da calculadora num ft.Container
+com padding=30 e bgcolor=&#39;#FFFFFF&#39;. Centraliza o Container
+na tela usando expand=True na page.</code></pre>
+<p>[aguardar e mostrar o resultado]</p>
+<p>Execute:</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[mostrar — a calculadora agora tem margem interna, respira]</p>
+<hr />
+<p>Leia o código gerado comigo.</p>
+<p><code>ft.Container(content=coluna, padding=30, bgcolor='#FFFFFF')</code>
+— content é o que está dentro, padding é a margem interna em todos os
+lados.</p>
+<p>Perceba a diferença: <code>padding</code> = ar dentro da caixa, entre
+a borda e o conteúdo. <code>spacing</code> da Column = ar entre os
+filhos.</p>
+<p>Não são a mesma coisa. Confundir os dois é o erro mais comum em
+layout Flet.</p>
+<p>A calculadora já está melhor. Mas ainda parece uma caixa flutuando no
+nada. Falta elevação, falta moldura."</p>
+<hr />
+<h2 id="seção-4-card--o-prontuário-com-moldura-6-min">SEÇÃO 4: CARD — O
+PRONTUÁRIO COM MOLDURA (6 min)</h2>
+<p><strong>Tom:</strong> Componente de destaque visual — elevação e
+identidade</p>
+<p>"Terceiro conceito: Card.</p>
+<p>Prontuário impresso versus prontuário projetado na parede. O impresso
+tem papel, borda, elevação física — destaca do fundo.</p>
+<p>Card no Flet é isso: um Container com elevação (sombra sutil) e
+cantos arredondados. Destaca o conteúdo do background da janela.</p>
+<p>O problema visual agora: o Container está lá, mas sem elevação ele
+some no fundo branco da janela.</p>
+<p>Prompt ao Claude Code:</p>
+<pre><code>No main.py, substitui o ft.Container que envolve a calculadora
+por um ft.Card com elevation=2 e shape com border_radius de 12.
+Dentro do Card, coloca um ft.Container com padding=20
+para manter o respiro interno.</code></pre>
+<p>[aguardar e mostrar]</p>
+<p>Execute:</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[mostrar — o Card aparece destacado do fundo com sombra sutil e
+cantos arredondados]</p>
+<hr />
+<p>Leia o código gerado comigo.</p>
+<p><code>ft.Card(elevation=2, shape=ft.RoundedRectangleBorder(radius=12), content=...)</code></p>
+<p><code>elevation=2</code> — sombra sutil que destaca do fundo. Não é
+pesada, é discreta. <code>border_radius=12</code> — cantos arredondados.
+Dá leveza ao componente.</p>
+<p>A armadilha: Card não tem padding automático. Se você colocar o
+conteúdo direto no Card, ele encosta nas bordas do Card. Por isso o
+Claude colocou um <code>ft.Container(padding=20)</code> dentro do Card —
+o Container cuida do respiro, o Card cuida da elevação.</p>
+<p>Card resolve o destaque visual. Mas os campos de Peso e Altura ainda
+estão empilhados quando poderiam estar lado a lado."</p>
+<hr />
+<h2 id="seção-5-row--a-linha-de-sinais-vitais-8-min">SEÇÃO 5: ROW — A
+LINHA DE SINAIS VITAIS (8 min)</h2>
+<p><strong>Tom:</strong> Layout horizontal — o que fica lado a lado</p>
+<p>"Quarto conceito: Row.</p>
+<p>Você olha para uma planilha de sinais vitais: PA, FC, FR, SpO₂. Todos
+na mesma linha — não empilhados. Lado a lado, cada um no seu espaço.</p>
+<p>Row no Flet é a Column virada de lado: empilha elementos
+horizontalmente.</p>
+<p>O problema visual agora: Peso e Altura estão um embaixo do outro,
+ocupando altura desnecessária. Num formulário real, estariam lado a
+lado.</p>
+<p>Prompt ao Claude Code:</p>
+<pre><code>No main.py, coloca os campos de Peso e Altura lado a lado
+numa ft.Row com spacing=10. Cada campo deve ter expand=True
+para dividir o espaço igualmente.</code></pre>
+<p>[aguardar e mostrar]</p>
+<p>Execute:</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[mostrar — Peso e Altura lado a lado, cada um ocupando metade do
+espaço]</p>
+<hr />
+<p>Leia o código gerado comigo.</p>
+<p><code>ft.Row(controls=[campo_peso, campo_altura], spacing=10)</code>
+Cada <code>ft.TextField</code> com <code>expand=True</code>.</p>
+<p>A armadilha do <code>expand=True</code>: sem ele, os campos ficam
+espremidos ou saem da tela. <code>expand=True</code> diz ao Flet:
+'divide o espaço disponível igualmente entre os filhos que têm
+expand.'</p>
+<p>Sem expand → campos espremidos no tamanho mínimo. Com expand → cada
+campo ocupa metade do espaço da Row.</p>
+<p>É o mesmo princípio de uma tabela HTML com colunas de largura igual.
+Você não especifica a largura exata — você diz que cada um expande.</p>
+<p>A calculadora está tomando forma. Mas ainda falta identidade visual
+no topo. Não tem nada que diga 'isso é o ClinMd-Tribe'."</p>
+<hr />
+<h2 id="seção-6-appbar--o-timbre-do-receituário-5-min">SEÇÃO 6: APPBAR —
+O TIMBRE DO RECEITUÁRIO (5 min)</h2>
+<p><strong>Tom:</strong> Identidade no topo — o cabeçalho que identifica
+o sistema</p>
+<p>"Quinto e último conceito: AppBar.</p>
+<p>Receituário médico tem timbre no topo: nome do médico, CRM,
+especialidade. Identifica de quem é o documento antes mesmo de ler o
+conteúdo.</p>
+<p>AppBar no Flet é o timbre da janela: barra fixa no topo, com o nome
+do app e a cor de identidade visual.</p>
+<p>O problema visual agora: a janela não tem identidade. O título
+aparece na barra de título do Windows, pequeno e sem cor. Não tem nada
+que identifique o ClinMd-Tribe ao abrir.</p>
+<p>Prompt ao Claude Code:</p>
+<pre><code>No main.py, adiciona um ft.AppBar com title &#39;ClinMd-Tribe&#39;,
+bgcolor=&#39;#5213B9&#39; e title_color=&#39;#FFFFFF&#39;.
+Define também page.bgcolor=&#39;#E5E9EA&#39; para o fundo da janela
+ficar cinza-claro e o Card se destacar mais.</code></pre>
+<p>[aguardar e mostrar]</p>
+<p>Execute:</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[mostrar — AppBar roxo com 'ClinMd-Tribe' em branco no topo, fundo
+cinza-claro, Card branco se destacando]</p>
+<hr />
+<p>Leia o código gerado comigo.</p>
+<p><code>page.appbar = ft.AppBar(title=ft.Text('ClinMd-Tribe', color='#FFFFFF'), bgcolor='#5213B9')</code></p>
+<p>O AppBar é atribuído diretamente à <code>page.appbar</code> — não vai
+dentro do <code>page.add()</code>, vai como propriedade da página.</p>
+<p><code>#5213B9</code> é o roxo primário do TribeMD.
+<code>#E5E9EA</code> é o cinza de fundo da seção — cria contraste com o
+Card branco.</p>
+<p>Cinco prompts. A mesma calculadora de IMC da aula passada, agora com
+cara de software profissional."</p>
+<hr />
+<h2 id="seção-7-encerramento-3-min">SEÇÃO 7: ENCERRAMENTO (3 min)</h2>
+<p><strong>Tom:</strong> Resumo, motivação e dever de casa</p>
+<p>"Resumo do que ficou pronto hoje.</p>
+<p>Cinco conceitos de layout, cinco prompts ao Claude Code:</p>
+<p>Column com spacing — organiza verticalmente com respiro. Container
+com padding — cria margem interna. Card com elevation — destaca o
+conteúdo com sombra e bordas arredondadas. Row com expand — coloca
+elementos lado a lado com divisão igual. AppBar — identidade visual fixa
+no topo com as cores TribeMD.</p>
+<p>Em nenhum momento você abriu o main.py para editar. Você descreveu o
+que queria. O Claude organizou. Você validou.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Peça ao Claude Code:</p>
+<pre><code>Cria um novo arquivo chamado cartao_paciente.py.
+O app deve ter:
+- AppBar com titulo &#39;ClinMd-Tribe - Cartão do Paciente&#39;,
+  bgcolor #5213B9 e texto branco
+- page.bgcolor &#39;#E5E9EA&#39;
+- Um Card centralizado com elevation 2 e cantos de 12
+- Dentro do Card: nome do paciente (TextField), idade (TextField)
+- Uma Row com dois campos lado a lado: PA sistólica e FC
+- Um texto de resultado abaixo, inicialmente vazio
+- Um botão &#39;Registrar&#39; roxo que ao clicar mostra um resumo
+  com nome, idade, PA e FC</code></pre>
+<p>Execute com <code>uv run python cartao_paciente.py</code> e
+valide.</p>
+<p>Esse exercício usa os cinco conceitos da aula em um contexto novo —
+sem lógica clínica nova, só layout.</p>
+<p>Na próxima aula: arquitetura. Você vai entender por que o
+ClinMd-Tribe tem quatro camadas separadas e como o código vai se
+organizar conforme o projeto cresce.</p>
+<p>Até lá."</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

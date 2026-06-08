@@ -1,0 +1,323 @@
+<h1 id="aula-10--setup-do-ambiente-dev--clinmd-tribe-reveal">Aula 10 —
+Setup do Ambiente Dev + ClinMd-Tribe Reveal</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~48 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — momento de
+passagem de nível</p>
+<hr />
+<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
+<p><strong>Tom:</strong> Virada de página — a fase avançada começa</p>
+<p>"Nas últimas nove aulas você dominou o Claude Code — sete sem
+programação, duas aprendendo Git.</p>
+<p>Você pesquisou literatura no PubMed, criou flashcards, gerou um
+pôster de congresso, publicou carrossel no Instagram e fez um dashboard
+de gestão do consultório.</p>
+<p>Tudo isso com o Claude como co-piloto.</p>
+<p>Agora a pergunta é: e se você pudesse construir algo seu? Uma
+ferramenta clínica. Que funciona offline. No seu computador. Que você
+controla completamente.</p>
+<p>Esta aula começa a responder essa pergunta.</p>
+<p>Bem-vindo à fase avançada."</p>
+<hr />
+<h2 id="seção-2-clinmd-tribe--o-reveal-3-min">SEÇÃO 2: CLINMD-TRIBE — O
+REVEAL (3 min)</h2>
+<p><strong>Tom:</strong> Revelação com entusiasmo contido — deixar o
+produto falar</p>
+<p>"O que a gente vai construir juntos nas próximas semanas tem um
+nome.</p>
+<p>ClinMd-Tribe.</p>
+<p>É um app clínico 100% local. Roda no seu computador. Não precisa de
+internet. Não manda dado para servidor nenhum. Funciona no Windows, no
+Mac, no Linux.</p>
+<p>O que ele faz?</p>
+<p>Primeiro: calculadoras clínicas — CHA₂DS₂-VASc, PHQ-9, GAD-7, YMRS,
+HAM-D. Sem anuncio. Sem login. Clicou, calculou.</p>
+<p>Segundo: anotador clínico — templates de consulta, salvamento local.
+Seu modelo de anamnese, do jeito que você gosta.</p>
+<p>Terceiro: busca inteligente em PDFs — guidelines, artigos que você
+salvou. Você pergunta em linguagem natural, ele acha.</p>
+<p>É isso. Um app para uso diário no consultório. Construído do zero,
+por você, com o Claude como par de programação.</p>
+<hr />
+<p>Antes de seguir, deixa eu mostrar a planta da casa que vamos
+construir.</p>
+<p>Todo sistema bem feito tem camadas. Como o corpo humano. Pele,
+tecido, músculo, osso — cada camada tem função específica.</p>
+<p>O ClinMd-Tribe tem quatro camadas:</p>
+<p><strong>Apresentação</strong> — o que você vê: telas, botões,
+formulários. É a pele. É com o Flet que vamos construir essa camada.</p>
+<p><strong>Aplicação</strong> — as regras de negócio: 'calcular
+CHA2DS2-VASc', 'salvar evolução', 'buscar no PDF'. É o tecido que
+conecta tela e dados.</p>
+<p><strong>Domínio</strong> — as entidades clínicas: o que é um
+Paciente, um Cálculo, uma Nota de Evolução. É a anatomia do sistema.</p>
+<p><strong>Infraestrutura</strong> — onde os dados são guardados:
+arquivos no disco, banco de dados local, indexação de PDFs. É o osso —
+sustenta tudo.</p>
+<p>[mostrar diagrama simples: 4 caixas empilhadas com os nomes]</p>
+<p>Você não precisa memorizar isso agora. O que precisa saber: quando
+chegar na aula de Clean Architecture, você vai reconhecer esse diagrama.
+E vai entender por que cada peça do ClinMd-Tribe está onde está.</p>
+<p>Por enquanto: a planta existe. Agora vamos montar o laboratório."</p>
+<hr />
+<h2 id="seção-3-o-ambiente-de-um-dev-real-2-min">SEÇÃO 3: O AMBIENTE DE
+UM DEV REAL (2 min)</h2>
+<p><strong>Tom:</strong> Didático — analogia clínica para ferramentas de
+desenvolvimento</p>
+<p>"Todo médico que vai fazer uma cirurgia prepara o campo operatório
+primeiro.</p>
+<p>Você não entra na sala e começa a cortar. Você esteriliza os
+instrumentos, monta a bandeja, posiciona o paciente.</p>
+<p>Desenvolvimento de software é igual.</p>
+<p>Antes de escrever a primeira linha de código do ClinMd-Tribe, você
+vai instalar quatro categorias de ferramentas:</p>
+<p>Plugins — superpoderes adicionais para o Claude Code. Skills —
+atalhos de trabalho que o Claude conhece. Agents — especialistas
+virtuais que o Claude aciona quando precisa. MCPs — conexões com
+ferramentas externas como PubMed e Canva.</p>
+<p>E no final: uv — o gerenciador de dependências que vai organizar o
+projeto.</p>
+<p>Vamos instalar tudo. Passo a passo."</p>
+<hr />
+<h2 id="seção-4-demo--plugin-oficial--skills-10-min">SEÇÃO 4: DEMO —
+PLUGIN OFICIAL + SKILLS (10 min)</h2>
+<p><strong>Tom:</strong> Prático, dois momentos — o oficial e o
+personalizado</p>
+<p>"Começa pelo plugin oficial.</p>
+<p>Abra o terminal e inicie o Claude Code:</p>
+<pre><code>claude</code></pre>
+<p>Dentro do Claude Code, digite:</p>
+<pre><code>/plugin install superpowers@claude-plugins-official</code></pre>
+<p>[aguardar instalação]</p>
+<p>Pronto. Isso instalou o pacote superpowers — ele adiciona um conjunto
+de skills prontas para uso: brainstorming, planejamento, revisão de
+código, debuggin...</p>
+<p>Perceba a barra <code>/</code> — no Claude Code, comandos que começam
+com <code>/</code> são internos. São como atalhos de teclado, mas para o
+Claude.</p>
+<p>Documentação oficial em: <a
+href="https://docs.anthropic.com/pt/claude-code/plugins">https://docs.anthropic.com/pt/claude-code/plugins</a></p>
+<hr />
+<p>Agora as skills que eu criei — ficam no Codeberg, meu servidor git
+privado.</p>
+<p>São três. Cada uma resolve um problema real de desenvolvimento.</p>
+<p>Jeito difícil: clona manualmente cada repositório.</p>
+<pre><code>git clone https://codeberg.org/petrinhu/forgejo-skill.git ~/.claude/skills/forgejo
+git clone https://codeberg.org/petrinhu/memo_persistente.git ~/.claude/skills/memo_persistente
+git clone https://codeberg.org/petrinhu/tab_pendencias.git ~/.claude/skills/tab_pendencias</code></pre>
+<p>[executar e mostrar as pastas criadas em ~/.claude/skills/]</p>
+<p>Mas tem um jeito mais fácil.</p>
+<p>Jeito fácil: você fecha o Claude Code, abre um novo terminal e
+escreve:</p>
+<pre><code>claude &quot;Clone os três repositórios de skills do Dr. Petrus a partir do Codeberg:
+1. https://codeberg.org/petrinhu/forgejo-skill.git → ~/.claude/skills/forgejo
+2. https://codeberg.org/petrinhu/memo_persistente.git → ~/.claude/skills/memo_persistente
+3. https://codeberg.org/petrinhu/tab_pendencias.git → ~/.claude/skills/tab_pendencias
+Execute os clones e confirme cada um.&quot;</code></pre>
+<p>[mostrar o Claude executando automaticamente]</p>
+<p>Resultado idêntico. O Claude fez o trabalho.</p>
+<p>Para que serve cada uma?</p>
+<p>/forgejo — controla seu servidor de código diretamente do Claude.
+/memo_persistente — salva memórias permanentes entre sessões.
+/tab_pendencias — gera tabela de tarefas ordenada por prioridade.</p>
+<p>A partir da aula de agents, você vai usar as três o tempo todo."</p>
+<hr />
+<h2 id="seção-5-demo--agents-jeito-difícil-e-jeito-fácil-12-min">SEÇÃO
+5: DEMO — AGENTS: JEITO DIFÍCIL E JEITO FÁCIL (12 min)</h2>
+<p><strong>Tom:</strong> Revelação progressiva — mostrar a escala e
+depois simplificar</p>
+<p>"Agents são especialistas que o Claude aciona dependendo do
+contexto.</p>
+<p>Quando você pede pra criar uma tela, o Claude pode chamar o
+frontend-engineer. Quando você pede análise de segurança, chama o
+security-engineer. Quando você quer saber se uma feature vale a pena,
+chama o product-manager.</p>
+<p>Eu tenho 65 agents instalados em ~/.claude/agents/.</p>
+<p>Vamos ver a lista:</p>
+<pre><code>ls ~/.claude/agents/ | sort</code></pre>
+<p>[mostrar a lista — 65 arquivos .md]</p>
+<p>Cada arquivo .md é um agent. Dentro dele: nome, descrição, instruções
+de comportamento.</p>
+<p>O jeito difícil de instalar é criar cada arquivo manualmente.</p>
+<p>Vou mostrar a estrutura de um:</p>
+<pre><code>cat ~/.claude/agents/qa-engineer.md | head -20</code></pre>
+<p>[mostrar o cabeçalho do arquivo]</p>
+<p>Você vê: nome, descrição, ferramentas disponíveis, instruções.</p>
+<p>Para criar o seu próprio agent, você escreve um arquivo assim e salva
+em ~/.claude/agents/.</p>
+<hr />
+<p>Mas ninguém faz isso para 65 agents à mão.</p>
+<p>O jeito fácil: você manda o Claude buscar e instalar.</p>
+<p>Meu repositório de backup do ~/.claude/ fica em: <a
+href="https://codeberg.org/petrinhu/claude-memory">https://codeberg.org/petrinhu/claude-memory</a></p>
+<p>A pasta agents/ lá dentro tem todos os 65 arquivos.</p>
+<p>O comando:</p>
+<pre><code>claude &quot;Visite https://codeberg.org/petrinhu/claude-memory e baixe todos os arquivos .md
+da pasta agents/. Salve cada um em ~/.claude/agents/. Confirme quantos foram instalados.&quot;</code></pre>
+<p>[mostrar o Claude executando — navegando, baixando, salvando]</p>
+<p>Pronto. 65 agents instalados com um comando.</p>
+<hr />
+<p>Os 12 agents C-level são a liderança virtual do projeto:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>celso-ceo</td>
+<td>Estratégia geral</td>
+</tr>
+<tr>
+<td>capitolino-cpo</td>
+<td>Produto — o que construir</td>
+</tr>
+<tr>
+<td>caetano-cto</td>
+<td>Tecnologia — como construir</td>
+</tr>
+<tr>
+<td>camilo-cmo</td>
+<td>Marketing e comunicação</td>
+</tr>
+<tr>
+<td>cosmo-coo</td>
+<td>Execução e coordenação</td>
+</tr>
+<tr>
+<td>narciso-ciso</td>
+<td>Segurança da informação</td>
+</tr>
+<tr>
+<td>candido-cdo</td>
+<td>Dados e analytics</td>
+</tr>
+<tr>
+<td>caio-caio</td>
+<td>Inteligência artificial</td>
+</tr>
+<tr>
+<td>confucio-cfo</td>
+<td>Finanças e orçamento</td>
+</tr>
+<tr>
+<td>cicero-cro</td>
+<td>Receita e vendas</td>
+</tr>
+<tr>
+<td>claudio-clo</td>
+<td>Jurídico e compliance</td>
+</tr>
+<tr>
+<td>cosimo-chief-of-staff</td>
+<td>Roteador — monta o time certo para cada tarefa</td>
+</tr>
+</tbody>
+</table>
+<p>Os outros 53 são os especialistas operacionais — o time de
+desenvolvimento. Você vai conhecer cada um deles ao longo da fase
+avançada.</p>
+<p>Para hoje: eles estão instalados. Quando você precisar, o Claude
+aciona o certo.</p>
+<p>Tem um arquivo de referência completo — skills.html — na pasta desta
+aula. Guarde ele. É a sua folha de cola do time."</p>
+<hr />
+<h2 id="seção-6-demo--mcps-instalados-5-min">SEÇÃO 6: DEMO — MCPS
+INSTALADOS (5 min)</h2>
+<p><strong>Tom:</strong> Rápido, mostrando o inventário já instalado</p>
+<p>"MCPs são conectores.</p>
+<p>MCP significa Model Context Protocol — o padrão que o Claude usa para
+se conectar com ferramentas externas.</p>
+<p>Para ver o que está instalado, dentro do Claude Code:</p>
+<pre><code>/mcp</code></pre>
+<p>[mostrar a listagem]</p>
+<p>Os ativos aqui no nosso ambiente:</p>
+<p>PubMed — busca artigos científicos diretamente GitHub / Forgejo —
+gerencia repositórios de código Canva — cria designs sem sair do Claude
+Google Drive — acessa seus arquivos Playwright — controla o navegador
+para automação Desktop Commander — controla o desktop Microsoft Docs —
+documentação técnica da Microsoft Hostinger — gerenciamento de hosting
+web</p>
+<p>Para o ClinMd-Tribe, os mais relevantes são PubMed e GitHub.</p>
+<p>Se você quiser instalar um MCP novo:</p>
+<pre><code>claude mcp add [nome] [comando]</code></pre>
+<p>Ou pelo arquivo de configuração em ~/.claude/claude.json.</p>
+<p>O detalhe importante: depois de instalar um MCP, reinicie o Claude. A
+próxima seção explica exatamente quando reiniciar."</p>
+<hr />
+<h2 id="seção-7-quando-reiniciar--claude--c-4-min">SEÇÃO 7: QUANDO
+REINICIAR + CLAUDE -C (4 min)</h2>
+<p><strong>Tom:</strong> Prático, resolve uma dúvida que todo iniciante
+tem</p>
+<p>"Quando você instala um plugin ou um MCP, o Claude precisa ser
+reiniciado para carregar a mudança.</p>
+<p>É como reinstalar um driver no Windows — precisa reiniciar.</p>
+<p>Para reiniciar: dentro do Claude Code, pressione Ctrl+C ou ESC, feche
+o terminal, abra de novo e inicie com:</p>
+<pre><code>claude</code></pre>
+<hr />
+<p>Mas às vezes você estava no meio de uma conversa importante. Você
+reiniciou e agora o Claude esqueceu tudo.</p>
+<p>Para retomar de onde parou:</p>
+<pre><code>claude -c</code></pre>
+<p>O -c é de 'continue' — retomar a última conversa.</p>
+<p>O Claude carrega o contexto da sessão anterior e continua.</p>
+<p>Regra simples:</p>
+<p>— Instalou algo novo? Reinicia com <code>claude</code> — Quer
+continuar de onde parou? Abre com <code>claude -c</code></p>
+<p>Guarda essa regra. Você vai usar ela toda semana."</p>
+<hr />
+<h2 id="seção-8-demo--uv--clinmd-tribe-8-min">SEÇÃO 8: DEMO — UV +
+CLINMD-TRIBE (8 min)</h2>
+<p><strong>Tom:</strong> Mão na massa — o primeiro passo do produto</p>
+<p>"Chegou a hora de criar o projeto.</p>
+<p>Antes: precisamos do uv.</p>
+<p>uv é o gerenciador de pacotes Python — pensa nele como a farmácia do
+projeto. Ele sabe exatamente quais 'remédios' (bibliotecas) o projeto
+precisa, em qual versão, e garante que nada vai conflitar.</p>
+<p>Instalar o uv. No Windows, abra o PowerShell e cole:</p>
+<pre><code>powershell -ExecutionPolicy ByPass -c &quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</code></pre>
+<p>[aguardar instalação]</p>
+<p>Feche o PowerShell e abra um novo para que o uv fique no path.</p>
+<p>Confirme a instalação:</p>
+<pre><code>uv --version</code></pre>
+<hr />
+<p>Agora o projeto.</p>
+<p>Vamos criar dentro da pasta Documentos:</p>
+<pre><code>cd ~/Documents
+uv init clinmd-tribe</code></pre>
+<p>[executar e mostrar a estrutura criada]</p>
+<p>O uv criou:</p>
+<p>clinmd-tribe/ .python-version — versão do Python que o projeto usa
+main.py — arquivo inicial vazio pyproject.toml — o prontuário do
+projeto: nome, versão, dependências</p>
+<p>Abra o arquivo pyproject.toml:</p>
+<pre><code>cat clinmd-tribe/pyproject.toml</code></pre>
+<p>Você vê o nome 'clinmd-tribe'. Esse é o início do ClinMd-Tribe.</p>
+<p>A partir da próxima aula, você vai adicionar a primeira dependência e
+escrever as primeiras linhas de Python.</p>
+<p>Mas hoje o que importa é que o campo operatório está pronto. Ambiente
+instalado. Projeto criado. Time de desenvolvimento no lugar."</p>
+<hr />
+<h2 id="seção-9-encerramento-2-min">SEÇÃO 9: ENCERRAMENTO (2 min)</h2>
+<p><strong>Tom:</strong> Motivador, resumo do que ficou pronto, visão
+para frente</p>
+<p>"Resumo do que ficou pronto hoje.</p>
+<p>Plugin superpowers instalado. Skills /forgejo, /memo_persistente e
+/tab_pendencias prontas. 65 agents no lugar — C-levels e time de
+desenvolvimento. MCPs conectados: PubMed, GitHub, Canva e mais. Projeto
+ClinMd-Tribe criado com uv.</p>
+<p>Você tem agora o mesmo ambiente que eu uso para desenvolver com o
+Claude.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Abra o arquivo skills.html que está na pasta desta aula. Leia as
+descrições dos 12 C-levels e escolha dois que mais fazem sentido para o
+produto clínico que você imagina construir.</p>
+<p>Na próxima aula, Python com analogias clínicas — sem sofrimento, do
+jeito que você aprendeu a interpretar um ECG: um achado de cada vez.</p>
+<p>Até lá."</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

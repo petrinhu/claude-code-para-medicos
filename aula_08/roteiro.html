@@ -1,0 +1,179 @@
+<h1 id="aula-08--git-o-prontuário-do-seu-código">Aula 08 — Git: O
+Prontuário do Seu Código</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~40 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — primeiro
+contato com versionamento</p>
+<hr />
+<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
+<p><strong>Tom:</strong> Direto, contextualizando a posição no curso</p>
+<p>"Chegamos na aula 08 — a porta de entrada da fase avançada.</p>
+<p>Até aqui você usou o Claude Code sem programar. Pesquisa de
+literatura, flashcards, dashboard de consultório, pôster de congresso.
+Tudo funcionou. Tudo ficou salvo na pasta do seu computador.</p>
+<p>Mas agora vamos dar um passo além. Vamos construir um app clínico
+real. E pra fazer isso do jeito certo, você precisa de uma ferramenta
+que protege o seu trabalho enquanto constrói.</p>
+<p>Essa ferramenta se chama Git.</p>
+<p>Nesta aula você vai instalar o Git, entender o que ele faz, e começar
+a usá-lo da mesma forma que você anota uma evolução clínica.</p>
+<p>Sem susto. Passo a passo."</p>
+<hr />
+<h2 id="seção-2-o-que-é-git-3-min">SEÇÃO 2: O QUE É GIT (3 min)</h2>
+<p><strong>Tom:</strong> Analogia médica — PEP com histórico de
+versões</p>
+<p>"Pensa no prontuário eletrônico do seu paciente.</p>
+<p>Você faz uma consulta. Escreve a evolução. Salva. Semana que vem, o
+paciente volta. Você escreve de novo. O sistema guarda a evolução
+anterior — você consegue ler o que estava escrito três meses atrás.</p>
+<p>O PEP tem memória de versões.</p>
+<p>Git faz a mesma coisa com os seus arquivos de código.</p>
+<p>Cada vez que você faz uma 'foto' do projeto — a gente chama de commit
+— o Git guarda como estava naquele momento.</p>
+<p>Deu errado? Você volta para a foto anterior. Quer ver o que mudou
+ontem? O Git mostra. Quer trabalhar em duas versões ao mesmo tempo? Git
+permite.</p>
+<p>Git é o prontuário eletrônico do seu projeto de software.</p>
+<p>E assim como o PEP não é opcional para um médico sério, Git não é
+opcional para quem vai construir software com o Claude."</p>
+<hr />
+<h2 id="seção-3-instalação--git-for-windows-5-min">SEÇÃO 3: INSTALAÇÃO —
+GIT FOR WINDOWS (5 min)</h2>
+<p><strong>Tom:</strong> Didático, pausado — cada clique explicado</p>
+<p>"Vamos instalar o Git.</p>
+<p>Abra o navegador e acesse:</p>
+<pre><code>https://git-scm.com/download/win</code></pre>
+<p>Clique em 'Click here to download' — o download vai começar.</p>
+<p>[aguardar download]</p>
+<p>Execute o instalador. Quando aparecer a tela de opções, você pode
+clicar em 'Next' em tudo — as configurações padrão são boas.</p>
+<p>A única tela pra prestar atenção é 'Choosing the default editor'.
+Mude para 'Use Notepad' se aparecer o Vim como opção padrão. Vim é um
+editor antigo que pode confundir quem está começando.</p>
+<p>[aguardar instalação]</p>
+<p>Quando terminar, feche o instalador.</p>
+<p>Agora: abra o PowerShell.</p>
+<p>Windows + R, digite 'powershell', Enter.</p>
+<p>Digite:</p>
+<pre><code>git --version</code></pre>
+<p>Se aparecer algo como 'git version 2.44.0', funcionou. Git
+instalado."</p>
+<hr />
+<h2 id="seção-4-demo--primeiros-comandos-15-min">SEÇÃO 4: DEMO —
+PRIMEIROS COMANDOS (15 min)</h2>
+<p><strong>Tom:</strong> Mão na massa, explicando cada comando com
+analogia</p>
+<p>"Agora vamos criar o primeiro repositório.</p>
+<p>Repositório é o nome técnico para 'projeto com Git ativado'. Pensa
+como uma pasta de prontuários que o PEP controla.</p>
+<p>Vamos criar dentro de Documentos.</p>
+<p>No PowerShell:</p>
+<pre><code>cd Documents</code></pre>
+<p>Agora crie uma pasta chamada 'meu-primeiro-repo':</p>
+<pre><code>mkdir meu-primeiro-repo
+cd meu-primeiro-repo</code></pre>
+<hr />
+<p><strong>Passo 1: inicializar o repositório</strong></p>
+<pre><code>git init</code></pre>
+<p>[executar e mostrar o resultado]</p>
+<p>O Git respondeu algo como 'Initialized empty Git repository'.</p>
+<p>Isso significa que essa pasta agora tem memória. O Git está
+ativo.</p>
+<hr />
+<p><strong>Passo 2: criar um arquivo de teste</strong></p>
+<pre><code>echo &quot;Meu primeiro arquivo&quot; &gt; arquivo.txt</code></pre>
+<p>Você criou um arquivo chamado arquivo.txt dentro da pasta.</p>
+<hr />
+<p><strong>Passo 3: verificar o status</strong></p>
+<pre><code>git status</code></pre>
+<p>[mostrar resultado]</p>
+<p>O Git mostra que arquivo.txt existe mas ainda não foi 'fotografado'.
+Aparece como 'untracked file' — arquivo ainda não rastreado.</p>
+<p>Analogia: você escreveu a evolução do paciente, mas ainda não salvou
+no PEP.</p>
+<hr />
+<p><strong>Passo 4: preparar para o commit</strong></p>
+<pre><code>git add arquivo.txt</code></pre>
+<p>Agora rode git status de novo:</p>
+<pre><code>git status</code></pre>
+<p>Mudou. O arquivo agora aparece em verde — 'Changes to be
+committed'.</p>
+<p>Você preparou a evolução para salvar. Falta só confirmar.</p>
+<hr />
+<p><strong>Passo 5: fazer o commit</strong></p>
+<pre><code>git commit -m &quot;Meu primeiro commit&quot;</code></pre>
+<p>[mostrar resultado]</p>
+<p>Git respondeu com algo como '[main f3c2a1] Meu primeiro commit'.</p>
+<p>Pronto. Você tirou a primeira foto do projeto.</p>
+<p>O '-m' é de 'message' — mensagem que descreve o que mudou. Boa
+prática: mensagem clara, verbo no imperativo. 'Adiciona calculadora de
+risco', 'Corrige cálculo do YMRS'. Você vai ler isso daqui a seis meses
+— escreva como se fosse uma anotação de prontuário.</p>
+<hr />
+<p><strong>Passo 6: ver o histórico</strong></p>
+<pre><code>git log --oneline</code></pre>
+<p>[mostrar resultado]</p>
+<p>Aparece um código curto e a mensagem do seu commit.</p>
+<p>Esse histórico vai crescer. Cada commit é uma linha. É a linha do
+tempo do seu projeto.</p>
+<hr />
+<p>Deixa eu resumir o ciclo:</p>
+<pre><code>git add [arquivo]         ← prepara a foto
+git commit -m &quot;mensagem&quot;  ← tira a foto
+git status                ← vê o estado atual
+git log --oneline         ← vê o histórico de fotos</code></pre>
+<p>São quatro comandos. Você vai usar esses quatro toda semana enquanto
+construir software."</p>
+<hr />
+<h2 id="seção-5-configuração-inicial-5-min">SEÇÃO 5: CONFIGURAÇÃO
+INICIAL (5 min)</h2>
+<p><strong>Tom:</strong> Rápido — configuração que precisa ser feita uma
+vez</p>
+<p>"Tem mais uma coisa que precisa ser feita uma única vez.</p>
+<p>O Git precisa saber quem é você — porque cada commit fica assinado. É
+como a assinatura digital no prontuário: registra quem fez.</p>
+<p>No PowerShell:</p>
+<pre><code>git config --global user.name &quot;Dr. Seu Nome&quot;
+git config --global user.email &quot;seu.email@gmail.com&quot;</code></pre>
+<p>Substitua pelo seu nome e e-mail reais.</p>
+<p>Feito isso, todos os commits futuros em qualquer projeto vão ter sua
+assinatura. Você só faz isso uma vez na máquina."</p>
+<hr />
+<h2 id="seção-6-por-que-isso-importa-pro-clinmd-tribe-5-min">SEÇÃO 6:
+POR QUE ISSO IMPORTA PRO CLINMD-TRIBE (5 min)</h2>
+<p><strong>Tom:</strong> Contextualizando — ponte pra aula seguinte</p>
+<p>"Você pode estar pensando: 'Petrus, pra que isso tudo? Eu só quero
+usar o Claude Code.'</p>
+<p>Resposta em três partes.</p>
+<p><strong>Parte 1:</strong> Na próxima aula, você vai clonar
+repositórios do Codeberg para instalar skills e agents do Claude Code. O
+comando que vai usar para isso é 'git clone'. Se não tiver Git
+instalado, o comando não funciona.</p>
+<p><strong>Parte 2:</strong> Quando o Claude Code constrói o
+ClinMd-Tribe, ele vai criar arquivos, modificar arquivos, às vezes
+quebrar coisas. Com Git, qualquer erro tem voltar atrás. Sem Git, se o
+Claude errar e você salvar, pode perder trabalho.</p>
+<p><strong>Parte 3:</strong> Git é a ferramenta que permite colaborar.
+Se um dia você quiser mostrar seu projeto pra alguém — um colega, um dev
+que vai ajudar — você envia o repositório. É como compartilhar acesso ao
+prontuário de forma segura.</p>
+<p>Git não é burocracia. É segurança clínica para o seu código."</p>
+<hr />
+<h2 id="seção-7-encerramento-2-min">SEÇÃO 7: ENCERRAMENTO (2 min)</h2>
+<p><strong>Tom:</strong> Resumo e dever de casa</p>
+<p>"Resumo do que ficou pronto hoje.</p>
+<p>Git instalado no Windows. Primeiro repositório criado em Documentos.
+Quatro comandos aprendidos: add, commit, status, log. Identidade
+configurada: cada commit tem seu nome.</p>
+<p>Dever de casa.</p>
+<p>Crie uma pasta chamada 'consultorio-digital' em Documentos.
+Inicialize com 'git init'. Crie um arquivo de texto com qualquer
+conteúdo. Faça dois commits — um agora, edite o arquivo, faça outro.
+Veja o histórico com 'git log --oneline'.</p>
+<p>Dois commits no histórico. É isso.</p>
+<p>Na próxima aula, você vai aprender a sincronizar esse repositório com
+a internet — e usar o Git para instalar as ferramentas do Claude
+Code.</p>
+<p>Até lá."</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

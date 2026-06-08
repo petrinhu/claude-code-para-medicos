@@ -344,10 +344,25 @@ suas planilhas — você precisa abrir o Claude Code já dentro da pasta certa.
 É como dizer pro residente: 'o prontuário está na sala 3'.
 Se ele for pra sala errada, não vai achar nada.
 
-Na prática: antes de abrir o Claude Code, navegue até a pasta do seu projeto:
+Antes de fazer isso, uma tarefa que você faz UMA VEZ, agora, no Windows Explorer:
+
+Abra o Windows Explorer — a pastinha amarela na barra de tarefas.
+Entre em 'Documentos'. Clique com o botão direito e crie uma nova pasta.
+Chame ela de 'projetos'.
+
+[mostrar criando a pasta no Windows Explorer]
+
+Dentro de 'projetos', você vai criar uma subpasta para cada projeto.
+Por exemplo: 'projetos\clinmd-tribe', 'projetos\flashcards', 'projetos\pesquisa'.
+
+Cada projeto tem a sua casa. Nunca misture projetos diferentes numa mesma pasta.
+
+[mostrar a estrutura de pastas]
+
+Na prática: antes de abrir o Claude Code, navegue até a pasta do projeto:
 
 ```
-cd Documents\meus_artigos
+cd Documents\projetos\nome-do-projeto
 ```
 
 Aí então abre o Claude:
@@ -357,6 +372,9 @@ claude
 ```
 
 Ele vai enxergar tudo que está nessa pasta. Simples assim.
+
+Regra de ouro número dois: sempre crie a pasta do projeto no Explorer primeiro,
+depois entre nela pelo terminal, depois abra o Claude.
 
 Agora vou voltar pro meu Linux. Vai parecer diferente, mas é a mesma lógica.
 

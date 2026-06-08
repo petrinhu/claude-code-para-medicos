@@ -1,0 +1,277 @@
+<h1 id="aula-16--scaffold-do-clinmd-tribe-a-planta-e-o-prédio">Aula 16 —
+Scaffold do ClinMd-Tribe: A Planta e o Prédio</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~43 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — o mapa da
+aula_15 vira estrutura real de código</p>
+<hr />
+<h2 id="seção-1-abertura--a-planta-e-o-prédio-3-min">SEÇÃO 1: ABERTURA —
+A PLANTA E O PRÉDIO (3 min)</h2>
+<p><strong>Tom:</strong> Contraste visual — o artefato da aula anterior
+como gancho</p>
+<p>"Na aula passada você criou esse arquivo.</p>
+<p>[abrir o terminal na pasta do projeto]</p>
+<pre><code>type arquitetura.txt</code></pre>
+<p>[mostrar o conteúdo]</p>
+<pre><code>clinmd-tribe/
+  presentation/     # telas Flet: botões, campos, janelas, AppBar
+  application/      # orquestração: lê tela, chama domínio, pede pra salvar
+  domain/           # regras clínicas: CHA2DS2-VASc, PHQ-9, critérios diagnósticos
+  infrastructure/   # arquivos, banco de dados SQLite, indexação de PDFs</code></pre>
+<p>Quatro alas. Quatro responsabilidades. Tudo no papel.</p>
+<p>Agora olha o que existe de verdade no projeto:</p>
+<pre><code>dir /s /b</code></pre>
+<p>[mostrar — só main.py, pyproject.toml, uv.lock e uv venv
+internos]</p>
+<p>As pastas não existem. O arquitetura.txt descreve um hospital que
+ainda não foi construído.</p>
+<p>Hoje a gente constrói.</p>
+<p>Com um único prompt ao Claude Code."</p>
+<hr />
+<h2
+id="seção-2-prompt-de-scaffold--um-comando-quatro-andares-12-min">SEÇÃO
+2: PROMPT DE SCAFFOLD — UM COMANDO, QUATRO ANDARES (12 min)</h2>
+<p><strong>Tom:</strong> Explore — o prompt gera, o professor valida
+junto com o aluno</p>
+<p>"Abra o Claude Code:</p>
+<pre><code>cd Documents\projetos\clinmd-tribe
+claude</code></pre>
+<p>Agora o prompt:</p>
+<pre><code>No projeto ClinMd-Tribe, cria o scaffold completo da Clean Architecture.
+
+Faça exatamente isto:
+
+1. Cria as pastas: presentation, application, domain, infrastructure
+
+2. Em cada pasta, cria um __init__.py com um comentário de uma linha
+   explicando o papel clínico da camada:
+   - presentation:   # Recepção — telas e interação com o usuário
+   - application:    # Triagem — orquestração do fluxo clínico
+   - domain:         # Médico — regras clínicas e protocolos
+   - infrastructure: # Laboratório — arquivos, banco e persistência
+
+3. Cria um arquivo placeholder em cada pasta (sem lógica funcional ainda):
+   - presentation/tela_inicial.py
+   - application/orquestrador.py
+   - domain/calculadoras.py
+   - infrastructure/armazenamento.py
+
+   Cada placeholder deve ter:
+   - Docstring clínica explicando o que vai morar nessa camada
+   - Uma função chamada camada() que retorna o nome da camada em português
+
+4. Atualiza o main.py para importar camada() de cada módulo e imprimir
+   no terminal, antes de abrir a janela Flet:
+   Recepção pronta
+   Triagem pronta
+   Médico pronto
+   Laboratório pronto
+
+5. Garante que uv run python main.py roda sem erro de import.
+   Me explica em uma linha o que fez em cada camada.</code></pre>
+<p>[aguardar o Claude gerar — mostrar os arquivos sendo criados um a
+um]</p>
+<hr />
+<p>Agora o teste definitivo:</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[mostrar o terminal]</p>
+<pre><code>Recepção pronta
+Triagem pronta
+Médico pronto
+Laboratório pronto</code></pre>
+<p>[janela Flet abre — a calculadora de IMC da aula_13 ainda
+funciona]</p>
+<p>Quatro linhas. Janela abrindo. Sem linha vermelha de erro.</p>
+<p>Se apareceu assim: o scaffold está de pé.</p>
+<hr />
+<p>Uma observação sobre erro.</p>
+<p>Se aparecer um traceback vermelho — não entre em pânico. Copie o erro
+e cole direto no Claude Code:</p>
+<pre><code>Apareceu esse erro ao rodar uv run python main.py: [cole o erro aqui].
+Por favor, corrija.</code></pre>
+<p>O Claude identifica e corrige. Erro vermelho é informação, não
+catástrofe."</p>
+<hr />
+<h2 id="seção-3-tour-pelo-código-gerado-10-min">SEÇÃO 3: TOUR PELO
+CÓDIGO GERADO (10 min)</h2>
+<p><strong>Tom:</strong> Explain — professor narra cada arquivo, aluno
+reconhece a ala</p>
+<p>"Vamos abrir cada arquivo e entender o que o Claude criou.</p>
+<p>Começamos pelo mais importante.</p>
+<hr />
+<p><strong>O Médico — domain/calculadoras.py</strong></p>
+<pre><code>type domain\calculadoras.py</code></pre>
+<p>[mostrar — docstring + def camada()]</p>
+<p>O Claude escreveu uma docstring assim:</p>
+<p>'Camada de Domínio do ClinMd-Tribe. Aqui ficam os protocolos
+clínicos: CHA2DS2-VASc, PHQ-9, GAD-7 e qualquer critério diagnóstico.
+Esta camada não sabe se há interface gráfica. Não sabe se há banco de
+dados. Só sabe medicina.'</p>
+<p>Você, médico, é o dono desta pasta. Quando a diretriz mudar, você vem
+aqui. Quando quiser adicionar um escore novo, você vem aqui. Tela,
+banco, arquivo — não é problema desta camada.</p>
+<hr />
+<p><strong>O Laboratório — infrastructure/armazenamento.py</strong></p>
+<pre><code>type infrastructure\armazenamento.py</code></pre>
+<p>[mostrar]</p>
+<p>A docstring vai falar em arquivos, SQLite, salvar resultados. O que
+não vai mencionar? Calcular IMC. Diagnosticar fibrilação atrial.
+Laboratório executa pedidos. Não pensa.</p>
+<hr />
+<p><strong>A Recepção — presentation/tela_inicial.py</strong></p>
+<pre><code>type presentation\tela_inicial.py</code></pre>
+<p>[mostrar]</p>
+<p>Botões, campos, janelas. Tudo que o usuário vê e toca. A Recepção não
+calcula nada. Só recebe e exibe.</p>
+<hr />
+<p><strong>A Triagem — application/orquestrador.py</strong></p>
+<pre><code>type application\orquestrador.py</code></pre>
+<p>[mostrar]</p>
+<p>Orquestração. Pega o dado da Recepção, aciona o Médico, pede ao
+Laboratório. A Triagem não decide a conduta — ela coordena quem
+decide.</p>
+<hr />
+<p><strong>A credencial do andar — <strong>init</strong>.py</strong></p>
+<pre><code>type domain\__init__.py</code></pre>
+<p>[mostrar — uma linha de comentário]</p>
+<p>Esse arquivo pequeno tem um papel crítico.</p>
+<p>Em Python, uma pasta com <code>__init__.py</code> é reconhecida como
+módulo — como um departamento hospitalar com identidade própria. Sem
+ele, o <code>main.py</code> não consegue importar a camada.</p>
+<p>É como um andar sem placa no painel do elevador. O andar existe. Mas
+quando você aperta o botão, o sistema não sabe que esse andar
+existe.</p>
+<p>O <code>__init__.py</code> é a placa. É a credencial.</p>
+<hr />
+<p><strong>O corredor central — main.py</strong></p>
+<pre><code>type main.py</code></pre>
+<p>[mostrar — imports das 4 camadas + prints + ft.app(main)]</p>
+<p>Veja o topo do arquivo. O Claude importou <code>camada</code> de cada
+pasta e chamou as 4 funções. Resultado: as 4 linhas no terminal antes da
+janela.</p>
+<p>O <code>main.py</code> é o único lugar onde as 4 camadas se encontram
+— e elas se encontram aqui, não diretamente entre si. Nenhuma pasta fala
+com outra diretamente. Tudo passa pelo corredor central."</p>
+<hr />
+<h2 id="seção-4-transferência--3-perguntas-4-min">SEÇÃO 4: TRANSFERÊNCIA
+— 3 PERGUNTAS (4 min)</h2>
+<p><strong>Tom:</strong> Retórico — professor pergunta e responde,
+reforça a independência entre camadas</p>
+<p>"Três perguntas. São perguntas que vão aparecer de novo quando o
+projeto crescer.</p>
+<hr />
+<p><strong>Pergunta 1:</strong> O ClinMd-Tribe foi pedido para rodar
+como página web em vez de app desktop. Qual pasta muda?</p>
+<p>Só <code>presentation/</code> — a Recepção. O Médico não sabe se há
+Flet ou HTML. O Laboratório não sabe se há botão roxo ou link azul. Você
+troca a Recepção. O hospital continua funcionando.</p>
+<hr />
+<p><strong>Pergunta 2:</strong> Nova diretriz: no CHA2DS2-VASc, idade
+maior que 75 anos agora vale 3 pontos. Qual pasta muda?</p>
+<p>Só <code>domain/</code> — o Médico. A Recepção não recebeu nenhum
+memorando clínico. A Triagem continua orquestrando do mesmo jeito. O
+Laboratório continua salvando do mesmo jeito. Só o protocolo clínico
+muda — e está isolado no lugar certo.</p>
+<hr />
+<p><strong>Pergunta 3:</strong> A clínica quer migrar o armazenamento
+local para um banco SQLite centralizado. Qual pasta muda?</p>
+<p>Só <code>infrastructure/</code> — o Laboratório. O Médico não sabe
+onde o resultado é guardado. A Triagem só pede 'salva isso' — não sabe
+como. Você treina o Laboratório no novo sistema. O resto não muda.</p>
+<hr />
+<p>Três perguntas. Três vezes a mesma resposta: só uma pasta.</p>
+<p>Isso é o que a Clean Architecture compra para o ClinMd-Tribe. Cada
+mudança — clínica, visual ou técnica — tem um endereço certo. Sem varrer
+o código inteiro. Sem risco de quebrar o que não devia."</p>
+<hr />
+<h2 id="seção-5-software-architect--validação-arquitetural-3-min">SEÇÃO
+5: @software-architect — VALIDAÇÃO ARQUITETURAL (3 min)</h2>
+<p><strong>Tom:</strong> Consulta especializada — decisão arquitetural
+validada antes de avançar</p>
+<p>"Antes de ir para as calculadoras, vamos consultar o arquiteto do
+time.</p>
+<pre><code>@software-architect, o ClinMd-Tribe está usando Clean Architecture
+com 4 camadas: presentation, application, domain, infrastructure.
+Cada camada tem __init__.py e um placeholder.
+As dependências apontam para dentro — domain não importa nada das outras camadas.
+Essa estrutura é robusta para crescer com calculadoras clínicas,
+anotador e RAG local? Algum risco arquitetural a antecipar?</code></pre>
+<p>[mostrar a resposta do software-architect]</p>
+<p>O arquiteto vai validar as decisões estruturais e pode apontar
+padrões que aparecem nos próximos módulos — como onde colocar
+utilitários compartilhados entre camadas. Guarde as sugestões."</p>
+<hr />
+<h2 id="seção-6-caetano-cto--validação-técnica-3-min">SEÇÃO 6:
+@caetano-cto — VALIDAÇÃO TÉCNICA (3 min)</h2>
+<p><strong>Tom:</strong> Aprovação do CTO antes de avançar para
+features</p>
+<p>"Agora o CTO técnico do time:</p>
+<pre><code>@caetano-cto, o scaffold do ClinMd-Tribe está gerado e rodando.
+4 pastas, 4 __init__.py, 4 placeholders, main.py integrado.
+uv run python main.py imprime as 4 camadas e abre a janela Flet sem erro.
+Validação técnica: estamos prontos para começar
+as calculadoras clínicas no próximo módulo?</code></pre>
+<p>[mostrar a resposta do Caetano]</p>
+<p>O Caetano vai confirmar a prontidão técnica e pode recomendar algum
+ajuste antes de entrar no módulo das calculadoras."</p>
+<hr />
+<h2 id="seção-7-capitolino-cpo--validação-de-produto-3-min">SEÇÃO 7:
+@capitolino-cpo — VALIDAÇÃO DE PRODUTO (3 min)</h2>
+<p><strong>Tom:</strong> Confirmação do roadmap de produto antes de
+fechar o módulo</p>
+<p>"E o CPO — para garantir que a estrutura que construímos suporta o
+produto que planejamos:</p>
+<pre><code>@capitolino-cpo, o scaffold do ClinMd-Tribe está pronto em Clean Architecture.
+presentation, application, domain, infrastructure.
+O próximo módulo implementa as calculadoras clínicas:
+CHA2DS2-VASc, PHQ-9, GAD-7.
+Essa arquitetura suporta o roadmap completo do produto —
+incluindo o anotador e o RAG local que vêm depois?</code></pre>
+<p>[mostrar a resposta do Capitolino]</p>
+<p>O CPO olha pelo lado do produto — se a estrutura técnica serve o que
+o médico vai precisar usar no consultório."</p>
+<hr />
+<h2 id="seção-8-tab_pendencias-2-min">SEÇÃO 8: /tab_pendencias (2
+min)</h2>
+<p><strong>Tom:</strong> Registro canônico — fechar o ciclo de
+trabalho</p>
+<p>"Atualize as pendências:</p>
+<pre><code>/tab_pendencias</code></pre>
+<p>[mostrar a tabela — scaffold concluído, calculadora CHA2DS2-VASc como
+próxima tarefa]</p>
+<p>Olha o que mudou de posição. 'Scaffold ClinMd-Tribe' passou para
+Concluído. 'Calculadora CHA2DS2-VASc' está no topo das próximas
+tarefas.</p>
+<p>Essa tabela é o placar do seu projeto. Cada aula move uma peça."</p>
+<hr />
+<h2 id="seção-9-encerramento--dever-de-casa-3-min">SEÇÃO 9: ENCERRAMENTO
++ DEVER DE CASA (3 min)</h2>
+<p><strong>Tom:</strong> Síntese motivacional e ponte para as
+calculadoras</p>
+<p>"Resumo do que ficou pronto hoje.</p>
+<p>Um único prompt ao Claude Code transformou o arquitetura.txt em
+estrutura real: 4 pastas, 4 credenciais, 4 placeholders clínicos,
+main.py integrado.</p>
+<p>O projeto roda. As 4 linhas apareceram no terminal. A janela Flet
+abriu.</p>
+<p>Você não digitou uma linha de código. Você descreveu o que queria. O
+Claude construiu. Você validou.</p>
+<hr />
+<p>E você sabe o que muda quando cada componente muda: só uma pasta,
+sempre a pasta certa.</p>
+<p>Isso é o que separa um código que cresce de um código que emperra na
+segunda mudança.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Escreva num papel ou arquivo de texto — não no código:</p>
+<p>Primeira: qual calculadora você quer implementar primeiro?
+CHA2DS2-VASc, PHQ-9, GAD-7, NIHSS — a que você mais usa na prática.</p>
+<p>Segunda: em qual pasta ela vai morar, e por quê?</p>
+<p>Terceira: qual seria o primeiro prompt que você daria ao Claude
+Code?</p>
+<p>Na próxima aula: as calculadoras clínicas. O CHA2DS2-VASc sai do
+arquitetura.txt e entra no domain/calculadoras.py — como código real,
+isolado, testável.</p>
+<p>Até lá."</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>

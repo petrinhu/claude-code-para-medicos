@@ -12,7 +12,7 @@ Você é um engenheiro de computação sênior, ex-lead de dev teams, com mestra
 - **Plataforma:** MDlife Academy (parceria com Luiz Dieckmann/TribeMD)
 - **Produto capstone (fase avançada):** ClinMd-Tribe — app clínico 100% local (Flet + Python)
 - **Turma:** Fechada — médicos selecionados
-- **Carga:** ~22 aulas obrigatórias + ~31 aulas fase avançada opcional, 1/semana ao editor do Dieckmann
+- **Carga:** 18 aulas obrigatórias + 34 aulas avançadas = 52 total — ver `TODO.md` para sequência e status
 - **Líder supremo:** Dr. Petrus Silva Costa — todas as decisões passam por ele
 - **Eixo transversal:** Privacidade e LGPD — dado de paciente não entra, tudo roda local
 
@@ -67,40 +67,11 @@ Skill `/bigtech` invoca Cósimo e monta o time completo.
 Skill `/tab_pendencias` cria tabela de pendências ordenada por dependência e valor (WSJF).
 **Fase avançada (M4/04_agents_bigtech) tem aula dedicada a cada um destes.**
 
-## Mapa de Módulos
+## Estrutura do Curso
 
-### Fase Iniciante (sem programação)
+Ver **`TODO.md`** na raiz do projeto — fonte de verdade para todas as aulas, status e sequência.
 
-| Módulo | Conteúdo | Aulas | Pasta |
-|--------|----------|-------|-------|
-| M0 | Primeiros passos sem medo | 4 | aulas/iniciante/00_primeiros_passos/ |
-| M1 | Assistente de produtividade | 4 | aulas/iniciante/01_produtividade/ |
-
-### Fase Intermediário (sem programação)
-
-| Módulo | Conteúdo | Aulas | Pasta |
-|--------|----------|-------|-------|
-| M2 | Aprender e acompanhar a literatura | 4 | aulas/intermediario/02_literatura/ |
-| M3 | Conteúdo, pesquisa e consultório | 5 | aulas/intermediario/03_conteudo_pesquisa_gestao/ |
-
-### Fase Avançada (opcional — Python/Flet/ClinMd-Tribe)
-
-| Submódulo | Conteúdo | Aulas | Pasta |
-|-----------|----------|-------|-------|
-| 00_fundacao | Terminal, uv, Python com analogias médicas | 2 | aulas/avancado/04_construir_ferramentas/00_fundacao/ |
-| 01_git | Git, versionamento, Forgejo | 2 | .../01_git/ |
-| 02_python_flet | Python clínico, Flet hello world médico | 2 | .../02_python_flet/ |
-| 03_clean_arch | Clean Architecture 4 camadas | 2 | .../03_clean_arch/ |
-| 04_agents_bigtech | Claude Code, MCP, skills, BigTech Virtual, /tab_pendencias | 4 | .../04_agents_bigtech/ |
-| 05_calculadoras | CHA2DS2-VASc, PHQ-9, GAD-7, HAM-D, YMRS | 4 | .../05_calculadoras/ |
-| 06_anotador | Templates clínicos, salvamento local | 2 | .../06_anotador/ |
-| 07_rag_tribe | RAG local: embed, PDFs, busca semântica | 4 | .../07_rag_tribe/ |
-| 08_gerador_evolucao | Gerador de evolução para PEP/TISS | 2 | .../08_gerador_evolucao/ |
-| 09_testes | TDD e pytest | 2 | .../09_testes/ |
-| 10_cicd | CI/CD Forgejo + Woodpecker | 2 | .../10_cicd/ |
-| 11_polimento_final | UI médica, .exe, auditoria | 3 | .../11_polimento_final/ |
-
-**Total: 22 aulas obrigatórias + 31 aulas fase avançada**
+Resumo: 18 aulas obrigatórias + 34 aulas avançadas = **52 aulas totais** (per `arvore_aulas.html`).
 
 ## Links Canônicos (Vault)
 

@@ -1,7 +1,7 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-09
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 33 ✅ · 0 🚫 · 20 ⏳ · **Total: 53 aulas**
+> **Resumo:** 33 ✅ · 0 🚫 · 19 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
@@ -14,30 +14,29 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ⏳ Pendente — 20 itens
+## ⏳ Pendente — 19 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| S05.04 | 10 | Avançado · S05 Calculadoras | HAM-D, YMRS, AUDIT, CAGE → aula_24 | Média | S05.01 | Médio | ⏳ Pendente | ⏳ |
-| S05.05 | 10 | Avançado · S05 Calculadoras | MMSE, MoCA, PANSS, CGI, CURB-65, MELD, SOFA → aula_25 | Média | S05.01 | Complexo | ⏳ Pendente | ⏳ |
-| S06.01 | 11 | Avançado · S06 Dashboard | Entrada de dados: formulários mensais (receita, glosas, consultas) → aula_26 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
-| S06.02 | 11 | Avançado · S06 Dashboard | KPIs e gráficos: visualização financeira do consultório → aula_27 | Média | S06.01 | Médio | ⏳ Pendente | ⏳ |
-| S07.01 | 12 | Avançado · S07 RAG | O que é RAG: analogia com memória médica → aula_28 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
-| S07.02 | 12 | Avançado · S07 RAG | Indexar PDFs do knowledge_base/ → aula_29 | Média | S07.01 | Complexo | ⏳ Pendente | ⏳ |
-| S07.03 | 12 | Avançado · S07 RAG | Busca semântica em produção → aula_30 | Média | S07.02 | Complexo | ⏳ Pendente | ⏳ |
-| S07.04 | 12 | Avançado · S07 RAG | Integração RAG com app Flet → aula_31 | Média | S07.03 | Complexo | ⏳ Pendente | ⏳ |
-| S08.01 | 13 | Avançado · S08 Checklist | Criar e gerenciar checklists customizados (estilo OMS) → aula_32 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
-| S08.02 | 13 | Avançado · S08 Checklist | Uso em procedimento: log com timestamp e export PDF → aula_33 | Média | S08.01 | Médio | ⏳ Pendente | ⏳ |
-| S09.01 | 14 | Avançado · S09 Testes | TDD e pytest: receita em vez de intuição → aula_34 | Baixa | S05+S07 | Médio | ⏳ Pendente | ⏳ |
-| S09.02 | 14 | Avançado · S09 Testes | Testes das calculadoras e RAG → aula_35 | Baixa | S09.01 | Médio | ⏳ Pendente | ⏳ |
-| S10.01 | 15 | Avançado · S10 CI/CD | Forgejo e pipeline CI básico → aula_36 | Baixa | S09 | Complexo | ⏳ Pendente | ⏳ |
-| S10.02 | 15 | Avançado · S10 CI/CD | Woodpecker: automatizando builds → aula_37 | Baixa | S10.01 | Complexo | ⏳ Pendente | ⏳ |
-| S11.01 | 16 | Avançado · S11 Polimento | UI médica: paleta, tipografia, ícones → aula_38 | Baixa | S10 | Médio | ⏳ Pendente | ⏳ |
-| S11.02 | 16 | Avançado · S11 Polimento | Exportar como .exe para Windows → aula_39 | Baixa | S11.01 | Médio | ⏳ Pendente | ⏳ |
-| S11.03 | 16 | Avançado · S11 Polimento | Auditoria final e distribuição → aula_40 | Baixa | S11.02 | Médio | ⏳ Pendente | ⏳ |
-| S12.01 | 17 | Avançado · S12 Boas Práticas | Segurança: nunca suba seu token de API → aula_41 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
-| S12.02 | 17 | Avançado · S12 Boas Práticas | Arquitetura modular: evitando o monolito → aula_42 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
-| S12.03 | 17 | Avançado · S12 Boas Práticas | Workflow com agentes: sempre discuta com o time (C-levels + devs) → aula_43 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
+| S05.04 | 10 | Avançado · S05 Calculadoras | MELD + MMSE → aula_24 (padrões novos: fórmula contínua + scoring composto) | Média | S05.03 | Médio | ⏳ Pendente | ⏳ |
+| S06.01 | 11 | Avançado · S06 Dashboard | Entrada de dados: formulários mensais (receita, glosas, consultas) → aula_25 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
+| S06.02 | 11 | Avançado · S06 Dashboard | KPIs e gráficos: visualização financeira do consultório → aula_26 | Média | S06.01 | Médio | ⏳ Pendente | ⏳ |
+| S07.01 | 12 | Avançado · S07 RAG | O que é RAG: analogia com memória médica → aula_27 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
+| S07.02 | 12 | Avançado · S07 RAG | Indexar PDFs do knowledge_base/ → aula_28 | Média | S07.01 | Complexo | ⏳ Pendente | ⏳ |
+| S07.03 | 12 | Avançado · S07 RAG | Busca semântica em produção → aula_29 | Média | S07.02 | Complexo | ⏳ Pendente | ⏳ |
+| S07.04 | 12 | Avançado · S07 RAG | Integração RAG com app Flet → aula_30 | Média | S07.03 | Complexo | ⏳ Pendente | ⏳ |
+| S08.01 | 13 | Avançado · S08 Checklist | Criar e gerenciar checklists customizados (estilo OMS) → aula_31 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
+| S08.02 | 13 | Avançado · S08 Checklist | Uso em procedimento: log com timestamp e export PDF → aula_32 | Média | S08.01 | Médio | ⏳ Pendente | ⏳ |
+| S09.01 | 14 | Avançado · S09 Testes | TDD e pytest: receita em vez de intuição → aula_33 | Baixa | S05+S07 | Médio | ⏳ Pendente | ⏳ |
+| S09.02 | 14 | Avançado · S09 Testes | Testes das calculadoras e RAG → aula_34 | Baixa | S09.01 | Médio | ⏳ Pendente | ⏳ |
+| S10.01 | 15 | Avançado · S10 CI/CD | Forgejo e pipeline CI básico → aula_35 | Baixa | S09 | Complexo | ⏳ Pendente | ⏳ |
+| S10.02 | 15 | Avançado · S10 CI/CD | Woodpecker: automatizando builds → aula_36 | Baixa | S10.01 | Complexo | ⏳ Pendente | ⏳ |
+| S11.01 | 16 | Avançado · S11 Polimento | UI médica: paleta, tipografia, ícones → aula_37 | Baixa | S10 | Médio | ⏳ Pendente | ⏳ |
+| S11.02 | 16 | Avançado · S11 Polimento | Exportar como .exe para Windows → aula_38 | Baixa | S11.01 | Médio | ⏳ Pendente | ⏳ |
+| S11.03 | 16 | Avançado · S11 Polimento | Auditoria final e distribuição → aula_39 | Baixa | S11.02 | Médio | ⏳ Pendente | ⏳ |
+| S12.01 | 17 | Avançado · S12 Boas Práticas | Segurança: nunca suba seu token de API → aula_40 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
+| S12.02 | 17 | Avançado · S12 Boas Práticas | Arquitetura modular: evitando o monolito → aula_41 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
+| S12.03 | 17 | Avançado · S12 Boas Práticas | Workflow com agentes: sempre discuta com o time (C-levels + devs) → aula_42 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
 
 ---
 

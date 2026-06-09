@@ -1,195 +1,491 @@
-<h1 id="aula-07-gestão-do-consultório-dashboard-cirúrgico">Aula 07 —
-Gestão do Consultório: Dashboard Cirúrgico</h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 07 — Gestão do Consultório: Indicadores, Faturamento e Automação</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 07 — Gestão do Consultório: Indicadores,
+Faturamento e Automação</h1>
+</header>
+<h1
+id="aula-07-gestão-do-consultório-indicadores-faturamento-e-automação">Aula
+07 — Gestão do Consultório: Indicadores, Faturamento e Automação</h1>
 <p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
-<strong>Duração:</strong> ~37 min<br />
-<strong>Tom:</strong> Colega com humor leve e didático</p>
+<strong>Duração:</strong> ~48 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — “hoje você vira
+gestora do próprio negócio”<br />
+<strong>Persona:</strong> Metabologista de consultório — continuidade
+das aulas 05 e 06</p>
 <hr />
-<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
-<p><strong>Tom:</strong> Direto, virando a página do M3, nova
-perspectiva</p>
-<p>“Nas últimas duas aulas você criou conteúdo para o Instagram e
-submeteu um pôster de congresso.</p>
-<p>Hoje a gente fecha o M3 com um problema diferente.</p>
-<p>Não é sobre comunicar. Não é sobre pesquisar. É sobre entender o
-próprio negócio.</p>
-<p>Você é cirurgião.</p>
-<p>A pergunta de hoje é simples e brutal: onde está o seu dinheiro?</p>
-<p>Vamos descobrir.”</p>
+<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA — 2 min</h2>
+<p><strong>Tom:</strong> Callback do arco do M3 — fechar o módulo com
+sensação de progressão</p>
+<p>“Nas últimas duas aulas você aprendeu a comunicar e a publicar.</p>
+<p>aula_05: posts para o Instagram, newsletter, conteúdo para o
+Substack. aula_06: estudo científico, análise estatística, pôster de
+congresso.</p>
+<p>Hoje você fecha o Módulo 3.</p>
+<p>E fecha de um jeito diferente.</p>
+<p>Hoje você não vai criar conteúdo para o mundo exterior. Hoje você vai
+olhar para dentro.</p>
+<p>Você vai enxergar o que está acontecendo dentro do próprio
+consultório.</p>
+<p>Qual convênio paga mais? Em qual dia há mais no-show? O faturamento
+está crescendo ou caindo?</p>
+<p>Perguntas que todo médico tem — e quase nenhum consegue responder com
+dado.”</p>
 <hr />
-<h2 id="seção-2-o-cenário-3-min">SEÇÃO 2: O CENÁRIO (3 min)</h2>
+<h2 id="seção-2-cenário-4-min">SEÇÃO 2: CENÁRIO — 4 min</h2>
 <p><strong>Tom:</strong> Situação real, identificação imediata, dois
 problemas concretos</p>
 <p>“Cenário.</p>
-<p>Você é cirurgião geral. Consultório próprio, six anos de carreira.
-Faz 8 a 12 procedimentos por semana — colecistectomia, herniorrafia,
-apendicectomia de urgência, às vezes bariátrica.</p>
-<p>Três convênios no seu CNPJ mais particular.</p>
-<p>Problema 1: você não sabe qual procedimento é mais lucrativo. Você
-acha que bariátrica paga mais, mas não tem certeza. Você só sabe quando
-o extrato chega no fim do mês — e nem entende o extrato.</p>
-<p>Problema 2: a sua taxa de no-show está alta mas você não sabe em qual
-dia da semana. Você desconfia que é segunda — e provavelmente está certo
-— mas sem dado, é chute.</p>
-<p>Hoje você vai ter os dados. Tudo em uma tela, em um arquivo. Que você
-manda pro contador e ele entende.</p>
+<p>A mesma metabologista das últimas duas aulas. Consultório próprio.
+Seis anos de carreira. Três convênios no CNPJ: Unimed, Bradesco,
+SulAmérica. Mais particular.</p>
+<p>Ela atende 20 a 25 pacientes por semana — consultas de primeira vez,
+retornos, pequenos procedimentos ambulatoriais.</p>
+<p>Dois problemas que ela não consegue resolver sem dado.</p>
+<hr />
+<p>Problema 1: ela não sabe qual convênio paga mais pela mesma
+consulta.</p>
+<p>Acha que é o Unimed. Mas não tem certeza. Só descobre quando o
+extrato chega no fim do mês — e nem entende o extrato porque vem cheio
+de glosa.</p>
+<p>Glosa: o valor que o convênio deveria pagar menos o que efetivamente
+pagou. Um convênio pode tabular 300 reais e repassar 240. Sem dado, ela
+não sabe qual convênio glosa mais.</p>
+<hr />
+<p>Problema 2: a taxa de no-show está alta, mas ela não sabe em qual
+dia.</p>
+<p>Desconfia que é segunda-feira. E provavelmente está certa. Mas sem
+dado, é chute. E chute não vira decisão de agenda.</p>
+<hr />
+<p>Hoje ela vai ter os dados.</p>
+<p>Tudo em uma tela, em um arquivo. Que ela manda para o contador e ele
+entende.</p>
 <p>Vamos começar.”</p>
 <hr />
-<h2 id="seção-3-demo-gerar-o-csv-de-procedimentos-8-min">SEÇÃO 3: DEMO —
-GERAR O CSV DE PROCEDIMENTOS (8 min)</h2>
-<p><strong>Tom:</strong> Prático, rápido, explicando o que cada coluna
-representa</p>
+<h2 id="seção-3-demo-csv-de-atendimentos-8-min">SEÇÃO 3: DEMO — CSV DE
+ATENDIMENTOS — 8 min</h2>
+<p><strong>Tom:</strong> Prático, explicando cada coluna e o que ela
+representa financeiramente</p>
 <p>“Primeiro: os dados.</p>
 <p>Na vida real, você exportaria uma planilha do sistema do consultório.
 Mas vamos gerar um CSV simulado — o fluxo é exatamente o mesmo.</p>
-<p>Prompt:</p>
-<pre><code>Gere uma planilha CSV simulada com 120 procedimentos cirúrgicos
-dos últimos 6 meses (janeiro a junho de 2025).
+<p>[digitar no terminal]</p>
+<pre><code>Gere uma planilha CSV simulada com 120 atendimentos de um consultório de
+endocrinologia/metabolismo dos últimos 6 meses (janeiro a junho de 2025).
 
 Colunas:
-- Data: distribuída entre jan e jun 2025
-- Dia_semana: segunda a sábado
-- Procedimento: colecistectomia videolaparoscópica, herniorrafia inguinal,
-  apendicectomia, cirurgia bariátrica (proporções realistas —
-  colecistectomia e herniorrafia são os mais frequentes)
-- Convenio: PlanoSol, PlanoNorte, PlanoCentro, Particular
-  (nomes fictícios — distribua de forma realista)
-- Valor_recebido_R$: valores realistas por procedimento e convênio
-  (bariátrica mais cara, apendicectomia de urgência com variação)
-- Status: realizado, no-show, cancelado
-- Tempo_cirurgia_min: tempo médio realista por procedimento
+- Data: distribuída entre janeiro e junho de 2025
+- Dia_semana: segunda a sexta
+- Tipo_atendimento: Consulta (primeira vez), Retorno, Procedimento
+  (proporções realistas — Retorno é o mais frequente)
+- Convenio: Unimed, Bradesco, SulAmérica, Particular
+  (distribua de forma realista — Unimed é o mais comum)
+- Valor_tabela_R$: valor que o convênio deveria pagar
+- Valor_recebido_R$: valor que efetivamente entrou (menor que tabela = glosa)
+- Status: Realizado, No-show, Cancelado
+- Mes: janeiro a junho (para facilitar agrupamento)
 
-Salve como procedimentos.csv.</code></pre>
-<p>[executar e mostrar o arquivo]</p>
-<p>Pronto. 120 linhas, 7 colunas.</p>
-<p>Veja a coluna Status — tem ‘realizado’, ‘no-show’, ‘cancelado’. Veja
-a coluna Valor_recebido_R$ — cada convênio paga diferente pelo mesmo
-procedimento.</p>
-<p>Isso é a realidade do consultório. E agora vamos enxergar ela com
-clareza.”</p>
+Use &#39;Paciente 001, 002...&#39; se precisar de coluna de paciente.
+Salve como consultas_2025.csv.</code></pre>
+<p>[aguardar e mostrar o arquivo]</p>
+<hr />
+<p>Pronto. 120 linhas, 8 colunas.</p>
+<p>Olha a coluna Valor_tabela_R$ e a Valor_recebido_R$.</p>
+<p>Em todo atendimento de convênio, o valor recebido é menor que o
+tabelado. Essa diferença é a glosa.</p>
+<p>Você trabalhou, o convênio pagou menos do que prometeu. Quanto?
+Depende do convênio. E você vai descobrir agora.</p>
+<p>E a coluna Status: Realizado, No-show, Cancelado. No-show é o
+paciente que marcou e não veio — sem aviso, sem cancelamento. Esse
+espaço vazio custa dinheiro real.</p>
+<p>Uma nota rápida: a coluna Tipo_atendimento diz ‘Procedimento’ — e
+isso é intencional. Se você é cirurgião, lê como cirurgia. Se é
+psiquiatra, lê como sessão de procedimento. A lógica financeira é
+idêntica para qualquer especialidade.</p>
+<p>Esse arquivo é a radiografia financeira do consultório. Agora vamos
+fazer a leitura.”</p>
 <hr />
 <h2 id="seção-4-demo-análise-de-indicadores-8-min">SEÇÃO 4: DEMO —
-ANÁLISE DE INDICADORES (8 min)</h2>
+ANÁLISE DE INDICADORES — 8 min</h2>
 <p><strong>Tom:</strong> Didático, mostrando cada indicador com reação
-clínica</p>
+clínica concreta</p>
 <p>“Com a planilha criada, vamos pedir a análise completa.</p>
-<p>Prompt:</p>
-<pre><code>Analise o arquivo procedimentos.csv e me entregue um relatório
+<p>[digitar no terminal — com o consultas_2025.csv já na sessão]</p>
+<pre><code>Analise o arquivo consultas_2025.csv e me entregue um relatório
 de indicadores de gestão do consultório:
 
-1. Faturamento total dos 6 meses
+1. Faturamento total dos 6 meses (valor recebido)
 2. Faturamento por convênio — ranking do maior para o menor pagador
-3. Faturamento por tipo de procedimento — qual é o mais lucrativo?
-4. Taxa de no-show geral (%) e por dia da semana
-   — em qual dia tenho mais falta?
-5. Tempo médio de cirurgia por tipo de procedimento
-6. Tendência de faturamento mês a mês (jan a jun)
-   — estou crescendo ou caindo?
+3. Taxa de glosa por convênio: diferença entre valor_tabela e valor_recebido
+4. Taxa de no-show geral (%) e por dia da semana — em qual dia tenho mais falta?
+5. Sazonalidade: os 3 meses com mais atendimentos e os 3 com menos
+6. Tendência de faturamento mês a mês — estou crescendo ou caindo?
 
-Para cada indicador: um parágrafo curto de interpretação
-mais uma tabela quando relevante.</code></pre>
-<p>[executar e mostrar resultado]</p>
-<p>Olha o que saiu.</p>
-<p>Faturamento total — você sabe pela primeira vez exatamente quanto
-entrou.</p>
-<p>Ranking de convênios — o PlanoSol paga mais que o PlanoCentro pelo
-mesmo procedimento? Isso muda decisão de credenciamento.</p>
-<p>No-show por dia — segunda realmente lidera? Confirme e já ajuste a
-agenda.</p>
-<p>Tendência mensal — fevereiro caiu? Provavelmente por causa do
-carnaval. Abril subiu? Talvez porque você contratou um secretário
-novo.</p>
-<p>Esses números contam a história do consultório. Agora você vai
-colocar ela numa tela.”</p>
+Para cada indicador: uma tabela + uma frase de interpretação prática.</code></pre>
+<p>[aguardar e mostrar resultado]</p>
 <hr />
-<h2 id="seção-5-demo-dashboard-html-autônomo-12-min">SEÇÃO 5: DEMO —
-DASHBOARD HTML AUTÔNOMO (12 min)</h2>
-<p><strong>Tom:</strong> Revelação, mostrando o resultado ao abrir no
-navegador</p>
+<p>Olha o que saiu.</p>
+<p>Faturamento total: você sabe pela primeira vez exatamente quanto
+entrou em 6 meses.</p>
+<p>Ranking de convênios: o Unimed realmente paga mais? Ou o Particular
+bate todos? Isso muda decisão de credenciamento.</p>
+<p>Glosa por convênio: qual convênio desconta mais do que deveria? Se o
+Bradesco glosa 20% e o SulAmérica glosa 8% — você tem argumento para
+renegociar.</p>
+<p>No-show por dia: segunda realmente lidera? Confirme aqui e já ajuste
+a agenda — segunda pode virar dia de retorno curto, não de primeira
+consulta.</p>
+<p>Sazonalidade: quais meses são fracos? Fevereiro caiu — provavelmente
+carnaval. Julho caiu — férias. Outubro subiu — isso pode ser
+planejado.</p>
+<p>Esses números contam a história do consultório. Agora você vai
+aprender a reusar esse raciocínio todo mês sem reescrever nada.”</p>
+<hr />
+<h2 id="seção-5-demo-automação-9-min">SEÇÃO 5: DEMO — AUTOMAÇÃO — 9
+min</h2>
+<p><strong>Tom:</strong> Revelar o conceito de automação sem código
+antes de demonstrar</p>
+<p>“Aqui entra o M3.05 que estava no nome da aula e que a gente ainda
+não chegou: automação.</p>
+<p>Automação sem programação não é mandar email sozinho. Não é robô
+clicando na tela.</p>
+<p>É isso: você escreve o raciocínio uma vez — e usa toda vez que
+precisar.</p>
+<p>O trabalho que se repete não é o resultado. É o raciocínio para
+chegar no resultado. E o Claude guarda o raciocínio para você.</p>
+<hr />
+<p>Vou demonstrar.</p>
+<p>Preparei um segundo CSV — agosto de 2025. Um mês a mais, mesmo
+formato, dados diferentes.</p>
+<p>[mostrar consultas_agosto.csv na tela]</p>
+<p>Agora rodar o mesmo prompt de indicadores com esse arquivo. Sem
+reescrever nada:</p>
+<p>[digitar no terminal — mesmo prompt da seção anterior]</p>
+<pre><code>Analise o arquivo consultas_agosto.csv e me entregue um relatório
+de indicadores de gestão do consultório:
+
+1. Faturamento total do mês (valor recebido)
+2. Faturamento por convênio — ranking do maior para o menor pagador
+3. Taxa de glosa por convênio
+4. Taxa de no-show geral (%) e por dia da semana
+5. Comparação com o mês anterior — cresceu ou caiu?
+
+Para cada indicador: uma tabela + uma frase de interpretação prática.</code></pre>
+<p>[aguardar e mostrar resultado]</p>
+<hr />
+<p>Mesmo relatório. Estrutura idêntica. Dados do mês novo.</p>
+<p>Você não reescreveu nada. Trocou o arquivo, não o prompt.</p>
+<p>Salva esse prompt em um arquivo de texto. Todo mês: troca o CSV, roda
+o prompt, tem o relatório.</p>
+<p>Isso é automação sem programação.</p>
+<hr />
+<p>Segundo entregável de automação: o checklist de fechamento
+mensal.</p>
+<p>[digitar no terminal]</p>
+<pre><code>Crie um checklist de fechamento financeiro mensal para um consultório
+de metabolismo, em passos numerados, para eu seguir todo último dia útil do mês.
+Inclua: conferência de repasses de convênio, glosas a recontestar,
+faturamento particular recebido, contas fixas a pagar, e os 3 indicadores
+que devo calcular. Formato: lista de tarefas com [ ].</code></pre>
+<p>[mostrar resultado]</p>
+<hr />
+<p>Agora você tem uma rotina de fechamento. Igual a um protocolo de alta
+hospitalar — cada passo checado, nada esquecido.</p>
+<hr />
+<p>Antes de ir para o dashboard: uma pausa obrigatória.</p>
+<p>Você vai querer usar isso com dados reais do seu consultório. E você
+deve — é para isso que serve.</p>
+<p>Mas siga esta regra antes de subir qualquer arquivo: des-identifica
+primeiro.</p>
+<p>Nome do paciente: vira ‘Paciente 001, 002’. CPF: apaga. Diagnóstico
+nominal: apaga.</p>
+<p>O Claude precisa do padrão financeiro — data, convênio, valor,
+status. Não precisa saber quem é o paciente.</p>
+<p>Dado que identifica o paciente nunca entra. O padrão financeiro pode
+entrar des-identificado.</p>
+<p>Vou repetir isso em toda aula deste curso.”</p>
+<hr />
+<h2 id="seção-6-demo-dashboard-html-12-min">SEÇÃO 6: DEMO — DASHBOARD
+HTML — 12 min</h2>
+<p><strong>Tom:</strong> Revelação — abrir o arquivo no navegador é o
+momento de maior impacto da aula</p>
 <p>“Agora a cereja do bolo.</p>
 <p>Tudo que analisamos vai virar um dashboard — uma tela com gráficos e
 indicadores — em um único arquivo que você abre no navegador.</p>
 <p>Sem instalar nada. Sem login. Sem servidor. Funciona no Windows, no
-Mac, no celular. Você manda por e-mail pro contador e ele abre no
+Mac, no celular. Você manda por email para o contador e ele abre no
 computador dele.</p>
-<p>Prompt:</p>
-<pre><code>Com base nos dados de procedimentos.csv, crie um dashboard de gestão
-do consultório cirúrgico.
+<p>[digitar no terminal]</p>
+<pre><code>Com base nos dados de consultas_2025.csv, crie um dashboard de gestão
+do consultório de metabolismo.
 
 O resultado deve ser um único arquivo HTML que funciona no navegador
-sem precisar de internet ou servidor.
+sem precisar de internet ou servidor (self-contained).
+A biblioteca de gráficos deve estar EMBUTIDA dentro do próprio arquivo —
+sem nenhum link para CDN ou internet externa.
+O arquivo precisa abrir com duplo-clique no Windows sem instalar nada.
 
-Conteúdo do dashboard:
+Conteúdo:
 
 Linha superior — 4 cards de resumo:
-- Faturamento total (6 meses)
-- Total de procedimentos realizados
+- Faturamento total (6 meses, valor recebido)
+- Total de atendimentos realizados
 - Taxa de no-show (%)
-- Procedimento mais rentável
+- Convênio que mais paga
 
 Gráficos:
-1. Barras: faturamento por convênio (PlanoSol, PlanoNorte, PlanoCentro, Particular)
+1. Barras: faturamento recebido por convênio
 2. Linha: faturamento mensal (janeiro a junho)
-3. Barras horizontais: faturamento por tipo de procedimento
+3. Barras horizontais: no-show por dia da semana
 
-Tabela:
-- No-show por dia da semana (contagem e percentual)
+Tabela: sazonalidade — atendimentos por mês,
+com destaque visual nos meses fortes e nos meses fracos.
 
-Estilo: limpo, fundo branco, cores sóbrias. Todos os dados embutidos
-no próprio arquivo — nada de arquivo CSV separado.
-
-Salve como dashboard_cirurgico.html.</code></pre>
-<p>[executar e aguardar]</p>
+Estilo: limpo, fundo branco, cores sóbrias.
+Salve como dashboard_consultorio.html.</code></pre>
+<p>[aguardar]</p>
 <p>[abrir o arquivo no navegador]</p>
-<p>Olha isso.</p>
-<p>Cards de resumo no topo — uma olhada e você sabe o mês. Gráfico de
-barras — em dois segundos você vê qual convênio paga mais. Gráfico de
-linha — a tendência dos 6 meses na frente dos seus olhos. Tabela de
-no-show — segunda realmente é o pior dia.</p>
-<p>Este arquivo tem 400, 500 linhas de código por dentro. Você não viu
-nenhuma delas. Você só descreveu o que queria.</p>
-<p>É exatamente assim que o Claude Code funciona: você descreve o
-resultado, ele constrói os meios.”</p>
 <hr />
-<h2 id="seção-6-encerramento-fechamento-do-m3-4-min">SEÇÃO 6:
-ENCERRAMENTO + FECHAMENTO DO M3 (4 min)</h2>
-<p><strong>Tom:</strong> Motivador, dois níveis de encerramento — aula e
-módulo</p>
+<p>Olha isso.</p>
+<p>Cards de resumo no topo — uma olhada e você sabe o semestre. Gráfico
+de barras — em dois segundos você vê qual convênio paga mais. Gráfico de
+linha — a tendência dos 6 meses na frente dos seus olhos. Tabela de
+sazonalidade — os meses fracos em vermelho, os fortes em verde.</p>
+<p>[abrir no celular via /remote ou QR code]</p>
+<p>E abre no celular. Mesmo arquivo. Você manda por WhatsApp para o
+contador — ele abre, sem instalar nada.</p>
+<hr />
+<p>Agora para um segundo.</p>
+<p>Este arquivo tem 400, 500 linhas de código por dentro. Você não viu
+nenhuma.</p>
+<p>Você só descreveu o que queria: quatro cards, três gráficos, uma
+tabela, self-contained, fundo branco.</p>
+<p>E o Claude construiu os meios.</p>
+<p>É exatamente assim que o Claude Code funciona: você descreve o
+resultado, ele constrói os meios.</p>
+<p>Guarda essa frase. Ela vale para o dashboard, para os slides, para o
+folheto. E vai valer para tudo que você vai construir na fase
+avançada.”</p>
+<hr />
+<h2 id="seção-7-fechamento-do-m3-5-min">SEÇÃO 7: FECHAMENTO DO M3 — 5
+min</h2>
+<p><strong>Tom:</strong> Dois destinos válidos — validar quem para ANTES
+de convidar quem continua</p>
 <p>“Resumo do que a gente fez hoje.</p>
-<p>O cirurgião saiu daqui com: — CSV com 6 meses de procedimentos
-analisado estatisticamente — Ranking de convênios, ranking de
-procedimentos, no-show por dia — Dashboard HTML pronto, offline, para
-mandar ao contador</p>
-<p>Em menos de 30 minutos. Sem planilha de Excel complexa. Sem Power BI.
-Sem programar.</p>
-<p>Agora o dever de casa.</p>
-<p>Pegue uma planilha real do seu consultório — pode ser de
-agendamentos, de faturamento, de qualquer coisa. Anonimize: troque nomes
-de pacientes por ID, remova CPF e data de nascimento. E peça ao Claude
-os mesmos indicadores que a gente gerou hoje.</p>
-<p>Só isso. Dado real, mesma lógica.</p>
+<p>CSV de 6 meses de atendimentos, com glosa e no-show. Análise de
+indicadores: faturamento, convênio, sazonalidade. Prompt-receita: o
+mesmo raciocínio rodando todo mês com um arquivo novo. Checklist de
+fechamento: protocolo de alta para o financeiro do consultório.
+Dashboard HTML: uma tela, offline, para mandar para o contador.</p>
+<p>Sem Excel complexo. Sem Power BI. Sem programar. Só descrevendo o
+problema em linguagem natural.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Pegue uma planilha real do seu consultório — de agendamentos, de
+faturamento, do que você tiver.</p>
+<p>Antes de qualquer coisa: des-identifica. Nome → Paciente 001. CPF →
+apaga. Diagnóstico → apaga.</p>
+<p>Depois peça ao Claude os mesmos indicadores que a gente gerou
+hoje.</p>
+<p>E — isso é o mais importante — salve o prompt como receita. Coloca em
+um arquivo de texto. Você vai usar no mês que vem.</p>
 <hr />
 <p>E com isso a gente fecha o Módulo 3.</p>
-<p>Pensa no que vocês fizeram neste módulo:</p>
-<p><strong>Aula 05:</strong> Instagram com carrossel sobre uma tópico
-clínico sofisticado, newsletter da semana pronta para o Substack.</p>
-<p><strong>Aula 06:</strong> Estudo observacional com 50 pacientes,
-análise de correlação, dois gráficos para publicação, pôster completo no
-formato ABNT.</p>
-<p><strong>Aula 07:</strong> Dashboard de gestão do consultório,
-indicadores claros, arquivo HTML pronto para o contador.</p>
-<p>Tudo sem programar. Tudo sem saber estatística computacional. Só
-descrevendo o problema em linguagem natural.</p>
-<p>Isso é Claude Code para Médicos.</p>
+<p>Pensa no que você fez neste módulo:</p>
+<p>aula_05: criou conteúdo para o Instagram e newsletter em minutos.
+aula_06: montou um estudo científico com análise estatística e pôster.
+aula_07: transformou dados do consultório em indicadores e
+dashboard.</p>
+<p>Tudo sem programar. Tudo descrevendo o problema em linguagem
+natural.</p>
 <hr />
-<p>Agora a pergunta: você quer ir além?</p>
-<p>A fase avançada é opcional. Mas se você quer entender como construir
-apps clínicos reais — com interface gráfica, banco de dados local, busca
-por inteligência artificial em PDFs — a próxima aula começa essa
-jornada.</p>
-<p>É uma fase diferente. Vai ter um pouco de código. Mas vai ser guiado,
-passo a passo, do jeito que você aprendeu um novo protocolo clínico.</p>
-<p>Se quiser continuar: até a aula_08. Se preferir parar aqui: você já
-tem mais do que a maioria dos médicos.</p>
+<p>Se você quiser parar aqui:</p>
+<p>Você já entrega mais do que a maioria dos médicos com IA. Você sabe
+conversar, pesquisar, criar, publicar e gerir. Isso é mais do que
+suficiente para mudar o jeito que você trabalha.</p>
+<hr />
+<p>Se quiser ir além:</p>
+<p>A fase avançada começa na próxima aula.</p>
+<p>Vai ter um pouco de código — mas guiado, passo a passo, do jeito que
+você aprendeu um novo protocolo clínico.</p>
+<p>O dashboard que você fez hoje é a versão descartável — você gera, usa
+uma vez, e refaz no mês seguinte.</p>
+<p>Na fase avançada você aprende a construir algo que fica permanente:
+um app clínico, com interface gráfica, banco de dados local, busca
+inteligente em PDFs de guideline.</p>
+<p>A habilidade é a mesma que você já tem. Só vai mais fundo.</p>
+<hr />
 <p>Nos dois casos: obrigado por chegar até aqui.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

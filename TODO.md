@@ -14,11 +14,10 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ⏳ Pendente — 22 itens
+## ⏳ Pendente — 20 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| S05.03 | 10 | Avançado · S05 Calculadoras | PHQ-9 e GAD-7 → aula_23 (paradigma Likert 0-3) | Alta | S05.02 | Médio | ✅ Concluído | ✅ |
 | S05.04 | 10 | Avançado · S05 Calculadoras | HAM-D, YMRS, AUDIT, CAGE → aula_24 | Média | S05.01 | Médio | ⏳ Pendente | ⏳ |
 | S05.05 | 10 | Avançado · S05 Calculadoras | MMSE, MoCA, PANSS, CGI, CURB-65, MELD, SOFA → aula_25 | Média | S05.01 | Complexo | ⏳ Pendente | ⏳ |
 | S06.01 | 11 | Avançado · S06 Dashboard | Entrada de dados: formulários mensais (receita, glosas, consultas) → aula_26 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
@@ -42,7 +41,7 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ✅ Concluído — 30 itens
+## ✅ Concluído — 33 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -78,3 +77,4 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 | S04.04 | 9 | Avançado · S04 Agents | /tab_pendencias: gestão ágil do projeto → aula_20 | Média | S04.01 | Médio | ✅ Concluído | ✅ |
 | S05.01 | 10 | Avançado · S05 Calculadoras | CHA₂DS₂-VASc → aula_21 (~55 min, cardiologista, prompt único descritivo) | Alta | S04 | Médio | ✅ Concluído | ✅ |
 | S05.02 | 10 | Avançado · S05 Calculadoras | HAS-BLED → aula_22 (~45 min, cardiologista, painel decisão FA) | Alta | S05.01 | Médio | ✅ Concluído | ✅ |
+| S05.03 | 10 | Avançado · S05 Calculadoras | PHQ-9 e GAD-7 → aula_23 (paradigma Likert 0-3) | Alta | S05.02 | Médio | ✅ Concluído | ✅ |

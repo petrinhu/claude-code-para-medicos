@@ -1,55 +1,227 @@
-<h1 id="aula-02-assistente-de-produtividade">Aula 02 — Assistente de
-Produtividade</h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 02 — Claude Code com Arquivos Reais</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 02 — Claude Code com Arquivos Reais</h1>
+</header>
+<h1 id="aula-02-claude-code-com-arquivos-reais">Aula 02 — Claude Code
+com Arquivos Reais</h1>
 <p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
-<strong>Duração:</strong> ~56 min<br />
-<strong>Tom:</strong> Colega com humor leve e didático</p>
+<strong>Duração:</strong> ~46-50 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — “hoje você para
+de conversar e começa a trabalhar”<br />
+<strong>Fio narrativo:</strong> Sexta 17h, palestrante de depressão
+cancelado, aula segunda às 8h</p>
 <hr />
-<h2 id="seção-1-abertura-3-min">SEÇÃO 1: ABERTURA (3 min)</h2>
-<p><strong>Tom:</strong> Pessoal, direto, conectando com a aula
-anterior</p>
-<p>“Na aula de abertura a gente instalou o Claude Code, tirou o medo de
-terminal, e eu mostrei pra vocês que 95% deste curso foi feito com
-IA.</p>
-<p>Hoje a gente começa a usar de verdade.</p>
-<p>Sem teoria. Sem enrolação. Sem slides explicando o que é IA.</p>
-<p>A gente vai pegar um problema clínico real, do tipo que vocês têm
-toda semana, e resolver do início ao fim usando o Claude Code.</p>
-<p>Pera — antes de começar, uma pergunta: vocês já viram aquela situação
-em que o residente chega na sexta às 16h e fala ‘professor, eu apresento
-aquela aula segunda de manhã’?</p>
-<p>É. Hoje vocês vão ser o residente. Mas com uma diferença.”</p>
+<h2 id="seção-1-âncora-cenário-4-min">SEÇÃO 1: ÂNCORA + CENÁRIO — 4
+min</h2>
+<p><strong>Tom:</strong> Callback direto da aula_01, cenário de urgência
+clínica real</p>
+<p>“Na aula_01 você aprendeu a conversar com o Claude.</p>
+<p>Sabe pedir. Sabe anexar. Sabe revisar. Sabe iterar.</p>
+<p>Hoje você para de conversar e começa a trabalhar.</p>
 <hr />
-<h2 id="seção-2-o-cenário-2-min">SEÇÃO 2: O CENÁRIO (2 min)</h2>
-<p><strong>Tom:</strong> Situação real, urgente, com humor</p>
-<p>“Imaginem esse cenário.</p>
-<p>É sexta-feira. 17h. Vocês acabaram a última consulta. O coordenador
-da residência manda mensagem: ‘Doutor, o palestrante da segunda foi
-cancelado. Você consegue apresentar uma aula sobre depressão pra turma?
-Às 8h.’</p>
+<p>Imaginem esse cenário.</p>
+<p>É sexta-feira. 17h. Você acabou a última consulta. O coordenador da
+residência manda mensagem:</p>
+<p>‘Doutor, o palestrante de segunda foi cancelado. Você consegue
+apresentar uma aula sobre depressão pra turma? Às 8h da manhã.’</p>
 <p>Pânico normal.</p>
-<p>[pausa]</p>
-<p>Mas vocês têm Claude Code.</p>
-<p>E eu vou mostrar que em menos de 1 hora vocês saem dessa reunião com:
-— Uma guideline de depressão resumida — Uma planilha de dados organizada
-— Slides prontos pra apresentar — Um folheto de orientação pra
-distribuir pros pacientes</p>
-<p>Tudo feito ao vivo. Agora.</p>
+<p>[pausa de um segundo]</p>
+<p>Mas você tem o Claude Code.</p>
+<hr />
+<p>Vou mostrar que quando a gente terminar essa aula, você vai sair com
+quatro coisas prontas:</p>
+<p>[mostrar na tela — abrir uma lista]</p>
+<p>Um: guideline da APA resumida em tópicos estruturados. Dois:
+comparação com versões anteriores — o que mudou na conduta. Três: slides
+completos, prontos para abrir no PowerPoint. Quatro: folheto de
+orientação para distribuir aos pacientes.</p>
+<p>Tudo feito na mesma sessão. Tudo sem dado identificável de paciente —
+LGPD do começo ao fim.</p>
 <p>Vamos lá.”</p>
 <hr />
-<h2 id="seção-3-demo-resumir-guideline-de-depressão-12-min">SEÇÃO 3:
-DEMO — RESUMIR GUIDELINE DE DEPRESSÃO (12 min)</h2>
-<p><strong>Tom:</strong> Pausado, didático, mostrando cada passo na
-tela</p>
-<p>“Primeira tarefa: a gente precisa de conteúdo. E conteúdo de
-qualidade vem de guideline. Vou usar aqui o guideline da APA — American
-Psychiatric Association — sobre tratamento de depressão. É documento
-público, está em PDF.</p>
+<h2 id="seção-2-pdf-resumir-m1.01-parte-1-8-min">SEÇÃO 2: PDF — RESUMIR
+(M1.01 PARTE 1) — 8 min</h2>
+<p><strong>Tom:</strong> Didático, mostrando cada passo — prompt
+construído em tempo real na tela</p>
+<p>“Primeira tarefa: conteúdo de qualidade vem de guideline.</p>
+<p>Vou usar o guideline da American Psychiatric Association — documento
+público, disponível online, sem dado de paciente.</p>
 <p>[mostrar o PDF baixado na pasta]</p>
-<p>Abro o Claude Code. Primeiro: vou anexar o PDF. No Claude Code, basta
-arrastar o arquivo ou usar o comando de anexar.</p>
-<p>[mostrar como anexar o PDF]</p>
-<p>Agora o prompt. Preste atenção como eu escrevo — não é um comando
-técnico, é linguagem natural:</p>
+<p>Abro o Claude Code. Primeiro: vou anexar o PDF.</p>
+<p>[mostrar como anexar o arquivo na sessão]</p>
+<p>Agora o prompt. Preste atenção em como eu escrevo — não é comando
+técnico, é linguagem natural com contexto clínico:</p>
+<p>[digitar no terminal]</p>
 <pre><code>Você é um psiquiatra experiente. Acabei de receber um convite de última hora
 para apresentar uma aula sobre depressão para residentes na segunda-feira de manhã.
 Preciso que você resuma este guideline da APA nos seguintes tópicos:
@@ -61,184 +233,198 @@ Preciso que você resuma este guideline da APA nos seguintes tópicos:
 6. Casos especiais e depressão refratária
 
 Para cada tópico: 4 a 6 bullets concisos. Linguagem para residentes de psiquiatria.</code></pre>
-<p>[executar e mostrar o resultado]</p>
-<p>Viu o que aconteceu?</p>
-<p>O Claude leu o documento inteiro — que tem quantas páginas? [mostrar]
-— e devolveu tópicos estruturados, prontos pra virar slide.</p>
-<p>Repara: eu não pedi ‘faça um resumo’. Eu dei contexto clínico — quem
-sou, para quem apresento, qual a estrutura que preciso. Isso faz
-diferença enorme na qualidade da resposta.</p>
-<p>Uma coisa importante antes de continuar.</p>
-<p>Se você está assistindo isso em casa e tentou fazer o mesmo prompt —
-a resposta que apareceu pra você provavelmente foi diferente da minha.
-Talvez a ordem dos tópicos mudou. Talvez o texto ficou mais longo, ou
-mais curto. Talvez as palavras foram outras.</p>
-<p>Isso é normal. Isso é esperado. E isso não é erro.</p>
-<p>O Claude não é uma calculadora — ele não devolve sempre o mesmo
-resultado. Ele é como um especialista que você consulta: se você
-perguntar a mesma coisa pra dois psiquiatras diferentes, eles vão te dar
-respostas com nuances diferentes. Ambas corretas. Ambas úteis.</p>
-<p>Essa não-determinismo — essa variação criativa — é exatamente uma das
-belezas da IA. Você não precisa chegar no mesmo resultado que eu. Você
-precisa chegar num resultado bom pro seu contexto.</p>
-<p>Então: não tente copiar minha tela. Use como referência de processo —
-o que perguntar, como estruturar o prompt, o que esperar como retorno. O
-conteúdo vai ser seu, adaptado pra você.</p>
-<p>Antes de ir pra próxima demo, para um segundo. Preciso te contar algo
-sobre os modelos do Claude.”</p>
+<p>[aguardar e mostrar a resposta]</p>
 <hr />
-<h2 id="seção-4-modelos-tokens-8-min">SEÇÃO 4: MODELOS + TOKENS (8
-min)</h2>
-<p><strong>Tom:</strong> Explicativo, com analogia clínica, leve</p>
-<p>“Pra você usar Claude Code com inteligência — e gastar menos — você
-precisa entender que o Claude não é um modelo único. São três modelos
-diferentes. E você escolhe qual usar.</p>
-<p>Pensa assim:</p>
-<p><strong>Haiku — o Residente</strong> Rápido, entusiasmado, resolve
-casos simples muito bem. Se você mandar um caso complexo de hepatite
-autoimune com manifestação incomum, ele pode simplificar demais ou
-errar. Mas pra tarefa simples? É ótimo.</p>
-<p><strong>Sonnet — o Especialista</strong> É o seu residente sênior que
-já fez especialização. Rápido o suficiente, raciocínio confiável,
-resolve 95% das coisas. É o modelo padrão. Começa sempre com ele.</p>
-<p><strong>Opus — o Chefe do Departamento</strong> Pensa mais devagar,
-mas pensa melhor. Para casos raros, complexos, onde você precisa de
-raciocínio profundo. Mais caro, mais lento. Só chame quando o Sonnet não
-foi suficiente.</p>
-<p>Agora: o que são tokens?</p>
-<p>Token é o ‘custo’ de cada palavra que você manda e recebe.
-Aproximadamente: 1 token = 4 caracteres. Uma frase dessas tem umas 20
-tokens. Um artigo inteiro de 10 páginas? Uns 8.000 tokens.</p>
-<p>Por que isso importa?</p>
-<p>Porque cada modelo tem um preço por token. Haiku é bem barato. Sonnet
-custa um pouco mais. Opus é o mais caro.</p>
-<p>Na prática, pra uso médico normal — 10 conversas ricas por dia — você
-vai gastar menos de 5 reais por mês no Sonnet. Não é o que vai quebrar
-seu consultório.</p>
-<p>Mas se você tiver uma tarefa simples — limpar uma planilha, renomear
-arquivos, extrair um número de uma tabela — use Haiku. Resultado igual,
-custo menor, mais rápido.</p>
-<p>Como trocar de modelo no Claude Code?</p>
-<p>[mostrar na tela como selecionar o modelo — botão ou comando
-/model]</p>
-<p>Simples assim. Vou mostrar isso agora na próxima demo.”</p>
+<p>Olha o que saiu.</p>
+<p>Seis tópicos. Bullets concisos. Linguagem clínica. O Claude leu o
+documento inteiro e devolveu o esqueleto da aula.</p>
+<p>Uma coisa importante:</p>
+<p>Se você está assistindo isso em casa e o seu resultado ficou
+diferente do meu — texto mais longo, outra ordem, outras palavras — isso
+é normal. É esperado. Não é erro.</p>
+<p>O Claude não é calculadora. Ele não devolve sempre o mesmo resultado.
+É como dois especialistas respondendo a mesma pergunta: ambos corretos,
+nuances diferentes.</p>
+<p>Você não precisa chegar no mesmo resultado que eu. Você precisa
+chegar num resultado bom para o seu contexto.</p>
 <hr />
-<h2 id="seção-5-demo-planilha-de-dados-de-pesquisa-8-min">SEÇÃO 5: DEMO
-— PLANILHA DE DADOS DE PESQUISA (8 min)</h2>
-<p><strong>Tom:</strong> Prático, mostrando comparação Haiku x
-Sonnet</p>
-<p>“Segunda tarefa: organizar dados de pesquisa.</p>
-<p>Vamos supor que você tem uma planilha bagunçada de um estudo piloto
-que você fez com pacientes deprimidos — escores MADRS em quatro visitas.
-Os dados chegaram sujos. Vejam:</p>
-<p>[mostrar planilha com dados simulados — pode ser no editor de texto
-ou CSV]</p>
+<p>Esses bullets que acabaram de aparecer na tela — não feche essa
+janela. Vamos usar eles daqui a pouco para montar os slides.”</p>
+<hr />
+<h2
+id="seção-3-pdf-comparar-extrair-tabela-m1.01-partes-2-e-3-6-min">SEÇÃO
+3: PDF — COMPARAR + EXTRAIR TABELA (M1.01 PARTES 2 E 3) — 6 min</h2>
+<p><strong>Tom:</strong> Revelar dois casos de uso do mesmo arquivo —
+sem reabrir, sem repassar o PDF</p>
+<p>“O PDF ainda está na sessão. Não precisamos reabrir nada.</p>
+<p>Segundo pedido — um caso de uso que você vai usar toda vez que sair
+um guideline novo:</p>
+<p>[digitar no terminal]</p>
+<pre><code>Compare este guideline com as recomendações de diretrizes anteriores sobre depressão.
+O que mudou nos critérios diagnósticos e nas recomendações de tratamento?
+Liste as principais diferenças em bullets.</code></pre>
+<p>[aguardar e mostrar a resposta]</p>
+<hr />
+<p>Isso é o que eu chamo de inteligência de guideline.</p>
+<p>Você não precisa ler os 80 páginas da versão nova e lembrar o que a
+versão antiga dizia. Você pergunta: o que mudou? O Claude compara.</p>
+<p>Na prática clínica isso vale ouro — quando sai uma diretriz nova de
+hipertensão, de diabetes, de anticoagulação, você sabe em dois minutos o
+que muda na sua conduta.</p>
+<hr />
+<p>Agora terceiro pedido. Mesmo PDF, ainda na sessão:</p>
+<p>[digitar no terminal]</p>
+<pre><code>Extraia do documento a tabela de critérios diagnósticos do DSM-5 para depressão maior.
+Formate como lista estruturada, uma linha por critério.</code></pre>
+<p>[aguardar e mostrar a resposta]</p>
+<hr />
+<p>Essa lista que acabou de aparecer — vamos jogar ela numa planilha
+agora.”</p>
+<hr />
+<h2 id="seção-4-planilha-m1.04-7-min">SEÇÃO 4: PLANILHA (M1.04) — 7
+min</h2>
+<p><strong>Tom:</strong> Prático, dois insumos diferentes, mostrar
+limpeza de dados clínicos reais</p>
+<p>“Segunda tarefa: dados de pesquisa.</p>
+<p>Tenho dois insumos agora: a lista de critérios que acabamos de
+extrair, e uma planilha de dados MADRS que veio suja de um estudo
+piloto.</p>
+<p>[mostrar o arquivo de planilha na tela]</p>
+<p>Olha como chegou:</p>
 <pre><code>nome , visita1 , visita2 , visita3 , visita4
 João  , 18 ,  14 , 9 , 5
 maria,  22  , 19, 15,  9
 Pedro , 16, 12 , 8 ,4
 ana luiza, 20 , 17, 12 ,7</code></pre>
-<p>Tarefa simples: limpar espaços, padronizar nomes, calcular média de
-melhora.</p>
-<p>Olha — essa é uma tarefa simples. Não preciso do especialista. Vou
-trocar pra Haiku.</p>
-<p>[mostrar troca de modelo na interface]</p>
-<p>Prompt:</p>
-<pre><code>Limpe esta planilha de dados MADRS: padronize os nomes (primeira letra maiúscula),
-remova espaços extras, adicione uma coluna &#39;reducao_total&#39; que é visita1 menos visita4,
-e ordene por maior redução. Me devolva a planilha limpa em formato CSV.</code></pre>
-<p>[executar e mostrar resultado]</p>
-<p>Rápido. Resultado perfeito. E gastou uma fração do custo do
-Sonnet.</p>
-<p>Regra prática: — Tarefa simples, direta → Haiku — Análise, síntese,
-raciocínio → Sonnet — Raciocínio profundo, caso complexo → Opus</p>
-<p>Agora vamos montar os slides.”</p>
+<p>Nomes inconsistentes. Espaços sobrando em todo lugar. Sem coluna de
+redução total.</p>
+<p>Tarefa para o Claude:</p>
+<p>[digitar no terminal — com o arquivo de planilha anexado]</p>
+<pre><code>Limpe esta planilha de dados MADRS:
+- Padronize os nomes (primeira letra maiúscula, resto minúsculo)
+- Remova todos os espaços extras
+- Adicione uma coluna &#39;reducao_total&#39; que é visita1 menos visita4
+- Ordene por maior redução (decrescente)
+Me devolva a planilha limpa em formato CSV.</code></pre>
+<p>[aguardar e mostrar a resposta]</p>
 <hr />
-<h2 id="seção-6-demo-slides-da-aula-12-min">SEÇÃO 6: DEMO — SLIDES DA
-AULA (12 min)</h2>
-<p><strong>Tom:</strong> Empolgado, mostrando a transformação dos
-bullets em aula</p>
-<p>“Lembra do resumo que a gente fez do guideline lá atrás?</p>
-<p>Aqueles bullets que o Claude gerou — vamos transformar em slides.</p>
-<p>Volto pro Sonnet — essa tarefa exige criatividade e estrutura.</p>
-<p>[mostrar troca de modelo se necessário]</p>
-<p>Vou copiar os bullets gerados na seção anterior e usar como base.
-Prompt:</p>
-<pre><code>Você é um especialista em educação médica. Com base nos tópicos abaixo
-sobre depressão (extraídos do guideline da APA), crie uma aula em formato
-de slides para residentes de psiquiatria com as seguintes regras:
+<p>Limpa. Organizada. Ordenada. Em CSV pronto para importar.</p>
+<p>Uma nota rápida sobre modelos:</p>
+<p>Existem versões diferentes do Claude — Haiku, Sonnet, Opus. Para esta
+aula, o Sonnet — que é o padrão — serve para tudo. Vamos aprofundar essa
+escolha quando você tiver mais fluência.</p>
+<p>E gráficos? Para gerar gráficos o Claude precisaria de Python. Isso
+fica para a fase avançada do curso — por enquanto, planilha limpa e
+organizada já resolve 80% dos casos.”</p>
+<hr />
+<h2 id="seção-5-slides-m1.03-10-min">SEÇÃO 5: SLIDES (M1.03) — 10
+min</h2>
+<p><strong>Tom:</strong> Revelar que o contexto da sessão está
+preservado — não precisou repassar nada</p>
+<p>“Terceira tarefa: os slides.</p>
+<p>Lembra dos bullets que o Claude gerou no começo da aula?</p>
+<p>O contexto ainda está aqui. Não preciso repassar o PDF. Não preciso
+copiar e colar nada.</p>
+<p>[mostrar que a sessão continua aberta]</p>
+<p>Só dizer onde os bullets estão:</p>
+<p>[digitar no terminal]</p>
+<pre><code>Com base nos tópicos sobre depressão que você gerou no início desta sessão,
+crie uma estrutura de slides para residentes de psiquiatria com as seguintes regras:
 - Slide de abertura: título da aula, nome do apresentador, data
 - Um slide por tópico principal (6 tópicos)
 - Cada slide: título + 4 bullets concisos + 1 pérola clínica (dica prática)
 - Slide de encerramento: 3 mensagens-chave para levar pra casa
-- Tom: didático, sem jargão desnecessário
-
-[colar os bullets do guideline aqui]</code></pre>
-<p>[executar e mostrar resultado]</p>
-<p>Olha o que saiu.</p>
-<p>Slide de abertura. Título. Seis slides de conteúdo, cada um com a
-pérola clínica. Encerramento com mensagens-chave.</p>
-<p>Você pega isso, copia pro PowerPoint ou Google Slides, ajusta a
-fonte, coloca logo da instituição, e está pronto.</p>
-<p>O que você economizou? Umas 3 horas de trabalho manual. O que você
-pagou? Menos de 1 real em tokens.</p>
-<p>Vale o trade? Sem dúvida.</p>
-<p>Última tarefa: o folheto pra paciente.”</p>
+- Tom: didático, sem jargão desnecessário</code></pre>
+<p>[aguardar e mostrar a resposta]</p>
 <hr />
-<h2 id="seção-7-demo-folheto-pós-consulta-8-min">SEÇÃO 7: DEMO — FOLHETO
-PÓS-CONSULTA (8 min)</h2>
-<p><strong>Tom:</strong> Cuidadoso, ressaltando a importância da
-comunicação com o paciente</p>
-<p>“Última entrega do dia: um folheto de orientação pra paciente que
-acabou de receber diagnóstico de depressão.</p>
+<p>Olha o que saiu.</p>
+<p>Slide de abertura. Seis slides de conteúdo, cada um com a pérola
+clínica. Encerramento com mensagens-chave.</p>
+<p>Você copia isso pro PowerPoint ou Google Slides, ajusta a fonte,
+coloca o logo da instituição, e está pronto.</p>
+<p>O que você economizou? Umas três horas de trabalho manual. O que você
+pagou? Menos de um real em tokens.</p>
+<hr />
+<p>E repara numa coisa:</p>
+<p>O Claude não esqueceu o que resumiu lá atrás. Você não precisou
+repassar o PDF. Não precisou recopiar os tópicos. O contexto da sessão
+estava preservado.</p>
+<p>Isso é o prontuário funcionando — memória de tudo que aconteceu, do
+início ao fim da sessão.”</p>
+<hr />
+<h2 id="seção-6-folheto-pós-consulta-m1.02-8-min">SEÇÃO 6: FOLHETO
+PÓS-CONSULTA (M1.02) — 8 min</h2>
+<p><strong>Tom:</strong> Cuidadoso com a linguagem — produto final que o
+paciente vai ler; LGPD explícito no fechamento</p>
+<p>“Última entrega.</p>
+<p>Um folheto de orientação para o paciente que acabou de receber
+diagnóstico de depressão.</p>
 <p>Isso é algo que todo psiquiatra e clínico geral precisa ter. E
 raramente tem tempo de fazer bem feito.</p>
-<p>Sonnet de volta — quero qualidade na linguagem.</p>
-<p>Prompt:</p>
+<p>[digitar no terminal]</p>
 <pre><code>Crie um folheto de orientação para paciente recém-diagnosticado com depressão.
 Requisitos:
 - Linguagem simples, sem jargão médico — como se você explicasse para um familiar
-- Seções: O que é depressão, Por que acontece, Como é o tratamento, 
-  O que esperar das primeiras semanas, Quando ligar para o médico
+- Seções: O que é depressão / Por que acontece / Como é o tratamento /
+  O que esperar das primeiras semanas / Quando ligar para o médico
 - Tom: acolhedor, esperançoso, sem minimizar a doença
 - Máximo 1 página A4
 - Incluir ao final: &#39;CVV — Centro de Valorização da Vida: 188&#39;</code></pre>
-<p>[executar e mostrar resultado]</p>
+<p>[aguardar e mostrar a resposta]</p>
+<hr />
 <p>Pronto.</p>
 <p>Um folheto que qualquer paciente consegue ler e entender. Sem jargão.
 Com acolhimento. Com o número do CVV.</p>
-<p>Você pode imprimir isso hoje e distribuir na sua próxima
-consulta.</p>
-<p>E perceba: em nenhum momento colocamos dado de paciente real. Criamos
-um documento genérico — isso é LGPD na prática. O Claude ajudou, mas o
-dado sensível ficou no seu consultório.”</p>
+<p>Você imprime isso hoje e distribui na próxima consulta.</p>
 <hr />
-<h2 id="seção-8-encerramento-dever-de-casa-3-min">SEÇÃO 8: ENCERRAMENTO
-+ DEVER DE CASA (3 min)</h2>
-<p><strong>Tom:</strong> Motivador, resumo rápido, desafio claro</p>
-<p>“Deixa eu resumir o que a gente fez hoje.</p>
-<p>Chegamos com um problema real: aula de depressão, segunda de manhã,
-sem preparação.</p>
-<p>E saímos com: 1. Guideline resumida em tópicos estruturados — Sonnet
-2. Planilha de pesquisa limpa e organizada — Haiku 3. Slides completos
-com pérolas clínicas — Sonnet 4. Folheto de orientação pro paciente —
-Sonnet</p>
-<p>Sem programar. Sem saber de IA. Só descrevendo o problema em
-linguagem natural.</p>
-<p>E você aprendeu que existem 3 modelos — Haiku, Sonnet, Opus — e que a
-escolha certa economiza tempo e dinheiro sem perder qualidade.</p>
-<p>Agora o dever de casa.</p>
-<p>Antes da próxima aula, quero que você faça isso:</p>
-<p>Pegue um PDF da sua especialidade — um artigo, uma diretriz, um
-protocolo que você tem engavetado — e mande para o Claude Code com o
-prompt:</p>
-<pre><code>Resuma este documento em 6 bullets principais.
-Use linguagem para especialista da área.</code></pre>
-<p>Só isso. Simples. Veja o que sai.</p>
-<p>Se travar em alguma parte, anota onde travou — a gente resolve na
-próxima aula.</p>
-<p>Na aula 03: a gente vai buscar artigos diretamente no PubMed sem sair
-do Claude Code. Vai mudar o jeito que vocês se atualizam.</p>
+<p>Agora para.</p>
+<p>Olha as demos que a gente fez hoje.</p>
+<p>PDF de guideline. Comparação de versões. Extração de tabela. Planilha
+de dados. Slides. Folheto.</p>
+<p>Em nenhum momento apareceu: nome de paciente. RG. Data de nascimento.
+Número de prontuário.</p>
+<p>Tudo que o Claude precisou foi do quadro clínico — o que é a doença,
+quais são os critérios, como é o tratamento.</p>
+<p>Isso é LGPD na prática.</p>
+<p>Dado de paciente não entra no Claude Code. Vou repetir isso em toda
+aula deste curso até vocês repetirem no sonho.”</p>
+<hr />
+<h2 id="seção-7-fechamento-dever-de-casa-3-min">SEÇÃO 7: FECHAMENTO +
+DEVER DE CASA — 3 min</h2>
+<p><strong>Tom:</strong> Antes/depois concreto, dever de casa com fluxo
+completo, ponte para aula_03</p>
+<p>“Sexta 17h: zero preparação. Aula na segunda às 8h.</p>
+<p>[mostrar o que foi produzido]</p>
+<p>Agora você tem: 1. Guideline resumida em tópicos prontos para
+apresentar 2. Comparação com versões anteriores — o que mudou na conduta
+3. Tabela de critérios extraída do documento 4. Planilha de dados limpa
+e organizada 5. Slides completos com pérolas clínicas 6. Folheto de
+orientação para o paciente</p>
+<p>Seis entregáveis. Uma sessão. Sem programar. Sem copiar e colar
+manualmente.</p>
+<hr />
+<p><strong>Dever de casa:</strong></p>
+<p>Antes da aula_03, faça isso:</p>
+<p>Pegue um documento real da sua especialidade — PDF de protocolo,
+artigo, diretriz, qualquer coisa que você tem engavetada — e percorra o
+fluxo completo:</p>
+<p>Passo 1: resuma em tópicos. Passo 2: extraia uma tabela ou lista de
+critérios. Passo 3: crie um entregável — slide, folheto, ou resumo
+estruturado.</p>
+<p>Não precisa usar depressão. Use a sua área. O cirurgião usa protocolo
+de profilaxia. O cardiologista usa diretriz de anticoagulação. O
+pediatra usa calendário vacinal atualizado.</p>
+<p>Traga o que você fez para a aula_03.</p>
+<hr />
+<p><strong>Na próxima aula:</strong></p>
+<p>Você não vai precisar trazer PDF de casa.</p>
+<p>O Claude vai buscar os artigos direto no PubMed por você — pesquisa
+bibliográfica, filtros por data e nível de evidência, fichamento
+automático.</p>
+<p>Você já sabe trabalhar com arquivos. Na aula_03 você começa a
+pesquisar.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

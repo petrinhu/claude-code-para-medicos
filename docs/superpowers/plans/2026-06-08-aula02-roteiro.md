@@ -1,3 +1,42 @@
+# Aula 02 — Roteiro Refatorado — Plano de Implementação
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Substituir `aula_02/roteiro.md` com roteiro correto cobrindo M1.01–04 em abordagem demo encadeada (~46 min).
+
+**Architecture:** Arquivo único `aula_02/roteiro.md` em formato Markdown canônico do curso (seções numeradas, Tom, falas entre aspas, blocos copiáveis). Segue spec aprovado em `docs/superpowers/specs/2026-06-08-aula02-design.md`. Acompanhado de `roteiro.html` gerado via pandoc.
+
+**Tech Stack:** Markdown, pandoc (HTML export), Git.
+
+---
+
+## Referência rápida do spec
+
+| Seção | Conteúdo | Duração |
+|---|---|---|
+| 1 | Âncora + Cenário: callback aula_01 + "sexta 17h" + preview entregável | 4 min |
+| 2 | PDF — Resumir (M1.01 parte 1): guideline APA + prompt com contexto clínico | 8 min |
+| 3 | PDF — Comparar + Extrair tabela (M1.01 partes 2+3): versão antiga vs nova → CSV | 6 min |
+| 4 | Planilha (M1.04): tabela extraída + MADRS suja → limpa; 1 min modelos | 7 min |
+| 5 | Slides (M1.03): bullets da S2 → slides com pérola clínica | 10 min |
+| 6 | Folheto pós-consulta (M1.02): folheto para paciente + LGPD reforçado | 8 min |
+| 7 | Fechamento + Dever de casa: antes/depois + dever + ponte aula_03 | 3 min |
+
+**Demo encadeada:** S2 gera bullets → S5 usa como input | S3 extrai tabela → S4 usa como input  
+**Tema:** Depressão (guideline APA, planilha MADRS) — válido para toda especialidade médica
+
+---
+
+## Task 1: Escrever `aula_02/roteiro.md`
+
+**Files:**
+- Modify: `aula_02/roteiro.md` (sobrescrever conteúdo atual)
+
+- [ ] **Step 1: Escrever o roteiro completo**
+
+Conteúdo completo do arquivo:
+
+```markdown
 # Aula 02 — Claude Code com Arquivos Reais
 
 **Formato:** Gravada em um take no OBS Studio  
@@ -135,7 +174,7 @@ Liste as principais diferenças em bullets.
 
 ---
 
-Isso é o que eu chamo de inteligência de guideline.
+Isso é o que eu chamo de 'inteligência de guideline'.
 
 Você não precisa ler os 80 páginas da versão nova e lembrar o que a versão antiga dizia.
 Você pergunta: o que mudou? O Claude compara.
@@ -215,8 +254,7 @@ Para esta aula, o Sonnet — que é o padrão — serve para tudo.
 Vamos aprofundar essa escolha quando você tiver mais fluência.
 
 E gráficos? Para gerar gráficos o Claude precisaria de Python.
-Isso fica para a fase avançada do curso — por enquanto,
-planilha limpa e organizada já resolve 80% dos casos."
+Isso fica para a fase avançada do curso — por enquanto, planilha limpa e organizada já resolve 80% dos casos."
 
 ---
 
@@ -314,9 +352,9 @@ Você imprime isso hoje e distribui na próxima consulta.
 
 Agora para.
 
-Olha as demos que a gente fez hoje.
+Olha as quatro demos que a gente fez hoje.
 
-PDF de guideline. Comparação de versões. Extração de tabela. Planilha de dados. Slides. Folheto.
+PDF de guideline. Comparação de versões. Planilha de dados. Slides. Folheto.
 
 Em nenhum momento apareceu:
 nome de paciente. RG. Data de nascimento. Número de prontuário.
@@ -348,7 +386,7 @@ Agora você tem:
 5. Slides completos com pérolas clínicas
 6. Folheto de orientação para o paciente
 
-Seis entregáveis. Uma sessão. Sem programar. Sem copiar e colar manualmente.
+Seis entregáveis. Uma sessão. Sem saber programar. Sem copiar e colar manualmente.
 
 ---
 
@@ -389,3 +427,84 @@ Até lá."
 ---
 
 **FIM DO ROTEIRO**
+```
+
+- [ ] **Step 2: Verificar contra o spec**
+
+Abrir `docs/superpowers/specs/2026-06-08-aula02-design.md` e confirmar cobertura:
+
+| Item do spec | Presente no roteiro? |
+|---|---|
+| M1.01: resumir PDF com prompt estruturado | ✓ Seção 2 |
+| M1.01: comparar dois documentos / versões | ✓ Seção 3 |
+| M1.01: extrair tabela como lista estruturada | ✓ Seção 3 |
+| M1.02: folheto para paciente | ✓ Seção 6 |
+| M1.03: slides com pérola clínica por tópico | ✓ Seção 5 |
+| M1.04: planilha limpar + calcular redução | ✓ Seção 4 |
+| Demo encadeada: S2 bullets → S5 slides | ✓ Seção 5 referencia S2 |
+| Demo encadeada: S3 tabela → S4 planilha | ✓ Seção 3→4 bridge explícito |
+| Modelos: 1 min embutido em S4 | ✓ Seção 4 |
+| Gráfico omitido com menção fase avançada | ✓ Seção 4 |
+| LGPD reforçado em S6 + nenhum dado nas demos | ✓ Seção 6 |
+| Variação natural do Claude explicada | ✓ Seção 2 |
+| Cenário "sexta 17h" | ✓ Seção 1 |
+| Preview entregável no início | ✓ Seção 1 |
+| Ponte para aula_03 (PubMed) | ✓ Seção 7 |
+| Duração ~46 min | ✓ (4+8+6+7+10+8+3=46 min) |
+
+- [ ] **Step 3: Commitar o roteiro**
+
+```bash
+git add aula_02/roteiro.md
+git commit -m "feat: aula_02 roteiro refatorado — M1.01-04 demo encadeada (~46min)
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+```
+
+---
+
+## Task 2: Gerar `aula_02/roteiro.html`
+
+**Files:**
+- Create: `aula_02/roteiro.html`
+
+- [ ] **Step 1: Gerar HTML via pandoc**
+
+```bash
+cd /home/petrus/IDrive/Vídeos/Dieckmann/aulas_claude_dieckmann/aula_02
+pandoc roteiro.md -o roteiro.html --standalone --metadata title="Aula 02 — Claude Code com Arquivos Reais"
+```
+
+Expected: arquivo `roteiro.html` criado sem erros.
+
+- [ ] **Step 2: Verificar que o HTML foi gerado**
+
+```bash
+ls -lh roteiro.html
+```
+
+Expected: arquivo com tamanho > 0.
+
+- [ ] **Step 3: Commitar o HTML**
+
+```bash
+git add aula_02/roteiro.html
+git commit -m "feat: aula_02 roteiro.html gerado
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+```
+
+---
+
+## Checklist de self-review do plano
+
+- [x] Spec coverage: todos os 16 itens do spec cobertos nas tasks
+- [x] Placeholder scan: sem TBDs, sem "similar to task N", sem "handle edge cases"
+- [x] Conteúdo de demo inclui prompts reais (não genéricos)
+- [x] Duração calculada: 4+8+6+7+10+8+3 = 46 min dentro do alvo 45-55 min
+- [x] Demo encadeada explícita: S2→S5 (bullets→slides) e S3→S4 (tabela→planilha)
+- [x] LGPD reforçado em S6 com enumeration explícita das quatro demos
+- [x] Modelos+tokens: 1 min embutido em S4 (não seção própria)
+- [x] Gráfico: omitido com menção controlada à fase avançada
+- [x] Ponte para aula_03: PubMed mencionado em S7
+- [x] Nenhuma nova analogia central — reservado para aula_17 ("residente de plantão")

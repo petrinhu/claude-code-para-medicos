@@ -1,7 +1,7 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-09
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 31 ✅ · 0 🚫 · 22 ⏳ · **Total: 53 aulas**
+> **Resumo:** 32 ✅ · 0 🚫 · 21 ⏳ · **Total: 53 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
@@ -18,7 +18,6 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| S05.02 | 10 | Avançado · S05 Calculadoras | HAS-BLED → aula_22 (~45 min, cardiologista, painel decisão FA) | Alta | S05.01 | Médio | ⏳ Pendente | ⏳ |
 | S05.03 | 10 | Avançado · S05 Calculadoras | PHQ-9 e GAD-7 → aula_23 (paradigma Likert 0-3) | Alta | S05.02 | Médio | ⏳ Pendente | ⏳ |
 | S05.04 | 10 | Avançado · S05 Calculadoras | HAM-D, YMRS, AUDIT, CAGE → aula_24 | Média | S05.01 | Médio | ⏳ Pendente | ⏳ |
 | S05.05 | 10 | Avançado · S05 Calculadoras | MMSE, MoCA, PANSS, CGI, CURB-65, MELD, SOFA → aula_25 | Média | S05.01 | Complexo | ⏳ Pendente | ⏳ |
@@ -78,3 +77,4 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 | S04.03 | 9 | Avançado · S04 Agents | BigTech Virtual: montando o time completo → aula_19 | Média | S04.01 | Médio | ✅ Concluído | ✅ |
 | S04.04 | 9 | Avançado · S04 Agents | /tab_pendencias: gestão ágil do projeto → aula_20 | Média | S04.01 | Médio | ✅ Concluído | ✅ |
 | S05.01 | 10 | Avançado · S05 Calculadoras | CHA₂DS₂-VASc → aula_21 (~55 min, cardiologista, prompt único descritivo) | Alta | S04 | Médio | ✅ Concluído | ✅ |
+| S05.02 | 10 | Avançado · S05 Calculadoras | HAS-BLED → aula_22 (~45 min, cardiologista, painel decisão FA) | Alta | S05.01 | Médio | ✅ Concluído | ✅ |

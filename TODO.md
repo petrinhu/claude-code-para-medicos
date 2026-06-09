@@ -1,14 +1,14 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-08
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 19 ✅ · 11 🚫 · 22 ⏳ · **Total: 52 aulas**
+> **Resumo:** 20 ✅ · 10 🚫 · 22 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
 
 ---
 
-## 🚫 Refatorar — 11 itens (conteúdo incorreto vs. HTML)
+## 🚫 Refatorar — 10 itens (conteúdo incorreto vs. HTML)
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -22,7 +22,6 @@
 | M1.03 | 2 | Iniciante · M1 | Montar slides e apresentações a partir de tópicos soltos → aula_02 (🚫 idem M1.01) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
 | M1.04 | 2 | Iniciante · M1 | Planilhas: organizar, limpar e gerar gráficos simples → aula_02 (🚫 idem M1.01) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
 | M3.05 | 4 | Intermediário · M3 | Gestão do consultório: indicadores, faturamento e automação → aula_07 (🚫 roteiro tem "Dashboard Cirúrgico" — foco cirúrgico ≠ gestão financeira) | Alta | M2 | Simples | 🚫 Refatorar | 🚫 |
-| S01.01 | 6 | Avançado · S01 | Terminal + uv: seu bisturi digital → aula_10 (🚫 MCP/skills misturado no conteúdo) + aula_11 (🚫 split desnecessário, não existe no HTML) | Alta | S00 | Médio | 🚫 Refatorar | 🚫 |
 
 ---
 
@@ -55,7 +54,7 @@
 
 ---
 
-## ✅ Concluído — 19 itens
+## ✅ Concluído — 20 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -69,6 +68,7 @@
 | M3.04 | 4 | Intermediário · M3 | Estatística de dados anonimizados e gráficos para publicação → aula_06 (condensado) | Média | M2 | Simples | ✅ Concluído | ✅ |
 | S00.01 | 5 | Avançado · S00 Git | Git: o prontuário do seu código (init, add, commit, log) → aula_08 | Média | M3 | Simples | ✅ Concluído | ✅ |
 | S00.02 | 5 | Avançado · S00 Git | Git remoto: GitHub e clone de ferramentas → aula_09 | Média | S00.01 | Simples | ✅ Concluído | ✅ |
+| S01.01 | 6 | Avançado · S01 Fundação | Terminal + uv: seu bisturi digital → aula_10 (~48 min, fusão 10+11; aula_11 deprecada) | Alta | S00 | Médio | ✅ Concluído | ✅ |
 | S01.02 | 6 | Avançado · S01 Fundação | Python com analogias clínicas → aula_12 | Média | S01.01 | Médio | ✅ Concluído | ✅ |
 | S02.01 | 7 | Avançado · S02 Python+Flet | Flet Hello World médico → aula_13 | Média | S01 | Médio | ✅ Concluído | ✅ |
 | S02.02 | 7 | Avançado · S02 Python+Flet | Layout, cores e componentes Flet → aula_14 | Média | S02.01 | Médio | ✅ Concluído | ✅ |

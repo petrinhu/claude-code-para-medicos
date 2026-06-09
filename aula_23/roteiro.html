@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 23 — PHQ-9 e GAD-7: O Paradigma Likert</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 23 — PHQ-9 e GAD-7: O Paradigma Likert</h1>
+</header>
+<h1 id="aula-23-phq-9-e-gad-7-o-paradigma-likert">Aula 23 — PHQ-9 e
+GAD-7: O Paradigma Likert</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~55 min<br />
+<strong>Tom:</strong> Médico de família — prático, acolhedor, sabe que a
+paciente disse mais do que parecia<br />
+<strong>Módulo:</strong> S05.03 — Calculadoras Médicas<br />
+<strong>Persona:</strong> Médico de família / clínico geral</p>
+<hr />
+<h2 id="seção-1-abertura-paradigma-likert-5-min">SEÇÃO 1: ABERTURA +
+PARADIGMA LIKERT — 5 min</h2>
+<p><strong>Tom:</strong> Narrativo — a frase que muda a consulta</p>
+<p>“Tô meio triste, doutor.”</p>
+<p>Ela disse de passagem. No final da consulta. Enquanto você ainda
+estava digitando o ajuste da insulina.</p>
+<p>Paciente de 45 anos. Consulta de rotina para diabetes. Sem queixa
+principal de humor. Mas essa frase ficou no ar.</p>
+<hr />
+<p>Você sabe o que ela quis dizer. Todo médico de família sabe.</p>
+<p>O problema é que “meio triste” não entra em prontuário. Não tem CID.
+Não tem conduta automática.</p>
+<p>O PHQ-9 existe para transformar essa frase em dado.</p>
+<hr />
+<p>Nas últimas duas aulas, você trabalhou com calculadoras binárias.
+Hipertenso ou não. AVC prévio ou não. Checkboxes — sim ou não.</p>
+<p>Hoje o paradigma muda.</p>
+<p>Não é mais “tem ou não tem”. É “com que frequência”.</p>
+<hr />
+<p>Você já viu isso antes — só não chamava de Likert.</p>
+<p>Pense na EVA de dor. Quando você pergunta “de zero a dez, qual é a
+sua dor?”, você não está perguntando se o paciente tem dor. Você está
+perguntando com que intensidade.</p>
+<p>O PHQ-9 faz o mesmo com humor — mas com frequência.</p>
+<p>Quatro opções para cada item:</p>
+<ul>
+<li>0 = Nunca</li>
+<li>1 = Alguns dias</li>
+<li>2 = Mais da metade dos dias</li>
+<li>3 = Quase todo dia</li>
+</ul>
+<p>Cada item tem um peso. A soma decide a faixa.</p>
+<p>Esse é o paradigma Likert. Vai aparecer em dezenas de calculadoras
+que você vai implementar. Hoje você aprende o padrão uma vez.</p>
+<hr />
+<h2 id="seção-2-phq-9-como-especificação-8-min">SEÇÃO 2: PHQ-9 COMO
+ESPECIFICAÇÃO — 8 min</h2>
+<p><strong>Tom:</strong> Clínico e técnico — transformar o instrumento
+em dado antes de escrever o prompt</p>
+<p>“Você já sabe o score. Vamos transformar o que você sabe em
+especificação.”</p>
+<hr />
+<p>[mostrar na tela]</p>
+<p>PHQ-9 — Patient Health Questionnaire. Rastreio de depressão.
+Frequência nos últimos 14 dias.</p>
+<p>Nove itens:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Critério</th>
+<th>Campo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Pouco interesse ou prazer em fazer as coisas</td>
+<td>interesse</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Sentir-se deprimido(a), sem esperança</td>
+<td>deprimido</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Dificuldade para adormecer, manter sono ou dormir demais</td>
+<td>sono</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sentir-se cansado(a) ou com pouca energia</td>
+<td>energia</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Falta de apetite ou comer em excesso</td>
+<td>apetite</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Sentir-se mal consigo mesmo(a) / fracasso / decepção</td>
+<td>autoestima</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Dificuldade de concentração</td>
+<td>concentracao</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Lentidão ou agitação percebida pelos outros</td>
+<td>agitacao</td>
+</tr>
+<tr>
+<td><strong>9</strong></td>
+<td><strong>Pensamentos de se machucar ou de que seria melhor estar
+morto</strong></td>
+<td><strong>item_9</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Cada item: 0, 1, 2 ou 3. Score total: 0 a 27.</p>
+<hr />
+<p>“Cinco faixas:</p>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Faixa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 a 4</td>
+<td>Mínimo</td>
+</tr>
+<tr>
+<td>5 a 9</td>
+<td>Leve</td>
+</tr>
+<tr>
+<td>10 a 14</td>
+<td>Moderado</td>
+</tr>
+<tr>
+<td>15 a 19</td>
+<td>Moderadamente grave</td>
+</tr>
+<tr>
+<td>20 a 27</td>
+<td>Grave</td>
+</tr>
+</tbody>
+</table>
+<p>Cutoff de ação clínica: 10. Abaixo de 10 — monitorar. A partir de 10
+— intervir.</p>
+<hr />
+<p>[pausar]</p>
+<p>Mas antes de continuar.</p>
+<p>O item 9 é diferente.</p>
+<p>Leia de novo: ‘Pensamentos de se machucar ou de que seria melhor
+estar morto.’</p>
+<p>Esse item não é mais um critério a somar. Ele é uma pergunta à
+parte.</p>
+<p>Qualquer resposta acima de zero — mesmo ‘alguns dias’ — muda a
+conduta imediatamente. Independente do score total.</p>
+<p>Um paciente com score 3 e item 9 igual a 1 não é ‘Mínimo’. É risco a
+avaliar agora.</p>
+<p>O alerta de suicídio existe fora da faixa. O app vai implementar isso
+como método separado.</p>
+<hr />
+<p>Agora: nosso caso âncora.</p>
+<p>Paciente de 45 anos, mulher. Consulta de rotina para DM. ‘Tô meio
+triste, doutor.’</p>
+<p>Você aplica o PHQ-9.</p>
+<p>Respostas:</p>
+<ul>
+<li>Pouco interesse: 1</li>
+<li>Deprimida: 1</li>
+<li>Sono: 2</li>
+<li>Energia: 2</li>
+<li>Concentração: 1</li>
+<li>Todos os outros: 0</li>
+<li>Item 9: 0</li>
+</ul>
+<p>[calcular ao vivo]</p>
+<p>1 + 1 + 2 + 2 + 1 = <strong>7</strong></p>
+<p>Score 7 → Leve. Item 9 = 0 → sem alerta.</p>
+<p>Esse é o gabarito. O app vai ter que bater esse número.”</p>
+<hr />
+<h2 id="seção-3-prompt-phq-9-7-min">SEÇÃO 3: PROMPT PHQ-9 — 7 min</h2>
+<p><strong>Tom:</strong> Professor conduz — lê cada parte em voz alta,
+pausa no item_9 e no alerta_suicidio()</p>
+<p>“Na aula_21 e na aula_22, você aprendeu o padrão. Hoje ele aparece
+com uma diferença nova: em vez de campos booleanos, campos inteiros. E
+um método que não depende da soma.”</p>
+<hr />
+<p>[digitar no terminal — ler cada parte em voz alta]</p>
+<pre><code>Implemente a calculadora PHQ-9 no ClinMd-Tribe
+respeitando a Clean Architecture das 4 camadas:
+
+domain/calculadoras/phq9.py
+  - Classe Phq9 com 9 campos inteiros (0 a 3):
+    interesse, deprimido, sono, energia, apetite,
+    autoestima, concentracao, agitacao, item_9
+  - Método calcular() → retorna score inteiro 0-27
+  - Método interpretar(score) → str
+    - 0 a 4: &quot;Mínimo&quot;
+    - 5 a 9: &quot;Leve&quot;
+    - 10 a 14: &quot;Moderado&quot;
+    - 15 a 19: &quot;Moderadamente grave&quot;
+    - 20 a 27: &quot;Grave&quot;
+  - Método alerta_suicidio() → bool
+    - Retorna True se item_9 &gt;= 1
+    - Independente do score total
+
+application/servicos/calculadora_service.py
+  - Adicionar função calcular_phq9(dados: dict) → dict
+    Retorna: {&quot;score&quot;: int, &quot;faixa&quot;: str, &quot;alerta_suicidio&quot;: bool}
+
+presentation/telas/calculadora_phq9.py
+  - Tela Flet com:
+    - 9 dropdowns, cada um com opções:
+      0 = Nunca
+      1 = Alguns dias
+      2 = Mais da metade dos dias
+      3 = Quase todo dia
+    - Botão &quot;Calcular PHQ-9&quot;
+    - Exibir score em destaque
+    - Exibir faixa com cor:
+      Mínimo/Leve: verde · Moderado: amarelo
+      Moderadamente grave/Grave: vermelho
+    - Se alerta_suicidio = True:
+      Exibir caixa vermelha em destaque:
+      &quot;⚠ Avaliar risco de suicídio imediatamente&quot;
+      (independente do score total)</code></pre>
+<hr />
+<p>[pausar antes de enviar]</p>
+<p>“Perceba três diferenças em relação às aulas anteriores.</p>
+<p>Primeiro: os campos não são booleanos. São inteiros — de 0 a 3.</p>
+<p>Segundo: a tela usa dropdowns, não checkboxes. Porque a resposta não
+é sim ou não — é uma frequência.</p>
+<p>Terceiro: <code>alerta_suicidio()</code> é um método separado. Não
+faz parte de <code>interpretar()</code>. Não depende do score. Depende
+apenas do item_9.</p>
+<p>Essa separação é a decisão clínica mais importante deste prompt.”</p>
+<hr />
+<p>[enviar o prompt ao Claude Code]</p>
+<hr />
+<h2 id="seção-4-claude-implementa-leitura-supervisionada-12-min">SEÇÃO
+4: CLAUDE IMPLEMENTA + LEITURA SUPERVISIONADA — 12 min</h2>
+<p><strong>Tom:</strong> Aguardar + auditar — cinco perguntas clínicas
+em ritmo pausado</p>
+<p>[aguardar o Claude Code processar]</p>
+<p>[mostrar na tela os arquivos sendo criados e modificados]</p>
+<p>“Dois arquivos novos. Um modificado.</p>
+<p><code>domain/calculadoras/phq9.py</code> — criado.
+<code>presentation/telas/calculadora_phq9.py</code> — criado.
+<code>application/servicos/calculadora_service.py</code> — modificado,
+função adicionada.</p>
+<p>Agora você lê antes de rodar.”</p>
+<hr />
+<p><strong>Pergunta 1:</strong></p>
+<p>“Abra <code>domain/calculadoras/phq9.py</code>.</p>
+<p>Cada campo aceita valores de 0 a 3 — não é booleano?</p>
+<p>Você está procurando campos declarados como inteiros. Se aparecerem
+como bool, a calculadora está errada.</p>
+<p>[mostrar o código]</p>
+<p>Correto — inteiros, não booleanos.”</p>
+<hr />
+<p><strong>Pergunta 2:</strong></p>
+<p>“A soma máxima é 27 — nove campos vezes três?</p>
+<p>Procure o método <code>calcular()</code>. Ele deve somar os nove
+campos. Se algum campo estiver faltando na soma, o score vai ser menor
+do que deveria.</p>
+<p>[mostrar o método]</p>
+<p>Correto — nove campos somados, máximo 27.”</p>
+<hr />
+<p><strong>Pergunta 3:</strong></p>
+<p>“O cutoff de Moderado começa em 10, não em 9?</p>
+<p>Procure o método <code>interpretar()</code>. A faixa Leve vai até 9.
+A faixa Moderado começa em 10.</p>
+<p>Se o limite estiver em 9, a faixa está deslocada — um ponto de
+diferença na conduta.</p>
+<p>[mostrar as condições]</p>
+<p>Correto — Leve encerra em 9, Moderado começa em 10.”</p>
+<hr />
+<p><strong>Pergunta 4:</strong> ← crítica</p>
+<p>“O método <code>alerta_suicidio()</code> existe e verifica
+<code>item_9 &gt;= 1</code> separado do score total?</p>
+<p>Essa é a pergunta mais importante.</p>
+<p>Procure um método chamado <code>alerta_suicidio</code> — separado de
+<code>calcular</code> e de <code>interpretar</code>. Ele deve olhar
+apenas para <code>item_9</code>. Não deve depender do score total.</p>
+<p>Se não existir como método separado — o app está errado e não pode
+ser usado.</p>
+<p>[mostrar o método]</p>
+<p>Está lá. Separado. Independente do score. Correto.”</p>
+<hr />
+<p><strong>Pergunta 5:</strong></p>
+<p>“A tela chama o serviço — não calcula direto?</p>
+<p>Abra <code>presentation/telas/calculadora_phq9.py</code>.</p>
+<p>Quando o botão ‘Calcular PHQ-9’ é clicado, o código deve chamar
+<code>calcular_phq9</code> do <code>calculadora_service</code>. Não deve
+fazer a soma diretamente na tela.</p>
+<p>[mostrar a chamada ao serviço]</p>
+<p>Está chamando o serviço. A arquitetura está respeitada.</p>
+<hr />
+<p>Cinco perguntas. Cinco confirmações.</p>
+<p>Você pode assinar.”</p>
+<hr />
+<p><strong>Frase-âncora:</strong></p>
+<p>“O item 9 não é mais um critério. Ele é uma pergunta à parte.
+Qualquer resposta acima de zero muda a conduta — independente do score
+total.”</p>
+<hr />
+<h2 id="seção-5-app-ao-vivo-phq-9-validação-7-min">SEÇÃO 5: APP AO VIVO
+PHQ-9 + VALIDAÇÃO — 7 min</h2>
+<p><strong>Tom:</strong> Payoff — dois casos: leve sem alerta e grave
+com alerta simultâneos</p>
+<p>[no terminal]</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[aguardar o Flet abrir no browser]</p>
+<hr />
+<p><strong>Caso 1 — âncora (score 7, Leve, sem alerta):</strong></p>
+<p>“Aqui está a tela do PHQ-9.</p>
+<p>Nove dropdowns. Um botão.</p>
+<p>Vamos preencher o caso da nossa paciente.</p>
+<p>[selecionar nos dropdowns]</p>
+<ul>
+<li>Pouco interesse: 1 = Alguns dias</li>
+<li>Deprimida: 1 = Alguns dias</li>
+<li>Sono: 2 = Mais da metade dos dias</li>
+<li>Energia: 2 = Mais da metade dos dias</li>
+<li>Apetite: 0 = Nunca</li>
+<li>Autoestima: 0 = Nunca</li>
+<li>Concentração: 1 = Alguns dias</li>
+<li>Agitação: 0 = Nunca</li>
+<li>Item 9: 0 = Nunca</li>
+</ul>
+<p>[clicar Calcular PHQ-9]</p>
+<p>Score: 7. Faixa: Leve — em verde. Sem alerta.</p>
+<p>Bateu o gabarito.”</p>
+<hr />
+<p><strong>Caso 2 — grave (score 20, Grave, alerta ativo):</strong></p>
+<p>“Agora o caso mais importante desta aula.</p>
+<p>Paciente de 58 anos, homem. Isolamento há dois meses. Anedonia
+completa. Queixas em quase todos os itens.</p>
+<p>[selecionar nos dropdowns]</p>
+<ul>
+<li>Pouco interesse: 3 = Quase todo dia</li>
+<li>Deprimido: 3 = Quase todo dia</li>
+<li>Sono: 3 = Quase todo dia</li>
+<li>Energia: 3 = Quase todo dia</li>
+<li>Apetite: 2 = Mais da metade dos dias</li>
+<li>Autoestima: 2 = Mais da metade dos dias</li>
+<li>Concentração: 2 = Mais da metade dos dias</li>
+<li>Agitação: 1 = Alguns dias</li>
+<li>Item 9: 1 = Alguns dias</li>
+</ul>
+<p>[clicar Calcular PHQ-9]</p>
+<hr />
+<p>[mostrar na tela]</p>
+<p>Score: 20. Faixa: Grave — em vermelho.</p>
+<p>E abaixo do score:</p>
+<p>⚠ Avaliar risco de suicídio imediatamente.</p>
+<hr />
+<p>Dois resultados na tela ao mesmo tempo.</p>
+<p>A faixa Grave diz o que o score significa. A caixa vermelha diz o que
+fazer agora — independente do score.</p>
+<p>Isso é o que diferencia o item 9 de todos os outros.</p>
+<p>Não é mais um critério. É uma pergunta à parte.</p>
+<p>Qualquer resposta acima de zero — a conduta muda.”</p>
+<hr />
+<h2 id="seção-6-gad-7-transferência-deliberada-8-min">SEÇÃO 6: GAD-7 —
+TRANSFERÊNCIA DELIBERADA — 8 min</h2>
+<p><strong>Tom:</strong> Professor recua — é a vez do aluno escrever o
+prompt</p>
+<p>“Agora é sua vez.</p>
+<p>O GAD-7 tem a mesma estrutura do PHQ-9. Sete itens. Escala 0-3.
+Lógica Likert.</p>
+<p>A diferença: - 7 itens, não 9 - Score máximo: 21, não 27 - Quatro
+faixas, não cinco - Sem item equivalente ao item 9</p>
+<p>Você vai adaptar o prompt do PHQ-9. Não vou escrever por você.</p>
+<hr />
+<p>O que muda:</p>
+<ul>
+<li>Nome da classe: Gad7</li>
+<li>Arquivo: domain/calculadoras/gad7.py</li>
+<li>7 campos inteiros (0 a 3): nervoso, preocupacao_incontrolavel,
+preocupacao_excessiva, relaxar, inquietacao, irritabilidade, medo</li>
+<li>calcular() → score inteiro 0-21</li>
+<li>interpretar(score):
+<ul>
+<li>0 a 4: ‘Mínimo’</li>
+<li>5 a 9: ‘Leve’</li>
+<li>10 a 14: ‘Moderado’</li>
+<li>15 a 21: ‘Grave’</li>
+</ul></li>
+<li>Função no service: calcular_gad7(dados: dict) → {“score”: int,
+“faixa”: str}</li>
+<li>Tela: presentation/telas/calculadora_gad7.py
+<ul>
+<li>7 dropdowns (mesmas opções: Nunca / Alguns dias / Mais da metade /
+Quase todo dia)</li>
+<li>Faixa colorida: Mínimo/Leve verde · Moderado amarelo · Grave
+vermelho</li>
+<li>Sem caixa de alerta especial</li>
+</ul></li>
+<li>Sem método alerta_suicidio</li>
+</ul>
+<hr />
+<p>Adapte o prompt. Digite no terminal.</p>
+<p>[aguardar o aluno escrever — professor não intervém a não ser que
+haja erro estrutural, como esquecer as 4 faixas ou usar 5 campos em vez
+de 7]”</p>
+<hr />
+<p>[aguardar o Claude processar o prompt do aluno]</p>
+<p>[mostrar os arquivos gerados]</p>
+<hr />
+<p>“<strong>Pergunta-relâmpago:</strong></p>
+<p>Quantas faixas o Claude gerou? Bate com 4?</p>
+<p>[mostrar o método interpretar() do GAD-7]</p>
+<p>Quatro faixas: Mínimo, Leve, Moderado, Grave. Correto.</p>
+<p>Você escreveu o prompt. Você verificou o resultado. Essa é a
+transferência.”</p>
+<hr />
+<h2 id="seção-7-app-ao-vivo-gad-7-4-min">SEÇÃO 7: APP AO VIVO GAD-7 — 4
+min</h2>
+<p><strong>Tom:</strong> Rápido — confirmar que a transferência
+funcionou com o caso 3</p>
+<p>“[navegar para a tela GAD-7]</p>
+<p>Caso clínico: 32 anos, masculino. Queixa de ansiedade e
+palpitações.</p>
+<p>[selecionar nos dropdowns]</p>
+<ul>
+<li>Nervoso: 2 = Mais da metade dos dias</li>
+<li>Preocupação incontrolável: 2 = Mais da metade dos dias</li>
+<li>Preocupação excessiva: 2 = Mais da metade dos dias</li>
+<li>Dificuldade de relaxar: 2 = Mais da metade dos dias</li>
+<li>Inquietação: 1 = Alguns dias</li>
+<li>Irritabilidade: 1 = Alguns dias</li>
+<li>Medo: 1 = Alguns dias</li>
+</ul>
+<p>[clicar Calcular GAD-7]</p>
+<p>4 × 2 + 3 × 1 = 8 + 3 = 11. Faixa: Moderado.</p>
+<p>Transferência confirmada.</p>
+<p>O padrão que você aprendeu com o PHQ-9 funcionou quando você usou
+sozinho no GAD-7.”</p>
+<hr />
+<h2 id="seção-8-encerramento-dever-4-min">SEÇÃO 8: ENCERRAMENTO + DEVER
+— 4 min</h2>
+<p><strong>Tom:</strong> Consolidar + bridge S05.04</p>
+<p>“Resumo do que ficou pronto hoje.</p>
+<p>O paradigma Likert — escala 0-3, frequência, não presença. O PHQ-9:
+nove itens, cinco faixas, cutoff em 10. O item 9: pergunta à parte,
+alerta independente do score. O GAD-7: você escreveu o prompt.
+Funcionou.</p>
+<p>O ClinMd-Tribe agora tem quatro calculadoras. Duas binárias. Duas
+Likert. E você conhece os dois padrões.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Abra o ClinMd-Tribe. Pense num paciente que se queixou de tristeza,
+ansiedade ou fadiga.</p>
+<p>Des-identifica antes de digitar qualquer coisa. Nome: Paciente 001.
+CPF, data de nascimento, endereço: apaga. Mantém só: sexo, faixa etária,
+as respostas aos itens.</p>
+<p>Calcule o PHQ-9 e o GAD-7. Compare os dois scores com a sua impressão
+clínica.</p>
+<p>Se o item 9 for maior que zero: anota que o alerta apareceu. Registra
+a conduta que você tomou.</p>
+<hr />
+<p>Na próxima aula: o padrão continua — mas com variações.</p>
+<p>HAM-D e YMRS são escalas Likert com estrutura diferente. AUDIT e CAGE
+voltam ao padrão booleano.</p>
+<p>Você já conhece os dois padrões. Na aula_24, você vai identificar
+qual é qual antes de escrever o prompt.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

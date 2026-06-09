@@ -1,3 +1,39 @@
+# Aula 23 — PHQ-9 + GAD-7 — Roteiro Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Produzir `aula_23/roteiro.md` (~55 min, 8 seções) e `aula_23/roteiro.html` para o módulo S05.03 do curso Claude Code para Médicos.
+
+**Architecture:** Roteiro narrativo no formato canônico do curso — seções numeradas, Tom, falas do professor entre aspas, blocos copiáveis. Spec aprovado em `docs/superpowers/specs/2026-06-09-aula23-design.md`.
+
+**Tech Stack:** Markdown, pandoc (HTML), git.
+
+---
+
+## Arquivos
+
+- **Criar:** `aula_23/roteiro.md`
+- **Criar:** `aula_23/roteiro.html` (pandoc a partir do .md)
+- **Modificar:** `TODO.md` (S05.03 ✅, contadores 33✅/20⏳)
+
+---
+
+### Task 1: Escrever `aula_23/roteiro.md`
+
+**Files:**
+- Create: `aula_23/roteiro.md`
+
+- [ ] **Step 1: Criar pasta e arquivo**
+
+```bash
+mkdir -p aula_23
+```
+
+- [ ] **Step 2: Escrever roteiro completo**
+
+Conteúdo completo conforme spec `docs/superpowers/specs/2026-06-09-aula23-design.md`:
+
+```markdown
 # Aula 23 — PHQ-9 e GAD-7: O Paradigma Likert
 
 **Formato:** Gravada em um take no OBS Studio  
@@ -28,7 +64,7 @@ Mas essa frase ficou no ar.
 Você sabe o que ela quis dizer.
 Todo médico de família sabe.
 
-O problema é que "meio triste" não entra em prontuário.
+O problema é que 'meio triste' não entra em prontuário.
 Não tem CID.
 Não tem conduta automática.
 
@@ -43,15 +79,15 @@ Checkboxes — sim ou não.
 
 Hoje o paradigma muda.
 
-Não é mais "tem ou não tem".
-É "com que frequência".
+Não é mais 'tem ou não tem'.
+É 'com que frequência'.
 
 ---
 
 Você já viu isso antes — só não chamava de Likert.
 
 Pense na EVA de dor.
-Quando você pergunta "de zero a dez, qual é a sua dor?",
+Quando você pergunta 'de zero a dez, qual é a sua dor?',
 você não está perguntando se o paciente tem dor.
 Você está perguntando com que intensidade.
 
@@ -69,7 +105,7 @@ A soma decide a faixa.
 
 Esse é o paradigma Likert.
 Vai aparecer em dezenas de calculadoras que você vai implementar.
-Hoje você aprende o padrão uma vez.
+Hoje você aprende o padrão uma vez."
 
 ---
 
@@ -423,7 +459,7 @@ Isolamento há dois meses.
 Anedonia completa.
 Queixas em quase todos os itens.
 
-[selecionar nos dropdowns]
+[preencher nos dropdowns]
 
 - Pouco interesse: 3 = Quase todo dia
 - Deprimido: 3 = Quase todo dia
@@ -436,8 +472,6 @@ Queixas em quase todos os itens.
 - Item 9: 1 = Alguns dias
 
 [clicar Calcular PHQ-9]
-
----
 
 [mostrar na tela]
 
@@ -489,23 +523,23 @@ Não vou escrever por você.
 
 O que muda:
 
-- Nome da classe: Gad7
-- Arquivo: domain/calculadoras/gad7.py
+- Nome da classe: `Gad7`
+- Arquivo: `domain/calculadoras/gad7.py`
 - 7 campos inteiros (0 a 3):
   nervoso, preocupacao_incontrolavel, preocupacao_excessiva,
   relaxar, inquietacao, irritabilidade, medo
-- calcular() → score inteiro 0-21
-- interpretar(score):
+- `calcular()` → score inteiro 0-21
+- `interpretar(score)`:
   - 0 a 4: 'Mínimo'
   - 5 a 9: 'Leve'
   - 10 a 14: 'Moderado'
   - 15 a 21: 'Grave'
-- Função no service: calcular_gad7(dados: dict) → {"score": int, "faixa": str}
-- Tela: presentation/telas/calculadora_gad7.py
+- Função no service: `calcular_gad7(dados: dict) → {"score": int, "faixa": str}`
+- Tela: `presentation/telas/calculadora_gad7.py`
   - 7 dropdowns (mesmas opções: Nunca / Alguns dias / Mais da metade / Quase todo dia)
   - Faixa colorida: Mínimo/Leve verde · Moderado amarelo · Grave vermelho
   - Sem caixa de alerta especial
-- Sem método alerta_suicidio
+- Sem método `alerta_suicidio`
 
 ---
 
@@ -528,7 +562,7 @@ como esquecer as 4 faixas ou usar 5 campos em vez de 7]"
 Quantas faixas o Claude gerou?
 Bate com 4?
 
-[mostrar o método interpretar() do GAD-7]
+[mostrar o método `interpretar()` do GAD-7]
 
 Quatro faixas: Mínimo, Leve, Moderado, Grave.
 Correto.
@@ -619,3 +653,75 @@ Até lá."
 ---
 
 **FIM DO ROTEIRO**
+```
+
+- [ ] **Step 3: Verificar spec coverage (self-review inline)**
+
+Checklist contra `docs/superpowers/specs/2026-06-09-aula23-design.md`:
+
+| Item de spec | Presente no roteiro? |
+|---|---|
+| Abertura "Tô meio triste doutor" | ✅ S1 |
+| Analogia EVA de dor | ✅ S1 |
+| Escala 0=Nunca / 3=Quase todo dia | ✅ S1 |
+| Tabela 9 itens com nomes de campo | ✅ S2 |
+| 5 faixas com scores | ✅ S2 |
+| Cutoff ação clínica = 10 | ✅ S2 |
+| Pausa no item 9 + explicação "pergunta à parte" | ✅ S2 |
+| Cálculo caso âncora ao vivo → 7 Leve | ✅ S2 |
+| Prompt PHQ-9 completo copiável | ✅ S3 |
+| 3 diferenças booleano→Likert explicadas | ✅ S3 |
+| Claude gera 3 arquivos | ✅ S4 |
+| 5 perguntas leitura supervisionada | ✅ S4 (P1–P5) |
+| Pergunta 4 marcada como crítica | ✅ S4 |
+| Frase-âncora item 9 | ✅ S4 |
+| Caso 1 âncora score 7 Leve sem alerta | ✅ S5 |
+| Caso 2 grave score 20 + alerta ativo simultâneo | ✅ S5 |
+| Instrução transferência GAD-7 | ✅ S6 |
+| 7 campos GAD-7 listados | ✅ S6 |
+| 4 faixas GAD-7 sem item especial | ✅ S6 |
+| Pergunta-relâmpago "quantas faixas?" | ✅ S6 |
+| Caso 3 GAD-7 score 11 Moderado | ✅ S7 |
+| Valores individuais caso 3 explicitados | ✅ S7 |
+| Dever de casa + des-identificação + item 9 | ✅ S8 |
+| Bridge aula_24 HAM-D/YMRS/AUDIT/CAGE | ✅ S8 |
+
+---
+
+### Task 2: Gerar `aula_23/roteiro.html`
+
+**Files:**
+- Create: `aula_23/roteiro.html`
+
+- [ ] **Step 1: Gerar HTML com pandoc**
+
+```bash
+pandoc aula_23/roteiro.md -o aula_23/roteiro.html --standalone --metadata title="Aula 23 — PHQ-9 e GAD-7: O Paradigma Likert"
+```
+
+Expected: arquivo `aula_23/roteiro.html` criado sem erros.
+
+---
+
+### Task 3: Commit + atualizar TODO.md
+
+**Files:**
+- Modify: `TODO.md`
+
+- [ ] **Step 1: Commit dos arquivos da aula_23**
+
+```bash
+git add aula_23/
+git commit -m "feat: aula_23 roteiro.md + roteiro.html — PHQ-9 + GAD-7 paradigma Likert"
+```
+
+- [ ] **Step 2: Atualizar TODO.md**
+
+Mover S05.03 de ⏳ para ✅ e atualizar contadores para 33✅/20⏳.
+
+- [ ] **Step 3: Commit TODO.md**
+
+```bash
+git add TODO.md
+git commit -m "chore: TODO.md — S05.03 ✅, contadores 33✅/20⏳"
+```

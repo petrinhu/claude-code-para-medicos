@@ -1,7 +1,7 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-09
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 34 ✅ · 0 🚫 · 18 ⏳ · **Total: 52 aulas**
+> **Resumo:** 36 ✅ · 0 🚫 · 16 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
@@ -14,12 +14,10 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ⏳ Pendente — 18 itens
+## ⏳ Pendente — 16 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| S06.01 | 11 | Avançado · S06 Dashboard | Entrada de dados: formulários mensais (receita, glosas, consultas) → aula_25 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
-| S06.02 | 11 | Avançado · S06 Dashboard | KPIs e gráficos: visualização financeira do consultório → aula_26 | Média | S06.01 | Médio | ⏳ Pendente | ⏳ |
 | S07.01 | 12 | Avançado · S07 RAG | O que é RAG: analogia com memória médica → aula_27 | Média | S04 | Médio | ⏳ Pendente | ⏳ |
 | S07.02 | 12 | Avançado · S07 RAG | Indexar PDFs do knowledge_base/ → aula_28 | Média | S07.01 | Complexo | ⏳ Pendente | ⏳ |
 | S07.03 | 12 | Avançado · S07 RAG | Busca semântica em produção → aula_29 | Média | S07.02 | Complexo | ⏳ Pendente | ⏳ |
@@ -39,7 +37,7 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ✅ Concluído — 34 itens
+## ✅ Concluído — 36 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -77,3 +75,5 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 | S05.02 | 10 | Avançado · S05 Calculadoras | HAS-BLED → aula_22 (~45 min, cardiologista, painel decisão FA) | Alta | S05.01 | Médio | ✅ Concluído | ✅ |
 | S05.03 | 10 | Avançado · S05 Calculadoras | PHQ-9 e GAD-7 → aula_23 (paradigma Likert 0-3) | Alta | S05.02 | Médio | ✅ Concluído | ✅ |
 | S05.04 | 10 | Avançado · S05 Calculadoras | MELD + MMSE → aula_24 (padrões novos: fórmula contínua + scoring composto) | Média | S05.03 | Médio | ✅ Concluído | ✅ |
+| S06.01 | 11 | Avançado · S06 Dashboard | Entrada de dados: formulários mensais (receita, glosas, consultas) → aula_25 | Média | S04 | Médio | ✅ Concluído | ✅ |
+| S06.02 | 11 | Avançado · S06 Dashboard | KPIs e gráficos: visualização financeira do consultório → aula_26 | Média | S06.01 | Médio | ✅ Concluído | ✅ |

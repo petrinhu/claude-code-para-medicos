@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 21 — CHA₂DS₂-VASc: Sua Primeira Calculadora Clínica</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 21 — CHA₂DS₂-VASc: Sua Primeira Calculadora
+Clínica</h1>
+</header>
+<h1 id="aula-21-cha₂ds₂-vasc-sua-primeira-calculadora-clínica">Aula 21 —
+CHA₂DS₂-VASc: Sua Primeira Calculadora Clínica</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~55 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — “de hoje em
+diante você constrói ferramentas que outros usam”<br />
+<strong>Módulo:</strong> S05.01 — Calculadoras Médicas<br />
+<strong>Persona:</strong> Cardiologista</p>
+<hr />
+<h2 id="seção-1-abertura-do-módulo-s05-3-min">SEÇÃO 1: ABERTURA DO
+MÓDULO S05 — 3 min</h2>
+<p><strong>Tom:</strong> Virada de marco — fechar o arco de setup e
+abrir o arco de produto real</p>
+<p>“Vamos fazer um balanço rápido.</p>
+<p>Nas últimas dez aulas você montou o laboratório.</p>
+<p>Instalou o uv. Aprendeu Python com analogias clínicas. Criou a
+interface com Flet. Organizou tudo em quatro camadas. Recebeu um
+residente de plantão, equipou ele, montou o time da bigtech virtual,
+aprendeu a priorizar o trabalho.</p>
+<p>Tudo isso foi setup.</p>
+<hr />
+<p>A partir de hoje muda o jogo.</p>
+<p>Você vai parar de construir a estrutura e vai começar a construir
+funcionalidades reais.</p>
+<p>Funcionalidades que você vai usar na clínica. Que colegas seus vão
+usar. Que um dia podem entrar em produção.</p>
+<hr />
+<p>Módulo 5: Calculadoras Médicas.</p>
+<p>Quatro aulas. Quatro calculadoras. Começando hoje com a que você mais
+vai usar se você tem pacientes com fibrilação atrial.</p>
+<p>Mas antes de falar de código — me conta um caso.”</p>
+<hr />
+<h2 id="seção-2-clínica-como-especificação-10-min">SEÇÃO 2: CLÍNICA COMO
+ESPECIFICAÇÃO — 10 min</h2>
+<p><strong>Tom:</strong> Didático com propósito — a clínica gera o
+gabarito, não a revisão</p>
+<p>“Paciente. 68 anos. Masculino.</p>
+<p>Checkup de rotina. ECG de repouso. FA paroxística — descoberta agora.
+Hipertenso em tratamento. Diabético tipo 2. Sem AVC prévio. Sem
+insuficiência cardíaca. Sem doença vascular conhecida.</p>
+<p>A pergunta que você vai fazer — que todo cardiologista faz nesse
+momento:</p>
+<p>Anticoagulo?</p>
+<hr />
+<p>Para responder isso existe o CHA₂DS₂-VASc.</p>
+<p>Não vou te ensinar cardiologia. Você já sabe o que é esse score —
+você usa todo dia.</p>
+<p>O que eu vou fazer é diferente: vou te mostrar como transformar o que
+você já sabe em uma especificação que o Claude entende.</p>
+<hr />
+<p>O score tem oito critérios.</p>
+<p>[mostrar na tela]</p>
+<p>C — Insuficiência cardíaca congestiva: 1 ponto H — Hipertensão
+arterial: 1 ponto A₂ — Idade igual ou maior que 75 anos: 2 pontos D —
+Diabetes mellitus: 1 ponto S₂ — AVC, AIT ou tromboembolismo prévio: 2
+pontos V — Doença vascular: 1 ponto A — Idade entre 65 e 74 anos: 1
+ponto Sc — Sexo feminino: 1 ponto</p>
+<p>Dois critérios valem 2 pontos: o A₂ e o S₂. Os outros valem 1.</p>
+<p>Score máximo: 9 pontos se for mulher, 8 se for homem.</p>
+<hr />
+<p>Cutoff para anticoagular:</p>
+<p>Homem com score maior ou igual a 2: anticoagular. Mulher com score
+maior ou igual a 3: anticoagular.</p>
+<hr />
+<p>Agora: o caso do nosso paciente.</p>
+<p>[calcular ao vivo]</p>
+<p>C: não tem insuficiência cardíaca → 0 H: hipertenso → 1 A₂: 68 anos,
+não tem 75 ainda → 0 D: diabético → 1 S₂: sem AVC prévio → 0 V: sem
+doença vascular → 0 A: 68 anos, está na faixa 65-74 → 1 Sc: masculino →
+0</p>
+<p>Total: 3 pontos.</p>
+<p>Homem com score 3. Cutoff é 2.</p>
+<p>Anticoagula.</p>
+<hr />
+<p>Anote esse número: 3.</p>
+<p>É o gabarito.</p>
+<p>Quando o app estiver pronto, você vai digitar esses mesmos dados e o
+app vai ter que responder: 3 — Anticoagular.</p>
+<p>Se não bater, tem erro na implementação. Se bater, você pode
+assinar.”</p>
+<hr />
+<h2 id="seção-3-o-prompt-descritivo-8-min">SEÇÃO 3: O PROMPT DESCRITIVO
+— 8 min</h2>
+<p><strong>Tom:</strong> Revelar que o prompt é o protocolo, não o
+código</p>
+<p>“Agora vem a parte que você ainda não fez neste curso.</p>
+<p>Nas aulas anteriores o Claude Code ajudava você a entender código que
+já existia — o scaffold, a estrutura, os arquivos.</p>
+<p>Hoje você vai pedir para o Claude Code criar algo novo do zero.</p>
+<p>E o segredo é simples: você não escreve código. Você escreve um
+protocolo.</p>
+<hr />
+<p>[mostrar na tela]</p>
+<p>O prompt que vou usar agora foi preparado antes da aula. Você não vai
+decorá-lo — vai entendê-lo. E na sua especialidade você vai escrever o
+equivalente.</p>
+<p>[digitar no terminal — o professor lê cada parte enquanto digita]</p>
+<pre><code>Implemente a calculadora CHA₂DS₂-VASc no ClinMd-Tribe
+respeitando a Clean Architecture das 4 camadas:
+
+domain/calculadoras/cha2ds2vasc.py
+  - Classe Cha2ds2Vasc com campos:
+    chf, has, idade (int), dm, avc_previo,
+    doenca_vascular, sexo_feminino (bool)
+  - Método calcular() → retorna score inteiro 0–9
+    Regras:
+    - idade &gt;= 75: 2 pts
+    - idade entre 65 e 74: 1 pt
+    - avc_previo: 2 pts
+    - chf, has, dm, doenca_vascular: 1 pt cada
+    - sexo_feminino: 1 pt
+  - Método interpretar(score, sexo_feminino) → str
+    - Homem: score &gt;= 2 → &quot;Anticoagular&quot;
+    - Homem: score &lt; 2 → &quot;Sem indicação no momento&quot;
+    - Mulher: score &gt;= 3 → &quot;Anticoagular&quot;
+    - Mulher: score &lt; 3 → &quot;Sem indicação no momento&quot;
+
+application/servicos/calculadora_service.py
+  - Função calcular_cha2ds2vasc(dados: dict) → dict
+    Retorna: {&quot;score&quot;: int, &quot;recomendacao&quot;: str}
+
+presentation/telas/calculadora_cha2ds2vasc.py
+  - Tela Flet com:
+    - Checkbox para: CHF, HAS, DM, AVC prévio, doença vascular
+    - Campo numérico para idade
+    - Radio para sexo (Masculino / Feminino)
+    - Botão &quot;Calcular&quot;
+    - Exibir score em destaque (número grande)
+    - Exibir recomendação:
+      &quot;Sem indicação&quot; em verde
+      &quot;Anticoagular&quot; em laranja</code></pre>
+<hr />
+<p>Olha o que esse prompt é.</p>
+<p>É um protocolo clínico na linguagem do sistema.</p>
+<p>Você descreveu as regras do score — que você já conhecia. Você
+descreveu onde cada parte vai morar — que você aprendeu na aula_15. Você
+descreveu como a tela deve aparecer — que você viu na aula_13.</p>
+<p>Você não escreveu uma linha de Python. Você escreveu uma
+prescrição.</p>
+<p>O Claude vai executar a prescrição.”</p>
+<hr />
+<h2 id="seção-4-claude-implementa-5-min">SEÇÃO 4: CLAUDE IMPLEMENTA — 5
+min</h2>
+<p><strong>Tom:</strong> Mostrar os arquivos criados — não explicar cada
+linha ainda</p>
+<p>“[aguardar o Claude Code processar o prompt]</p>
+<p>[mostrar na tela os arquivos sendo criados]</p>
+<p>Três arquivos novos.</p>
+<p><code>domain/calculadoras/cha2ds2vasc.py</code> — a lógica do score.
+<code>application/servicos/calculadora_service.py</code> — o serviço que
+conecta. <code>presentation/telas/calculadora_cha2ds2vasc.py</code> — a
+tela no Flet.</p>
+<hr />
+<p>Agora uma coisa importante.</p>
+<p>O Claude gerou o código. Mas você ainda não pode confiar nele.</p>
+<p>Não porque o Claude erra sempre — ele erra às vezes. Não porque
+Python seja complicado — você não precisa entender Python.</p>
+<p>Mas porque você é o médico. E score médico errado em silêncio é risco
+para o paciente.</p>
+<p>Você não assina um laudo sem ler. Você não usa um app sem
+validar.</p>
+<p>Próxima seção: leitura clínica do código.”</p>
+<hr />
+<h2 id="seção-5-leitura-supervisionada-12-min">SEÇÃO 5: LEITURA
+SUPERVISIONADA — 12 min</h2>
+<p><strong>Tom:</strong> Clínico fazendo auditoria — verificar regras,
+não sintaxe</p>
+<p>“Vamos abrir o arquivo de domínio primeiro.</p>
+<p>[abrir domain/calculadoras/cha2ds2vasc.py]</p>
+<p>Você não precisa entender cada linha. Você precisa responder cinco
+perguntas.</p>
+<hr />
+<p>Pergunta 1: o campo de idade está calculando A₂ e A separados?</p>
+<p>A₂ vale 2 pontos para quem tem 75 ou mais. A vale 1 ponto para quem
+tem entre 65 e 74.</p>
+<p>Procure no código uma linha que testa <code>idade &gt;= 75</code> e
+outra que testa <code>65 &lt;= idade &lt;= 74</code> ou equivalente.</p>
+<p>[mostrar as linhas correspondentes]</p>
+<p>Está lá? Sim.</p>
+<hr />
+<p>Pergunta 2: o <code>avc_previo</code> está valendo 2 pontos?</p>
+<p>Esse é o erro mais comum em implementações de CHA₂DS₂-VASc. Alguém
+confunde S₂ com S e coloca 1 ponto.</p>
+<p>Procure no código onde <code>avc_previo</code> contribui para o
+score. Confirme que soma 2, não 1.</p>
+<p>[mostrar a linha]</p>
+<p>Correto.</p>
+<hr />
+<p>Pergunta 3: o sexo feminino está adicionando 1 ponto ao score?</p>
+<p>[mostrar a linha com sexo_feminino]</p>
+<p>Sim.</p>
+<hr />
+<p>Pergunta 4: o cutoff para mulher está em 3, não em 2?</p>
+<p>Abra o método <code>interpretar</code>. Procure onde ele verifica
+<code>sexo_feminino</code>. O número que aparece deve ser 3, não 2.</p>
+<p>[mostrar a condição]</p>
+<p>Correto.</p>
+<hr />
+<p>Pergunta 5: a tela está associada ao serviço?</p>
+<p>Abra <code>presentation/telas/calculadora_cha2ds2vasc.py</code>.</p>
+<p>O botão Calcular chama a função de <code>calculadora_service</code>?
+Ou o cálculo está direto na tela — fora da arquitetura?</p>
+<p>[mostrar a chamada]</p>
+<p>Está chamando o serviço. A camada está respeitada.</p>
+<hr />
+<p>Cinco perguntas. Todas respondidas.</p>
+<p>Você leu o código como médico, não como programador. Verificou as
+regras clínicas, não a sintaxe Python.</p>
+<p>Isso é o que significa supervisionar.</p>
+<p>Frase que vai aparecer várias vezes neste curso:</p>
+<p>Você não lê para entender Python. Você lê para assinar o laudo.”</p>
+<hr />
+<h2 id="seção-6-app-ao-vivo-7-min">SEÇÃO 6: APP AO VIVO — 7 min</h2>
+<p><strong>Tom:</strong> Payoff — o cardiologista vê o score na tela que
+construiu</p>
+<p>“Agora a parte que você esperava desde a abertura.</p>
+<p>Vamos rodar o app.</p>
+<p>[no terminal]</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[aguardar o Flet abrir no browser]</p>
+<hr />
+<p>[mostrar a tela da calculadora na tela do professor]</p>
+<p>Está aqui.</p>
+<p>A calculadora CHA₂DS₂-VASc. No seu app. No ClinMd-Tribe. Que você vai
+usar na clínica.</p>
+<hr />
+<p>Agora: o caso do nosso paciente.</p>
+<p>68 anos. Masculino. HAS: sim. DM: sim. Os outros critérios: não.</p>
+<p>[preencher cada campo ao vivo]</p>
+<p>[clicar Calcular]</p>
+<hr />
+<p>Score: 3.</p>
+<p>Recomendação: Anticoagular.</p>
+<hr />
+<p>Bate com o gabarito que calculamos à mão no começo da aula.</p>
+<p>Esse é o momento de confiar. Não porque o app é bonito. Não porque o
+código ficou limpo.</p>
+<p>Mas porque o número bateu com o que você calcularia à mão.”</p>
+<hr />
+<h2 id="seção-7-validação-cruzada-5-min">SEÇÃO 7: VALIDAÇÃO CRUZADA — 5
+min</h2>
+<p><strong>Tom:</strong> Rigoroso — um caso não é suficiente para
+confiar num instrumento clínico</p>
+<p>“Um caso não é suficiente.</p>
+<p>Você não valida um aparelho de PA com uma medida só. Você não valida
+uma calculadora com um paciente só.</p>
+<p>Vamos testar mais dois.</p>
+<hr />
+<p>Caso 2: paciente de 55 anos, masculino, sem nenhum fator de
+risco.</p>
+<p>[preencher na tela: todos os campos desmarcados, idade 55,
+masculino]</p>
+<p>[clicar Calcular]</p>
+<p>Score: 0. Sem indicação no momento.</p>
+<p>Correto. Nenhum critério preenchido, nenhum ponto.</p>
+<hr />
+<p>Caso 3: paciente de 77 anos, feminina. Insuficiência cardíaca.
+Hipertensa. AVC prévio.</p>
+<p>[preencher: CHF marcado, HAS marcado, AVC prévio marcado, idade 77,
+feminino]</p>
+<p>[clicar Calcular]</p>
+<p>Score: 7.</p>
+<p>Vamos conferir à mão: C: 1 + H: 1 + A₂: 2 (tem 77 anos) + S₂: 2 (AVC
+prévio) + Sc: 1 (feminino) = 7.</p>
+<p>Bate.</p>
+<p>Recomendação: Anticoagular. Evidentemente.</p>
+<hr />
+<p>Três casos. Três acertos.</p>
+<p>Agora você tem razão para confiar.</p>
+<p>Esse processo — testar com casos que você conhece a resposta — é o
+processo de validação de qualquer instrumento clínico.</p>
+<p>Termômetro, glicômetro, aparelho de PA, app de calculadora. A lógica
+é a mesma.</p>
+<p>Você não confia num aparelho de PA só porque ele apitou. Você compara
+com pacientes que você conhece. Com o app é igual.”</p>
+<hr />
+<h2 id="seção-8-encerramento-dever-5-min">SEÇÃO 8: ENCERRAMENTO + DEVER
+— 5 min</h2>
+<p><strong>Tom:</strong> Consolidar + motivar + ponte para a próxima
+calculadora</p>
+<p>“Resumo do que ficou pronto hoje.</p>
+<p>Você escreveu um prompt descritivo em linguagem natural. O Claude
+implementou a calculadora CHA₂DS₂-VASc nas 4 camadas certas. Você leu o
+código com olho clínico — verificou as regras, não a sintaxe. Rodou o
+app ao vivo e viu o score aparecer na tela. Validou com três casos
+clínicos conhecidos.</p>
+<p>O ClinMd-Tribe agora tem a sua primeira funcionalidade real.</p>
+<hr />
+<p>Uma observação sobre o que aconteceu aqui.</p>
+<p>Você é cardiologista — ou clínico com pacientes de FA. Você sabe as
+regras do CHA₂DS₂-VASc de cor.</p>
+<p>E foi exatamente por isso que você conseguiu fazer isso.</p>
+<p>O conhecimento clínico que você tem é o que transforma um prompt vago
+em uma especificação precisa. É o que permite que você valide o
+resultado. É o que separa uma calculadora que funciona de uma que
+mente.</p>
+<p>A ferramenta é do médico. Não do programador.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Abra o ClinMd-Tribe. Pense em um paciente com FA que você está
+acompanhando.</p>
+<p>Antes de digitar qualquer coisa: des-identifica. Nome: Paciente 001.
+CPF, data de nascimento, endereço: apaga. Mantém só: sexo, faixa etária,
+os critérios clínicos.</p>
+<p>Preencha a calculadora com os dados des-identificados. Compare o
+score do app com o score que você calcularia à mão.</p>
+<p>Se bater: você tem uma ferramenta validada. Se não bater: me manda o
+caso des-identificado e a gente investiga juntos.</p>
+<hr />
+<p>Na próxima aula: o outro lado da balança.</p>
+<p>O CHA₂DS₂-VASc calcula o risco de AVC. Mas anticoagular tem um custo:
+o risco de sangramento.</p>
+<p>Na aula_22 você implementa o HAS-BLED — e aí você tem os dois lados.
+Com os dois scores em mão, a decisão de anticoagular deixa de ser
+intuição e vira dado.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

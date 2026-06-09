@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 22 — HAS-BLED: O Outro Lado da Balança</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 22 — HAS-BLED: O Outro Lado da Balança</h1>
+</header>
+<h1 id="aula-22-has-bled-o-outro-lado-da-balança">Aula 22 — HAS-BLED: O
+Outro Lado da Balança</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<strong>Duração:</strong> ~45 min<br />
+<strong>Tom:</strong> Colega com humor leve e didático — “agora você tem
+os dois lados”<br />
+<strong>Módulo:</strong> S05.02 — Calculadoras Médicas<br />
+<strong>Persona:</strong> Cardiologista</p>
+<hr />
+<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA — 2 min</h2>
+<p><strong>Tom:</strong> Continuação direta da aula_21 — retomar o caso,
+não começar do zero</p>
+<p>“Na aula passada você ficou com metade da resposta.</p>
+<p>O paciente: 68 anos, masculino, FA paroxística, hipertenso em
+tratamento, diabético.</p>
+<p>O CHA₂DS₂-VASc: score 3. Anticoagulação indicada.</p>
+<p>Mas você não anticoagulou ainda.</p>
+<p>Por quê?</p>
+<p>Porque anticoagular tem um custo. Você reduziu o risco de AVC — mas
+expôs o paciente ao risco de sangramento.</p>
+<p>Hoje você calcula o outro lado da balança.</p>
+<p>Ao final desta aula, você vai ver os dois scores na tela ao mesmo
+tempo. E a decisão vai deixar de ser intuição.”</p>
+<hr />
+<h2 id="seção-2-has-bled-como-especificação-7-min">SEÇÃO 2: HAS-BLED
+COMO ESPECIFICAÇÃO — 7 min</h2>
+<p><strong>Tom:</strong> Mais rápido que na aula_21 — aluno já sabe o
+método, o foco é a clínica</p>
+<p>“O HAS-BLED foi desenvolvido para estimar o risco de sangramento em
+pacientes com FA em uso de anticoagulante.</p>
+<p>[mostrar na tela]</p>
+<p>Sete critérios:</p>
+<p>H — Hipertensão não controlada (PAS acima de 160): 1 ponto A —
+Disfunção renal ou hepática: 1 ponto S — AVC ou AIT prévio: 1 ponto B —
+Sangramento prévio ou predisposição: 1 ponto L — INR lábil: 1 ponto E —
+Idade acima de 65 anos: 1 ponto D — Drogas antiagregantes, AINEs ou
+álcool: 1 ponto</p>
+<p>Score máximo: 7.</p>
+<hr />
+<p>Interpretação:</p>
+<p>Score menor que 3: baixo risco de sangramento. Score igual a 3: risco
+moderado. Score maior que 3: alto risco.</p>
+<hr />
+<p>Um detalhe importante: o critério L.</p>
+<p>INR lábil significa que o paciente anticoagulado com warfarina fica
+menos de 60% do tempo dentro da faixa terapêutica.</p>
+<p>É o critério mais frequentemente esquecido nas implementações. Vamos
+prestar atenção nele quando ler o código.</p>
+<hr />
+<p>Agora: nosso paciente.</p>
+<p>[calcular ao vivo]</p>
+<p>H: hipertenso, mas em tratamento e controlado — PAS dentro do alvo →
+0 A: sem disfunção renal ou hepática → 0 S: sem AVC ou AIT prévio → 0 B:
+sem sangramento prévio → 0 L: não está em uso de warfarina ainda → 0 E:
+68 anos, acima de 65 → 1 D: sem AAS, AINE ou álcool → 0</p>
+<p>Total: 1 ponto.</p>
+<p>HAS-BLED de 1: baixo risco de sangramento.</p>
+<hr />
+<p>Anote: HAS-BLED = 1.</p>
+<p>Esse é o gabarito.</p>
+<p>Na aula passada você anotou CHA₂DS₂-VASc = 3.</p>
+<p>Ao final desta aula, os dois vão aparecer na mesma tela. E a decisão
+vai estar lá.”</p>
+<hr />
+<h2 id="seção-3-o-prompt-descritivo-7-min">SEÇÃO 3: O PROMPT DESCRITIVO
+— 7 min</h2>
+<p><strong>Tom:</strong> Mostrar que fica mais fácil na segunda vez — o
+padrão está internalizado</p>
+<p>“Na aula_21 você precisou que eu lesse cada parte do prompt e
+explicasse o que cada trecho fazia.</p>
+<p>Hoje vai ser diferente.</p>
+<p>Você já sabe o que é Clean Architecture. Você já sabe o que é domain,
+application, presentation. Você já sabe que o médico escreve o protocolo
+— e o Claude executa.</p>
+<p>O prompt desta vez vai ser mais curto. Não porque a calculadora é
+mais simples — mas porque você ficou mais rápido.</p>
+<hr />
+<p>[digitar no terminal — o professor lê em ritmo mais acelerado]</p>
+<pre><code>Implemente a calculadora HAS-BLED no ClinMd-Tribe
+respeitando a Clean Architecture das 4 camadas:
+
+domain/calculadoras/hasbled.py
+  - Classe HasBled com 7 campos booleanos:
+    has_descontrolada, disfuncao_renal_hepatica, avc_previo,
+    sangramento_previo, inr_labial, idoso, drogas_alcool
+  - Método calcular() → score inteiro 0-7
+  - Método interpretar(score) → str
+    - score &lt; 3 → &quot;Baixo risco de sangramento&quot;
+    - score == 3 → &quot;Risco moderado de sangramento&quot;
+    - score &gt; 3 → &quot;Alto risco de sangramento&quot;
+
+application/servicos/calculadora_service.py
+  - Adicionar função calcular_hasbled(dados: dict) → dict
+    Retorna: {&quot;score&quot;: int, &quot;interpretacao&quot;: str}
+
+presentation/telas/calculadora_hasbled.py
+  - Tela Flet com:
+    - 7 checkboxes para os critérios HAS-BLED
+    - Botão &quot;Calcular HAS-BLED&quot;
+    - Exibir score em destaque
+    - Exibir interpretação: verde se score &lt; 3, amarelo se = 3, vermelho se &gt; 3
+    - Seção &quot;Decisão FA&quot;:
+      - Campo numérico: &quot;CHA₂DS₂-VASc (da calculadora anterior)&quot;
+      - Radio: sexo do paciente (Masculino / Feminino)
+      - Botão &quot;Ver decisão&quot;
+      - Exibir recomendação combinada:
+        · CHA₂DS₂-VASc maior ou igual ao cutoff E HAS-BLED menor que 3:
+          &quot;Anticoagular — baixo risco de sangramento&quot; em verde
+        · CHA₂DS₂-VASc maior ou igual ao cutoff E HAS-BLED maior ou igual a 3:
+          &quot;Decisão individualizada — discutir risco/benefício&quot; em laranja
+        · CHA₂DS₂-VASc menor que o cutoff:
+          &quot;Sem indicação de anticoagulação&quot; em cinza
+      (cutoff: homem ≥ 2 · mulher ≥ 3)</code></pre>
+<hr />
+<p>Percebe o que ficou diferente?</p>
+<p>Você digitou mais rápido. Você não precisou pausar para pensar onde
+cada coisa vai.</p>
+<p>Isso é o padrão sendo internalizado.</p>
+<p>Daqui a quatro aulas, quando você implementar a décima calculadora,
+vai ser mais rápido ainda.”</p>
+<hr />
+<h2 id="seção-4-claude-implementa-4-min">SEÇÃO 4: CLAUDE IMPLEMENTA — 4
+min</h2>
+<p><strong>Tom:</strong> Rápido — confirmação, não explicação</p>
+<p>“[aguardar o Claude Code processar o prompt]</p>
+<p>[mostrar na tela os arquivos sendo criados e modificados]</p>
+<p>Dois arquivos novos. Um arquivo modificado.</p>
+<p><code>domain/calculadoras/hasbled.py</code> — criado.
+<code>presentation/telas/calculadora_hasbled.py</code> — criado.
+<code>application/servicos/calculadora_service.py</code> — modificado,
+função adicionada.</p>
+<hr />
+<p>O padrão é o mesmo da aula_21. Mas desta vez você sabia o que esperar
+antes de o Claude gerar.</p>
+<p>Essa antecipação — saber o que vai aparecer antes de aparecer — é o
+sinal de que você está entendendo a arquitetura.</p>
+<p>Não decorando. Entendendo.”</p>
+<hr />
+<h2 id="seção-5-leitura-supervisionada-8-min">SEÇÃO 5: LEITURA
+SUPERVISIONADA — 8 min</h2>
+<p><strong>Tom:</strong> Auditoria clínica — três perguntas, ritmo mais
+rápido que na aula_21</p>
+<p>“Desta vez: três perguntas.</p>
+<p>Na aula_21 foram cinco. Você já sabe onde olhar — o andaime ficou
+menor.</p>
+<hr />
+<p>Pergunta 1: o critério L está no domínio?</p>
+<p>Abra <code>domain/calculadoras/hasbled.py</code>.</p>
+<p>Procure o campo <code>inr_labial</code>.</p>
+<p>É o critério mais esquecido. Se não estiver lá — o app está errado e
+você não pode assinar.</p>
+<p>[mostrar o campo]</p>
+<p>Está. Correto.</p>
+<hr />
+<p>Pergunta 2: o método <code>interpretar()</code> usa o cutoff de 3,
+não de 2?</p>
+<p>Procure onde o código decide entre baixo, moderado e alto risco.</p>
+<p>O número que aparece como limite deve ser 3. Se for 2, a calculadora
+vai superestimar o risco — e pode fazer o médico evitar anticoagulação
+em quem se beneficiaria dela.</p>
+<p>[mostrar a condição]</p>
+<p>Correto.</p>
+<hr />
+<p>Pergunta 3: a seção Decisão FA chama o serviço?</p>
+<p>Abra <code>presentation/telas/calculadora_hasbled.py</code>.</p>
+<p>Quando o botão ‘Ver decisão’ é clicado, o código chama
+<code>calcular_hasbled</code> do <code>calculadora_service</code>?</p>
+<p>Ou o cálculo está feito direto na tela, fora da arquitetura?</p>
+<p>[mostrar a chamada]</p>
+<p>Está chamando o serviço. A camada está respeitada.</p>
+<hr />
+<p>Três perguntas. Três confirmações.</p>
+<p>Você pode assinar.”</p>
+<hr />
+<h2 id="seção-6-app-ao-vivo-climax-8-min">SEÇÃO 6: APP AO VIVO + CLIMAX
+— 8 min</h2>
+<p><strong>Tom:</strong> Payoff — os dois lados da balança na mesma
+tela</p>
+<p>“[no terminal]</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[aguardar o Flet abrir no browser]</p>
+<hr />
+<p>[mostrar a tela da calculadora HAS-BLED]</p>
+<p>Aqui está.</p>
+<p>Sete checkboxes. Um botão. O score.</p>
+<p>Vamos preencher o nosso paciente.</p>
+<hr />
+<p>68 anos. Masculino. Hipertenso controlado. Diabético. Sem disfunção
+renal ou hepática. Sem AVC ou AIT. Sem sangramento prévio. Sem warfarina
+ainda — INR não se aplica. Sem AAS, AINE ou álcool.</p>
+<p>[preencher cada campo ao vivo — apenas E marcado]</p>
+<p>[clicar Calcular HAS-BLED]</p>
+<hr />
+<p>Score: 1.</p>
+<p>Baixo risco de sangramento.</p>
+<hr />
+<p>Agora: a seção Decisão FA.</p>
+<p>CHA₂DS₂-VASc: digito 3. Sexo: masculino.</p>
+<p>[clicar Ver decisão]</p>
+<hr />
+<p>[mostrar o resultado em destaque]</p>
+<p>Anticoagular — baixo risco de sangramento.</p>
+<hr />
+<p>Os dois lados da balança.</p>
+<p>CHA₂DS₂-VASc de 3: a indicação está lá. HAS-BLED de 1: o risco de
+sangramento é baixo.</p>
+<p>A decisão virou dado.</p>
+<p>Não é intuição. Não é experiência clínica sozinha. É o protocolo —
+calculado, verificado, documentado.</p>
+<p>E você construiu a ferramenta que faz esse cálculo.”</p>
+<hr />
+<h2 id="seção-7-validação-cruzada-4-min">SEÇÃO 7: VALIDAÇÃO CRUZADA — 4
+min</h2>
+<p><strong>Tom:</strong> Rigoroso — e introduzindo o limite da
+calculadora</p>
+<p>“Um segundo caso. Diferente do primeiro.</p>
+<p>Paciente de 78 anos, feminina. Hipertensa, pressão não controlada.
+Doença renal crônica estágio 4. AVC isquêmico há dois anos. Sangramento
+gastrointestinal prévio. INR lábil — menos de 60% do tempo em faixa. Em
+uso de AAS.</p>
+<p>[preencher: todos os critérios marcados, sem exceção]</p>
+<p>[clicar Calcular HAS-BLED]</p>
+<p>Score: 7.</p>
+<p>Alto risco de sangramento.</p>
+<hr />
+<p>Agora: a seção Decisão FA.</p>
+<p>Para essa paciente, o CHA₂DS₂-VASc seria alto — AVC prévio vale 2,
+idade acima de 75 vale 2, HAS vale 1, sexo feminino vale 1: score de 6,
+pelo menos.</p>
+<p>CHA₂DS₂-VASc: digito 6. Sexo: feminino.</p>
+<p>[clicar Ver decisão]</p>
+<hr />
+<p>Decisão individualizada — discutir risco/benefício.</p>
+<hr />
+<p>Aqui está o limite da calculadora.</p>
+<p>Quando os dois scores são altos, o app não decide por você.</p>
+<p>Ele diz: essa decisão precisa de uma conversa. Com o paciente, com a
+família, com o especialista se necessário.</p>
+<p>Isso não é uma falha da ferramenta. É honestidade clínica embutida no
+código.</p>
+<p>A calculadora não é oráculo. É andaime para o raciocínio.</p>
+<p>Você construiu uma ferramenta que sabe o que não sabe.”</p>
+<hr />
+<h2 id="seção-8-encerramento-dever-5-min">SEÇÃO 8: ENCERRAMENTO + DEVER
+— 5 min</h2>
+<p><strong>Tom:</strong> Consolidar + motivar + sinalizar a virada de
+paradigma na aula_23</p>
+<p>“Resumo do que ficou pronto hoje.</p>
+<p>Você implementou o HAS-BLED — sete critérios, cutoff de 3. Você
+verificou o código com três perguntas clínicas. Você rodou o app e viu
+os dois scores juntos pela primeira vez. Você testou o caso mais difícil
+— e o app respondeu com honestidade.</p>
+<p>O ClinMd-Tribe agora tem duas calculadoras. E um painel de decisão
+que integra as duas.</p>
+<hr />
+<p>Dever de casa.</p>
+<p>Abra o ClinMd-Tribe. Pense num paciente com FA que você está
+acompanhando.</p>
+<p>Des-identifica antes de digitar qualquer coisa. Nome: Paciente 001.
+CPF, data de nascimento, endereço: apaga. Mantém só: sexo, faixa etária,
+os critérios clínicos.</p>
+<p>Calcule o HAS-BLED. Coloque o CHA₂DS₂-VASc que você calcularia à mão.
+Veja o que o Painel de Decisão FA mostra.</p>
+<p>Compare com o que você faria clinicamente. Se divergir — me manda o
+caso des-identificado.</p>
+<hr />
+<p>Na próxima aula: o paradigma muda.</p>
+<p>Até agora todas as calculadoras trabalharam com sim e não. Hipertenso
+ou não. AVC prévio ou não.</p>
+<p>Na aula_23, a pergunta vai ser diferente:</p>
+<p>Com que frequência?</p>
+<p>PHQ-9 e GAD-7 — rastreio de depressão e ansiedade. Cada item tem
+quatro opções: nunca, alguns dias, mais da metade dos dias, quase todo
+dia. Cada opção tem um valor numérico. A soma decide.</p>
+<p>É um padrão novo. E ele vai aparecer em dezenas de calculadoras que
+você vai implementar depois.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

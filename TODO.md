@@ -1,14 +1,14 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-08
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 20 ✅ · 10 🚫 · 22 ⏳ · **Total: 52 aulas**
+> **Resumo:** 21 ✅ · 9 🚫 · 22 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
 
 ---
 
-## 🚫 Refatorar — 10 itens (conteúdo incorreto vs. HTML)
+## 🚫 Refatorar — 9 itens (conteúdo incorreto vs. HTML)
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -21,7 +21,6 @@
 | M1.02 | 2 | Iniciante · M1 | Gerar documentos: folhetos, ofícios e modelos administrativos → aula_02 (🚫 idem M1.01) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
 | M1.03 | 2 | Iniciante · M1 | Montar slides e apresentações a partir de tópicos soltos → aula_02 (🚫 idem M1.01) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
 | M1.04 | 2 | Iniciante · M1 | Planilhas: organizar, limpar e gerar gráficos simples → aula_02 (🚫 idem M1.01) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
-| M3.05 | 4 | Intermediário · M3 | Gestão do consultório: indicadores, faturamento e automação → aula_07 (🚫 roteiro tem "Dashboard Cirúrgico" — foco cirúrgico ≠ gestão financeira) | Alta | M2 | Simples | 🚫 Refatorar | 🚫 |
 
 ---
 
@@ -54,10 +53,11 @@
 
 ---
 
-## ✅ Concluído — 20 itens
+## ✅ Concluído — 21 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
+| M3.05 | 4 | Intermediário · M3 | Gestão do consultório: indicadores, faturamento e automação → aula_07 (~48 min, metabologista, dashboard HTML self-contained) | Alta | M2 | Simples | ✅ Concluído | ✅ |
 | M2.01 | 3 | Intermediário · M2 | Buscar e triar artigos pelo conector de PubMed → aula_03 (condensado com M2.02) | Média | M1 | Simples | ✅ Concluído | ✅ |
 | M2.02 | 3 | Intermediário · M2 | Fichamento e leitura crítica: PICO, nível de evidência, vieses → aula_03 (condensado) | Média | M1 | Simples | ✅ Concluído | ✅ |
 | M2.03 | 3 | Intermediário · M2 | Flashcards (Anki) e simulados a partir de guidelines → aula_04 (condensado com M2.04) | Média | M1 | Simples | ✅ Concluído | ✅ |

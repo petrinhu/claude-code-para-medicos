@@ -1,341 +1,484 @@
-<h1 id="aula-10--setup-do-ambiente-dev--clinmd-tribe-reveal">Aula 10 —
-Setup do Ambiente Dev + ClinMd-Tribe Reveal</h1>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 10 — Terminal + uv: o Bisturi Digital</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 10 — Terminal + uv: o Bisturi Digital</h1>
+</header>
+<h1 id="aula-10-terminal-uv-o-bisturi-digital">Aula 10 — Terminal + uv:
+o Bisturi Digital</h1>
 <p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
 <strong>Duração:</strong> ~48 min<br />
-<strong>Tom:</strong> Colega com humor leve e didático — momento de
-passagem de nível</p>
+<strong>Tom:</strong> Colega com humor leve e didático — “você passa de
+usuário para construtor”<br />
+<strong>Módulo:</strong> S01.01 — Fundação da Fase Avançada<br />
+<strong>SO:</strong> Windows/PowerShell (padrão único do curso)</p>
 <hr />
-<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
-<p><strong>Tom:</strong> Virada de página — a fase avançada começa</p>
-<p>"Nas últimas nove aulas você dominou o Claude Code — sete sem
-programação, duas aprendendo Git.</p>
-<p>Você pesquisou literatura no PubMed, criou flashcards, gerou um
-pôster de congresso, publicou carrossel no Instagram e fez um dashboard
-de gestão do consultório.</p>
-<p>Tudo isso com o Claude como co-piloto.</p>
-<p>Agora a pergunta é: e se você pudesse construir algo seu? Uma
-ferramenta clínica. Que funciona offline. No seu computador. Que você
-controla completamente.</p>
-<p>Esta aula começa a responder essa pergunta.</p>
-<p>Bem-vindo à fase avançada."</p>
+<h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA — 2 min</h2>
+<p><strong>Tom:</strong> Virada de página — a fase avançada começa
+aqui</p>
+<p>“Nas últimas nove aulas você aprendeu a pedir.</p>
+<p>Você pesquisou no PubMed, resumiu guidelines, criou slides, gerou um
+pôster, publicou no Instagram, fez um dashboard de gestão do
+consultório.</p>
+<p>Tudo descrevendo o problema em linguagem natural.</p>
+<p>Agora a pergunta muda.</p>
+<p>Não é mais ‘o que o Claude pode fazer por mim’.</p>
+<p>É: o que eu posso construir com o Claude como par de programação?</p>
+<p>Bem-vindo à fase avançada.”</p>
 <hr />
-<h2 id="seção-2-clinmd-tribe--o-reveal-3-min">SEÇÃO 2: CLINMD-TRIBE — O
-REVEAL (3 min)</h2>
+<h2 id="seção-2-clinmd-tribe-reveal-3-min">SEÇÃO 2: CLINMD-TRIBE REVEAL
+— 3 min</h2>
 <p><strong>Tom:</strong> Revelação com entusiasmo contido — deixar o
 produto falar</p>
-<p>"O que a gente vai construir juntos nas próximas semanas tem um
-nome.</p>
-<p>ClinMd-Tribe.</p>
-<p>É um app clínico 100% local. Roda no seu computador. Não precisa de
-internet. Não manda dado para servidor nenhum. Funciona no Windows, no
-Mac, no Linux.</p>
-<p>O que ele faz?</p>
-<p>Primeiro: calculadoras clínicas — CHA₂DS₂-VASc, PHQ-9, GAD-7, YMRS,
-HAM-D. Sem anuncio. Sem login. Clicou, calculou.</p>
-<p>Segundo: anotador clínico — templates de consulta, salvamento local.
-Seu modelo de anamnese, do jeito que você gosta.</p>
-<p>Terceiro: busca inteligente em PDFs — guidelines, artigos que você
-salvou. Você pergunta em linguagem natural, ele acha.</p>
-<p>É isso. Um app para uso diário no consultório. Construído do zero,
-por você, com o Claude como par de programação.</p>
+<p>“O que a gente vai construir juntos tem um nome: ClinMd-Tribe.</p>
+<p>Três funcionalidades.</p>
+<p>Calculadoras clínicas — CHA₂DS₂-VASc, PHQ-9, GAD-7, YMRS. Sem
+anúncio. Sem login. Clicou, calculou.</p>
+<p>Anotador clínico — templates de consulta salvos localmente, do jeito
+que você gosta, no seu padrão.</p>
+<p>Busca inteligente em PDF — você pergunta em linguagem natural, ele
+acha no guideline ou no artigo que você salvou.</p>
+<p>100% local. Funciona no seu computador sem internet. Dado de paciente
+não sai da sua máquina.</p>
+<p>O dashboard que você fez na aula_07 foi descartável — você gerou,
+usou, refez no mês seguinte.</p>
+<p>O ClinMd-Tribe é permanente. Você vai construí-lo do zero, aula por
+aula, com o Claude como parceiro.</p>
+<p>Hoje a gente monta o laboratório.”</p>
 <hr />
-<p>Antes de seguir, deixa eu mostrar a planta da casa que vamos
-construir.</p>
-<p>Todo sistema bem feito tem camadas. Como o corpo humano. Pele,
-tecido, músculo, osso — cada camada tem função específica.</p>
-<p>O ClinMd-Tribe tem quatro camadas:</p>
-<p><strong>Apresentação</strong> — o que você vê: telas, botões,
-formulários. É a pele. É com o Flet que vamos construir essa camada.</p>
-<p><strong>Aplicação</strong> — as regras de negócio: 'calcular
-CHA2DS2-VASc', 'salvar evolução', 'buscar no PDF'. É o tecido que
-conecta tela e dados.</p>
-<p><strong>Domínio</strong> — as entidades clínicas: o que é um
-Paciente, um Cálculo, uma Nota de Evolução. É a anatomia do sistema.</p>
-<p><strong>Infraestrutura</strong> — onde os dados são guardados:
-arquivos no disco, banco de dados local, indexação de PDFs. É o osso —
-sustenta tudo.</p>
-<p>[mostrar diagrama simples: 4 caixas empilhadas com os nomes]</p>
-<p>Você não precisa memorizar isso agora. O que precisa saber: quando
-chegar na aula de Clean Architecture, você vai reconhecer esse diagrama.
-E vai entender por que cada peça do ClinMd-Tribe está onde está.</p>
-<p>Por enquanto: a planta existe. Agora vamos montar o laboratório."</p>
+<h2 id="seção-3-uv-por-que-existe-2-min">SEÇÃO 3: UV — POR QUE EXISTE —
+2 min</h2>
+<p><strong>Tom:</strong> Contextualizar o problema antes de instalar a
+solução</p>
+<p>“Antes de qualquer coisa, precisamos falar de um problema real.</p>
+<p>Python tem um ecossistema enorme de bibliotecas — ferramentas prontas
+que você usa no projeto. Você não escreve o ibuprofeno na sua cozinha.
+Você compra na farmácia.</p>
+<p>O problema: duas bibliotecas às vezes precisam de versões
+incompatíveis de uma terceira.</p>
+<p>É como uma interação medicamentosa: remédio A e remédio B funcionam
+sozinhos. Juntos, na mesma dose, conflito.</p>
+<p>O uv resolve isso.</p>
+<p>Ele é o gerenciador de dependências — a farmácia do projeto. Ele sabe
+exatamente quais remédios o projeto precisa, em qual versão, e garante
+que nada conflita.</p>
+<p>Primeiro passo: instalar a farmácia.”</p>
 <hr />
-<h2 id="seção-3-o-ambiente-de-um-dev-real-2-min">SEÇÃO 3: O AMBIENTE DE
-UM DEV REAL (2 min)</h2>
-<p><strong>Tom:</strong> Didático — analogia clínica para ferramentas de
-desenvolvimento</p>
-<p>"Todo médico que vai fazer uma cirurgia prepara o campo operatório
-primeiro.</p>
-<p>Você não entra na sala e começa a cortar. Você esteriliza os
-instrumentos, monta a bandeja, posiciona o paciente.</p>
-<p>Desenvolvimento de software é igual.</p>
-<p>Antes de escrever a primeira linha de código do ClinMd-Tribe, você
-vai instalar quatro categorias de ferramentas:</p>
-<p>Plugins — superpoderes adicionais para o Claude Code. Skills —
-atalhos de trabalho que o Claude conhece. Agents — especialistas
-virtuais que o Claude aciona quando precisa. MCPs — conexões com
-ferramentas externas como PubMed e Canva.</p>
-<p>E no final: uv — o gerenciador de dependências que vai organizar o
+<h2 id="seção-4-demo-install-init-8-min">SEÇÃO 4: DEMO — INSTALL + INIT
+— 8 min</h2>
+<p><strong>Tom:</strong> Prático, passo a passo, confirmando cada etapa
+antes de avançar</p>
+<p>“Abra o PowerShell.</p>
+<p>Vamos instalar o uv. Método recomendado no Windows:</p>
+<pre><code>winget install --id=astral-sh.uv -e</code></pre>
+<p>[aguardar a instalação]</p>
+<p>Se o winget não estiver disponível no seu Windows, use este comando
+alternativo:</p>
+<pre><code>powershell -ExecutionPolicy ByPass -c &quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</code></pre>
+<hr />
+<p>Instalado. Agora: feche o PowerShell e abra um novo.</p>
+<p>Isso é necessário para que o Windows reconheça o uv no caminho do
+sistema.</p>
+<p>No novo PowerShell, confirme a instalação:</p>
+<pre><code>uv --version</code></pre>
+<p>[mostrar o número de versão]</p>
+<p>Sinal vital positivo. O uv está vivo.</p>
+<hr />
+<p>Agora vamos para a pasta de projetos.</p>
+<p>Na aula de abertura eu pedi para você criar a pasta
+<code>projetos</code> dentro de Documentos, no Windows Explorer.</p>
+<p>Navegar até lá:</p>
+<pre><code>cd $HOME\Documents\projetos</code></pre>
+<p>Criar o projeto ClinMd-Tribe:</p>
+<pre><code>uv init clinmd-tribe</code></pre>
+<p>[mostrar o output do uv init]</p>
+<p>Entrar na pasta:</p>
+<pre><code>cd clinmd-tribe</code></pre>
+<p>Ver o que foi criado:</p>
+<pre><code>dir</code></pre>
+<p>[mostrar os três arquivos]</p>
+<p>Três arquivos. Só três.</p>
+<p><code>.python-version</code> — qual versão de Python este projeto
+usa. <code>main.py</code> — o arquivo de entrada do projeto, gerado
+automaticamente. <code>pyproject.toml</code> — o prontuário do
 projeto.</p>
-<p>Vamos instalar tudo. Passo a passo."</p>
+<p>A farmácia está de pé. Ainda vazia — mas organizada.”</p>
 <hr />
-<h2 id="seção-4-demo--plugin-oficial--skills-10-min">SEÇÃO 4: DEMO —
-PLUGIN OFICIAL + SKILLS (10 min)</h2>
-<p><strong>Tom:</strong> Prático, dois momentos — o oficial e o
-personalizado</p>
-<p>"Começa pelo plugin oficial.</p>
-<p>Abra o terminal e inicie o Claude Code:</p>
-<pre><code>claude</code></pre>
-<p>Dentro do Claude Code, digite:</p>
-<pre><code>/plugin install superpowers@claude-plugins-official</code></pre>
-<p>[aguardar instalação]</p>
-<p>Pronto. Isso instalou o pacote superpowers — ele adiciona um conjunto
-de skills prontas para uso: brainstorming, planejamento, revisão de
-código, debuggin...</p>
-<p>Perceba a barra <code>/</code> — no Claude Code, comandos que começam
-com <code>/</code> são internos. São como atalhos de teclado, mas para o
-Claude.</p>
-<p>Documentação oficial em: <a
-href="https://docs.anthropic.com/pt/claude-code/plugins">https://docs.anthropic.com/pt/claude-code/plugins</a></p>
+<h2 id="seção-5-demo-type-pyproject.toml-5-min">SEÇÃO 5: DEMO — TYPE
+PYPROJECT.TOML — 5 min</h2>
+<p><strong>Tom:</strong> Didático — ler o prontuário em voz alta, campo
+por campo</p>
+<p>“Vamos abrir o prontuário.</p>
+<p>Não abrir para editar — abrir para ler. No PowerShell, o comando
+<code>type</code> lê um arquivo sem modificar nada:</p>
+<pre><code>type pyproject.toml</code></pre>
+<p>[mostrar o conteúdo]</p>
+<p>Vai aparecer algo assim:</p>
+<pre><code>[project]
+name = &#39;clinmd-tribe&#39;
+version = &#39;0.1.0&#39;
+description = &#39;Add your description here&#39;
+requires-python = &#39;&gt;=3.11&#39;
+dependencies = []</code></pre>
+<p>Leitura clínica desse arquivo:</p>
+<p><code>name</code> — o nome do projeto. A identidade.</p>
+<p><code>version</code> — 0.1.0 significa versão inicial, ainda em
+desenvolvimento. Quando você lança a primeira versão estável, vira
+1.0.0.</p>
+<p><code>requires-python</code> — este projeto precisa de Python 3.11 ou
+mais novo. Se alguém tentar rodar com Python 3.9, o uv avisa.</p>
+<p><code>dependencies</code> — a lista de remédios. Está vazia agora. O
+prontuário existe, mas o paciente ainda não tem prescrição.</p>
 <hr />
-<p>Agora as skills que eu criei — ficam no Codeberg, meu servidor git
-privado.</p>
-<p>São três. Cada uma resolve um problema real de desenvolvimento.</p>
-<p>Jeito difícil: clona manualmente cada repositório.</p>
-<pre><code>git clone https://codeberg.org/petrinhu/forgejo-skill.git ~/.claude/skills/forgejo
-git clone https://codeberg.org/petrinhu/memo_persistente.git ~/.claude/skills/memo_persistente
-git clone https://codeberg.org/petrinhu/tab_pendencias.git ~/.claude/skills/tab_pendencias</code></pre>
-<p>[executar e mostrar as pastas criadas em ~/.claude/skills/]</p>
-<p>Mas tem um jeito mais fácil.</p>
-<p>Jeito fácil: você fecha o Claude Code, abre um novo terminal e
-escreve:</p>
-<pre><code>claude &quot;Clone os três repositórios de skills do Dr. Petrus a partir do Codeberg:
-1. https://codeberg.org/petrinhu/forgejo-skill.git → ~/.claude/skills/forgejo
-2. https://codeberg.org/petrinhu/memo_persistente.git → ~/.claude/skills/memo_persistente
-3. https://codeberg.org/petrinhu/tab_pendencias.git → ~/.claude/skills/tab_pendencias
-Execute os clones e confirme cada um.&quot;</code></pre>
-<p>[mostrar o Claude executando automaticamente]</p>
-<p>Resultado idêntico. O Claude fez o trabalho.</p>
-<p>Para que serve cada uma?</p>
-<p>/forgejo — controla seu servidor de código diretamente do Claude.
-/memo_persistente — salva memórias permanentes entre sessões.
-/tab_pendencias — gera tabela de tarefas ordenada por prioridade.</p>
-<p>A partir da aula de agents, você vai usar as três o tempo todo."</p>
+<p>Uma nota importante.</p>
+<p>Você não edita esse arquivo na mão. Nunca. O uv edita por você,
+automaticamente, quando você instala ou remove uma biblioteca.</p>
+<p>O mesmo vale para o uv.lock que vamos ver daqui a pouco.</p>
+<p>No curso inteiro: você descreve o que quer, o Claude e o uv fazem.
+Você lê e supervisiona.”</p>
 <hr />
-<h2 id="seção-5-demo--agents-jeito-difícil-e-jeito-fácil-12-min">SEÇÃO
-5: DEMO — AGENTS: JEITO DIFÍCIL E JEITO FÁCIL (12 min)</h2>
-<p><strong>Tom:</strong> Revelação progressiva — mostrar a escala e
-depois simplificar</p>
-<p>"Agents são especialistas que o Claude aciona dependendo do
-contexto.</p>
-<p>Quando você pede pra criar uma tela, o Claude pode chamar o
-frontend-engineer. Quando você pede análise de segurança, chama o
-security-engineer. Quando você quer saber se uma feature vale a pena,
-chama o product-manager.</p>
-<p>Eu tenho 65 agents instalados em ~/.claude/agents/.</p>
-<p>Vamos ver a lista:</p>
-<pre><code>ls ~/.claude/agents/ | sort</code></pre>
-<p>[mostrar a lista — 65 arquivos .md]</p>
-<p>Cada arquivo .md é um agent. Dentro dele: nome, descrição, instruções
-de comportamento.</p>
-<p>O jeito difícil de instalar é criar cada arquivo manualmente.</p>
-<p>Vou mostrar a estrutura de um:</p>
-<pre><code>cat ~/.claude/agents/qa-engineer.md | head -20</code></pre>
-<p>[mostrar o cabeçalho do arquivo]</p>
-<p>Você vê: nome, descrição, ferramentas disponíveis, instruções.</p>
-<p>Para criar o seu próprio agent, você escreve um arquivo assim e salva
-em ~/.claude/agents/.</p>
+<h2 id="seção-6-demo-uv-add-.venv-uv.lock-10-min">SEÇÃO 6: DEMO — UV ADD
++ .VENV + UV.LOCK — 10 min</h2>
+<p><strong>Tom:</strong> Mostrar o antes e depois do pyproject.toml como
+evidência</p>
+<p>“O ClinMd-Tribe vai ter interface gráfica.</p>
+<p>A biblioteca que vamos usar chama Flet. Para instalar:</p>
+<pre><code>uv add flet</code></pre>
+<p>[aguardar — o uv vai baixar e instalar]</p>
+<p>Agora vamos ver o que mudou no prontuário:</p>
+<pre><code>type pyproject.toml</code></pre>
+<p>[mostrar o conteúdo atualizado]</p>
+<p>Olha: <code>dependencies</code> agora tem <code>flet</code>. O
+prontuário foi atualizado automaticamente pelo uv. Você não tocou no
+arquivo.</p>
 <hr />
-<p>Mas ninguém faz isso para 65 agents à mão.</p>
-<p>O jeito fácil: você manda o Claude buscar e instalar.</p>
-<p>Meu repositório de backup do ~/.claude/ fica em: <a
-href="https://codeberg.org/petrinhu/claude-memory">https://codeberg.org/petrinhu/claude-memory</a></p>
-<p>A pasta agents/ lá dentro tem todos os 65 arquivos.</p>
-<p>O comando:</p>
-<pre><code>claude &quot;Visite https://codeberg.org/petrinhu/claude-memory e baixe todos os arquivos .md
-da pasta agents/. Salve cada um em ~/.claude/agents/. Confirme quantos foram instalados.&quot;</code></pre>
-<p>[mostrar o Claude executando — navegando, baixando, salvando]</p>
-<p>Pronto. 65 agents instalados com um comando.</p>
+<p>Agora veja o que apareceu na pasta:</p>
+<pre><code>dir</code></pre>
+<p>[mostrar os novos itens]</p>
+<p>Apareceram duas coisas novas: a pasta <code>.venv</code> e o arquivo
+<code>uv.lock</code>.</p>
 <hr />
-<p>Os 12 agents C-level são a liderança virtual do projeto:</p>
+<p>A pasta <code>.venv</code> é o ambiente virtual.</p>
+<p>Vou explicar com a analogia da farmácia, porque é importante.</p>
+<p>Imagine que você tem dois projetos no mesmo computador: o
+ClinMd-Tribe e um projeto de pesquisa separado.</p>
+<p>O ClinMd-Tribe precisa do Flet versão 0.25. O projeto de pesquisa
+precisa do Flet versão 0.20.</p>
+<p>Se você instalasse tudo no mesmo lugar — no Python geral do Windows —
+as versões conflitariam. Interação medicamentosa.</p>
+<p>O <code>.venv</code> é a solução.</p>
+<p>É como o carrinho de medicação do leito 3. Só tem o que este paciente
+precisa. Não mistura com o carrinho do leito 7.</p>
+<p>Cada projeto tem o seu próprio <code>.venv</code>. Cada um com as
+versões certas para aquele projeto.</p>
+<hr />
+<p>Agora o <code>uv.lock</code>. Vamos ler:</p>
+<pre><code>type uv.lock</code></pre>
+<p>[mostrar o começo do arquivo]</p>
+<p>É um arquivo longo — não precisa ler tudo. O importante é entender
+para que serve.</p>
+<p>O uv.lock é o registro da dispensação: remédio X, versão exata Y, de
+qual fonte Z, qual hash de verificação.</p>
+<p>Você não edita esse arquivo. Nunca. O uv cuida dele.</p>
+<p>Mas se você precisar recriar o projeto em outro computador — ou
+mandar para um colega — o uv.lock garante que tudo fica idêntico.
+Exatamente as mesmas versões, exatamente o mesmo ambiente.”</p>
+<hr />
+<h2 id="seção-7-demo-uv-run-8-min">SEÇÃO 7: DEMO — UV RUN — 8 min</h2>
+<p><strong>Tom:</strong> Prático — mostrar o que o uv init criou e
+executar sem escrever nada</p>
+<p>“O uv init já criou um <code>main.py</code> para você. Vamos ler o
+que ele gerou — sem modificar nada:</p>
+<pre><code>type main.py</code></pre>
+<p>[mostrar o conteúdo]</p>
+<p>O uv init gerou isso por você. Sem você escrever uma linha.</p>
+<hr />
+<p>Aqui vale pausar e marcar uma regra do curso.</p>
+<p>No curso inteiro: você descreve o que quer, o Claude escreve. Você
+lê, revisa, aprova. Nunca digita código.</p>
+<p>É assim nas aulas de Python, nas aulas de interface, nas aulas de
+banco de dados. O médico supervisiona. O Claude e as ferramentas
+executam.</p>
+<hr />
+<p>Agora vamos executar o que o uv criou.</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[mostrar o output]</p>
+<p>Funcionou.</p>
+<p>E perceba: usamos <code>uv run python main.py</code> — não
+<code>python main.py</code> diretamente.</p>
+<p>Por quê?</p>
+<p>Porque o <code>uv run</code> garante que o Python que executa é o do
+ambiente deste projeto — o carrinho do leito 3, com os remédios certos,
+não o estoque geral do hospital.</p>
+<p>Regra simples e definitiva:</p>
+<p>Dentro do projeto ClinMd-Tribe, todo comando Python começa com
+<code>uv run</code>. Sempre.</p>
+<p>O Claude vai fazer isso por você na maioria das vezes. Mas quando
+você vir <code>uv run</code> no terminal, você vai saber exatamente o
+que está acontecendo.</p>
+<p>Você assina a evolução. Não assina às cegas.”</p>
+<hr />
+<h2 id="seção-8-referência-de-comandos-uv-5-min">SEÇÃO 8: REFERÊNCIA DE
+COMANDOS UV — 5 min</h2>
+<p><strong>Tom:</strong> Referência — dar o mapa completo antes de
+encerrar</p>
+<p>“Deixa eu dar o mapa completo do uv que você vai usar no curso.</p>
 <table>
 <thead>
 <tr>
-<th>Agent</th>
-<th>Papel</th>
+<th>Comando</th>
+<th>O que faz</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>celso-ceo</td>
-<td>Estratégia geral</td>
+<td><code>uv init nome</code></td>
+<td>Cria projeto novo</td>
 </tr>
 <tr>
-<td>capitolino-cpo</td>
-<td>Produto — o que construir</td>
+<td><code>uv add pacote</code></td>
+<td>Instala dependência</td>
 </tr>
 <tr>
-<td>caetano-cto</td>
-<td>Tecnologia — como construir</td>
+<td><code>uv remove pacote</code></td>
+<td>Remove dependência</td>
 </tr>
 <tr>
-<td>camilo-cmo</td>
-<td>Marketing e comunicação</td>
+<td><code>uv run python arquivo.py</code></td>
+<td>Executa no ambiente do projeto</td>
 </tr>
 <tr>
-<td>cosmo-coo</td>
-<td>Execução e coordenação</td>
-</tr>
-<tr>
-<td>narciso-ciso</td>
-<td>Segurança da informação</td>
-</tr>
-<tr>
-<td>candido-cdo</td>
-<td>Dados e analytics</td>
-</tr>
-<tr>
-<td>caio-caio</td>
-<td>Inteligência artificial</td>
-</tr>
-<tr>
-<td>confucio-cfo</td>
-<td>Finanças e orçamento</td>
-</tr>
-<tr>
-<td>cicero-cro</td>
-<td>Receita e vendas</td>
-</tr>
-<tr>
-<td>claudio-clo</td>
-<td>Jurídico e compliance</td>
-</tr>
-<tr>
-<td>cosimo-chief-of-staff</td>
-<td>Roteador — monta o time certo para cada tarefa</td>
+<td><code>uv sync</code></td>
+<td>Reinstala tudo a partir do pyproject.toml</td>
 </tr>
 </tbody>
 </table>
-<p>Os outros 53 são os especialistas operacionais — o time de
-desenvolvimento. Você vai conhecer cada um deles ao longo da fase
-avançada.</p>
-<p>Para hoje: eles estão instalados. Quando você precisar, o Claude
-aciona o certo.</p>
-<p>Tem um arquivo de referência completo — skills.html — na pasta desta
-aula. Guarde ele. É a sua folha de cola do time."</p>
+<p>O <code>uv sync</code> merece uma explicação especial.</p>
+<p>Imagine que você clonou o ClinMd-Tribe em um novo computador. O
+código está lá. O pyproject.toml está lá. O uv.lock está lá. Mas a pasta
+<code>.venv</code> não — ela fica só na sua máquina, não vai para o
+Git.</p>
+<p>Você roda <code>uv sync</code> e o uv recria toda a farmácia: baixa
+exatamente as versões do uv.lock, monta o <code>.venv</code> igual ao
+original.</p>
 <hr />
-<h2 id="seção-6-demo--mcps-instalados-5-min">SEÇÃO 6: DEMO — MCPS
-INSTALADOS (5 min)</h2>
-<p><strong>Tom:</strong> Rápido, mostrando o inventário já instalado</p>
-<p>"MCPs são conectores.</p>
-<p>MCP significa Model Context Protocol — o padrão que o Claude usa para
-se conectar com ferramentas externas.</p>
-<p>Para ver o que está instalado, dentro do Claude Code:</p>
-<pre><code>/mcp</code></pre>
-<p>[mostrar a listagem]</p>
-<p>Os ativos aqui no nosso ambiente:</p>
-<p>PubMed — busca artigos científicos diretamente GitHub / Forgejo —
-gerencia repositórios de código Canva — cria designs sem sair do Claude
-Google Drive — acessa seus arquivos Playwright — controla o navegador
-para automação Desktop Commander — controla o desktop Microsoft Docs —
-documentação técnica da Microsoft Hostinger — gerenciamento de hosting
-web</p>
-<p>Para o ClinMd-Tribe, os mais relevantes são PubMed e GitHub.</p>
-<p>Se você quiser instalar um MCP novo:</p>
-<pre><code>claude mcp add [nome] [comando]</code></pre>
-<p>Ou pelo arquivo de configuração em ~/.claude/claude.json.</p>
-<p>O detalhe importante: depois de instalar um MCP, reinicie o Claude. A
-próxima seção explica exatamente quando reiniciar."</p>
+<p>Uma dica prática final.</p>
+<p>O Claude Code vai usar esses comandos por você.</p>
+<p>Quando você pedir para adicionar a calculadora CHA₂DS₂-VASc, o Claude
+vai rodar <code>uv add</code> se precisar de uma dependência nova, vai
+criar arquivos, vai organizar as pastas.</p>
+<p>Você não precisa digitar tudo manualmente.</p>
+<p>Mas agora você sabe o que acontece quando o Claude diz que fez. E
+isso faz toda a diferença.”</p>
 <hr />
-<h2 id="seção-7-quando-reiniciar--claude--c-4-min">SEÇÃO 7: QUANDO
-REINICIAR + CLAUDE -C (4 min)</h2>
-<p><strong>Tom:</strong> Prático, resolve uma dúvida que todo iniciante
-tem</p>
-<p>"Quando você instala um plugin ou um MCP, o Claude precisa ser
-reiniciado para carregar a mudança.</p>
-<p>É como reinstalar um driver no Windows — precisa reiniciar.</p>
-<p>Para reiniciar: dentro do Claude Code, pressione Ctrl+C ou ESC, feche
-o terminal, abra de novo e inicie com:</p>
-<pre><code>claude</code></pre>
-<hr />
-<p>Mas às vezes você estava no meio de uma conversa importante. Você
-reiniciou e agora o Claude esqueceu tudo.</p>
-<p>Para retomar de onde parou:</p>
-<pre><code>claude -c</code></pre>
-<p>O -c é de 'continue' — retomar a última conversa.</p>
-<p>O Claude carrega o contexto da sessão anterior e continua.</p>
-<p>Regra simples:</p>
-<p>— Instalou algo novo? Reinicia com <code>claude</code> — Quer
-continuar de onde parou? Abre com <code>claude -c</code></p>
-<p>Guarda essa regra. Você vai usar ela toda semana."</p>
-<hr />
-<h2 id="seção-8-demo--uv--clinmd-tribe-8-min">SEÇÃO 8: DEMO — UV +
-CLINMD-TRIBE (8 min)</h2>
-<p><strong>Tom:</strong> Mão na massa — o primeiro passo do produto</p>
-<p>"Chegou a hora de criar o projeto.</p>
-<p>Antes: precisamos do uv.</p>
-<p>uv é o gerenciador de pacotes Python — pensa nele como a farmácia do
-projeto. Ele sabe exatamente quais 'remédios' (bibliotecas) o projeto
-precisa, em qual versão, e garante que nada vai conflitar.</p>
-<p>Instalar o uv. No Windows, abra o PowerShell e cole:</p>
-<pre><code>powershell -ExecutionPolicy ByPass -c &quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</code></pre>
-<p>[aguardar instalação]</p>
-<p>Feche o PowerShell e abra um novo para que o uv fique no path.</p>
-<p>Confirme a instalação:</p>
-<pre><code>uv --version</code></pre>
-<hr />
-<p>Agora o projeto.</p>
-<p>Vamos criar dentro da pasta Documentos:</p>
-<pre><code>cd ~/Documents
-uv init clinmd-tribe</code></pre>
-<p>[executar e mostrar a estrutura criada]</p>
-<p>O uv criou:</p>
-<p>clinmd-tribe/ .python-version — versão do Python que o projeto usa
-main.py — arquivo inicial vazio pyproject.toml — o prontuário do
-projeto: nome, versão, dependências</p>
-<p>Abra o arquivo pyproject.toml:</p>
-<pre><code>cat clinmd-tribe/pyproject.toml</code></pre>
-<p>Você vê o nome 'clinmd-tribe'. Esse é o início do ClinMd-Tribe.</p>
-<hr />
-<p>Agora que o projeto existe, vamos usar a skill que vai acompanhar o
-ClinMd-Tribe do começo ao fim.</p>
-<pre><code>/tab_pendencias</code></pre>
-<p>[mostrar a tabela gerada]</p>
-<p>A <code>/tab_pendencias</code> gerou a tabela com as tarefas
-pendentes do projeto, ordenadas por dependência e valor — as mais
-críticas primeiro.</p>
-<p>Você vai abrir o Claude Code com esse comando toda semana. Ele diz o
-que fazer antes de você perguntar.</p>
-<hr />
-<p>E antes de fechar: vamos consultar o Cósimo — o Chief of Staff — para
-montar o time certo para o ClinMd-Tribe.</p>
-<pre><code>Cósimo, meu projeto é o ClinMd-Tribe: app clínico 100% local em Python + Flet,
-fase inicial de desenvolvimento. Quais agents devo priorizar agora?</code></pre>
-<p>[mostrar a resposta do Cósimo — ele lista os agents prioritários para
-esta fase]</p>
-<p>Você não precisa acionar os 65 agents manualmente. O Cósimo
-classifica o porte do projeto e monta o time certo.</p>
-<hr />
-<p>Ambiente instalado. Projeto criado. Time de desenvolvimento no
-lugar."</p>
-<hr />
-<h2 id="seção-9-encerramento-2-min">SEÇÃO 9: ENCERRAMENTO (2 min)</h2>
-<p><strong>Tom:</strong> Motivador, resumo do que ficou pronto, visão
-para frente</p>
-<p>"Resumo do que ficou pronto hoje.</p>
-<p>Plugin superpowers instalado. Skills /forgejo, /memo_persistente e
-/tab_pendencias prontas. 65 agents no lugar — C-levels e time de
-desenvolvimento. MCPs conectados: PubMed, GitHub, Canva e mais. Projeto
-ClinMd-Tribe criado com uv.</p>
-<p>Você tem agora o mesmo ambiente que eu uso para desenvolver com o
-Claude.</p>
+<h2 id="seção-9-encerramento-dever-de-casa-5-min">SEÇÃO 9: ENCERRAMENTO
++ DEVER DE CASA — 5 min</h2>
+<p><strong>Tom:</strong> Resumo do que ficou pronto + dever que reforça
+o aprendizado + ponte</p>
+<p>“Resumo do que ficou pronto hoje.</p>
+<p>uv instalado e funcionando. Projeto ClinMd-Tribe criado com
+<code>uv init</code>. Flet instalado com <code>uv add</code> — primeira
+dependência do projeto. pyproject.toml: o prontuário, lido e entendido.
+<code>.venv</code>: carrinho de medicação isolado para este projeto.
+<code>uv.lock</code>: registro da dispensação, gerado automaticamente.
+<code>uv run</code>: a regra que vale para todo o curso.</p>
 <hr />
 <p>Dever de casa.</p>
-<p>Abra o arquivo skills.html que está na pasta desta aula. Leia as
-descrições dos 12 C-levels e escolha dois que mais fazem sentido para o
-produto clínico que você imagina construir.</p>
-<p>Na próxima aula, Python com analogias clínicas — sem sofrimento, do
-jeito que você aprendeu a interpretar um ECG: um achado de cada vez.</p>
-<p>Até lá."</p>
+<p>Três passos. Uns dez minutos.</p>
+<p>Antes de qualquer coisa: pense e escreva numa frase — o que você acha
+que vai mudar no pyproject.toml quando rodar
+<code>uv add requests</code>?</p>
+<p>Depois rode:</p>
+<pre><code>uv add requests
+type pyproject.toml</code></pre>
+<p>Veja se a sua previsão bateu.</p>
+<p>Agora remova:</p>
+<pre><code>uv remove requests
+type pyproject.toml</code></pre>
+<p>Veja o que sumiu.</p>
+<p>Por último:</p>
+<pre><code>git status
+git diff</code></pre>
+<p>Você vai ver que o Git rastreou tudo que o uv mexeu. O pyproject.toml
+mudou. O uv.lock mudou. São dois instrumentos que trabalham juntos —
+você aprendeu os dois.</p>
+<p>Tire um print do terminal mostrando a dependência aparecendo e depois
+sumindo. É o seu comprovante de que o ambiente está funcionando.</p>
+<hr />
+<p>Na próxima aula: Python com analogias clínicas.</p>
+<p>As estruturas básicas da linguagem, do jeito que você aprendeu
+anatomia — um sistema de cada vez.</p>
+<p>Sem decorar sintaxe. Com o contexto clínico que você já tem.</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

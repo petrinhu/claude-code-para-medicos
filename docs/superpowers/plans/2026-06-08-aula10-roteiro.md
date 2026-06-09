@@ -1,3 +1,44 @@
+# Aula 10 — Roteiro Refatorado — Plano de Implementação
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Substituir `aula_10/roteiro.md` com roteiro correto cobrindo S01.01 — Terminal + uv (~48 min), deprecar `aula_11/roteiro.md` com nota de incorporação, e gerar os HTMLs correspondentes.
+
+**Architecture:** Dois arquivos Markdown canônicos do curso (seções numeradas, Tom, falas entre aspas, blocos copiáveis) + HTMLs gerados via pandoc. Segue spec aprovado em `docs/superpowers/specs/2026-06-08-aula10-design.md`. Zero código escrito pelo aluno — comandos são PowerShell/uv, nunca editor de texto.
+
+**Tech Stack:** Markdown, pandoc (HTML export), Git.
+
+---
+
+## Referência rápida do spec
+
+| Seção | Conteúdo | Duração |
+|---|---|---|
+| 1 | Abertura: virada de fase — "você passa de usuário para construtor" | 2 min |
+| 2 | ClinMd-Tribe Reveal: calculadoras + anotador + PDF, sem 4 camadas | 3 min |
+| 3 | uv: por que existe — interação medicamentosa + analogia farmácia | 2 min |
+| 4 | Demo: install + init — PowerShell, `uv --version`, `uv init`, `dir` | 8 min |
+| 5 | Demo: type pyproject.toml — prontuário vazio antes de instalar | 5 min |
+| 6 | Demo: uv add + .venv + uv.lock — prontuário muda, carrinho do leito | 10 min |
+| 7 | Demo: uv run — `type main.py`, `uv run python main.py`, regra definitiva | 8 min |
+| 8 | Referência de comandos uv — tabela: init/add/remove/run/sync | 5 min |
+| 9 | Encerramento + dever — uv add/remove requests + git status + ponte aula_12 | 5 min |
+
+**Fusão:** aula_10 absorve aula_11. Removidos: Plugin/Skills/Agents/MCPs, Clean Arch preview, `claude -c`.  
+**Zero código:** Médico nunca escreve Python. Claude escreve, médico supervisiona.
+
+---
+
+## Task 1: Escrever `aula_10/roteiro.md`
+
+**Files:**
+- Modify: `aula_10/roteiro.md` (sobrescrever conteúdo atual)
+
+- [ ] **Step 1: Escrever o roteiro completo**
+
+Conteúdo completo do arquivo:
+
+```markdown
 # Aula 10 — Terminal + uv: o Bisturi Digital
 
 **Formato:** Gravada em um take no OBS Studio  
@@ -93,6 +134,8 @@ Primeiro passo: instalar a farmácia."
 "Abra o PowerShell.
 
 Vamos instalar o uv. Método recomendado no Windows:
+
+[digitar no PowerShell]
 
 ```
 winget install --id=astral-sh.uv -e
@@ -371,13 +414,15 @@ Você assina a evolução. Não assina às cegas."
 
 "Deixa eu dar o mapa completo do uv que você vai usar no curso.
 
-| Comando | O que faz |
-|---|---|
-| `uv init nome` | Cria projeto novo |
-| `uv add pacote` | Instala dependência |
-| `uv remove pacote` | Remove dependência |
-| `uv run python arquivo.py` | Executa no ambiente do projeto |
-| `uv sync` | Reinstala tudo a partir do pyproject.toml |
+[mostrar na tela]
+
+```
+uv init nome-do-projeto    ← cria projeto novo
+uv add nome-pacote         ← instala dependência
+uv remove nome-pacote      ← remove dependência
+uv run python arquivo.py   ← executa Python no projeto
+uv sync                    ← instala tudo do pyproject.toml
+```
 
 O `uv sync` merece uma explicação especial.
 
@@ -476,3 +521,154 @@ Até lá."
 ---
 
 **FIM DO ROTEIRO**
+```
+
+- [ ] **Step 2: Verificar contra o spec**
+
+| Item do spec | Presente no roteiro? |
+|---|---|
+| Abertura "você passa de usuário para construtor" | ✓ S1 |
+| ClinMd-Tribe reveal (3 funcionalidades + local + LGPD) | ✓ S2 |
+| uv: por que existe + analogia farmácia | ✓ S3 |
+| `winget install` + alternativa `irm` | ✓ S4 |
+| Fechar/reabrir PowerShell + `uv --version` | ✓ S4 |
+| `cd $HOME\Documents\projetos` (Windows) | ✓ S4 |
+| `uv init clinmd-tribe` + `dir` | ✓ S4 |
+| `type pyproject.toml` (leitura, não edição) | ✓ S5 |
+| Explicação de cada campo do pyproject.toml | ✓ S5 |
+| "Você não edita esse arquivo na mão" | ✓ S5 |
+| `uv add flet` + ver pyproject.toml mudar | ✓ S6 |
+| `.venv` = carrinho do leito 3 | ✓ S6 |
+| `uv.lock` = registro da dispensação | ✓ S6 |
+| `type main.py` (sem editar) | ✓ S7 |
+| Regra do curso: médico nunca digita código | ✓ S7 |
+| `uv run python main.py` + explicação | ✓ S7 |
+| Tabela de comandos uv (5 comandos) | ✓ S8 |
+| `uv sync` explicado | ✓ S8 |
+| Dever: add/remove requests + git status/diff | ✓ S9 |
+| Ponte para aula_12 (Python) | ✓ S9 |
+| Zero código escrito pelo aluno | ✓ todo o roteiro |
+| SO Windows/PowerShell único | ✓ todo o roteiro |
+| Plugin/Skills/Agents/MCPs ausentes | ✓ não aparecem |
+| Clean Architecture preview ausente | ✓ não aparece |
+| claude -c ausente | ✓ não aparece |
+| Duração ~48 min | ✓ (2+3+2+8+5+10+8+5+5=48) |
+
+- [ ] **Step 3: Commitar o roteiro**
+
+```bash
+git add aula_10/roteiro.md
+git commit -m "feat: aula_10 Terminal + uv bisturi digital — fusão 10+11, zero código (~48min)"
+```
+
+---
+
+## Task 2: Gerar `aula_10/roteiro.html`
+
+**Files:**
+- Create/Overwrite: `aula_10/roteiro.html`
+
+- [ ] **Step 1: Gerar via pandoc**
+
+```bash
+pandoc aula_10/roteiro.md -o aula_10/roteiro.html \
+  --standalone \
+  --metadata title="Aula 10 — Terminal + uv: o Bisturi Digital"
+```
+
+Expected: arquivo criado sem erros.
+
+- [ ] **Step 2: Verificar**
+
+```bash
+ls -lh aula_10/roteiro.html
+```
+
+Expected: arquivo com tamanho > 0.
+
+- [ ] **Step 3: Commitar**
+
+```bash
+git add aula_10/roteiro.html
+git commit -m "feat: aula_10 roteiro.html gerado
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+```
+
+---
+
+## Task 3: Deprecar `aula_11/roteiro.md`
+
+**Files:**
+- Modify: `aula_11/roteiro.md` (substituir pelo aviso de deprecação)
+
+- [ ] **Step 1: Escrever a nota de deprecação**
+
+Conteúdo completo do arquivo:
+
+```markdown
+# Aula 11 — Incorporada à Aula 10
+
+> **Esta aula foi fusionada com a aula_10 em 2026-06-08.**
+
+O conteúdo de `uv` (uv add, uv remove, uv run, uv sync, ambiente virtual, pyproject.toml)
+foi incorporado à aula_10 conforme S01.01 do `arvore_aulas.html`,
+que define esta seção como uma única aula.
+
+**Roteiro completo:** `aula_10/roteiro.md`
+
+---
+
+## Por que a fusão?
+
+- A divisão aula_10/aula_11 não estava no HTML canônico do curso
+- Ambas cobriam o mesmo tópico (uv) sem reset de contexto entre elas
+- A aula_11 isolada ficava abaixo do alvo de 45-60 min (~40 min)
+- Fusionadas: ~48 min, dentro do alvo
+```
+
+- [ ] **Step 2: Commitar**
+
+```bash
+git add aula_11/roteiro.md
+git commit -m "deprecate: aula_11 incorporada à aula_10 (fusão S01.01)
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+```
+
+---
+
+## Task 4: Atualizar `aula_11/roteiro.html`
+
+**Files:**
+- Overwrite: `aula_11/roteiro.html`
+
+- [ ] **Step 1: Gerar via pandoc**
+
+```bash
+pandoc aula_11/roteiro.md -o aula_11/roteiro.html \
+  --standalone \
+  --metadata title="Aula 11 — Incorporada à Aula 10"
+```
+
+- [ ] **Step 2: Commitar**
+
+```bash
+git add aula_11/roteiro.html
+git commit -m "deprecate: aula_11 roteiro.html atualizado (nota de fusão)
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+```
+
+---
+
+## Checklist de self-review do plano
+
+- [x] **Spec coverage:** todos os 25 itens verificados na Task 1 Step 2
+- [x] **Placeholder scan:** sem TBDs — prompts e comandos reais em todas as seções
+- [x] **Zero código:** nenhuma seção do roteiro pede ao aluno que abra editor ou escreva Python
+- [x] **Windows/PowerShell:** todos os comandos são `dir`, `type`, `cd $HOME\...`, `winget` — sem `ls`, `cat`, `cd ~/`
+- [x] **Fusão limpa:** Plugin/Skills/Agents/MCPs, Clean Arch, claude -c ausentes
+- [x] **Analogia coerente:** farmácia → prontuário → remédio → carrinho do leito — consistente do S3 ao S7
+- [x] **Dever de casa:** zero código Python, usa Git (espaçamento aulas 08-09), artefato verificável (print)
+- [x] **aula_11 deprecada:** nota clara com motivo e ponteiro para aula_10

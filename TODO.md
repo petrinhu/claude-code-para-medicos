@@ -1,26 +1,16 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-08
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 21 ✅ · 9 🚫 · 22 ⏳ · **Total: 52 aulas**
+> **Resumo:** 30 ✅ · 0 🚫 · 22 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
 
 ---
 
-## 🚫 Refatorar — 9 itens (conteúdo incorreto vs. HTML)
+## 🚫 Refatorar — 0 itens
 
-| ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
-|---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| M0.01 | 1 | Iniciante · M0 | O que é o Claude Code → aula_01 (🚫 roteiro foca em CLI vs Web UI/Windows, não no conceito de CC) | Alta | — | Simples | 🚫 Refatorar | 🚫 |
-| M0.02 | 1 | Iniciante · M0 | Instalação e primeiro contato → aula_01 (🚫 misturado com comparação Windows/Linux) | Alta | M0.01 | Simples | 🚫 Refatorar | 🚫 |
-| M0.03 | 1 | Iniciante · M0 | Como conversar: pedir, anexar, revisar e iterar → aula_01 (🚫 não coberto explicitamente) | Alta | M0.01 | Simples | 🚫 Refatorar | 🚫 |
-| M0.04 | 1 | Iniciante · M0 | Bons hábitos de prompt para o contexto clínico → aula_01 (🚫 genérico, sem contexto clínico explícito) | Alta | M0.01 | Simples | 🚫 Refatorar | 🚫 |
-| M0.05 | 1 | Iniciante · M0 | Claude Code no celular: acesso remoto via /remote → aula_01 (🚫 **AUSENTE** no roteiro atual) | Alta | M0.01 | Simples | 🚫 Refatorar | 🚫 |
-| M1.01 | 2 | Iniciante · M1 | Trabalhar com arquivos: resumir, comparar e extrair tabelas de PDFs → aula_02 (🚫 título = nome do módulo; conteúdo específico não verificado) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
-| M1.02 | 2 | Iniciante · M1 | Gerar documentos: folhetos, ofícios e modelos administrativos → aula_02 (🚫 idem M1.01) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
-| M1.03 | 2 | Iniciante · M1 | Montar slides e apresentações a partir de tópicos soltos → aula_02 (🚫 idem M1.01) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
-| M1.04 | 2 | Iniciante · M1 | Planilhas: organizar, limpar e gerar gráficos simples → aula_02 (🚫 idem M1.01) | Alta | M0 | Simples | 🚫 Refatorar | 🚫 |
+Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram concluídas.
 
 ---
 
@@ -53,10 +43,19 @@
 
 ---
 
-## ✅ Concluído — 21 itens
+## ✅ Concluído — 30 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
+| M0.01 | 1 | Iniciante · M0 | O que é o Claude Code → aula_01 (~50-55 min, Demo-First, CC=prontuário/Web UI=post-it, condensado com M0.02-05) | Alta | — | Simples | ✅ Concluído | ✅ |
+| M0.02 | 1 | Iniciante · M0 | Instalação e primeiro contato → aula_01 (condensado) | Alta | M0.01 | Simples | ✅ Concluído | ✅ |
+| M0.03 | 1 | Iniciante · M0 | Como conversar: pedir, anexar, revisar e iterar → aula_01 (condensado) | Alta | M0.01 | Simples | ✅ Concluído | ✅ |
+| M0.04 | 1 | Iniciante · M0 | Bons hábitos de prompt para o contexto clínico → aula_01 (condensado) | Alta | M0.01 | Simples | ✅ Concluído | ✅ |
+| M0.05 | 1 | Iniciante · M0 | Claude Code no celular: /remote → aula_01 (condensado) | Alta | M0.01 | Simples | ✅ Concluído | ✅ |
+| M1.01 | 2 | Iniciante · M1 | Trabalhar com arquivos: PDFs, bullets, tabelas → aula_02 (~46-50 min, demo encadeada, tema depressão/APA, condensado com M1.02-04) | Alta | M0 | Simples | ✅ Concluído | ✅ |
+| M1.02 | 2 | Iniciante · M1 | Gerar documentos: folhetos, ofícios, modelos → aula_02 (condensado) | Alta | M0 | Simples | ✅ Concluído | ✅ |
+| M1.03 | 2 | Iniciante · M1 | Slides a partir de tópicos soltos → aula_02 (condensado) | Alta | M0 | Simples | ✅ Concluído | ✅ |
+| M1.04 | 2 | Iniciante · M1 | Planilhas: organizar, limpar, gerar gráficos → aula_02 (condensado) | Alta | M0 | Simples | ✅ Concluído | ✅ |
 | M3.05 | 4 | Intermediário · M3 | Gestão do consultório: indicadores, faturamento e automação → aula_07 (~48 min, metabologista, dashboard HTML self-contained) | Alta | M2 | Simples | ✅ Concluído | ✅ |
 | M2.01 | 3 | Intermediário · M2 | Buscar e triar artigos pelo conector de PubMed → aula_03 (condensado com M2.02) | Média | M1 | Simples | ✅ Concluído | ✅ |
 | M2.02 | 3 | Intermediário · M2 | Fichamento e leitura crítica: PICO, nível de evidência, vieses → aula_03 (condensado) | Média | M1 | Simples | ✅ Concluído | ✅ |

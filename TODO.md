@@ -14,7 +14,7 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ⏳ Pendente — 19 itens
+## ⏳ Pendente — 18 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -39,7 +39,7 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ✅ Concluído — 33 itens
+## ✅ Concluído — 34 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|

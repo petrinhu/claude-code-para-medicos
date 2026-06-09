@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 25 — Dashboard Financeiro: Entrada de Dados</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 25 — Dashboard Financeiro: Entrada de Dados</h1>
+</header>
+<h1 id="aula-25-dashboard-financeiro-entrada-de-dados">Aula 25 —
+Dashboard Financeiro: Entrada de Dados</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~48 min <strong>Tom:</strong> Ortopedista que
+fecha o mês e quer entender o que está acontecendo com as glosas
+<strong>Módulo:</strong> S06.01 — Dashboard Financeiro</p>
+<hr />
+<h2 id="seção-1-abertura-4-min">SEÇÃO 1: ABERTURA — 4 min</h2>
+<p><strong>Tom:</strong> Contraste direto com S05 — o app que esquece vs
+o app que lembra</p>
+<p>“Nas últimas quatro aulas você construiu seis calculadoras.</p>
+<p>Cada uma delas fazia a mesma coisa: você digitava os valores, clicava
+calcular, recebia o resultado.</p>
+<p>E quando você fechava o app?</p>
+<p>Tudo sumia.</p>
+<p>Bilirrubina 4,5. INR 1,8. Score 20. Mortalidade 19,6%. Fecha. Abre de
+novo. Nada.</p>
+<p>Isso é uma calculadora. Útil — mas sem memória.</p>
+<hr />
+<p>Hoje o ClinMd-Tribe ganha memória.</p>
+<p>Não memória de paciente. Memória de consultório.</p>
+<p>Você vai registrar receita, glosas e consultas mês a mês. E quando
+você fechar o app e abrir amanhã, os dados vão estar lá.</p>
+<hr />
+<p>O personagem de hoje é um ortopedista.</p>
+<p>Consultório próprio. Vários convênios. E um problema que muitos
+especialistas conhecem: as glosas estão subindo.</p>
+<p>Agosto foi o pior mês em seis meses. Mas é tendência ou
+coincidência?</p>
+<p>Sem os dados anteriores, você não sabe. Com o app que você vai
+construir hoje, você sabe.”</p>
+<hr />
+<h2 id="seção-2-registromensal-como-especificação-6-min">SEÇÃO 2:
+REGISTROMENSAL COMO ESPECIFICAÇÃO — 6 min</h2>
+<p><strong>Tom:</strong> Clínico e técnico — transformar o registro
+financeiro em dado antes de escrever o prompt</p>
+<p>“Antes de escrever o prompt, você precisa saber o que o app vai
+guardar.</p>
+<p>O dado de cada mês tem cinco campos:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mês</td>
+<td>número inteiro (1-12)</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Ano</td>
+<td>número inteiro</td>
+<td>2025</td>
+</tr>
+<tr>
+<td>Receita bruta</td>
+<td>número decimal</td>
+<td>27.500,00</td>
+</tr>
+<tr>
+<td>Glosas</td>
+<td>número decimal</td>
+<td>5.100,00</td>
+</tr>
+<tr>
+<td>Número de consultas</td>
+<td>número inteiro</td>
+<td>91</td>
+</tr>
+</tbody>
+</table>
+<p>Isso é o <code>RegistroMensal</code>. Um objeto simples. Cinco
+campos. Um por mês.</p>
+<hr />
+<p>Agora os três meses mais recentes do nosso ortopedista.</p>
+<p>[mostrar na tela]</p>
+<table>
+<thead>
+<tr>
+<th>Mês</th>
+<th>Receita bruta</th>
+<th>Glosas</th>
+<th>Consultas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Junho/2025</td>
+<td>R$ 28.000</td>
+<td>R$ 4.200</td>
+<td>95</td>
+</tr>
+<tr>
+<td>Julho/2025</td>
+<td>R$ 31.000</td>
+<td>R$ 3.800</td>
+<td>108</td>
+</tr>
+<tr>
+<td>Agosto/2025</td>
+<td>R$ 27.500</td>
+<td>R$ 5.100</td>
+<td>91</td>
+</tr>
+</tbody>
+</table>
+<p>Agosto: receita caiu, glosas subiram, consultas caíram.</p>
+<p>Esses são os valores que você vai digitar no app quando ele estiver
+pronto. E quando você fechar e reabrir — eles vão estar lá.</p>
+<hr />
+<p>Mas onde o app vai guardar isso?</p>
+<p>Não na memória RAM — ela some quando o programa fecha. Não na
+internet — dado financeiro do consultório não sobe pra lugar nenhum.</p>
+<p>Em um arquivo, na sua máquina. Um arquivo de banco de dados. Dentro
+da pasta <code>data/</code> do projeto.</p>
+<p>Essa é a camada de infraestrutura que você conheceu na aula_15 — e
+que as calculadoras nunca precisaram usar.</p>
+<p>Hoje ela entra em cena.”</p>
+<hr />
+<h2 id="seção-3-prompt-entrada-de-dados-5-min">SEÇÃO 3: PROMPT ENTRADA
+DE DADOS — 5 min</h2>
+<p><strong>Tom:</strong> Professor conduz — três destaques antes de
+digitar: Path, CREATE TABLE IF NOT EXISTS, camadas</p>
+<p>“Três destaques antes de digitar o prompt.</p>
+<p>Primeiro: o caminho do banco de dados.</p>
+<p>O app vai criar um arquivo chamado <code>clinmd.db</code> dentro da
+pasta <code>data/</code>. O Claude precisa saber que esse caminho é
+relativo à localização do código — não à pasta onde você está quando
+roda o programa.</p>
+<p>Se você usar <code>'data/clinmd.db'</code> como texto simples, o
+arquivo vai aparecer em lugares diferentes dependendo de onde você rodou
+o app. Você vai ‘perder’ seus dados sem entender por quê.</p>
+<p>A forma correta usa <code>Path(__file__)</code> — que sempre aponta
+para onde o arquivo de código está.</p>
+<p>Segundo: <code>CREATE TABLE IF NOT EXISTS</code>.</p>
+<p>Toda vez que o app abre, ele verifica se a tabela existe. Se não
+existe, cria. Se já existe, não faz nada. Idempotente.</p>
+<p>Terceiro: as camadas.</p>
+<p>O banco fica em <code>infrastructure/</code>. A lógica fica em
+<code>domain/</code> e <code>application/</code>. A tela fica em
+<code>presentation/</code>. Cada camada faz uma coisa.”</p>
+<hr />
+<p>[digitar no terminal — ler cada parte em voz alta]</p>
+<pre><code>Implemente o módulo financeiro do ClinMd-Tribe
+respeitando a Clean Architecture das 4 camadas:
+
+domain/financeiro/registro_mensal.py
+  - Classe RegistroMensal com campos:
+    mes (int 1-12), ano (int),
+    receita_bruta (float), glosas (float), n_consultas (int)
+
+infrastructure/repositorio_financeiro.py
+  - Conexão SQLite em data/clinmd.db
+    (caminho absoluto: Path(__file__).parent.parent / &quot;data&quot; / &quot;clinmd.db&quot;)
+  - CREATE TABLE IF NOT EXISTS registros_mensais
+  - Método salvar(registro: RegistroMensal) -&gt; None
+  - Método listar_todos() -&gt; list[RegistroMensal]
+
+application/servicos/financeiro_service.py
+  - salvar_registro(dados: dict) -&gt; None
+  - listar_registros() -&gt; list[dict]
+
+presentation/telas/formulario_mensal.py
+  - 5 campos: Mês (1-12), Ano, Receita bruta, Glosas, Nº consultas
+  - Botão &quot;Salvar registro&quot;
+  - Tabela abaixo mostrando todos os registros salvos
+    (colunas: Mês, Ano, Receita bruta, Glosas, Consultas)</code></pre>
+<hr />
+<p>[enviar o prompt ao Claude Code]</p>
+<hr />
+<h2 id="seção-4-claude-implementa-leitura-supervisionada-10-min">SEÇÃO
+4: CLAUDE IMPLEMENTA + LEITURA SUPERVISIONADA — 10 min</h2>
+<p><strong>Tom:</strong> Aguardar + auditar — quatro perguntas, primeira
+é crítica</p>
+<p>[aguardar o Claude Code processar]</p>
+<p>[mostrar na tela os arquivos sendo criados e modificados]</p>
+<p>“Três arquivos novos. Um modificado.</p>
+<p><code>domain/financeiro/registro_mensal.py</code> — criado.
+<code>infrastructure/repositorio_financeiro.py</code> — criado.
+<code>application/servicos/financeiro_service.py</code> — criado.
+<code>presentation/telas/formulario_mensal.py</code> — criado.</p>
+<p>Agora você lê antes de rodar.</p>
+<p>Quatro perguntas.”</p>
+<hr />
+<p><strong>Pergunta 1:</strong> ← crítica</p>
+<p>“Abra <code>infrastructure/repositorio_financeiro.py</code>.</p>
+<p>O caminho do banco usa <code>Path(__file__)</code> — não uma string
+como <code>'data/clinmd.db'</code>?</p>
+<p>Você está procurando algo assim no topo do arquivo:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>DB_PATH <span class="op">=</span> Path(<span class="va">__file__</span>).parent.parent <span class="op">/</span> <span class="st">&quot;data&quot;</span> <span class="op">/</span> <span class="st">&quot;clinmd.db&quot;</span></span></code></pre></div>
+<p>Se o caminho for uma string simples —
+<code>sqlite3.connect('data/clinmd.db')</code> — o banco vai aparecer em
+lugares diferentes dependendo de onde você rodar o app. Você vai salvar
+dados, fechar, abrir de outra pasta, e os dados vão ter sumido.</p>
+<p>Esse é o erro mais traiçoeiro desta aula. Silencioso. Difícil de
+debugar.</p>
+<p>[mostrar o código]</p>
+<p>Correto — <code>Path(__file__)</code> com caminho absoluto relativo
+ao código.”</p>
+<hr />
+<p><strong>Pergunta 2:</strong></p>
+<p>“O <code>CREATE TABLE IF NOT EXISTS</code> roda toda vez que o app
+abre — não só na primeira vez?</p>
+<p>Procure o método que cria a tabela. Ele deve ser chamado na
+inicialização do repositório — não só uma vez na instalação.</p>
+<p>Se a tabela já existe, o <code>IF NOT EXISTS</code> garante que não
+vai tentar criar de novo. Se não existe, cria.</p>
+<p>[mostrar onde é chamado]</p>
+<p>Correto — roda na inicialização, idempotente.”</p>
+<hr />
+<p><strong>Pergunta 3:</strong></p>
+<p>“O <code>repositorio_financeiro.py</code> está em
+<code>infrastructure/</code> — não em <code>domain/</code> nem em
+<code>application/</code>?</p>
+<p>Abra o explorador de arquivos. O arquivo deve estar dentro da pasta
+<code>infrastructure/</code>.</p>
+<p>O banco de dados é infraestrutura. Assim como um servidor de e-mail é
+infraestrutura. O domínio não sabe que existe SQLite — ele só sabe que
+existe um RegistroMensal.</p>
+<p>[confirmar a localização do arquivo]</p>
+<p>Correto — em <code>infrastructure/</code>.”</p>
+<hr />
+<p><strong>Pergunta 4:</strong></p>
+<p>“A tela chama o serviço — não acessa o repositório diretamente?</p>
+<p>Abra <code>presentation/telas/formulario_mensal.py</code>.</p>
+<p>Quando o botão ‘Salvar registro’ é clicado, o código deve chamar
+<code>salvar_registro</code> do <code>financeiro_service</code>. Não
+deve chamar o repositório diretamente. Não deve ter <code>sqlite3</code>
+na tela.</p>
+<p>[mostrar a chamada ao serviço]</p>
+<p>Está chamando o serviço. A arquitetura está respeitada.”</p>
+<hr />
+<p><strong>Frase-âncora:</strong></p>
+<p>“O banco está em <code>infrastructure/</code>. O domínio não sabe que
+é SQLite. A tela não sabe que tem banco. Cada camada faz uma coisa.”</p>
+<hr />
+<h2 id="seção-5-app-ao-vivo-salvar-3-meses-5-min">SEÇÃO 5: APP AO VIVO —
+SALVAR 3 MESES — 5 min</h2>
+<p><strong>Tom:</strong> Demo funcional — preencher, salvar, ver na
+tabela</p>
+<p>[no terminal]</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[aguardar o Flet abrir no browser]</p>
+<hr />
+<p>“Aqui está o formulário.</p>
+<p>Cinco campos. Um botão.</p>
+<p>Vamos cadastrar junho.</p>
+<p>[preencher os campos]</p>
+<ul>
+<li>Mês: 6</li>
+<li>Ano: 2025</li>
+<li>Receita bruta: 28000</li>
+<li>Glosas: 4200</li>
+<li>Consultas: 95</li>
+</ul>
+<p>[clicar Salvar registro]</p>
+<p>Apareceu na tabela.</p>
+<hr />
+<p>Julho.</p>
+<ul>
+<li>Mês: 7 / Ano: 2025 / Receita: 31000 / Glosas: 3800 / Consultas:
+108</li>
+</ul>
+<p>[clicar Salvar]</p>
+<p>Na tabela.</p>
+<hr />
+<p>Agosto.</p>
+<ul>
+<li>Mês: 8 / Ano: 2025 / Receita: 27500 / Glosas: 5100 / Consultas:
+91</li>
+</ul>
+<p>[clicar Salvar]</p>
+<p>Três meses na tabela.</p>
+<p>Receita caiu. Glosas subiram. Consultas caíram.</p>
+<p>O app está vendo o que você viu.”</p>
+<hr />
+<h2 id="seção-6-clímax-fechar-e-reabrir-4-min">SEÇÃO 6: CLÍMAX — FECHAR
+E REABRIR — 4 min</h2>
+<p><strong>Tom:</strong> O momento mais importante da aula — silêncio
+dramático antes de reabrir</p>
+<p>“Agora vem a diferença.</p>
+<p>[pausar]</p>
+<p>Feche o app.</p>
+<p>[fechar o browser do Flet]</p>
+<p>Feche o terminal.</p>
+<p>[fechar o terminal]</p>
+<hr />
+<p>[abrir novo terminal]</p>
+<pre><code>uv run python main.py</code></pre>
+<p>[aguardar o Flet abrir]</p>
+<hr />
+<p>[mostrar na tela]</p>
+<p>Os três meses estão lá.</p>
+<p>Junho. Julho. Agosto.</p>
+<hr />
+<p>As calculadoras do S05 esqueciam. Esse app lembra.</p>
+<p>Isso é persistência. O dado mora num arquivo. O arquivo sobrevive ao
+fechar o programa.</p>
+<p>E onde está esse arquivo?</p>
+<p>[abrir o explorador de arquivos, navegar até a pasta data/]</p>
+<p><code>data/clinmd.db</code></p>
+<p>Está aqui. Na sua máquina. Não na nuvem. Não no Claude. Aqui.”</p>
+<hr />
+<h2 id="seção-7-.gitignore-data.db-não-vai-ao-git-4-min">SEÇÃO 7:
+.GITIGNORE — DATA/*.DB NÃO VAI AO GIT — 4 min</h2>
+<p><strong>Tom:</strong> Reforço LGPD — dado financeiro não sobe ao
+repositório</p>
+<p>“Antes de encerrar, um passo de segurança.</p>
+<p>Você vai commitar o projeto no Git. Mas o <code>clinmd.db</code> não
+deve ir junto.</p>
+<p>Dado financeiro do consultório é sensível. Receita, glosas, número de
+consultas — esses dados não devem estar num repositório. Mesmo que seja
+privado.</p>
+<p>[abrir o <code>.gitignore</code>]</p>
+<p>Verificar se <code>data/*.db</code> está na lista.</p>
+<p>Se não estiver, o Claude adiciona:</p>
+<pre><code>Adicione data/*.db ao .gitignore do projeto</code></pre>
+<p>[confirmar que aparece no .gitignore]</p>
+<p>Agora o banco fica local. O código vai ao Git. O dado fica na sua
+máquina.”</p>
+<hr />
+<h2 id="seção-8-encerramento-gancho-aula_26-3-min">SEÇÃO 8: ENCERRAMENTO
++ GANCHO AULA_26 — 3 min</h2>
+<p><strong>Tom:</strong> Consolidar + criar tensão para o próximo</p>
+<p>“O que ficou pronto hoje.</p>
+<p>Um formulário que salva registros financeiros mensais. Um banco
+SQLite que mora na pasta <code>data/</code>. Uma tabela que mostra os
+dados salvos. E o mais importante: o app que lembra quando você fecha e
+abre de novo.</p>
+<hr />
+<p>Mas olhe para os três meses na tabela.</p>
+<p>Junho: R$ 28.000 brutos, R$ 4.200 de glosa. Julho: R$ 31.000, R$
+3.800 de glosa. Agosto: R$ 27.500, R$ 5.100 de glosa.</p>
+<p>O que você está vendo?</p>
+<p>Receita caindo. Glosas subindo. Consultas caindo.</p>
+<p>Mas é tendência ou coincidência?</p>
+<p>Olhar para uma tabela de números não responde essa pergunta. Para
+responder, você precisa de uma curva.</p>
+<p>Na próxima aula: o dashboard.</p>
+<p>Os mesmos dados que você salvou hoje vão virar um gráfico de barras e
+uma linha de tendência.</p>
+<p>E agosto vai aparecer em vermelho.”</p>
+<hr />
+<h2 id="seção-9-dever-de-casa-3-min">SEÇÃO 9: DEVER DE CASA — 3 min</h2>
+<p><strong>Tom:</strong> Prático — usar o app com dados reais</p>
+<p>“Dever de casa.</p>
+<p>Abra o ClinMd-Tribe. Cadastre os últimos três meses do seu próprio
+consultório.</p>
+<p>Não precisa ser exato. Estimativas funcionam.</p>
+<ul>
+<li>Receita bruta média mensal</li>
+<li>Quanto foi glosado (se souber)</li>
+<li>Número de consultas</li>
+</ul>
+<p>Se não tiver os valores precisos: use estimativas. O exercício é o
+fluxo — cadastrar, fechar, reabrir, ver os dados.</p>
+<p>Na próxima aula você vai transformar esses dados num gráfico.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

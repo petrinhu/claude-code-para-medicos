@@ -76,3 +76,17 @@ Nenhuma aula pendente. **Todas as 52 aulas do cronograma estão concluídas** (r
 | S12.01 | 17 | Avançado · S12 Boas Práticas | Segurança: nunca suba seu token de API → aula_40 (~55min, chave do armário de controlados, rotação > faxina, ZERO comando/chave na tela, drill preventivo offline) | Baixa | S11 | Simples | ✅ Concluído | ✅ |
 | S12.02 | 17 | Avançado · S12 Boas Práticas | Arquitetura modular: evitando o monolito → aula_41 (~55min, A Ronda: manter > montar, enfermaria→depósito, ronda+arrumação, "uma só verdade um só lugar", clímax MELD blast-radius, modularizar≠conserta bug, separe quando dói) | Baixa | S11 | Simples | ✅ Concluído | ✅ |
 | S12.03 | 17 | Avançado · S12 Boas Práticas | Workflow com agentes: discuta com o time → aula_42 (~55min, FINALE 52/52, A Junta: presidir o round, clímax backup C-I-A Caetano×Narciso, médico arbitra, honestidade do mecanismo/cruzar pareceres, anti-bajulação, time=12 lentes não 12 cabeças, virada aluno→líder) | Baixa | S11 | Simples | ✅ Concluído | ✅ |
+
+---
+
+## 📚 Pós-release — Wiki + Documentação iniciante
+
+Item fixo de fim-de-pipeline (regra `feedback_wiki_docs_iniciante`): todo repo termina com Wiki + doc `.md` extensa em registro nível-iniciante-em-computação.
+
+| ID | Grupo | Descrição | Pré-req | Status | Auditado |
+|---|---|---|---|:---:|:---:|
+| W7.01 | Pós-release · Docs | Wiki + doc iniciante (8 páginas em `docs/wiki/`, registro leigo total) gerada via `technical-writer` + `ux-writer` | release 52/52 | ✅ Conteúdo pronto | ✅ |
+| W7.02 | Pós-release · Docs | Publicar a wiki no Codeberg nativo (`...wiki.git`) — ação MANUAL do dono, passo a passo em `docs/wiki/Como-Publicar-Esta-Wiki.md` | W7.01 | ⏳ Pendente (manual) | — |
+
+**Débitos técnicos abertos (não-bloqueantes):**
+- **Retrofit zero-código do S07** (aulas 27-30): ainda têm leitura supervisionada de código / heredoc Python (paradigma pré-regra "zero código para LER"). Refatorar numa rodada futura. Ver memória `feedback-zero-codigo-para-ler`.

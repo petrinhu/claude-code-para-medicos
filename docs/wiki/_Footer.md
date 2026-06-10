@@ -1,0 +1,1 @@
+**Claude Code para Médicos, do Zero ao Avançado** · MDlife Academy em parceria com a TribeMD (Dr. Petrus Silva Costa x Luiz Dieckmann) · Identidade visual TribeMD (roxo `#5213B9`) · Código no [Codeberg](https://codeberg.org/petrinhu/claude-code-para-medicos) (com espelho no GitHub).

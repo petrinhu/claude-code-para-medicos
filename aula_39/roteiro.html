@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 39 — A Conferência Final: o Lote Sai do Laboratório</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 39 — A Conferência Final: o Lote Sai do
+Laboratório</h1>
+</header>
+<h1 id="aula-39-a-conferência-final-o-lote-sai-do-laboratório">Aula 39 —
+A Conferência Final: o Lote Sai do Laboratório</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~55 min <strong>Tom:</strong> Orgulho contido
+de quem fecha um produto. “Funcionar é metade; liberar é assumir a
+responsabilidade pelo que vai pra mão do outro.” Ritual de conferência,
+e o gesto adulto de assinar a liberação. <strong>Módulo:</strong> S11.03
+— Auditoria final e distribuição (última do polimento)</p>
+<hr />
+<h2
+id="seção-1-abertura-o-remédio-funciona.-mas-o-lote-não-saiu-ainda.-5-min">SEÇÃO
+1: ABERTURA — O REMÉDIO FUNCIONA. MAS O LOTE NÃO SAIU AINDA. — 5
+min</h2>
+<p><strong>Tom:</strong> Reflexivo, orgulho contido. Retoma a ponte
+herdada da aula_38 e nomeia o que falta.</p>
+<p>“Na aula passada você fez a caixa. Ela abre com dois cliques, o
+remédio funciona, na mão de qualquer médico. Para um segundo e sente o
+tamanho disso — no começo do curso você não sabia o que era um
+terminal.</p>
+<p>E aí eu te segurei na porta. Lembra? Eu disse: um laboratório sério
+não joga a caixa na rua assim. Antes do lote chegar na prateleira, tem
+uma última conferência.</p>
+<hr />
+<p>Funcionar é uma coisa. Liberar é outra.</p>
+<p>Funcionar é o remédio fazer efeito na sua bancada. Liberar é o
+controle de qualidade do laboratório dizer, de cabeça erguida e
+assinando embaixo: este lote pode ir pra mão de outro médico.</p>
+<p>Hoje você é esse controle de qualidade. Do seu próprio produto.</p>
+<hr />
+<p>A gente vai fazer a conferência final: o lacre está fechado? Não
+escapou nenhuma chave, nenhum dado de paciente, nenhuma sobra? E o
+colega vai saber usar — cadê a bula?</p>
+<p>E como o curso inteiro: você não vai ler uma linha de código. Você
+vai PEDIR a conferência, VER ela acontecer, e ASSINAR a liberação.”</p>
+<hr />
+<h2 id="seção-2-o-que-o-controle-de-qualidade-confere-9-min">SEÇÃO 2: O
+QUE O CONTROLE DE QUALIDADE CONFERE — 9 min</h2>
+<p><strong>Tom:</strong> Didático, tranquilo. A maquete mental antes de
+qualquer comando: o que é auditar uma entrega, e por que se confere
+mesmo achando que está tudo bem.</p>
+<p>“Antes de pedir nada, o mapa do que a gente vai conferir. E você já
+fez isso uma vez, com outro nome.</p>
+<p>Lembra do checklist cirúrgico que você construiu? O time-out. Antes
+da incisão, a equipe para, confere item por item, em voz alta, ANTES do
+ponto sem volta. A entrega tem o ponto sem volta dela: o momento em que
+a caixa sai da sua mão e você não controla mais. A conferência é antes
+disso.</p>
+<hr />
+<p>São quatro itens. Quatro vistos antes de liberar:</p>
+<p>Primeiro — o LACRE. Foi alguma chave secreta, alguma senha sua, junto
+na caixa? Nenhum segredo pode viajar numa entrega.</p>
+<p>Segundo — a PUREZA. A pasta <code>data/</code> ficou de fora? Nenhum
+banco, nenhum artigo, nenhum dado de paciente entrou?</p>
+<p>Terceiro — a SOBRA. A caixa tem só o app de bolso? Não vazou peça
+pesada que você mandou deixar de fora?</p>
+<p>Quarto — a BULA. O colega vai saber usar? Cadê as instruções?</p>
+<hr />
+<p>Agora, a pergunta que você já está fazendo: ‘meu app é offline, não
+tem senha nenhuma dentro, pra que conferir?’.</p>
+<p>Eu te respondo com a regra do bom laboratório: a conferência que mais
+vale é a que dá tudo certo. Porque foi ela que te deixou assinar
+tranquilo.</p>
+<p>No centro cirúrgico, ninguém pula o time-out porque ‘é uma cirurgia
+simples e eu sei o que tô fazendo’. Justamente nessas a falha passa. A
+gente não confere porque desconfia do app. A gente confere porque é a
+conferência que vira a sua assinatura em algo seguro.</p>
+<p>Quem confia sem conferir, um dia entrega a caixa com a chave
+dentro.</p>
+<hr />
+<p>No fim de hoje, o que mais vale não é um arquivo novo. É uma coisa
+mais rara: o direito de dizer ‘liberado’.”</p>
+<hr />
+<h2 id="seção-3-você-decide-8-min">SEÇÃO 3: VOCÊ DECIDE — 8 min</h2>
+<p><strong>Tom:</strong> Colaborativo. Duas perguntas, raciocínio
+clínico, zero código.</p>
+<p>“Antes de pedir a conferência pro Claude, duas perguntas. Pensa como
+o controle de qualidade que decide se um lote sai ou não.</p>
+<hr />
+<p><strong>PERGUNTA UM — o seu app é 100% offline e você tem certeza de
+que nunca colocou senha nenhuma dentro dele. Vale a pena fazer a
+conferência de segurança antes de entregar?</strong></p>
+<p>A: Não. Se você sabe que é offline e que não tem senha, conferir é
+perda de tempo.</p>
+<p>B: Sim, sempre. Você confere não porque desconfia do app, mas porque
+é a conferência que transforma o seu ‘acho que está limpo’ em ‘está
+limpo, eu verifiquei’ — e é isso que te deixa assinar a entrega com
+responsabilidade.</p>
+<p>C: Só se for entregar pra muita gente. Pra um colega só, dá pra
+pular.</p>
+<p>Pensa um segundo.</p>
+<hr />
+<p>É a B, e essa é a alma da aula de hoje.</p>
+<p>A é a armadilha mais perigosa do profissional confiante: ‘eu sei que
+está tudo bem, não preciso conferir’. É exatamente assim que a caixa sai
+com a chave dentro — não por maldade, por excesso de confiança.</p>
+<p>C é perigosa de um jeito sutil: o tamanho da plateia não muda o seu
+dever. Um segredo que vaza pra UMA pessoa errada já vazou. A
+responsabilidade da entrega é absoluta, não proporcional ao número de
+colegas.</p>
+<p>Critério que fica: ‘não tinha’ só vale depois de ‘eu procurei’.</p>
+<hr />
+<p><strong>PERGUNTA DUAS — você vai mandar o programa pro seu colega por
+um link. O que precisa ir junto?</strong></p>
+<p>A: Só o programa. Ele é médico, é inteligente, descobre sozinho como
+abrir. Bula é firula.</p>
+<p>B: O programa e uma bula curta em português leigo — como abrir, o que
+fazer se o Windows avisar ‘aplicativo não reconhecido’, e que é
+offline.</p>
+<p>C: O programa, a bula, e também a sua senha pra ele conseguir
+conectar o app na internet.</p>
+<p>Pensa.</p>
+<hr />
+<p>É a B.</p>
+<p>A confunde competência clínica com competência de informática. O seu
+colega é craque em medicina — e na aula um, você, craque em medicina,
+não sabia o que era um terminal. Sem a bula, ele clica, o Windows mostra
+a tela azul, ele se assusta e desiste. O seu ótimo app morre na porta
+por falta de uma instrução de uma linha. Software sem bula é alta sem
+orientação de alta.</p>
+<p>C tem dois erros graves. Primeiro: este app não precisa de senha
+nenhuma — é offline. Segundo, e mais sério: você NUNCA manda uma senha
+ou chave sua junto com um programa. Isso é o erro de segurança clássico,
+e é o assunto da próxima aula inteira. A bula ensina a USAR; ela jamais
+carrega a sua chave.</p>
+<p>Critério que fica: pronto inclui usável. A entrega leva o app e o
+mínimo pra quem recebe usar com autonomia — e leva zero segredo
+seu.”</p>
+<hr />
+<h2 id="seção-4-a-conferência-do-lote-a-auditoria-ao-vivo-13-min">SEÇÃO
+4: A CONFERÊNCIA DO LOTE — A AUDITORIA AO VIVO — 13 min</h2>
+<p><strong>Tom:</strong> Mãos à obra, ritmo de ritual. O aluno pede a
+auditoria e LÊ o laudo em português.</p>
+<p>“Hora da conferência. Como sempre, o ritual de terreno primeiro.
+Cola:”</p>
+<p>[TELA: digitar o Prompt 0 no Claude Code]</p>
+<pre><code>Você é meu par de programação e, hoje, o meu controle de qualidade. A aula de hoje é a
+conferência final antes de eu entregar o app ClinMd-Tribe (o .exe da aula passada) na mão
+de um colega. Não vamos mudar o app — vamos AUDITAR o que vai ser entregue.
+
+Confirme em português, SEM saída técnica crua, em uma frase cada: (1) o meu trabalho está
+salvo e enviado (git em dia)? (2) o .exe que eu gerei na aula passada existe e está
+localizado? Se algo estiver pendente, me avise. NÃO me mostre código nem configuração.</code></pre>
+<p>“Terreno confirmado. Agora a auditoria de verdade. Eu vou pedir um
+laudo — igual ao laudo de um exame, com resultado em cada linha.
+Cola:”</p>
+<p>[TELA: digitar o Prompt 1 — a auditoria]</p>
+<pre><code>Agora faça uma auditoria de segurança da minha entrega e me devolva um LAUDO em português,
+escrito pra um médico, SEM me mostrar nenhum código, arquivo ou saída técnica crua. Trate
+cada item como um exame, com resultado: OK (verde), ATENÇÃO (amarelo) ou PARE (vermelho).
+
+Confira:
+
+  1. LACRE — nenhum segredo viajou junto. Vasculhe os arquivos do projeto E todo o histórico
+     de versões procurando qualquer senha, chave ou token de API. Confirme também que existe
+     a regra que mantém fora do projeto o arquivo onde chaves secretas ficariam guardadas. Se
+     encontrar um segredo, marque ATENÇÃO GRAVE, me diga o que é, mas NÃO tente consertar —
+     isso é assunto da próxima aula.
+
+  2. PUREZA — nenhum dado de paciente viajou junto. Confirme que a pasta data/ (banco,
+     artigos, busca) está protegida e nunca foi parar no projeto enviado, e que o programa
+     que viaja começa vazio.
+
+  3. SOBRA — só o que devia ir, foi. Confirme que o pacote (.exe) tem só a versão de bolso
+     (calculadoras, checklist, painel) e que nenhuma peça pesada da busca vazou. Cheque o
+     tamanho: se estourou o esperado, algo pesado entrou.
+
+No fim, um VEREDITO de uma linha: &quot;lote liberado para entrega&quot; ou &quot;lote retido — corrija X
+antes&quot;. Para cada OK, diga em uma frase por que está seguro. Para ATENÇÃO/PARE, diga o que é
+e a conduta; conserte só o que for simples e seguro (como adicionar uma regra ao .gitignore).
+NÃO me mostre código.</code></pre>
+<p>“E o Claude te devolve um laudo. Mais ou menos assim:</p>
+<p>LACRE — verde. Varri os arquivos e o histórico inteiro: nenhuma
+senha, nenhuma chave. Limpo. PUREZA — verde. O banco e os artigos estão
+na pasta data/, protegida; nenhum paciente saiu. SOBRA — verde. Só
+calculadoras, checklist e painel; tamanho dentro do esperado, sem a
+busca. VEREDITO: lote liberado para entrega.</p>
+<hr />
+<p>Olha que coisa boa. E olha por que a gente conferiu mesmo assim.</p>
+<p>O laudo diz: não achei chave nenhuma. Ótimo. Mas você só pode dormir
+tranquilo porque PROCUROU. ‘Não tinha’ só vale depois de ‘eu
+procurei’.</p>
+<p>Você leu isso exatamente como lê um hemograma: a coluna da esquerda é
+o resultado, a frase do lado é o que ele significa. Você não abriu um
+arquivo, não leu uma linha de código. Pediu o exame e leu o laudo.</p>
+<hr />
+<p>Se algum item viesse amarelo — ATENÇÃO — você não jogava fora. Você
+corrigia o simples na hora e conferia de novo. E se viesse vermelho —
+PARE — aí o lote não sai: vermelho é ‘retém até resolver’, não ‘corrige
+e segue’. No nosso app offline isso não vai acontecer, mas o critério
+fica. Erro na conferência é a conferência funcionando.</p>
+<p>Agora, o quarto item — a bula. Cola:”</p>
+<p>[TELA: digitar o Prompt 2 — a bula]</p>
+<pre><code>A auditoria passou. Agora gere a BULA da entrega: um arquivo de texto simples chamado
+LEIA-ME.txt, escrito pra um colega médico que NÃO fez este curso e não sabe nada de
+computador. Linguagem de bula de remédio: curta, clara, sem jargão. No máximo uma página.
+
+Inclua, nesta ordem:
+  - O que é o programa (calculadoras, checklist cirúrgico, painel; roda no Windows).
+  - Como abrir: dois cliques no ClinMd-Tribe.exe; a 1ª abertura demora uns segundos
+    (normal); não precisa instalar nada.
+  - O aviso azul do Windows: se aparecer &quot;O Windows protegeu o seu computador&quot;, clicar em
+    &quot;Mais informações&quot; e depois &quot;Executar assim mesmo&quot;; não é vírus; NUNCA desligar o
+    antivírus.
+  - Funciona 100% offline; os dados ficam só na máquina dele; sem nuvem, sem login.
+  - Requisitos: Windows 10 ou 11.
+
+Salve como LEIA-ME.txt na pasta onde está o .exe. Me mostre o texto pronto, em português,
+pra eu ler e aprovar.</code></pre>
+<p>“O Claude escreve a bula e te mostra. Lê com calma — é o texto que o
+seu colega vai ler. Está em português de gente, sem jargão? Tem o aviso
+do antivírus? Diz que é offline? Aprovado. Quatro itens, quatro
+vistos.”</p>
+<hr />
+<h2 id="seção-5-a-assinatura-o-lote-está-liberado-10-min">SEÇÃO 5: A
+ASSINATURA — O LOTE ESTÁ LIBERADO — 10 min</h2>
+<p><strong>Tom:</strong> O ápice de uma aula de fechamento. Desacelera.
+O clímax não é técnico — é o gesto de liberar e carimbar.</p>
+<p>“Vamos ver o lote pronto. Abre a pasta da caixa:”</p>
+<p>[TELA: no terminal]</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">explorer</span> dist</span></code></pre></div>
+<p>“O Windows abre a janela de arquivos. E agora tem dois arquivos lado
+a lado: o <code>ClinMd-Tribe.exe</code> e o <code>LEIA-ME.txt</code>. A
+caixa e a bula. O kit de entrega completo.</p>
+<hr />
+<p>Para. Olha o que tem na sua frente: o programa, e o papel que ensina
+a abrir o programa. Isso é um lote pronto pra sair de um laboratório de
+respeito.</p>
+<p>E agora você faz uma coisa que nenhum software seu fez até hoje: você
+LIBERA. Confere mentalmente os quatro vistos — lacre, fechado; pureza,
+sem paciente; sobra, só o que devia; bula, escrita. E assina: este lote
+pode ir pra mão do meu colega.</p>
+<hr />
+<p>E um laboratório sério carimba o número do lote. Vamos dar a este uma
+versão oficial: a 1.0. Cola:”</p>
+<p>[TELA: digitar o Prompt 3 — carimbar a versão]</p>
+<pre><code>A entrega está auditada e com bula. Quero carimbar isso como a primeira versão oficial, a
+&quot;1.0&quot; — como o número de lote de um remédio liberado.
+
+Antes de carimbar, garanta que tudo que faz parte da entrega (inclusive a bula que a gente
+acabou de gerar) está salvo e enviado, pra a marca apontar exatamente pro lote que eu
+auditei. Cuide disso você, sem me mostrar comando — só confirme em uma frase que está em dia.
+
+Depois, crie a marca de versão com o nome EXATO `v1.0` (não `v1.0.0`, não outro formato) e
+me dê o comando de envio já com esse nome `v1.0` dentro, pra eu colar igual. Me explique em
+uma frase o que essa marca significa, e em outra como eu poderia, se quisesse, anexar o .exe
+a essa versão no GitHub pra um colega baixar por link — sem fazer agora. NÃO me mostre código.</code></pre>
+<p>[TELA: no terminal — o comando que o Claude forneceu]</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin v1.0</span></code></pre></div>
+<p>“Pronto. Versão 1.0, carimbada e registrada. O seu produto tem número
+de lote.</p>
+<hr />
+<p>Para um segundo e pensa no caminho.</p>
+<p>No começo do curso você abria o software dos outros. Depois você
+construiu o seu. Hoje você fez a coisa mais adulta que um construtor
+faz: olhou pro próprio produto, conferiu com rigor, e assumiu a
+responsabilidade de entregar.</p>
+<p>Você não é mais só quem usa software. Nem só quem constrói. Você é
+quem responde pelo que entrega.”</p>
+<hr />
+<h2
+id="seção-6-o-que-a-conferência-não-é-e-a-chave-que-merece-uma-aula-4-min">SEÇÃO
+6: O QUE A CONFERÊNCIA NÃO É — E A CHAVE QUE MERECE UMA AULA — 4
+min</h2>
+<p><strong>Tom:</strong> Honesto, desmistificador, plantador do gancho.
+Abre a porta para a aula_40 sem invadir o conteúdo.</p>
+<p>“Duas honestidades pra fechar bem.</p>
+<p>A primeira: a conferência não é blindagem eterna. Você conferiu ESTE
+lote, HOJE. Se amanhã você mudar o app e gerar uma caixa nova, confere
+de novo. Liberação é por lote, não pra sempre. Igual no laboratório.</p>
+<hr />
+<p>A segunda — e aqui mora a porta pra próxima aula.</p>
+<p>No item LACRE, a gente procurou por uma chave secreta e, ainda bem,
+não achou — porque este app é offline e não usa nenhuma. Mas existe um
+tipo de chave que vale ouro, e que um dia você vai ter na mão: o token
+de API. A senha que dá acesso a um serviço na sua conta, no seu
+dinheiro.</p>
+<p>Esse tipo de chave NUNCA pode chegar nem perto de uma caixa que você
+entrega, nem de um lugar público. E tem um detalhe traiçoeiro: apagar a
+chave de um arquivo não apaga ela do histórico — ela fica guardada lá
+atrás.</p>
+<p>Como se guarda uma chave dessas do jeito certo, pra ela nunca vazar —
+é a sua próxima aula, inteira. Hoje você aprendeu a PROCURAR a chave na
+saída. Na próxima, a guardá-la na entrada.”</p>
+<hr />
+<h2
+id="seção-7-encerramento-lote-liberado-laboratório-de-respeito-6-min">SEÇÃO
+7: ENCERRAMENTO — LOTE LIBERADO, LABORATÓRIO DE RESPEITO — 6 min</h2>
+<p><strong>Tom:</strong> Síntese pelo aluno, LGPD como ato, fechamento
+do arco S11, ponte curta para S12.</p>
+<p>“Diz na sua cabeça o que você fez hoje.</p>
+<p>Você conferiu quatro itens — lacre, pureza, sobra, bula. Pediu um
+laudo e leu como lê um exame. Escreveu a bula pro colega. Carimbou a
+versão 1.0. E assinou a liberação. Sem ler uma linha de código.</p>
+<hr />
+<p>E aqui a privacidade dá o passo final do curso.</p>
+<p>Durante semanas eu disse: dado de paciente não sai, tudo roda local.
+Na aula passada você viu isso virar design — a <code>data/</code> ficou
+de fora da caixa de propósito. Hoje você fez algo a mais, e é o que
+separa intenção de garantia: você CONFERIU.</p>
+<p>A auditoria de entrega É um ato de privacidade. Não basta desenhar
+privado; antes de soltar no mundo, você PROVA que está privado. Desenhar
+certo foi a aula passada. Conferir que está certo, hoje, é o que te
+deixa entregar de cabeça erguida.</p>
+<hr />
+<p>E com isso, o seu ClinMd-Tribe está pronto. De verdade.</p>
+<p>Polido por fora, empacotado numa caixa, e liberado por um controle de
+qualidade — você. O arco de construir esse produto fecha aqui.</p>
+<p>O que vem agora não é mais construir. São os hábitos de quem já
+entrega: como guardar as suas chaves, como manter a casa arrumada por
+dentro, como trabalhar com o seu time de agentes. As boas práticas que
+separam quem fez um app de quem virou, de fato, alguém que entrega
+software com responsabilidade.</p>
+<p>Você fechou o produto. Na próxima, a gente cuida das chaves. Até
+lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+<hr />
+<blockquote>
+<p><strong>NOTAS DE PRODUÇÃO (não falar — operacional):</strong></p>
+<ul>
+<li><strong>Fronteira com a aula_40 (CRÍTICA):</strong> esta aula
+menciona “token/segredo/chave” SOMENTE como (a) item LACRE da auditoria
+e (b) gancho da Seção 6. <strong>PROIBIDO aqui:</strong> mostrar
+<code>.env</code>, mostrar <code>sk-ant-...</code>/qualquer string de
+chave, mostrar <code>git log</code>/histórico cru, explicar variável de
+ambiente ou <code>python-dotenv</code>. O conceito de segredo e o
+tratamento (reescrever histórico, rotacionar chave) é 100% da aula_40
+(S12.01). Aqui é gancho, não conteúdo.</li>
+<li><strong>Verdade técnica do app (calibra o LACRE):</strong> o
+ClinMd-Tribe é 100% offline e NÃO usa token de API em runtime → o
+veredito honesto e esperado do LACRE é “limpo”. Isso é força pedagógica
+(ensina o HÁBITO da conferência com resultado positivo), não fraqueza.
+<strong>NÃO inventar</strong> um token falso só para ter achado
+dramático — o drama vem do gesto de conferir. Gravar a fala pronta nos
+dois cenários (achou / não achou) — se a conta-piloto tiver um token
+real no histórico (de algum teste antigo), o cenário “ATENÇÃO GRAVE →
+gancho aula_40” fica ainda mais forte.</li>
+<li><strong><code>data/</code> já excluída (aula_38):</strong> o PUREZA
+confirma, não refaz.</li>
+<li><strong>Gate de tamanho (SOBRA):</strong> reusa o da aula_38 (.exe
+&gt; ~300 MB = peça pesada vazou). Mostrar o Claude reportando o tamanho
+real.</li>
+<li><strong>A bula:</strong> gerar <code>LEIA-ME.txt</code> (não
+<code>.md</code> — o colega zero-TI abre <code>.txt</code> com dois
+cliques no Bloco de Notas). Máx. 1 página. Mostrar o texto renderizado
+em português — é o único “documento” que o aluno lê, e é prosa, não
+código.</li>
+<li><strong>Versão v1.0:</strong> simples — <code>git tag v1.0</code> (o
+Claude cria) + <code>git push origin v1.0</code> (o aluno cola). GitHub
+Release fica como menção (anexar o .exe por link), não passo
+obrigatório. Só carimbar DEPOIS do laudo “liberado”.</li>
+<li><strong>Armadilha bash:</strong> os únicos comandos são
+<code>explorer dist</code> e <code>git push origin v1.0</code>. Zero
+<code>uv run python -c</code>.</li>
+<li><strong>Tom de fechamento:</strong> última do polimento (arco S11
+fecha), mas NÃO é a última do curso — vêm S12.01-03. Fechar o PRODUTO
+com peso; a ponte da Seção 7 deixa claro que o curso continua em “boas
+práticas”. Não dizer “fim do curso”.</li>
+<li><strong>Callback aula_31 (time-out):</strong> a Seção 2 reusa o
+checklist OMS que o aluno já construiu — referenciar como algo que ele
+JÁ fez (reduz carga).</li>
+<li><strong>Clímax de fechamento:</strong> o ápice (Seção 5) é o gesto
+de liberar/carimbar, não um artefato novo. Segurar o respiro na
+“assinatura”. Frame-síntese: a pasta com <code>.exe</code> +
+<code>LEIA-ME.txt</code> lado a lado.</li>
+</ul>
+</blockquote>
+</body>
+</html>

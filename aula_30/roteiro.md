@@ -133,6 +133,8 @@ Você escreveu o prompt.
 
 Agora rodar e testar ao vivo.
 
+**[NOTA DE PRODUÇÃO: a tela_busca_rag ainda não está no menu — o Flet vai abrir, mas a tela de busca só aparecerá após a Seção 3. Esta execução é para confirmar que o app não quebrou.]**
+
 ```bash
 uv run flet run main.py
 ```
@@ -186,7 +188,7 @@ Siga o padrão dos outros itens de menu do projeto.
 
 ---
 
-"Agora testar a navegação.
+"Agora rodamos o app completo — com a tela de busca no menu:
 
 ```bash
 uv run flet run main.py
@@ -474,7 +476,17 @@ Buscar em inglês pode funcionar melhor quando os artigos estão em inglês.
 
 Para o médico: quando o artigo estiver em inglês e a busca não encontrar —
 tente reformular a pergunta em inglês.
-O app vai encontrar."
+O app vai encontrar.
+
+---
+
+Se precisar de artigos em português, use o prompt:
+
+```
+Busque 1 artigo sobre [tema] no PubMed que tenha abstract em português. Salve em knowledge_base/.
+```
+
+Depois reindexe normalmente. O banco combina artigos em inglês e português — cada busca vai encontrar nos dois idiomas."
 
 ---
 
@@ -585,6 +597,8 @@ Mas em situação de urgência — com o paciente instável — ele pode pular u
 
 O S08 é o módulo de checklists.
 Estilo OMS.
+
+Na aula trinta e um você começa o S08 — o primeiro checklist.
 
 Você vai construir um app que acompanha procedimentos passo a passo.
 Cada item marcado.

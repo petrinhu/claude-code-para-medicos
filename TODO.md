@@ -1,7 +1,7 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-09
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 49 ✅ · 0 🚫 · 3 ⏳ · **Total: 52 aulas**
+> **Resumo:** 50 ✅ · 0 🚫 · 2 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
@@ -14,17 +14,16 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ⏳ Pendente — 3 itens
+## ⏳ Pendente — 2 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| S12.01 | 17 | Avançado · S12 Boas Práticas | Segurança: nunca suba seu token de API → aula_40 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
 | S12.02 | 17 | Avançado · S12 Boas Práticas | Arquitetura modular: evitando o monolito → aula_41 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
 | S12.03 | 17 | Avançado · S12 Boas Práticas | Workflow com agentes: sempre discuta com o time (C-levels + devs) → aula_42 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
 
 ---
 
-## ✅ Concluído — 49 itens
+## ✅ Concluído — 50 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -77,3 +76,4 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 | S11.01 | 16 | Avançado · S11 Polimento | UI médica: identidade visual TribeMD (tema central, Inter estática, ícones) → aula_37 (~60min, jaleco/4 princípios, antes-depois, "sala única") | Baixa | S10 | Médio | ✅ Concluído | ✅ |
 | S11.02 | 16 | Avançado · S11 Polimento | Exportar como .exe Windows (flet pack, versão leve sem RAG) → aula_38 (~58min, fórmula→remédio de prateleira, antivírus/SmartScreen, LGPD ápice; **decisão Dr. Petrus: .exe leve**) | Baixa | S11.01 | Médio | ✅ Concluído | ✅ |
 | S11.03 | 16 | Avançado · S11 Polimento | Auditoria final + distribuição (laudo de entrega, bula LEIA-ME, carimbo v1.0) → aula_39 (~55min, controle de qualidade do lote, LGPD como ato; última do polimento) | Baixa | S11.02 | Médio | ✅ Concluído | ✅ |
+| S12.01 | 17 | Avançado · S12 Boas Práticas | Segurança: nunca suba seu token de API → aula_40 (~55min, chave do armário de controlados, rotação > faxina, ZERO comando/chave na tela, drill preventivo offline) | Baixa | S11 | Simples | ✅ Concluído | ✅ |

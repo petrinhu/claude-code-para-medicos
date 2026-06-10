@@ -202,18 +202,19 @@ E o erro vai aparecer só depois, quando você tentar fazer uma busca.
 
 Regra 1: caminho ancorado.
 
-O banco vetorial vai ser criado em `data/chroma_db/`.
-O Claude vai precisar saber onde essa pasta está.
+O banco vetorial vai ser criado dentro da pasta `data/`, na raiz do projeto.
+O programa vai precisar saber onde essa pasta está.
 
-Se usar uma string simples — `'data/chroma_db'` —
-o banco vai ser criado no lugar errado quando você rodar o programa de outra pasta.
+Existe uma forma frágil de informar isso: dar um caminho solto, do tipo 'a pasta data, aqui do lado'.
+O problema é que 'aqui do lado' depende de onde você está parado quando roda o programa.
+Se você rodar de dentro da pasta do projeto, funciona.
+Se você rodar de outra pasta qualquer, o banco vai nascer no lugar errado.
 Sem dar erro.
 Sem avisar.
 O banco vai estar lá, mas não onde você espera.
 
-A forma correta usa `Path(__file__).parent.parent / 'data' / 'chroma_db'`.
-Isso significa: 'vai dois níveis acima do arquivo que estou escrevendo, e procura a pasta data/chroma_db'.
-Ancorado ao código. Sempre no lugar certo.
+A forma correta é ancorar o caminho no próprio código: 'a pasta data fica em relação a este arquivo, não em relação a onde o usuário está parado'.
+Ancorado ao código. Sempre no lugar certo, não importa de onde você rode.
 
 ---
 
@@ -224,16 +225,17 @@ Idempotência é uma palavra que você vai usar bastante no ClinMd-Tribe.
 Significa: rodar a mesma operação duas vezes dá o mesmo resultado que rodar uma vez.
 
 Se você rodar o indexador hoje, ele vai criar os trechos no banco.
-Se você rodar de novo amanhã — porque atualiza os artigos, ou porque deu erro —
+Se você rodar de novo amanhã, porque atualiza os artigos, ou porque deu erro,
 ele deve atualizar os trechos existentes, não duplicar.
 
-A forma de garantir isso: IDs determinísticos e `upsert` em vez de `add`.
+A forma de garantir isso tem duas partes.
 
-ID determinístico significa que o mesmo trecho sempre tem o mesmo nome.
-`upsert` significa: se já existe, atualiza. Se não existe, cria.
+Primeira: cada trecho precisa de um nome fixo e previsível, que não muda de uma execução para a outra. O mesmo parágrafo do mesmo artigo sempre recebe a mesma etiqueta.
 
-Com `add`, rodar duas vezes = cada trecho duplicado.
-Com `upsert`, rodar duas vezes = mesmo resultado.
+Segunda: ao gravar, o indexador precisa seguir a regra 'se este trecho já existe, atualiza; se não existe, cria'. Em vez da regra ingênua 'sempre adiciona mais um'.
+
+Com a regra ingênua, rodar duas vezes deixa cada trecho duplicado.
+Com a regra de atualizar-ou-criar, rodar duas vezes dá o mesmo resultado de rodar uma.
 
 ---
 
@@ -258,34 +260,53 @@ assim o contexto não se perde na divisão.
 Essas três regras estão no prompt.
 Agora vamos digitar.
 
+Repare: eu não vou dizer ao Claude QUAL comando usar nem QUAL linha escrever.
+Eu descrevo o EFEITO que eu quero, em português.
+Quem escolhe como implementar é ele.
+Esse é o jeito que a gente trabalha no curso inteiro.
+
 [ler cada parte em voz alta e digitar]
 
 ```
-Implemente o indexador do ClinMd-Tribe respeitando Clean Architecture (4 camadas).
-Lê arquivos .txt de knowledge_base/ e indexa no banco vetorial em data/chroma_db/.
+Implemente o indexador do ClinMd-Tribe respeitando a Clean Architecture (as 4 camadas).
+A função dele: ler os arquivos .txt da pasta knowledge_base e indexar tudo num
+banco vetorial guardado na pasta data, na raiz do projeto.
 
-infrastructure/rag/txt_loader.py
-  - Lê todos os .txt de knowledge_base/
-    (caminho ancorado na raiz: Path(__file__).parent.parent / "knowledge_base")
-  - Chunking por parágrafo com overlap de 1 parágrafo entre trechos consecutivos
-  - Descarta trechos com menos de 150 caracteres (referências bibliográficas)
-  - Cada trecho guarda metadado: nome_arquivo (str) e numero_trecho (int)
-  - Retorna lista de dicts: {"texto": str, "nome_arquivo": str, "numero_trecho": int}
+Quero o trabalho dividido em três responsabilidades, cada uma na sua camada:
 
-infrastructure/rag/chroma_repositorio.py
-  - chromadb.PersistentClient com path ANCORADO na raiz do projeto:
-    Path(__file__).parent.parent / "data" / "chroma_db"
-  - Usa get_or_create_collection("clinmd_rag")
-  - Método indexar(documentos: list[dict]) → None
-    IDs determinísticos: f"{doc['nome_arquivo']}_{doc['numero_trecho']}"
-    Usa upsert (não add) para garantir idempotência
+1. Um leitor de artigos, na camada de infraestrutura, no arquivo
+   infrastructure/rag/txt_loader.py.
+   - Lê todos os .txt da pasta knowledge_base.
+   - Usa um caminho ancorado à raiz do projeto, não um caminho solto: o leitor
+     deve achar a pasta knowledge_base mesmo que eu rode o programa de outra pasta.
+   - Corta cada artigo em trechos por parágrafo, com uma pequena sobreposição
+     entre trechos vizinhos (um parágrafo de overlap), para o contexto não se
+     perder na divisão. Nunca cortar por número fixo de caracteres.
+   - Descarta os trechos muito curtos (referências bibliográficas soltas), que
+     não ajudam numa busca clínica.
+   - Para cada trecho, guarda de onde ele veio: de qual artigo e qual a posição
+     dele dentro do artigo.
 
-application/servicos/indexador_service.py   (sem acento em "servicos" — Python não tolera acentos em nomes de módulo)
-  - Importa txt_loader e chroma_repositorio
-  - Chama o loader, manda indexar
-  - Imprime no terminal: "X trechos indexados de Y arquivos"
+2. Um repositório do banco vetorial, também na camada de infraestrutura, no arquivo
+   infrastructure/rag/chroma_repositorio.py.
+   - O banco fica guardado em disco, na pasta data, com o caminho ancorado à raiz
+     do projeto (mesma regra do leitor: nunca um caminho solto).
+   - Ao gravar os trechos, garante idempotência: rodar o indexador duas vezes não
+     pode duplicar nada. Cada trecho tem um nome fixo e previsível, e a gravação
+     segue a regra atualiza-se-já-existe, cria-se-é-novo, em vez de sempre adicionar
+     mais um.
 
-NÃO importe chromadb em application/ nem em domain/. Apenas em infrastructure/.
+3. Um serviço que orquestra os dois, na camada de aplicação, no arquivo
+   application/servicos/indexador_service.py.
+   - Chama o leitor, manda indexar e, ao final, imprime no terminal uma frase no
+     formato: "X trechos indexados de Y arquivos".
+   - Deixe esse serviço executável direto pelo terminal pelo comando:
+     uv run python -m application.servicos.indexador_service
+
+Regra de arquitetura que não pode ser quebrada: só a camada de infraestrutura pode
+conhecer a tecnologia do banco vetorial. As camadas de aplicação e de domínio não
+podem importar nada do banco diretamente.
+
 Ao final, me diga como rodar o indexador pelo terminal.
 ```
 
@@ -297,9 +318,9 @@ Ao final, me diga como rodar o indexador pelo terminal.
 
 ---
 
-## SEÇÃO 5: CLAUDE IMPLEMENTA + LEITURA SUPERVISIONADA — 15 min
+## SEÇÃO 5: CLAUDE IMPLEMENTA + LAUDO DE CONFORMIDADE - 15 min
 
-**Tom:** Aguardar + auditar — três perguntas, cada uma corresponde a um risco técnico explicado na seção anterior
+**Tom:** Aguardar e auditar pelo laudo. Você não lê o código; você pede um laudo em português e confere as três regras
 
 [aguardar o Claude Code processar]
 
@@ -307,103 +328,121 @@ Ao final, me diga como rodar o indexador pelo terminal.
 
 "Três arquivos novos.
 
-`infrastructure/rag/txt_loader.py` — criado.
-`infrastructure/rag/chroma_repositorio.py` — criado.
-`application/servicos/indexador_service.py` — criado.
+O leitor de artigos, na infraestrutura, criado.
+O repositório do banco vetorial, na infraestrutura, criado.
+O serviço que orquestra os dois, na aplicação, criado.
 
 Você não escreveu nenhuma linha.
 Você escreveu o prompt.
 
-Agora você lê antes de rodar.
+Agora vem a parte importante: você confere antes de rodar.
 
-Três perguntas.
-Cada uma verifica uma das regras que eu expliquei."
+Só que você não vai ler código.
+Você é médico, não programador.
+Ler arquivo de programa linha por linha não é o seu trabalho, e nunca vai ser.
 
----
+O seu trabalho é o mesmo de sempre na medicina: pedir o exame certo e ler o laudo.
 
-**Pergunta 1 — Caminho ancorado (Risco A):**
+Então em vez de abrir os arquivos, você pede um laudo.
+Você manda o Claude auditar o próprio trabalho e te confirmar, em português,
+que as três regras críticas foram respeitadas.
 
-"Abra `infrastructure/rag/chroma_repositorio.py`.
+Cole este prompt:
 
-Você está procurando o `PersistentClient`.
-Ele usa `Path(__file__)` ou usa uma string simples?
+```
+Audite os três arquivos que você acabou de criar para o indexador.
+Não me mostre código. Me responda em português, como um laudo, item por item.
 
-O padrão correto é este:
+Para cada um dos três pontos abaixo, diga se está CONFORME ou se há um ATENÇÃO,
+e explique em uma frase o que você verificou:
 
-```python
-from pathlib import Path
+1. Caminho ancorado: o leitor e o banco vetorial usam um caminho ancorado à raiz
+   do projeto (e não um caminho solto, que dependeria de onde eu rodo o programa)?
 
-_DB_PATH = Path(__file__).parent.parent / "data" / "chroma_db"
-client = chromadb.PersistentClient(path=str(_DB_PATH))
+2. Idempotência: rodar o indexador duas vezes NÃO duplica os trechos? Confirme que
+   cada trecho tem um nome fixo e previsível e que a gravação atualiza o que já
+   existe em vez de sempre adicionar mais um.
+
+3. Chunking por parágrafo: os artigos são cortados por parágrafo, com sobreposição
+   entre trechos vizinhos, e nunca por número fixo de caracteres?
+
+E confirme também: a tecnologia do banco vetorial só aparece na camada de
+infraestrutura? As camadas de aplicação e de domínio ficaram livres dela?
+
+Se algum item não estiver conforme, corrija o código você mesmo e me avise o que mudou.
 ```
 
-Se você ver `chromadb.PersistentClient(path='data/chroma_db')` — string simples —
-o banco vai ser criado em um lugar diferente dependendo de onde você rodar o programa.
-Você vai indexar os artigos, fechar o terminal, abrir de outra pasta,
-e o banco vai parecer vazio.
+---
 
-Esse é o erro mais silencioso desta aula.
+[enviar o prompt e aguardar o laudo]
 
-**[TELA: mostrar o código — confirmar Path(__file__) ancorado]**
+**[TELA: mostrar o laudo do Claude em português, sem código, item por item]**
 
-Correto — caminho ancorado."
+"O Claude responde em português, item por item.
+Você lê o laudo do mesmo jeito que lê o laudo de um exame: procurando o que está
+conforme e o que está em atenção.
+
+Vou explicar por que cada um desses três itens importa tanto a ponto de virar laudo.
+Porque quando um deles falha, o erro não aparece agora. Aparece lá na frente, na busca,
+quando já é difícil descobrir a causa."
 
 ---
 
-**Pergunta 2 — Idempotência (Risco B):**
+**Item 1 do laudo - Caminho ancorado:**
 
-"Agora, no mesmo arquivo, procure o método que grava os trechos.
+"Este é o erro mais silencioso desta aula.
 
-Você está procurando duas coisas:
+Se o caminho do banco for solto, em vez de ancorado, acontece o seguinte:
+você indexa os artigos hoje, tudo funciona, você fecha o terminal.
+Amanhã você abre o programa de outra pasta, e o banco parece vazio.
+Os trechos não sumiram. Eles estão lá, mas num lugar que o programa não procura mais.
 
-Primeira: os IDs são determinísticos?
-Procure algo como:
+Nenhum erro vermelho na tela. Nenhum aviso. Só uma busca que não acha nada.
 
-```python
-id = f"{doc['nome_arquivo']}_{doc['numero_trecho']}"
-```
-
-Segunda: o método usa `upsert` ou `add`?
-
-Com `upsert`, rodar o indexador duas vezes = mesmo número de trechos no banco.
-Com `add`, rodar o indexador duas vezes = cada trecho duplicado.
-
-Quando você fizer uma busca num banco duplicado,
-vai receber o mesmo trecho duas vezes na resposta.
-O app vai parecer repetitivo — e vai ser difícil saber por quê.
-
-**[TELA: mostrar o código — confirmar upsert e IDs determinísticos]**
-
-Correto — upsert, IDs determinísticos."
+Por isso o laudo precisa dizer, em letras claras: caminho ancorado, CONFORME."
 
 ---
 
-**Pergunta 3 — Chunking por parágrafo (Risco C):**
+**Item 2 do laudo - Idempotência:**
 
-"Agora abra `infrastructure/rag/txt_loader.py`.
+"Aqui o risco é a duplicação.
 
-O texto está sendo dividido por `\n\n` — quebra dupla de linha — ou por número fixo de caracteres?
+Sem a regra de atualizar-ou-criar, cada vez que você roda o indexador, os trechos
+entram de novo. Roda duas vezes, cada trecho aparece duas vezes no banco.
 
-Procure algo assim:
+E quando você buscar, mais tarde, 'dose de rivaroxabana em FA com clearance reduzido',
+o app vai te devolver o mesmo trecho repetido.
+O ClinMd-Tribe vai parecer com um eco, repetindo a mesma informação.
+E vai ser difícil entender por quê, porque a busca em si funciona.
 
-```python
-paragrafos = texto.split('\n\n')
-```
-
-Se você ver `texto[i:i+500]` — corte por número fixo de caracteres —
-os trechos vão quebrar no meio de frases clínicas.
-Um trecho que termina em 'a dose de rivaroxabana deve ser ajustada conforme a função'
-é inútil para o app responder perguntas sobre dosagem.
-
-O chunking por parágrafo respeita a unidade de sentido do texto médico.
-
-**[TELA: mostrar o código — confirmar split('\n\n') com overlap]**
-
-Correto — chunking por parágrafo com overlap.
+O laudo confirma: rodar duas vezes não duplica. Idempotência, CONFORME."
 
 ---
 
-As três regras estão respeitadas.
+**Item 3 do laudo - Chunking por parágrafo:**
+
+"Este é o mais clínico dos três.
+
+Se o artigo for cortado por número fixo de caracteres, os trechos quebram no meio
+das frases. Um trecho termina em 'a dose de rivaroxabana deve ser ajustada conforme
+a função', e para ali.
+Esse pedaço é inútil para o app responder uma pergunta sobre dosagem: a informação
+que importa ficou cortada ao meio.
+
+Cortar por parágrafo respeita a unidade de sentido do texto médico.
+Cada parágrafo é um pensamento completo. E a sobreposição entre trechos vizinhos
+garante que nada de importante se perca exatamente na linha do corte.
+
+O laudo confirma: chunking por parágrafo com sobreposição, CONFORME."
+
+---
+
+"Três itens, três CONFORME.
+E o laudo ainda confirma que a tecnologia do banco ficou só na infraestrutura,
+do jeito que a Clean Architecture exige.
+
+Você auditou um indexador inteiro sem ler uma linha de código.
+Leu um laudo. Como faz todo dia.
 
 O indexador está pronto para rodar."
 
@@ -512,14 +551,14 @@ Mesmo número.
 
 O banco não duplicou.
 
-O indexador reconheceu os IDs — `nome_arquivo_numero_trecho` —
-verificou que já existiam, e atualizou sem criar duplicatas.
+O indexador reconheceu cada trecho pelo nome fixo que ele já tinha,
+verificou que todos já existiam, e atualizou sem criar duplicatas.
 
-Um indexador ingênuo — usando `add` em vez de `upsert` —
+Um indexador ingênuo, daqueles que sempre adicionam mais um em vez de atualizar o que já existe,
 teria 282 trechos agora.
 E quando você buscasse 'dose de rivaroxabana em FA com clearance reduzido',
 receberia cada trecho relevante duas vezes.
-O app pareceria com um eco — repetindo as mesmas informações.
+O app pareceria com um eco, repetindo as mesmas informações.
 
 Idempotência resolve isso.
 Rodar duas vezes — ou dez vezes — dá o mesmo resultado."

@@ -383,54 +383,56 @@ interface.</p>
 ponta.”</p>
 <hr />
 <h2
-id="seção-4-pergunta-de-supervisão-algum-import-chromadb-fora-de-infrastructure-4-min">SEÇÃO
-4: PERGUNTA DE SUPERVISÃO — ALGUM <code>import chromadb</code> FORA DE
-<code>infrastructure/</code>? — 4 min</h2>
-<p><strong>Tom:</strong> Auditoria arquitetural — a regra mais
-importante do módulo</p>
+id="seção-4-pergunta-de-supervisão-só-a-infraestrutura-conhece-o-chromadb-4-min">SEÇÃO
+4: PERGUNTA DE SUPERVISÃO: SÓ A INFRAESTRUTURA CONHECE O CHROMADB? (4
+min)</h2>
+<p><strong>Tom:</strong> Auditoria arquitetural; a regra mais importante
+do módulo</p>
 <p>“Antes de seguir, uma pergunta de supervisão.</p>
 <p>É a regra arquitetural mais importante do módulo inteiro.</p>
 <hr />
-<p>Você aprendeu na aula_27 que apenas um arquivo do projeto pode
-importar o ChromaDB.</p>
-<p><code>infrastructure/rag/chroma_repositorio.py</code>.</p>
-<p>Só esse.</p>
+<p>Você viu na aula_27 o ChromaDB no seu lugar na arquitetura, e cravou
+a regra nas aulas_28 e 29: apenas um lugar do projeto pode conhecer o
+ChromaDB.</p>
+<p>A camada de infraestrutura.</p>
+<p>Só ela.</p>
 <hr />
-<p>Após adicionar a tela de busca, vamos verificar que a regra continua
+<p>Após adicionar a tela de busca, vamos confirmar que a regra continua
 valendo.</p>
-<p>Três arquivos para verificar:</p>
-<p><code>domain/rag/porta_busca.py</code> — tem
-<code>import chromadb</code>? Não deve.
-<code>application/servicos/busca_service.py</code> — tem
-<code>import chromadb</code>? Não deve.
-<code>presentation/telas/tela_busca_rag.py</code> — tem
-<code>import chromadb</code>? Não deve.</p>
+<p>Pense em quem NÃO pode conhecer o banco:</p>
+<p>A tela de busca, que você acabou de criar. O serviço de busca, que a
+tela chama. O domínio, que define o contrato.</p>
+<p>Nenhum dos três pode falar com o ChromaDB diretamente. Só a
+infraestrutura pode.</p>
 <hr />
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-r</span> <span class="st">&quot;import chromadb&quot;</span> domain/ application/ presentation/</span></code></pre></div>
-<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
-<p>Output esperado: nenhuma linha.</p>
-<p>O grep retorna vazio.</p>
-<hr />
-<p>Agora verificar onde ele deve aparecer:</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-r</span> <span class="st">&quot;import chromadb&quot;</span> infrastructure/</span></code></pre></div>
-<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
-<p>Output esperado:</p>
-<pre><code>infrastructure/rag/chroma_repositorio.py:import chromadb</code></pre>
-<p>Uma linha. Um único arquivo.</p>
+<p>Em vez de você ir caçar isso arquivo por arquivo, peça o laudo ao
+Claude. Igual a pedir um exame e ler o resultado, não a fórmula.</p>
+<pre><code>Faça uma auditoria de arquitetura no ClinMd-Tribe e me responda em portugues, sem me mostrar nenhum codigo:
+
+1. Apenas a camada de infraestrutura conhece o ChromaDB diretamente?
+2. Alguma tela, algum servico ou o dominio fala com o ChromaDB sem passar pela infraestrutura? Liste se houver.
+3. Conclua: se eu trocar o banco vetorial amanha, isso mexeria em quantos lugares do projeto?
+
+Responda so com o laudo em portugues. Nao cole codigo.</code></pre>
+<p>[enviar o prompt ao Claude Code]</p>
+<p><strong>[TELA: mostrar o Claude Code respondendo o laudo em texto,
+sem código]</strong></p>
+<p>Laudo esperado: só a infraestrutura conhece o ChromaDB. Tela, serviço
+e domínio passam por ela. Trocar o banco mexeria em um único lugar.</p>
 <hr />
 <p>Por que isso importa?</p>
-<p>Se amanhã sair um banco vetorial melhor que o ChromaDB — você troca
-um arquivo.</p>
-<p><code>infrastructure/rag/chroma_repositorio.py</code>.</p>
-<p>Só esse.</p>
+<p>Se amanhã sair um banco vetorial melhor que o ChromaDB, você troca um
+único lugar.</p>
+<p>A camada de infraestrutura.</p>
+<p>Só ela.</p>
 <p>A tela não sabe que mudou. O serviço não sabe que mudou. O domínio
 não sabe que mudou.</p>
 <p>Apenas a infraestrutura sabe. E a infraestrutura é o único lugar que
 pode mudar.</p>
 <hr />
-<p>Isso é Clean Architecture protegendo o seu trabalho.”</p>
+<p>Isso é Clean Architecture protegendo o seu trabalho. A tela, o
+serviço e o domínio nem sabem que o ChromaDB existe; por isso o dia da
+troca é trabalho de um lugar só, não do projeto inteiro.”</p>
 <hr />
 <h2
 id="seção-5-.gitignore-adicionar-knowledge_base-e-datachroma_db-3-min">SEÇÃO
@@ -494,20 +496,20 @@ peri-operatória’ e o resultado retornado é:</p>
 <p>Causa: o indexador incluiu trechos muito curtos — referências,
 rodapés, fragmentos. O filtro de tamanho mínimo está baixo demais.</p>
 <hr />
-<p>O indexador da aula_27 já filtra trechos com menos de 150 caracteres.
-Mas referências bibliográficas costumam ter mais de 150 caracteres.</p>
-<p>Solução: aumentar o critério de tamanho mínimo para 200.</p>
+<p>O indexador da aula_28 já descarta os trechos muito curtos. Mas
+referências bibliográficas costumam passar desse corte mínimo.</p>
+<p>Solução: subir o critério de tamanho mínimo do trecho para 200
+caracteres.</p>
 <pre><code>Em infrastructure/rag/txt_loader.py, aumente o critério de tamanho mínimo do trecho para 200 caracteres.</code></pre>
 <p>[enviar o prompt ao Claude Code]</p>
 <hr />
 <p>Depois de implementar: deletar o banco vetorial e reindexar.</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.indexador_service import indexar_pasta</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">indexar_pasta(&#39;knowledge_base/&#39;)</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
-<p><strong>[NOTA DE PRODUÇÃO: mostrar o terminal rodando a reindexação —
+<p>O comando de reindexação é o mesmo módulo que você rodou na aula_28.
+Você só executa e vê o resultado; não há código para ler.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-m</span> application.servicos.indexador_service</span></code></pre></div>
+<p><strong>[NOTA DE PRODUÇÃO: mostrar o terminal rodando a reindexação;
 confirmar que os trechos retornados após o ajuste são
 melhores]</strong></p>
 <p>Os trechos curtos não vão mais aparecer. O filtro mais rigoroso
@@ -532,17 +534,16 @@ reindexar.</p>
 português.</strong></p>
 <p>Os modelos de embedding têm desempenho melhor quando a pergunta e o
 artigo estão no mesmo idioma.</p>
-<p>Tentar buscar em inglês:</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.busca_service import buscar</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">for r in buscar(&#39;warfarin dosing elderly&#39;, n=2):</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">    print(r.fonte, r.trecho[:150])</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
-<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
+<p>Para testar essa hipótese, peça ao Claude para fazer a mesma busca em
+inglês e te dar o veredito em português.</p>
+<pre><code>Teste a busca do ClinMd-Tribe por &quot;warfarin dosing elderly&quot;, em ingles.
+Me diga em portugues se voltou algum resultado e de qual artigo, sem me mostrar codigo.</code></pre>
+<p>[enviar o prompt ao Claude Code]</p>
+<p><strong>[TELA: mostrar o Claude Code respondendo em português se a
+busca em inglês voltou resultado]</strong></p>
 <hr />
-<p>Se retornou resultados em inglês mas não em português: a causa era o
-idioma da busca.</p>
+<p>Se a busca em inglês retornou resultados mas a busca em português
+não: a causa era o idioma da busca.</p>
 <p>Isso é uma limitação real do RAG com artigos em inglês. Buscar em
 inglês pode funcionar melhor quando os artigos estão em inglês.</p>
 <hr />
@@ -557,39 +558,33 @@ português — cada busca vai encontrar nos dois idiomas.”</p>
 <hr />
 <p><strong>Diagnóstico 3 — Resultados repetidos:</strong></p>
 <p>“Sintoma: o mesmo trecho aparece duas vezes no resultado.</p>
-<pre><code>Fonte: 39123456_anticoagulation_fa.txt | Trecho 4
-The CHA₂DS₂-VASc score...
----
-Fonte: 39123456_anticoagulation_fa.txt | Trecho 4
-The CHA₂DS₂-VASc score...
----</code></pre>
+<p>Na tela você vê algo assim: o trecho do escore CHA2DS2-VASc, vindo da
+fonte anticoagulation_fa, trecho número 4. E logo abaixo, de novo, o
+mesmo trecho do escore CHA2DS2-VASc, da mesma fonte anticoagulation_fa,
+com o mesmo número 4. Texto idêntico, fonte idêntica, número idêntico.
+Repetido.</p>
 <hr />
-<p>Causa: o indexador rodou mais de uma vez sem idempotência correta. Os
-IDs dos vetores não eram determinísticos — o mesmo trecho foi inserido
-duas vezes com IDs diferentes.</p>
+<p>Causa: o indexador rodou mais de uma vez sem idempotência correta. O
+mesmo trecho foi guardado duas vezes no banco com identificadores
+diferentes, então a busca devolve o repetido.</p>
 <hr />
-<p>Diagnóstico via terminal:</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.busca_service import buscar</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">r = buscar(&#39;anticoagulação&#39;, n=6)</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">fontes = [f&#39;{x.fonte}_{x.numero_trecho}&#39; for x in r]</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">print(fontes)</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="st">print(&#39;duplicatas:&#39;, len(fontes) - len(set(fontes)))</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
-<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
-<p>Se <code>duplicatas:</code> retornar um número maior que zero — há
-duplicatas no banco.</p>
+<p>Diagnóstico: peça ao Claude para conferir se o banco tem trechos
+duplicados.</p>
+<pre><code>Verifique se o banco do ClinMd-Tribe tem trechos duplicados.
+Busque &quot;anticoagulacao&quot; e me diga, em portugues, se algum trecho aparece repetido (mesma fonte e mesmo numero de trecho), sem me mostrar codigo.</code></pre>
+<p>[enviar o prompt ao Claude Code]</p>
+<p><strong>[TELA: mostrar o Claude Code respondendo em português se há
+trechos repetidos]</strong></p>
+<p>Se o Claude apontar trechos com a mesma fonte e o mesmo número
+aparecendo mais de uma vez, há duplicatas no banco.</p>
 <hr />
-<p>Solução: deletar o banco e reindexar uma vez.</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.indexador_service import indexar_pasta</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">indexar_pasta(&#39;knowledge_base/&#39;)</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
-<p>O <code>upsert</code> do ChromaDB vai garantir que cada trecho seja
-inserido apenas uma vez.</p>
+<p>Solução: deletar o banco e reindexar uma vez. Mesmo módulo de
+reindexação da aula_28; você só roda e vê o resultado.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-m</span> application.servicos.indexador_service</span></code></pre></div>
+<p>Ao reindexar do zero, cada trecho entra no banco uma única vez, e a
+repetição desaparece.</p>
 <hr />
 <p>Três diagnósticos. Três tratamentos.</p>
 <p>O médico que sabe diagnosticar o app é mais valioso do que o app
@@ -603,12 +598,13 @@ ENCERRAMENTO + BRIDGE S08 + DEVER DE CASA — 4 min</h2>
 para um produto funcionando</p>
 <p>“O módulo S07 está encerrado.</p>
 <p>O que você construiu em quatro aulas:</p>
-<p>Aula_27: entendeu embeddings e Clean Architecture. Indexou os
-primeiros artigos no ChromaDB. Aula_28: baixou artigos do PubMed via
-MCP. Construiu o knowledge_base com artigos reais. Aula_29: validou os
-três gabaritos no terminal. O buscador funcionou — com rastreabilidade,
-com semântica, sem invenção. Aula_30: ligou o buscador na interface
-Flet. Aprendeu a diagnosticar quando a busca está ruim.</p>
+<p>Aula_27: entendeu embeddings, RAG e onde cada peça mora na Clean
+Architecture. Só o mapa, sem prompt. Aula_28: baixou artigos do PubMed
+via MCP, construiu o knowledge_base e indexou os primeiros trechos no
+ChromaDB. Aula_29: validou os três gabaritos no terminal. O buscador
+funcionou — com rastreabilidade, com semântica, sem invenção. Aula_30:
+ligou o buscador na interface Flet. Aprendeu a diagnosticar quando a
+busca está ruim.</p>
 <hr />
 <p>Seis calculadoras. Um dashboard financeiro. Um buscador semântico que
 lê artigos e cita a fonte.</p>
@@ -634,16 +630,15 @@ uma etapa.</p>
 <hr />
 <p>Dever de casa:</p>
 <p>Antes da próxima aula, teste o Diagnóstico 1.</p>
-<p>Aumente o mínimo de caracteres para 200 em
-<code>txt_loader.py</code>. Delete o banco vetorial e reindexe.</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.indexador_service import indexar_pasta</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">indexar_pasta(&#39;knowledge_base/&#39;)</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
-<p>Faça a mesma busca de antes — ‘anticoagulação em FA’. Compare os
-trechos retornados com os de antes.</p>
+<p>Peça ao Claude para aumentar o mínimo de caracteres para 200 no
+carregador de artigos. Delete o banco vetorial e reindexe com o mesmo
+módulo da aula_28; você só roda e vê o resultado.</p>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-m</span> application.servicos.indexador_service</span></code></pre></div>
+<p>Depois, peça ao Claude para fazer a busca por ‘anticoagulação em FA’
+e te mostrar, em português, os trechos retornados. Compare com os
+trechos que você via antes do ajuste.</p>
 <p>Observe a diferença. Registre o que mudou.</p>
 <p>Esse exercício vai consolidar o diagnóstico que você aprendeu
 hoje.”</p>

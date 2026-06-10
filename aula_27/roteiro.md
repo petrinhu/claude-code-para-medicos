@@ -187,9 +187,7 @@ Quero que você veja o resultado."
 
 ---
 
-**[TELA: abrir aula_27/resources/demo_embedding.py — mostrar brevemente, não explicar linha a linha]**
-
-**[TELA: rodar no terminal]**
+**[TELA: rodar no terminal, SEM abrir o arquivo do script; o aluno vê só o resultado na tela, nunca o código]**
 
 ```
 uv run python aula_27/resources/demo_embedding.py

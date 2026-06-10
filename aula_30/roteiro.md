@@ -218,9 +218,9 @@ O módulo de RAG do ClinMd-Tribe está funcionando de ponta a ponta."
 
 ---
 
-## SEÇÃO 4: PERGUNTA DE SUPERVISÃO — ALGUM `import chromadb` FORA DE `infrastructure/`? — 4 min
+## SEÇÃO 4: PERGUNTA DE SUPERVISÃO: SÓ A INFRAESTRUTURA CONHECE O CHROMADB? (4 min)
 
-**Tom:** Auditoria arquitetural — a regra mais importante do módulo
+**Tom:** Auditoria arquitetural; a regra mais importante do módulo
 
 "Antes de seguir, uma pergunta de supervisão.
 
@@ -228,63 +228,56 @@ O módulo de RAG do ClinMd-Tribe está funcionando de ponta a ponta."
 
 ---
 
-Você aprendeu na aula_27 que apenas um arquivo do projeto pode importar o ChromaDB.
+Você viu na aula_27 o ChromaDB no seu lugar na arquitetura, e cravou a regra nas aulas_28 e 29: apenas um lugar do projeto pode conhecer o ChromaDB.
 
-`infrastructure/rag/chroma_repositorio.py`.
+A camada de infraestrutura.
 
-Só esse.
-
----
-
-Após adicionar a tela de busca, vamos verificar que a regra continua valendo.
-
-Três arquivos para verificar:
-
-`domain/rag/porta_busca.py` — tem `import chromadb`? Não deve.
-`application/servicos/busca_service.py` — tem `import chromadb`? Não deve.
-`presentation/telas/tela_busca_rag.py` — tem `import chromadb`? Não deve.
+Só ela.
 
 ---
 
-```bash
-grep -r "import chromadb" domain/ application/ presentation/
-```
+Após adicionar a tela de busca, vamos confirmar que a regra continua valendo.
 
-**[TELA: mostrar o terminal rodando o comando]**
+Pense em quem NÃO pode conhecer o banco:
 
-Output esperado: nenhuma linha.
+A tela de busca, que você acabou de criar.
+O serviço de busca, que a tela chama.
+O domínio, que define o contrato.
 
-O grep retorna vazio.
+Nenhum dos três pode falar com o ChromaDB diretamente.
+Só a infraestrutura pode.
 
 ---
 
-Agora verificar onde ele deve aparecer:
-
-```bash
-grep -r "import chromadb" infrastructure/
-```
-
-**[TELA: mostrar o terminal rodando o comando]**
-
-Output esperado:
+Em vez de você ir caçar isso arquivo por arquivo, peça o laudo ao Claude.
+Igual a pedir um exame e ler o resultado, não a fórmula.
 
 ```
-infrastructure/rag/chroma_repositorio.py:import chromadb
+Faça uma auditoria de arquitetura no ClinMd-Tribe e me responda em portugues, sem me mostrar nenhum codigo:
+
+1. Apenas a camada de infraestrutura conhece o ChromaDB diretamente?
+2. Alguma tela, algum servico ou o dominio fala com o ChromaDB sem passar pela infraestrutura? Liste se houver.
+3. Conclua: se eu trocar o banco vetorial amanha, isso mexeria em quantos lugares do projeto?
+
+Responda so com o laudo em portugues. Nao cole codigo.
 ```
 
-Uma linha.
-Um único arquivo.
+[enviar o prompt ao Claude Code]
+
+**[TELA: mostrar o Claude Code respondendo o laudo em texto, sem código]**
+
+Laudo esperado: só a infraestrutura conhece o ChromaDB. Tela, serviço e domínio passam por ela. Trocar o banco mexeria em um único lugar.
 
 ---
 
 Por que isso importa?
 
-Se amanhã sair um banco vetorial melhor que o ChromaDB —
-você troca um arquivo.
+Se amanhã sair um banco vetorial melhor que o ChromaDB,
+você troca um único lugar.
 
-`infrastructure/rag/chroma_repositorio.py`.
+A camada de infraestrutura.
 
-Só esse.
+Só ela.
 
 A tela não sabe que mudou.
 O serviço não sabe que mudou.
@@ -295,7 +288,9 @@ E a infraestrutura é o único lugar que pode mudar.
 
 ---
 
-Isso é Clean Architecture protegendo o seu trabalho."
+Isso é Clean Architecture protegendo o seu trabalho.
+A tela, o serviço e o domínio nem sabem que o ChromaDB existe;
+por isso o dia da troca é trabalho de um lugar só, não do projeto inteiro."
 
 ---
 
@@ -396,10 +391,10 @@ O filtro de tamanho mínimo está baixo demais.
 
 ---
 
-O indexador da aula_27 já filtra trechos com menos de 150 caracteres.
-Mas referências bibliográficas costumam ter mais de 150 caracteres.
+O indexador da aula_28 já descarta os trechos muito curtos.
+Mas referências bibliográficas costumam passar desse corte mínimo.
 
-Solução: aumentar o critério de tamanho mínimo para 200.
+Solução: subir o critério de tamanho mínimo do trecho para 200 caracteres.
 
 ```
 Em infrastructure/rag/txt_loader.py, aumente o critério de tamanho mínimo do trecho para 200 caracteres.
@@ -411,15 +406,15 @@ Em infrastructure/rag/txt_loader.py, aumente o critério de tamanho mínimo do t
 
 Depois de implementar: deletar o banco vetorial e reindexar.
 
+O comando de reindexação é o mesmo módulo que você rodou na aula_28.
+Você só executa e vê o resultado; não há código para ler.
+
 ```bash
 rm -rf data/chroma_db/
-uv run python - <<'EOF'
-from application.servicos.indexador_service import indexar_pasta
-indexar_pasta('knowledge_base/')
-EOF
+uv run python -m application.servicos.indexador_service
 ```
 
-**[NOTA DE PRODUÇÃO: mostrar o terminal rodando a reindexação — confirmar que os trechos retornados após o ajuste são melhores]**
+**[NOTA DE PRODUÇÃO: mostrar o terminal rodando a reindexação; confirmar que os trechos retornados após o ajuste são melhores]**
 
 Os trechos curtos não vão mais aparecer.
 O filtro mais rigoroso elimina referências bibliográficas e fragmentos.
@@ -452,21 +447,20 @@ Se vazio: buscar outro artigo com texto disponível no PubMed e reindexar.
 
 Os modelos de embedding têm desempenho melhor quando a pergunta e o artigo estão no mesmo idioma.
 
-Tentar buscar em inglês:
+Para testar essa hipótese, peça ao Claude para fazer a mesma busca em inglês e te dar o veredito em português.
 
-```bash
-uv run python - <<'EOF'
-from application.servicos.busca_service import buscar
-for r in buscar('warfarin dosing elderly', n=2):
-    print(r.fonte, r.trecho[:150])
-EOF
+```
+Teste a busca do ClinMd-Tribe por "warfarin dosing elderly", em ingles.
+Me diga em portugues se voltou algum resultado e de qual artigo, sem me mostrar codigo.
 ```
 
-**[TELA: mostrar o terminal rodando o comando]**
+[enviar o prompt ao Claude Code]
+
+**[TELA: mostrar o Claude Code respondendo em português se a busca em inglês voltou resultado]**
 
 ---
 
-Se retornou resultados em inglês mas não em português:
+Se a busca em inglês retornou resultados mas a busca em português não:
 a causa era o idioma da busca.
 
 Isso é uma limitação real do RAG com artigos em inglês.
@@ -494,51 +488,39 @@ Depois reindexe normalmente. O banco combina artigos em inglês e português —
 
 "Sintoma: o mesmo trecho aparece duas vezes no resultado.
 
-```
-Fonte: 39123456_anticoagulation_fa.txt | Trecho 4
-The CHA₂DS₂-VASc score...
----
-Fonte: 39123456_anticoagulation_fa.txt | Trecho 4
-The CHA₂DS₂-VASc score...
----
-```
+Na tela você vê algo assim: o trecho do escore CHA2DS2-VASc, vindo da fonte anticoagulation_fa, trecho número 4. E logo abaixo, de novo, o mesmo trecho do escore CHA2DS2-VASc, da mesma fonte anticoagulation_fa, com o mesmo número 4. Texto idêntico, fonte idêntica, número idêntico. Repetido.
 
 ---
 
 Causa: o indexador rodou mais de uma vez sem idempotência correta.
-Os IDs dos vetores não eram determinísticos — o mesmo trecho foi inserido duas vezes com IDs diferentes.
+O mesmo trecho foi guardado duas vezes no banco com identificadores diferentes, então a busca devolve o repetido.
 
 ---
 
-Diagnóstico via terminal:
+Diagnóstico: peça ao Claude para conferir se o banco tem trechos duplicados.
 
-```bash
-uv run python - <<'EOF'
-from application.servicos.busca_service import buscar
-r = buscar('anticoagulação', n=6)
-fontes = [f'{x.fonte}_{x.numero_trecho}' for x in r]
-print(fontes)
-print('duplicatas:', len(fontes) - len(set(fontes)))
-EOF
+```
+Verifique se o banco do ClinMd-Tribe tem trechos duplicados.
+Busque "anticoagulacao" e me diga, em portugues, se algum trecho aparece repetido (mesma fonte e mesmo numero de trecho), sem me mostrar codigo.
 ```
 
-**[TELA: mostrar o terminal rodando o comando]**
+[enviar o prompt ao Claude Code]
 
-Se `duplicatas:` retornar um número maior que zero — há duplicatas no banco.
+**[TELA: mostrar o Claude Code respondendo em português se há trechos repetidos]**
+
+Se o Claude apontar trechos com a mesma fonte e o mesmo número aparecendo mais de uma vez, há duplicatas no banco.
 
 ---
 
 Solução: deletar o banco e reindexar uma vez.
+Mesmo módulo de reindexação da aula_28; você só roda e vê o resultado.
 
 ```bash
 rm -rf data/chroma_db/
-uv run python - <<'EOF'
-from application.servicos.indexador_service import indexar_pasta
-indexar_pasta('knowledge_base/')
-EOF
+uv run python -m application.servicos.indexador_service
 ```
 
-O `upsert` do ChromaDB vai garantir que cada trecho seja inserido apenas uma vez.
+Ao reindexar do zero, cada trecho entra no banco uma única vez, e a repetição desaparece.
 
 ---
 
@@ -561,8 +543,8 @@ E toda causa tem solução."
 
 O que você construiu em quatro aulas:
 
-Aula_27: entendeu embeddings e Clean Architecture. Indexou os primeiros artigos no ChromaDB.
-Aula_28: baixou artigos do PubMed via MCP. Construiu o knowledge_base com artigos reais.
+Aula_27: entendeu embeddings, RAG e onde cada peça mora na Clean Architecture. Só o mapa, sem prompt.
+Aula_28: baixou artigos do PubMed via MCP, construiu o knowledge_base e indexou os primeiros trechos no ChromaDB.
 Aula_29: validou os três gabaritos no terminal. O buscador funcionou — com rastreabilidade, com semântica, sem invenção.
 Aula_30: ligou o buscador na interface Flet. Aprendeu a diagnosticar quando a busca está ruim.
 
@@ -611,19 +593,16 @@ Dever de casa:
 
 Antes da próxima aula, teste o Diagnóstico 1.
 
-Aumente o mínimo de caracteres para 200 em `txt_loader.py`.
-Delete o banco vetorial e reindexe.
+Peça ao Claude para aumentar o mínimo de caracteres para 200 no carregador de artigos.
+Delete o banco vetorial e reindexe com o mesmo módulo da aula_28; você só roda e vê o resultado.
 
 ```bash
 rm -rf data/chroma_db/
-uv run python - <<'EOF'
-from application.servicos.indexador_service import indexar_pasta
-indexar_pasta('knowledge_base/')
-EOF
+uv run python -m application.servicos.indexador_service
 ```
 
-Faça a mesma busca de antes — 'anticoagulação em FA'.
-Compare os trechos retornados com os de antes.
+Depois, peça ao Claude para fazer a busca por 'anticoagulação em FA' e te mostrar, em português, os trechos retornados.
+Compare com os trechos que você via antes do ajuste.
 
 Observe a diferença.
 Registre o que mudou.

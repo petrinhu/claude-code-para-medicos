@@ -166,71 +166,6 @@
       vertical-align: middle;
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { color: #008000; } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { color: #008000; font-weight: bold; } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
 </head>
 <body>
@@ -314,116 +249,132 @@ reescreve um único arquivo: <code>chroma_repositorio.py</code>.</p>
 Respeite as 4 camadas.
 
 domain/rag/resultado_busca.py
-  - Entidade pura ResultadoBusca com campos:
-    trecho: str, fonte: str, numero_trecho: int, score: float
+  - O resultado da busca é uma coisa simples e pura do domínio.
+  - Cada resultado guarda quatro informações: o trecho de texto encontrado,
+    a fonte (de qual artigo veio), o número do trecho dentro do artigo, e
+    um score de distância (o quão perto esse trecho está da pergunta).
 
 domain/rag/porta_busca.py
-  - Interface abstrata BuscaRAG com método:
-    buscar(consulta: str, n: int) → list[ResultadoBusca]
-  - ZERO import de chromadb aqui — só o contrato
+  - Aqui mora só o contrato da busca: &quot;existe uma busca que recebe uma
+    pergunta e devolve uma lista de resultados&quot;.
+  - O domínio define o que a busca faz, nunca COMO ela faz.
+  - ZERO conhecimento do chromadb aqui. O domínio não sabe que o ChromaDB existe.
 
 infrastructure/rag/chroma_repositorio.py
-  - Atualizar arquivo existente: implementar a interface BuscaRAG
-  - Usar o mesmo PersistentClient já criado no indexador
-  - Retornar os N trechos mais próximos semanticamente
-  - SEMPRE incluir fonte e numero_trecho nos resultados
+  - Atualizar o arquivo que já existe da aula anterior.
+  - Este é o ÚNICO lugar do app que conhece o ChromaDB.
+  - Reaproveite a mesma conexão com o banco que o indexador já criou.
+  - Devolva os N trechos mais próximos semanticamente da pergunta.
+  - SEMPRE preencha a fonte e o número do trecho em cada resultado.
 
 application/servicos/busca_service.py
-  - def buscar(consulta: str, n: int = 3) -&gt; list[ResultadoBusca]   ← função pública (não classe)
-  - Recebe a pergunta do médico (str) e n (int, padrão 3)
-  - Chama BuscaRAG.buscar()
+  - O serviço é o orquestrador: recebe a pergunta do médico, dispara a busca,
+    aplica o corte de relevância e devolve os resultados.
+  - Por padrão, traz os 3 trechos mais próximos; a quantidade deve ser ajustável.
   - CORTE DE RELEVÂNCIA (essencial): o banco vetorial SEMPRE devolve os N trechos mais
     próximos, mesmo quando o tema está fora dos artigos. Para o app poder dizer &quot;não tenho&quot;,
     descarte os resultados cujo score de distância ultrapasse um LIMIAR de relevância; se
     não sobrar nenhum, devolva lista VAZIA (nunca texto inventado). Exponha esse limiar como
     uma constante nomeada e ajustável (ex.: LIMIAR_DISTANCIA), com valor inicial conservador
     que eu vou calibrar depois.
-  - Retorna list[ResultadoBusca]
 
 Regras:
   - Nenhum dado sai da máquina. Busca 100% offline.
   - Todo resultado DEVE ter fonte. Trecho sem fonte não pode ser exibido ao médico.
 
-Me mostre como testar a busca pelo terminal antes de conectar na tela.</code></pre>
+Quando terminar, confirme em português, sem me mostrar código, quais
+arquivos foram criados ou atualizados em cada camada.</code></pre>
 <p>[enviar o prompt ao Claude Code]</p>
 <p><strong>[TELA: mostrar o Claude Code gerando os
 arquivos]</strong>”</p>
 <hr />
-<h2 id="seção-3-claude-implementa-leitura-supervisionada-12-min">SEÇÃO
-3: CLAUDE IMPLEMENTA + LEITURA SUPERVISIONADA — 12 min</h2>
-<p><strong>Tom:</strong> Aguardar + auditar — três perguntas, cada uma
-verifica um princípio crítico</p>
+<h2 id="seção-3-claude-implementa-laudo-de-conformidade-12-min">SEÇÃO 3:
+CLAUDE IMPLEMENTA + LAUDO DE CONFORMIDADE — 12 min</h2>
+<p><strong>Tom:</strong> Aguardar + auditar pelo laudo — três perguntas,
+cada uma verifica um princípio crítico, em português</p>
 <p>[aguardar o Claude Code processar]</p>
-<p><strong>[TELA: mostrar os arquivos sendo criados e
-atualizados]</strong></p>
-<p>“Quatro arquivos.</p>
-<p><code>domain/rag/resultado_busca.py</code> — criado.
-<code>domain/rag/porta_busca.py</code> — criado.
-<code>infrastructure/rag/chroma_repositorio.py</code> — atualizado.
-<code>application/servicos/busca_service.py</code> — criado.</p>
+<p><strong>[TELA: mostrar o Claude Code trabalhando]</strong></p>
+<p>“Quatro arquivos, nas quatro camadas certas.</p>
+<p>A entidade do resultado, no domínio. O contrato da busca, no domínio.
+O repositório do ChromaDB, na infraestrutura. O serviço orquestrador, na
+aplicação.</p>
 <p>Você não escreveu nenhuma linha. Você escreveu o prompt.</p>
-<p>Agora você lê antes de rodar.</p>
-<p>Três perguntas.”</p>
+<p>Agora, antes de rodar qualquer busca, você audita o que foi
+construído.</p>
+<p>E você não vai ler código para isso. Você é cardiologista, não
+revisor de código.</p>
+<p>Você vai pedir um laudo.</p>
+<p>Do mesmo jeito que você não lê o traçado bruto do aparelho de RM,
+você lê o laudo do radiologista. Aqui o Claude é o seu radiologista de
+código. Você faz três perguntas, ele responde em português, e você
+confere o laudo.</p>
+<p>Cole este pedido:</p>
+<pre><code>Sem me mostrar código, me responda em português e em laudo curto, três perguntas
+sobre a busca que você acabou de implementar:
+
+1. ISOLAMENTO: o domínio (porta_busca.py e resultado_busca.py) está livre do
+   ChromaDB? Confirme que o único arquivo do app que conhece o ChromaDB é o
+   repositório na infraestrutura, e que nem a tela, nem o serviço, nem o domínio
+   sabem que o ChromaDB existe.
+
+2. PROVENIÊNCIA: todo resultado devolvido pela busca sai com a fonte preenchida,
+   ou seja, com o nome do artigo de origem? Confirme que nenhum trecho pode ser
+   devolvido com a fonte vazia ou em branco. Nenhum trecho órfão.
+
+3. LISTA VAZIA: quando nenhum trecho fica perto o bastante (acima da régua, do
+   corte de relevância), a busca devolve uma lista vazia? Confirme que ela nunca
+   devolve texto inventado nem uma resposta aproximada quando não há nada relevante.
+
+Responda cada item com OK ou ATENÇÃO e uma frase de justificativa, em português.</code></pre>
+<p><strong>[TELA: mostrar o laudo do Claude Code em
+português]</strong></p>
+<p>[ler o laudo em voz alta junto com o aluno]”</p>
 <hr />
-<p><strong>Pergunta 1 — Interface no domínio (a regra mais
+<p><strong>Pergunta 1 do laudo — Interface no domínio (a regra mais
 importante):</strong></p>
-<p>“Abra <code>domain/rag/porta_busca.py</code>.</p>
-<p>Existe algum <code>import chromadb</code> nesse arquivo?</p>
-<p>Não deve.</p>
-<p>O domínio define o contrato — não sabe como a busca é
-implementada.</p>
-<p><strong>[TELA: mostrar o conteúdo de porta_busca.py — confirmar
-ausência de import chromadb]</strong></p>
-<p>Agora abra <code>infrastructure/rag/chroma_repositorio.py</code>.</p>
-<p>Aqui sim o <code>import chromadb</code> aparece.</p>
-<hr />
-<p>Por que isso importa?</p>
-<p>Se o ChromaDB for descontinuado: você reescreve esse único arquivo. O
-resto do app continua sem saber que mudou.</p>
+<p>“O Claude vai confirmar: o domínio não conhece o ChromaDB.</p>
+<p>E por que essa é a pergunta mais importante?</p>
+<p>Porque o domínio define só o contrato: ‘existe uma busca que recebe
+uma pergunta e devolve resultados’. Ele não sabe COMO a busca é feita.
+Quem sabe fazer a busca de verdade é a infraestrutura, e só ela.</p>
+<p>Se o ChromaDB for descontinuado amanhã: você troca um único arquivo,
+o repositório na infraestrutura. O resto do app continua sem saber que
+algo mudou.</p>
 <p>A tela não sabe que existe ChromaDB. O serviço não sabe que existe
 ChromaDB. O domínio não sabe que existe ChromaDB.</p>
 <p>Apenas a infraestrutura sabe. E a infraestrutura é o único lugar que
 pode mudar.</p>
-<p><strong>[TELA: mostrar o import chromadb em chroma_repositorio.py —
-confirmar que está só aqui]</strong></p>
-<p>Correto — isolamento respeitado.”</p>
+<p>Se o laudo voltou OK no item 1, isolamento respeitado.”</p>
 <hr />
-<p><strong>Pergunta 2 — Proveniência obrigatória:</strong></p>
-<p>“Em <code>infrastructure/rag/chroma_repositorio.py</code>, no método
-de busca:</p>
-<p>Cada <code>ResultadoBusca</code> está sendo criado com o campo
-<code>fonte</code> preenchido?</p>
-<p>O campo <code>fonte</code> não pode ser vazio.</p>
+<p><strong>Pergunta 2 do laudo — Proveniência obrigatória:</strong></p>
+<p>“O segundo item do laudo confirma a proveniência: todo trecho sai com
+a fonte.</p>
+<p>Por que isso é inegociável?</p>
 <p>Um médico não pode receber um trecho sem saber de qual artigo veio.
-Isso é responsabilidade clínica. Se o trecho diz ‘a dose de rivaroxabana
-deve ser ajustada para 15mg em insuficiência renal moderada’ — o médico
-precisa saber de qual artigo isso veio. Para verificar. Para citar. Para
-discordar, se necessário.</p>
-<p>“O que importa verificar não são as chaves internas do ChromaDB —
-essas mudam conforme a implementação. O que importa: cada
-<code>ResultadoBusca</code> retornado tem o campo <code>fonte</code>
-preenchido? Abra <code>infrastructure/rag/chroma_repositorio.py</code> e
-confirme que nenhum <code>ResultadoBusca</code> é criado com
-<code>fonte=''</code> ou <code>fonte=None</code>.”</p>
-<p><strong>[TELA: mostrar o código do método de busca — confirmar fonte
-preenchida em cada resultado]</strong></p>
-<p>Correto — proveniência garantida.”</p>
+Isso é responsabilidade clínica.</p>
+<p>Se o trecho diz ‘a dose de rivaroxabana deve ser ajustada para 15mg
+em insuficiência renal moderada’, o médico precisa saber de qual artigo
+isso veio. Para verificar. Para citar. Para discordar, se
+necessário.</p>
+<p>Não importa o nome interno que o ChromaDB dá às coisas; isso muda
+conforme a versão. O que importa é o laudo: nenhum trecho é devolvido
+com a fonte em branco. Nenhum trecho órfão chega aos olhos do
+médico.</p>
+<p>Se o laudo voltou OK no item 2, proveniência garantida.”</p>
 <hr />
-<p><strong>Pergunta 3 — Lista vazia quando não encontra:</strong></p>
-<p>“Em <code>application/servicos/busca_service.py</code>:</p>
-<p>O que acontece quando o ChromaDB não retorna nada?</p>
-<p>Deve retornar lista vazia. Não texto inventado. Não ‘baseado no meu
+<p><strong>Pergunta 3 do laudo — Lista vazia quando não
+encontra:</strong></p>
+<p>“O terceiro item é o coração da confiança do app.</p>
+<p>O que acontece quando nada está perto o bastante da pergunta?</p>
+<p>A busca devolve lista vazia. Não texto inventado. Não ‘baseado no meu
 conhecimento geral…’. Não uma resposta aproximada.</p>
 <p>Lista vazia.</p>
-<p>O padrão esperado:</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> resultados  <span class="co"># pode ser []</span></span></code></pre></div>
-<p>Simples assim.</p>
 <p>Isso é o residente que não chuta. Quando não sabe, diz que não
 sabe.</p>
-<p><strong>[TELA: mostrar o return em busca_service.py — confirmar lista
-vazia]</strong></p>
-<p>Correto — sem invenção.”</p>
+<p>E é exatamente esse comportamento que você vai ver ao vivo daqui a
+pouco, quando a gente perguntar sobre um tema que não está nos
+artigos.</p>
+<p>Se o laudo voltou OK no item 3, sem invenção.”</p>
 <hr />
 <h2
 id="seção-4-gabarito-1-pergunta-dentro-do-kb-trechos-retornados-com-fonte-5-min">SEÇÃO
@@ -435,21 +386,17 @@ rastreabilidade</p>
 <p>Pergunta dentro do knowledge_base. Os artigos que indexamos falam
 sobre anticoagulação em FA. Vamos perguntar sobre anticoagulação em
 FA.</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.busca_service import buscar</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">resultados = buscar(&#39;anticoagulação em fibrilação atrial&#39;, n=3)</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">for r in resultados:</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">    print(f&#39;Fonte: {r.fonte} | Trecho {r.numero_trecho}&#39;)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    print(r.trecho[:200])</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">    print(&#39;---&#39;)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
-<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
-<p>[aguardar o output]</p>
+<p>Cole este pedido ao Claude Code:</p>
+<pre><code>Teste a busca do app por &#39;anticoagulação em fibrilação atrial&#39; e me mostre,
+em português, cada trecho encontrado com a sua fonte (o nome do artigo) e o
+número do trecho. NÃO me mostre código, só o resultado da busca em prosa.</code></pre>
+<p><strong>[TELA: mostrar o Claude Code rodando a busca e relatando o
+resultado]</strong></p>
+<p>[aguardar o relato]</p>
 <p><strong>[NOTA DE PRODUÇÃO: anotar os trechos reais e nomes de arquivo
-antes de gravar — os nomes abaixo são exemplos]</strong></p>
+antes de gravar, os nomes abaixo são exemplos]</strong></p>
 <hr />
-<p>O output vai ser algo assim:</p>
+<p>O relato vai ser algo assim:</p>
 <pre><code>Fonte: 39123456_anticoagulation_fa_guidelines_2023.txt | Trecho 4
 The CHA₂DS₂-VASc score is recommended for stroke risk stratification in
 patients with non-valvular atrial fibrillation. Anticoagulation is
@@ -480,17 +427,15 @@ FUNCIONAM — 4 min</h2>
 sentido, não por palavra exata</p>
 <p>“Agora uma pergunta diferente.</p>
 <p>Mas que fala sobre a mesma coisa.</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.busca_service import buscar</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">resultados = buscar(&#39;quando suspender o anticoagulante antes de procedimento&#39;, n=3)</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">for r in resultados:</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">    print(f&#39;Fonte: {r.fonte} | Trecho {r.numero_trecho}&#39;)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">    print(r.trecho[:200])</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    print(&#39;---&#39;)</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
-<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
-<p>[aguardar o output]</p>
+<p>Note que eu nem vou usar a palavra ‘anticoagulação’. Vou perguntar
+com outras palavras, do jeito que um médico perguntaria no corredor.</p>
+<p>Cole este pedido ao Claude Code:</p>
+<pre><code>Teste a busca do app por &#39;quando suspender o anticoagulante antes de
+procedimento&#39; e me mostre, em português, cada trecho encontrado com a sua
+fonte e o número do trecho. NÃO me mostre código, só o resultado em prosa.</code></pre>
+<p><strong>[TELA: mostrar o Claude Code rodando a busca e relatando o
+resultado]</strong></p>
+<p>[aguardar o relato]</p>
 <hr />
 <p>Os trechos retornados vão falar sobre manejo perioperatório,
 bridging, janela terapêutica.</p>
@@ -534,20 +479,17 @@ uma informação inventada com confiança.</p>
 <p>O que o nosso app deve fazer?</p>
 <p>Dizer que não sabe.</p>
 <hr />
-<p>[pausa de 3 segundos antes de rodar o teste]</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.busca_service import buscar</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">resultados = buscar(&#39;como tratar diabetes tipo 2 com metformina&#39;, n=3)</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">print(f&#39;Resultados encontrados: {len(resultados)}&#39;)</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">if not resultados:</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">    print(&#39;Lista vazia.&#39;)</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
-<p><strong>[TELA: mostrar o terminal rodando o comando — aguardar o
-output]</strong></p>
+<p>[pausa de 3 segundos antes de pedir o teste]</p>
+<p>Cole este pedido ao Claude Code:</p>
+<pre><code>Teste a busca do app por &#39;como tratar diabetes tipo 2 com metformina&#39; e me
+diga, em português, quantos trechos foram encontrados e quais são. NÃO me
+mostre código, só o resultado da busca em prosa.</code></pre>
+<p><strong>[TELA: mostrar o Claude Code rodando a busca e relatando o
+resultado, aguardar o relato]</strong></p>
 <hr />
-<pre><code>Resultados encontrados: 0
-Lista vazia.</code></pre>
+<p>E o relato volta assim:</p>
+<pre><code>Resultados encontrados: 0. A busca não encontrou nenhum trecho relevante o
+bastante nos artigos indexados. Lista vazia.</code></pre>
 <hr />
 <p>O app não inventou nada.</p>
 <p>Não disse ‘baseado no meu conhecimento geral sobre diabetes…’. Não
@@ -595,10 +537,13 @@ fonte — busca por sentido: sinônimos e paráfrases funcionam — pergunta
 fora do knowledge_base: lista vazia — sem invenção</p>
 <p>A infraestrutura de RAG do ClinMd-Tribe está funcionando.</p>
 <hr />
-<p>Mas o médico não vai usar o terminal.</p>
-<p>Ele não vai digitar <code>uv run python -c "..."</code>.</p>
-<p>Ele vai abrir o app, digitar uma pergunta num campo de texto, e ver
-os resultados na tela.</p>
+<p>Mas o médico não vai pedir a busca ao Claude Code.</p>
+<p>Hoje, para validar, você pediu ao Claude que rodasse a busca e te
+relatasse o resultado. Foi assim que você auditou o comportamento do
+app.</p>
+<p>Mas o médico de verdade não quer falar com o Claude para usar o app.
+Ele vai abrir o ClinMd-Tribe, digitar uma pergunta num campo de texto, e
+ver os resultados na tela.</p>
 <p>Na próxima aula você liga o buscador na interface do Flet.</p>
 <p>E vai aprender a diagnosticar quando a busca está ruim — quando os
 resultados retornados não fazem sentido para a pergunta feita.</p>
@@ -606,19 +551,23 @@ resultados retornados não fazem sentido para a pergunta feita.</p>
 residente traz uma referência errada.</p>
 <hr />
 <p>Antes da próxima aula:</p>
-<p>Teste mais duas perguntas no terminal.</p>
-<p>Uma dentro do seu <code>knowledge_base/</code> — sobre
-anticoagulação, sobre FA, o que você indexou. Uma completamente fora —
-sobre um tema que não está nos artigos.</p>
-<p>Observe o comportamento em cada caso.</p>
-<p>Copie o terminal. Compare os dois outputs.</p>
+<p>Peça ao Claude Code para testar mais duas perguntas na busca do
+app.</p>
+<p>Uma dentro do seu <code>knowledge_base/</code>: sobre anticoagulação,
+sobre FA, o que você indexou. Uma completamente fora: sobre um tema que
+não está nos artigos.</p>
+<p>Em cada pedido, peça o resultado em português, com a fonte de cada
+trecho, e sem mostrar código.</p>
+<p>Observe o comportamento em cada caso e compare os dois relatos.</p>
 <p>Esse exercício vai preparar você para a próxima aula, onde você vai
 conectar exatamente esse comportamento na interface do app.”</p>
 <hr />
 <p><strong>Dever de casa:</strong></p>
-<p>“Antes da próxima aula, teste mais 2 perguntas no terminal — uma
-dentro do seu <code>knowledge_base/</code> e uma completamente fora.
-Observe o comportamento em cada caso.”</p>
+<p>“Antes da próxima aula, peça ao Claude Code para testar mais 2
+perguntas na busca do app: uma dentro do seu
+<code>knowledge_base/</code> e uma completamente fora. Peça o resultado
+em português, com a fonte, sem mostrar código. Observe o comportamento
+em cada caso.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
 <hr />
@@ -641,11 +590,17 @@ devolve vazio ANTES de gravar a Seção 6.</li>
 projeto está em distância de cosseno ou L2 (muda a escala do limiar). O
 valor do corte é relativo ao modelo de embeddings e ao corpus, então NÃO
 existe número mágico universal; é calibração local.</li>
-<li><strong>Débito zero-código (S07):</strong> esta aula ainda traz
-leitura supervisionada de código e heredoc Python no terminal (paradigma
-antigo, pré-regra “zero código para LER”). Retrofit pendente em rodada
-futura (ver memória feedback-zero-codigo-para-ler); as edições do
-threshold acima foram cirúrgicas e não ampliam esse débito.</li>
+<li><strong>Zero-código (S07) aplicado:</strong> esta aula foi
+refatorada para a regra “zero código para o aluno LER” (ver memória
+feedback-zero-codigo-para-ler). A leitura supervisionada de código virou
+LAUDO DE CONFORMIDADE (Seção 3: o aluno pede ao Claude para confirmar
+isolamento, proveniência e lista vazia em português, sem ver código). Os
+heredocs Python das Seções 4, 5 e 6 viraram PROMPTS de busca (o aluno
+pede ao Claude para rodar a busca e relatar em prosa). O material do
+corte de relevância (LIMIAR_DISTANCIA, fala da régua na Seção 2 e no
+clímax da Seção 6) foi preservado integralmente. Os blocos de output
+mostrados são exemplos de PROSA em português (fonte + trecho), nunca
+código a analisar.</li>
 </ul>
 </blockquote>
 </body>

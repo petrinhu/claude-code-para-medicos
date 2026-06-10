@@ -100,7 +100,7 @@ Pronto. Abra a aba **Wiki** do repositório no Codeberg:
 
 `https://codeberg.org/petrinhu/claude-code-para-medicos/wiki`
 
-A página inicial (vinda do `Home.md`) deve aparecer, com a barra lateral à esquerda (do `_Sidebar.md`) e o rodapé embaixo (do `_Footer.md`). Clique pelos links e confira se a navegação entre as páginas funciona.
+A página inicial (vinda do `Home.md`) deve aparecer, com a barra lateral à direita (do `_Sidebar.md`) e o rodapé embaixo (do `_Footer.md`). Clique pelos links e confira se a navegação entre as páginas funciona.
 
 ## E quando a wiki precisar ser atualizada?
 

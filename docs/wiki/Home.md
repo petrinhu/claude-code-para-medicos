@@ -36,7 +36,7 @@ Sugestão de caminho, na ordem que faz mais sentido para quem está chegando ago
 4. **[[O-App-ClinMd-Tribe]]** - o aplicativo de exemplo do curso, explicado por dentro (com analogias) e o passo a passo para rodar os testes você mesmo.
 5. **[[Como-Publicar-Esta-Wiki]]** - instruções para o dono do repositório publicar estas páginas (passo manual, técnico).
 
-Use também a barra lateral (o menu à esquerda da página, com a lista de links) para navegar entre as páginas a qualquer momento.
+Use também a barra lateral (o menu à direita da página, com a lista de links) para navegar entre as páginas a qualquer momento.
 
 ## Uma palavra de incentivo
 

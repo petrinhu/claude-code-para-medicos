@@ -1,7 +1,7 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-09
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 42 ✅ · 0 🚫 · 10 ⏳ · **Total: 52 aulas**
+> **Resumo:** 43 ✅ · 0 🚫 · 9 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
@@ -14,11 +14,10 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ⏳ Pendente — 10 itens
+## ⏳ Pendente — 9 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| S09.01 | 14 | Avançado · S09 Testes | TDD e pytest: receita em vez de intuição → aula_33 | Baixa | S05+S07 | Médio | ⏳ Pendente | ⏳ |
 | S09.02 | 14 | Avançado · S09 Testes | Testes das calculadoras e RAG → aula_34 | Baixa | S09.01 | Médio | ⏳ Pendente | ⏳ |
 | S10.01 | 15 | Avançado · S10 CI/CD | Forgejo e pipeline CI básico → aula_35 | Baixa | S09 | Complexo | ⏳ Pendente | ⏳ |
 | S10.02 | 15 | Avançado · S10 CI/CD | Woodpecker: automatizando builds → aula_36 | Baixa | S10.01 | Complexo | ⏳ Pendente | ⏳ |
@@ -31,7 +30,7 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ✅ Concluído — 42 itens
+## ✅ Concluído — 43 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -77,3 +76,4 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 | S07.04 | 12 | Avançado · S07 RAG | Integração RAG com app Flet + qualidade da busca → aula_30 | Média | S07.03 | Complexo | ✅ Concluído | ✅ |
 | S08.01 | 13 | Avançado · S08 Checklist | Criar e gerenciar checklist (estilo OMS / WHO) → aula_31 (~55min, cirurgião, 19 itens 7/7/5, condensa S08.01+02, ensino sem leitura de código) | Média | S04 | Médio | ✅ Concluído | ✅ |
 | S08.02 | 13 | Avançado · S08 Checklist | Uso em procedimento: log com timestamp imutável → aula_31 (condensado, sem export PDF) | Média | S08.01 | Médio | ✅ Concluído | ✅ |
+| S09.01 | 14 | Avançado · S09 Testes | TDD + pytest: o guardião que confere as próprias regras → aula_33 (~55min, controle de qualidade lab, clímax sabotagem CHA₂DS₂-VASc, sem leitura de código) | Baixa | S05+S07 | Médio | ✅ Concluído | ✅ |

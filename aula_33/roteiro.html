@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 33 — O Guardião que Não Dorme: o App que Confere as Próprias Regras</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 33 — O Guardião que Não Dorme: o App que Confere
+as Próprias Regras</h1>
+</header>
+<h1
+id="aula-33-o-guardião-que-não-dorme-o-app-que-confere-as-próprias-regras">Aula
+33 — O Guardião que Não Dorme: o App que Confere as Próprias Regras</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~55 min <strong>Tom:</strong>
+Clínico-arquiteto que aprende a fazer o app provar as próprias regras —
+calmo, depois visceral no clímax <strong>Módulo:</strong> S09.01 —
+Testes Automatizados (TDD + pytest)</p>
+<hr />
+<h2 id="seção-1-abertura-o-controle-da-manhã-5-min">SEÇÃO 1: ABERTURA —
+O CONTROLE DA MANHÃ — 5 min</h2>
+<p><strong>Tom:</strong> Reflexivo, reconhecível. Retoma o gancho da
+aula_31 e ancora num ritual que o médico já confia cegamente.</p>
+<p>“Na aula do checklist cirúrgico, eu te fiz uma promessa.</p>
+<p>Lembra? Eu provei que o horário não podia ser falsificado — clicando,
+na mão, na frente de vocês. Marquei, fechei o app, reabri, tentei mudar.
+Três experimentos no dedo.</p>
+<p>E eu te deixei uma pergunta no ar: e se a própria máquina provasse
+isso sozinha? Toda vez. Sem eu precisar clicar.</p>
+<p>Hoje eu cumpro essa promessa.</p>
+<hr />
+<p>Mas deixa eu começar por um lugar que você conhece melhor do que eu:
+o laboratório.</p>
+<p>Toda manhã, antes do primeiro exame de paciente sair, o laboratório
+roda uma amostra-controle. Um material que não é de paciente nenhum — é
+padronizado, com um valor que já se sabe qual é. A glicemia-controle
+vale cem. Todo mundo sabe que vale cem.</p>
+<p>A máquina lê o controle. Deu cem? Está calibrada. Pode liberar os
+exames do dia.</p>
+<p>Deu cento e trinta? Trava tudo. Ninguém libera um resultado de
+paciente até consertar o aparelho.</p>
+<hr />
+<p>Repara no que o controle faz. Ele não testa o paciente. Ele testa a
+máquina que vai medir o paciente.</p>
+<p>E ele só funciona por um motivo: você sabe a resposta certa de
+antemão. Cem. Se você não soubesse que era cem, a leitura não provaria
+nada.</p>
+<hr />
+<p>Hoje você vai construir a amostra-controle do seu app.</p>
+<p>Um material de valor conhecido, que roda toda vez, e que trava tudo
+se o app errar uma regra que importa. Em vez de glicemia-controle, vão
+ser pacientes que você conhece de cor. Em vez de a máquina do
+laboratório, vai ser a sua calculadora e o seu checklist.</p>
+<p>Tem nome técnico: testes automatizados. Mas guarda a imagem do
+controle da manhã. É tudo o que você precisa.”</p>
+<hr />
+<h2 id="seção-2-três-palavras-vermelho-verde-guardião-6-min">SEÇÃO 2:
+TRÊS PALAVRAS — VERMELHO, VERDE, GUARDIÃO — 6 min</h2>
+<p><strong>Tom:</strong> Didático e tranquilo. Monta a maquete mental
+antes de qualquer comando. Zero código.</p>
+<p>“Antes de pedir qualquer coisa ao Claude Code, três palavras. Você já
+entende as três do laboratório — só falta o nome novo.</p>
+<hr />
+<p><strong>Verde.</strong></p>
+<p>Verde é o controle deu certo. A máquina leu cem, o app acertou a
+regra. Quando você rodar os testes e tudo estiver verde, significa: cada
+caso que você conhece deu o resultado que você esperava. Calibrado. Pode
+confiar.</p>
+<hr />
+<p><strong>Vermelho.</strong></p>
+<p>Vermelho é o controle falhou. A máquina leu cento e trinta. Alguma
+regra que importa está errada. E aqui vem a parte que parece estranha
+mas é linda: vermelho é uma boa notícia.</p>
+<p>Pensa comigo. Se uma regra do seu app quebrou, você quer descobrir
+como? Por um paciente prejudicado? Ou por um alarme vermelho na sua
+tela, antes de qualquer paciente chegar perto?</p>
+<p>Vermelho é o guardião gritando ‘PARA’ antes do dano. Vermelho é de
+graça. Paciente prejudicado, não.</p>
+<hr />
+<p><strong>Guardião.</strong></p>
+<p>Cada teste é um guardião. Ele vigia uma regra específica. O AVC
+prévio tem que valer dois pontos — tem um guardião pra isso. O horário
+do checklist não pode mudar — tem um guardião pra isso.</p>
+<p>Você não escreve esses guardiões. Você pede pro Claude criar. E eles
+ficam lá, parados, em silêncio — até a hora em que uma regra quebra. Aí
+eles acordam todos juntos e apontam exatamente o que saiu do lugar.</p>
+<hr />
+<p>Verde, vermelho, guardião.</p>
+<p>Calibrado, alarme, vigia.</p>
+<p>É a mesma lógica do controle de qualidade que você já confia todo
+dia. Só que agora é o controle de qualidade do seu app — e quem o roda é
+um comando só.”</p>
+<hr />
+<h2 id="seção-3-você-define-o-controle-8-min">SEÇÃO 3: VOCÊ DEFINE O
+CONTROLE — 8 min</h2>
+<p><strong>Tom:</strong> Colaborativo e instigante. O médico decide o
+que merece um guardião. Duas perguntas, nenhum código.</p>
+<p>“Antes de criar os guardiões, duas decisões. E quem decide é você —
+porque guardião demais atrapalha, e guardião de menos deixa passar o que
+importa.</p>
+<p>Duas perguntas. Raciocínio clínico, não código.</p>
+<hr />
+<p><strong>PERGUNTA UM — quais regras merecem um guardião?</strong></p>
+<p>Você não vai testar tudo. Seria como rodar controle pra cada parafuso
+da centrífuga. Você testa o que, se quebrar, machuca.</p>
+<p>Te dou três coisas do seu app. Qual delas, se quebrasse em silêncio —
+sem ninguém perceber — seria a mais perigosa para um paciente?</p>
+<p>A: a cor do botão ‘Calcular’.</p>
+<p>B: o AVC prévio valer dois pontos no CHA₂DS₂-VASc.</p>
+<p>C: o alinhamento do texto na tela.</p>
+<p>Pensa um segundo.</p>
+<hr />
+<p>É a B. E o detalhe é a palavra ‘silêncio’.</p>
+<p>Se a cor do botão quebrar, você vê na hora. Se o texto desalinhar,
+você vê na hora. Ninguém se machuca por um botão torto.</p>
+<p>Mas se o AVC prévio passar a valer um ponto em vez de dois? A tela
+mostra um número plausível. Parece certo. Você confia. E o paciente é
+subtratado — sem que nada na tela grite que está errado.</p>
+<p>Regra que merece guardião é essa: a que, quando quebra, quebra calada
+e perigosa. Não se testa estética. Testa-se segurança.</p>
+<hr />
+<p><strong>PERGUNTA DOIS — o que um controle precisa ter pra servir de
+teste?</strong></p>
+<p>Imagina que eu te entrego um tubo e digo: ‘roda no aparelho’. A
+máquina lê noventa e seis. Isso prova que o aparelho está calibrado?</p>
+<p>Pensa. O que está faltando pra esse número significar alguma
+coisa?</p>
+<hr />
+<p>Falta você saber o valor verdadeiro do tubo de antemão.</p>
+<p>Noventa e seis não prova nada se eu não te disse que aquele controle
+vale cem. Um controle só funciona porque a resposta certa é conhecida
+antes de rodar. Sem gabarito, o número é só um número.</p>
+<p>E aqui está o pulo do gato — isso é literalmente o que vamos fazer.
+No próximo prompt, eu não vou dizer ‘teste a calculadora’. Eu vou dizer:
+‘paciente com AVC prévio TEM que dar dois pontos’. Eu entrego o gabarito
+junto com o caso. Sem gabarito, não há controle.</p>
+<hr />
+<p>Duas decisões tomadas, e você nem tocou no teclado. Você decidiu o
+que vigiar — as regras perigosas. E entendeu por que um teste é
+confiável — porque a resposta certa vem antes. Agora a gente pede os
+guardiões.”</p>
+<hr />
+<h2 id="seção-4-prompt-1-os-guardiões-e-o-primeiro-verde-12-min">SEÇÃO
+4: PROMPT 1 — OS GUARDIÕES E O PRIMEIRO VERDE — 12 min</h2>
+<p><strong>Tom:</strong> Mãos à obra. Pede os testes da calculadora em
+linguagem clínica, roda, e lê a barra verde como um laudo.</p>
+<p>“Vou pedir ao Claude pra criar os guardiões da sua calculadora
+CHA₂DS₂-VASc. Repara no formato do pedido: cada guardião é um caso
+clínico que você conhece de cor, com o escore que você sabe ser o certo.
+Eu entrego o gabarito junto — como manda o controle.</p>
+<p>São os mesmos casos que você validou à mão lá na aula da calculadora.
+Cola o prompt:”</p>
+<p>[TELA: digitar o Prompt 1 no Claude Code]</p>
+<pre><code>Você é meu par de programação. Quero criar testes automatizados (pytest) que
+funcionem como o controle de qualidade do meu laboratório: cada teste tem um caso
+clínico de entrada e o resultado que eu SEI que é o certo. NÃO me mostre o código
+dos testes — só crie os arquivos e, ao final, me diga em uma frase como eu rodo
+todos eles.
+
+Crie testes para a calculadora CHA₂DS₂-VASc (o serviço calcular_cha2ds2vasc),
+usando estes casos clínicos, com a entrada e o escore esperado:
+
+  - 68 anos, masculino, hipertenso e diabético, sem mais nada
+    -&gt; escore esperado: 3 (recomendação: Anticoagular)
+  - 55 anos, masculino, sem nenhum fator de risco
+    -&gt; escore esperado: 0 (recomendação: Sem indicação no momento)
+  - 77 anos, feminina, com insuficiência cardíaca, hipertensão e AVC prévio
+    -&gt; escore esperado: 7 (recomendação: Anticoagular)
+  - paciente masculino com AVC prévio e mais nada
+    -&gt; escore esperado: 2, recomendação Anticoagular (a regra S2: AVC prévio
+       vale 2 pontos, nunca 1)
+
+Cada teste compara o escore que a calculadora devolve com o escore que eu informei
+aqui, e passa só se forem iguais. Coloque os testes na pasta padrão tests/, com
+nomes descritivos em português.
+
+Ao final, sem mostrar código, me diga quantos testes você criou e o comando exato
+para rodar todos.</code></pre>
+<p>“Cola, enter, deixa ele criar os guardiões. Ele vai te dizer no fim
+quantos criou e o comando pra rodar. O comando é esse — vou rodar
+agora:”</p>
+<p>[TELA: rodar os testes]</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Olha a tela. Cada linha é um guardião reportando. Em português, o
+nome do caso, e do lado: PASSED, em verde.</p>
+<p>Quatro guardiões. Quatro verdes. No rodapé: ‘quatro passaram’.</p>
+<hr />
+<p>Deixa eu traduzir esse laudo pra você — porque é exatamente um
+laudo.</p>
+<p>Cada linha verde é um controle que bateu. O paciente de sessenta e
+oito anos deu três, como você calculou à mão. O de cinquenta e cinco deu
+zero. A senhora de setenta e sete deu sete — insuficiência cardíaca,
+hipertensão, mais de setenta e cinco anos, AVC prévio, e o ponto do sexo
+feminino; exatamente como você somaria à mão. E o AVC prévio sozinho deu
+dois — a regra crítica, confirmada.</p>
+<p>Sua calculadora está calibrada. Como a máquina que leu cem no
+controle da manhã.</p>
+<hr />
+<p>E você não leu uma linha de Python pra saber disso. Você leu a barra
+verde. Do mesmo jeito que você lê ‘TGO dentro da faixa’ sem saber como o
+aparelho mede a TGO.</p>
+<p>Essa é a habilidade nova: confiar no guardião pelo veredito, não pelo
+código. Verde é normal. E nós temos quatro normais.”</p>
+<hr />
+<h2
+id="seção-5-o-guardião-do-timestamp-a-máquina-clica-sozinha-8-min">SEÇÃO
+5: O GUARDIÃO DO TIMESTAMP — A MÁQUINA CLICA SOZINHA — 8 min</h2>
+<p><strong>Tom:</strong> Satisfação narrativa. A promessa da aula_31
+cumprida — a máquina faz sozinha os três cliques.</p>
+<p>“Agora eu volto à promessa do começo. O checklist cirúrgico.</p>
+<p>Na aula dele, eu provei que o horário não muda — clicando três vezes
+na mão. Marquei, fechei e reabri, tentei re-marcar. Lembra do meu dedo
+na tela?</p>
+<p>Vamos criar um guardião que faz esses três cliques sozinho. Toda vez.
+Sem o meu dedo.”</p>
+<p>[TELA: digitar o prompt do guardião do timestamp]</p>
+<pre><code>Agora crie um guardião para a regra mais importante do meu checklist cirúrgico:
+o horário de quando um item é marcado não pode mudar depois.
+
+Crie testes (pytest) que provem, usando um banco de teste SEPARADO (nunca o banco
+real do app em data/clinmd.db), que:
+  - marcar um item gera um horário de conclusão;
+  - marcar o MESMO item de novo NÃO altera o horário do primeiro toque;
+  - o horário continua o mesmo depois de recarregar os itens do banco.
+
+NÃO me mostre o código. Ao final, me diga o comando para rodar esses testes junto
+com os outros.</code></pre>
+<p>“Repara numa coisa que eu pedi: banco de teste separado. O guardião
+nunca encosta no banco real do seu app, com os horários das suas
+cirurgias de verdade. Ele monta um banco de mentira, faz o teste lá, e
+joga fora. Os seus dados ficam intocados.</p>
+<hr />
+<p>Criado. Rodo tudo de novo:”</p>
+<p>[TELA: rodar]</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Agora são mais guardiões na lista. E os novos, os do timestamp —
+verdes também.</p>
+<p>Aquilo que eu provei com três cliques na aula do checklist, a máquina
+acabou de provar sozinha. Ela marcou um item, marcou de novo, conferiu
+que o horário não mudou, recarregou e conferiu outra vez. Em frações de
+segundo. Sem ninguém clicando.</p>
+<p>A promessa que eu te fiz no fim da aula do checklist? Cumprida. A
+máquina prova a própria regra. Agora, toda vez que você rodar esse
+comando, o guardião reconfere — pra sempre.</p>
+<hr />
+<p>E é aqui que a coisa fica séria. Porque até agora foi tudo verde,
+tudo bonito. Mas eu quero te mostrar o que esses guardiões fazem quando
+algo dá errado.</p>
+<p>Pra isso, eu vou quebrar uma regra de propósito.”</p>
+<hr />
+<h2
+id="seção-6-clímax-a-sabotagem-o-alarme-que-salva-o-paciente-11-min">SEÇÃO
+6: CLÍMAX — A SABOTAGEM: O ALARME QUE SALVA O PACIENTE — 11 min</h2>
+<p><strong>Tom:</strong> O ápice. Ritmo desacelera, deliberado, teatral.
+Silêncios. É o momento que o aluno leva pra vida.</p>
+<p>“Vou pedir ao Claude pra estragar uma regra. De propósito. O erro
+mais comum que existe nessa calculadora — aquele que eu te avisei lá na
+aula da calculadora.</p>
+<p>Vou fazer o AVC prévio valer um ponto, em vez de dois. É um erro
+real. Acontece em implementações de verdade, no mundo lá fora, porque
+alguém confunde o S de AVC com os critérios de um ponto.</p>
+<p>E eu não vou tocar nos guardiões. Só na regra. Quero ver se eles
+acordam.”</p>
+<p>[TELA: digitar o Prompt da sabotagem]</p>
+<pre><code>Quero te mostrar uma coisa. Por favor, introduza de propósito o erro mais comum
+dessa calculadora: faça o AVC prévio valer 1 ponto em vez de 2 na lógica do
+CHA₂DS₂-VASc. NÃO mexa nos testes — só na regra. Quero ver o que acontece quando
+eu rodo o controle.</code></pre>
+<p>“Pronto. O Claude mudou a regra. Agora o AVC prévio vale um ponto. O
+app está errado — silenciosamente errado. Se eu abrisse a calculadora na
+tela agora, ela mostraria um número plausível. Eu não veria nada de
+estranho.</p>
+<p>Mas eu não vou abrir a tela. Eu vou rodar o controle.”</p>
+<p>[TELA: rodar]</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Olha.</p>
+<p>Vermelho.</p>
+<p>A linha do AVC prévio: FAILED. Em vermelho.</p>
+<p>E embaixo, em vermelho, o guardião mostra o confronto: o número que
+ele exigia contra o número que recebeu. Dois contra um. Ele esperava
+dois, e o app entregou um.</p>
+<hr />
+<p>[pausa]</p>
+<p>Para um segundo nisso.</p>
+<p>O guardião pegou. Sozinho. Na hora.</p>
+<p>Ele sabia que AVC prévio tem que dar dois pontos — porque você disse
+isso a ele, no gabarito. O app entregou um. E ele travou tudo, gritou
+vermelho, e apontou o dedo exatamente na regra que quebrou.</p>
+<p>Esse paciente — um homem com AVC prévio — deveria pontuar dois. Dois
+é o suficiente para anticoagular. Com o bug, ele pontua um. Cai abaixo
+do corte. A recomendação vira ‘sem indicação’ — e ele fica sem a
+anticoagulação que o protegeria de um próximo AVC. Um erro que mata,
+calado.</p>
+<p>E quem te avisou não foi uma sindicância. Não foi um paciente que
+teve um AVC. Foi um guardião de software, de graça, em meio segundo,
+antes de qualquer paciente chegar perto.</p>
+<hr />
+<p>Agora eu conserto.”</p>
+<p>[TELA: digitar o Prompt do conserto]</p>
+<pre><code>Perfeito, o guardião pegou. Agora conserte: o AVC prévio tem que voltar a valer
+2 pontos, como manda o escore. Depois confirme que todos os testes voltaram a passar.</code></pre>
+<p>[TELA: rodar]</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Verde de novo. Tudo verde.</p>
+<p>O controle voltou a ler cem. Máquina recalibrada.</p>
+<hr />
+<p>Olha o ciclo inteiro que acabou de acontecer, porque é o coração de
+tudo:</p>
+<p>Tudo estava verde. Alguém mexeu no app — nesse caso fui eu, mas
+amanhã pode ser o Claude fazendo uma melhoria que você pediu. A mudança
+quebrou uma regra, em silêncio. O guardião acordou, ficou vermelho, e
+mostrou exatamente o quê. Consertou. Verde de novo.</p>
+<p>Isso tem um nome no mundo da programação: regressão. É quando você
+mexe numa coisa e, sem querer, quebra outra que já funcionava. É o
+pesadelo de todo software que cresce.</p>
+<p>E o guardião é a sua defesa contra isso. Toda vez que o app mudar,
+você roda o controle. Verde, pode seguir. Vermelho, parou — tem uma
+regra quebrada, e você sabe qual, antes de chegar no paciente.</p>
+<p>Você não confia mais no app porque ele é bonito. Você confia porque
+os guardiões estão verdes.”</p>
+<hr />
+<h2
+id="seção-7-encerramento-o-guardião-que-não-dorme-o-que-vem-5-min">SEÇÃO
+7: ENCERRAMENTO — O GUARDIÃO QUE NÃO DORME + O QUE VEM — 5 min</h2>
+<p><strong>Tom:</strong> Síntese conduzida pelo aluno, caloroso, e abre
+a tensão da próxima aula. LGPD orgânico.</p>
+<p>“Recapitula o que você fez hoje — e quero que seja você dizendo, na
+sua cabeça.</p>
+<p>Você criou guardiões pra calculadora e pro checklist. Rodou o
+controle e viu verde. Quebrou uma regra de propósito e viu o guardião
+acordar vermelho, apontar o erro, e te deixar consertar — antes de
+qualquer paciente. E você fez tudo isso sem ler uma linha de código de
+teste. Você leu laudos. Verde, vermelho. Normal, alterado.</p>
+<hr />
+<p>E repara num detalhe bonito sobre privacidade.</p>
+<p>Os ‘pacientes’ que eu usei nos testes — o de sessenta e oito anos, a
+senhora de setenta e sete — nenhum deles é gente de verdade. São
+controles. Material padronizado, como a amostra-controle nunca é sangue
+de um paciente real. Então até os testes respeitam o eixo do curso:
+nenhum dado de paciente real entrou aqui.</p>
+<p>E mais: o guardião roda inteiro na sua máquina. Aquele comando,
+<code>uv run pytest</code>, arranca o cabo de rede e ele funciona igual.
+Ele não liga pra nuvem nenhuma pra conferir suas regras. O controle de
+qualidade do seu app é tão privado quanto o resto — fica com você.</p>
+<hr />
+<p>Agora, o que vem.</p>
+<p>Hoje os guardiões da calculadora foram fáceis num ponto: a
+calculadora é exata. Sessenta e oito anos, hipertenso e diabético, dá
+três. Sempre três. O gabarito é cravado.</p>
+<p>Mas e a busca do RAG — aquele buscador de artigos que você construiu?
+Ela não dá sempre a mesma resposta exata. Ela traz o mais parecido, o
+mais relevante. É aproximada, de propósito.</p>
+<p>Como você cria um guardião pra uma coisa que muda? Como se faz
+controle de qualidade de algo que, por natureza, não tem uma resposta
+única e cravada?</p>
+<p>Esse é o próximo desafio. Testar o exato você já sabe. Na próxima
+aula, a gente testa o aproximado.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+<hr />
+<blockquote>
+<p><strong>NOTAS DE PRODUÇÃO (não falar — operacional):</strong></p>
+<ul>
+<li><strong>Salvaguarda da sabotagem (Seção 6):</strong> antes de
+gravar, ter o working tree limpo e commitado (git, ensinado no S00). Se
+o conserto do Prompt 2b divergir do código original,
+<code>git checkout -- &lt;arquivo da regra&gt;</code> restaura na hora.
+Nunca encerrar a gravação com o app divergente do commit anterior.</li>
+<li><strong>Números e nomes dos testes:</strong> as falas “quatro
+guardiões / quatro passaram” (Seção 4) e a contagem da Seção 5 dependem
+de quantos testes o Claude gera e de como o <code>-v</code> os lista
+(casos podem ser agrupados/parametrizados). Rodar o app na pré-gravação
+e ajustar os números/nomes citados ao que aparecer na tela. A Seção 5
+terá mais verdes que a Seção 4 (calculadora + timestamp somados).</li>
+<li><strong>Saída do FAILED:</strong> o pytest costuma imprimir algo
+como <code>assert 1 == 2</code>. A fala foi mantida agnóstica (“dois
+contra um”) — apontar para a tela, sem citar string literal em
+inglês.</li>
+</ul>
+</blockquote>
+</body>
+</html>

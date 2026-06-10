@@ -195,7 +195,7 @@ Quero que você veja o resultado."
 uv run python aula_27/resources/demo_embedding.py
 ```
 
-**[NOTA DE PRODUÇÃO: na primeira execução o modelo é baixado (~90MB). Rodar antes da gravação para o modelo já estar em cache.]**
+**[NOTA DE PRODUÇÃO: na primeira execução o modelo é baixado (~90MB). Rodar antes da gravação para o modelo já estar em cache. Se aparecer barra de download durante a gravação: pausar o OBS, aguardar o download concluir, reiniciar o take da seção 4.]**
 
 **[OUTPUT — aproximado:]**
 
@@ -204,8 +204,8 @@ Referência: 'dor torácica intensa'
 
   0.71  ██████████████  angina pectoris
   0.46  █████████       fibrilação atrial com flutter
-  0.21  ████            como tratar diabetes tipo 2
   0.39  ████████        prescrição de varfarina
+  0.21  ████            como tratar diabetes tipo 2
 ```
 
 ---
@@ -279,6 +279,8 @@ O médico vê e decide.
 
 Esses quatro passos respeitam as quatro camadas da Clean Architecture
 que você aprendeu na aula quinze.
+
+**[TELA: mostrar a estrutura de pastas do projeto — presentation/, application/, domain/, infrastructure/]**
 
 O ChromaDB fica na camada de infraestrutura.
 A lógica de busca fica no domínio e na aplicação.
@@ -376,3 +378,7 @@ E isso, no contexto clínico, é segurança.
 Na próxima aula: PubMed, `knowledge_base/`, e o indexador.
 
 Vejo você lá."
+
+---
+
+**FIM DO ROTEIRO**

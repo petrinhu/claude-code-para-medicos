@@ -19,9 +19,15 @@ comparar = [
 emb_ref = model.encode(referencia)
 
 print(f"\nReferência: '{referencia}'\n")
+resultados = []
 for frase in comparar:
     emb = model.encode(frase)
     sim = cosine_sim(emb_ref, emb)
+    resultados.append((frase, sim))
+
+resultados.sort(key=lambda x: x[1], reverse=True)
+
+for frase, sim in resultados:
     barra = "█" * int(sim * 20)
     print(f"  {sim:.2f}  {barra:<20}  {frase}")
 print()

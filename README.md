@@ -1,70 +1,101 @@
-# Claude Code para Médicos, do Zero ao Avançado
+# 🩺 Claude Code para Médicos, do Zero ao Avançado
 
-Curso prático de Claude Code para médicos. Sem programação nas fases iniciante e intermediário. Programação completa na fase avançada (opcional).
+![Aulas](https://img.shields.io/badge/aulas-40-5213B9)
+![Fases](https://img.shields.io/badge/fases-3-5213B9)
+![Avancado](https://img.shields.io/badge/avancado-Python%20%2B%20Flet-3776AB)
+![Local](https://img.shields.io/badge/100%25%20local-LGPD-2E8B57)
+![MDlife](https://img.shields.io/badge/MDlife-Academy-F47920)
+![Conteudo](https://img.shields.io/badge/conteudo-completo-brightgreen)
+
+> Do "nunca toquei num terminal" até construir um aplicativo clínico do zero.
+> Curso prático de Claude Code para médicos: sem programação nas fases iniciante e intermediária, Python completo na fase avançada (opcional).
 
 **Plataforma:** MDlife Academy  
 **Parceria:** Dr. Petrus Silva Costa x TribeMD (Luiz Dieckmann)
 
-## Estrutura
+---
+
+## 📚 Sobre o curso
+
+São **40 aulas** em **3 fases**, do zero absoluto ao app clínico próprio. Um eixo costura tudo do começo ao fim: **privacidade e LGPD** (dado de paciente nunca entra no Claude Code, e tudo roda na sua máquina).
+
+| Fase | Precisa programar? | Aulas |
+|------|:---:|:---:|
+| 🟢 Iniciante | Não | 2 |
+| 🟡 Intermediário | Não | 5 |
+| 🔵 Avançado (opcional) | Python + Flet | 33 |
+| | **Total** | **40** |
+
+## 🧭 Por onde começar
+
+- 🌳 **[Árvore visual de aulas](arvore_aulas.html)** : o mapa completo do curso, fase a fase.
+- 📖 **Wiki para iniciante total em computação:** pasta [`docs/wiki/`](docs/wiki/), publicada em [codeberg.org/petrinhu/claude-code-para-medicos/wiki](https://codeberg.org/petrinhu/claude-code-para-medicos/wiki).
+- ✅ **[TODO.md](TODO.md)** : sequência das aulas, status e fonte de verdade.
+
+## 📂 Estrutura do repositório
 
 ```
-aulas/
-  iniciante/          # M0 (4 aulas) + M1 (4 aulas): sem código
-  intermediario/      # M2 (4 aulas) + M3 (5 aulas): sem código
-  avancado/           # M4 com 12 submódulos: Python/Flet/ClinMd-Tribe
-clinmd_tribe/         # app capstone da fase avançada (Clean Architecture)
-workshop_iago/        # material de referência (Dieckmann)
-docs/                 # specs e planos do projeto
-arvore_aulas.html     # árvore visual de aulas (design MDlife Academy)
+aula_01/ ... aula_42/   # roteiros das aulas (cada uma: roteiro.md + roteiro.html)
+aula_abertura/          # aula de abertura do curso
+aulas/                  # atalhos por fase (iniciante, intermediario, avancado)
+clinmd_tribe/           # app-piloto da fase avancada (Python, Flet, Clean Architecture)
+docs/                   # specs, planos e a wiki (docs/wiki/)
+arvore_aulas.html       # arvore visual de aulas
+TODO.md                 # sequencia e status do curso
+CLAUDE.md               # instrucoes do projeto
 ```
 
-## Como usar
+## ▶️ Rodar o app-piloto (fase avançada)
+
+O `clinmd_tribe/` é o gabarito do app que o aluno constrói ao longo da fase avançada. Para conferir as calculadoras clínicas com os testes automatizados:
 
 ```bash
-# Ver aulas de uma fase
-ls aulas/iniciante/
-ls aulas/intermediario/
-ls aulas/avancado/04_construir_ferramentas/
-
-# Rodar o app capstone (fase avançada)
 cd clinmd_tribe
-uv sync
-uv run python -m src.presentation.main
+uv run --with pytest --no-project pytest -q
 ```
 
-## Módulos
+Você deve ver `26 passed`: os guardiões das calculadoras (MELD, CHA2DS2-VASc, PHQ-9, GAD-7) passando.
 
-### Iniciante (sem programação)
+## 📖 Módulos e aulas
 
-| # | Módulo | Aulas |
-|---|--------|-------|
-| M0 | Primeiros passos sem medo | 4 |
-| M1 | Assistente de produtividade | 4 |
+### 🟢 Iniciante, sem programação (2 aulas)
 
-### Intermediário (sem programação)
+| Módulo | Aulas | Tópicos cobertos |
+|--------|:---:|------|
+| **M0** Primeiros Passos sem Medo | 1 | O que é o Claude Code, instalação, como conversar, bons hábitos de prompt, uso no celular |
+| **M1** Assistente de Produtividade | 1 | Arquivos e PDFs, gerar documentos, slides, planilhas |
 
-| # | Módulo | Aulas |
-|---|--------|-------|
-| M2 | Aprender e acompanhar a literatura | 4 |
-| M3 | Conteúdo, pesquisa e consultório | 5 |
+### 🟡 Intermediário, sem programação (5 aulas)
 
-### Avançado, opcional (Python + Flet + ClinMd-Tribe)
+| Módulo | Aulas | Tópicos cobertos |
+|--------|:---:|------|
+| **M2** Aprender e Acompanhar a Literatura | 2 | PubMed, fichamento (PICO, nível de evidência), flashcards (Anki), briefing matinal |
+| **M3** Conteúdo, Pesquisa e Consultório | 3 | Posts e carrosséis, newsletter com SEO, pôster de congresso, estatística, gestão do consultório |
+
+### 🔵 Avançado, opcional (Python + Flet + ClinMd-Tribe) (33 aulas)
 
 | # | Submódulo | Aulas |
-|---|-----------|-------|
-| 00 | Fundação (terminal, uv, Python) | 2 |
-| 01 | Git | 2 |
-| 02 | Python + Flet | 2 |
-| 03 | Clean Architecture | 2 |
-| 04 | Agents e BigTech Virtual | 4 |
-| 05 | Calculadoras Médicas | 4 |
-| 06 | Anotador Clínico | 2 |
-| 07 | RAG Tribe | 4 |
-| 08 | Gerador de Evolução | 2 |
-| 09 | Testes | 2 |
-| 10 | CI/CD | 2 |
-| 11 | Polimento Final | 3 |
+|---|-----------|:---:|
+| **S00** | Git | 2 |
+| **S01** | Fundação (terminal, uv, Python) | 2 |
+| **S02** | Python + Flet | 2 |
+| **S03** | Clean Architecture | 2 |
+| **S04** | Agents e BigTech Virtual | 4 |
+| **S05** | Calculadoras Médicas | 4 |
+| **S06** | Dashboard Financeiro | 2 |
+| **S07** | RAG (a memória do app) | 4 |
+| **S08** | Checklist de Procedimentos (estilo OMS) | 1 |
+| **S09** | Testes | 2 |
+| **S10** | CI/CD (GitHub Actions) | 2 |
+| **S11** | Polimento Final | 3 |
+| **S12** | Boas Práticas | 3 |
 
-**Total: 22 aulas obrigatórias + 31 aulas fase avançada**
+O capstone da fase avançada é o **ClinMd-Tribe**: um app clínico 100% local (calculadoras, anotador, dashboard financeiro, busca em artigos via RAG, checklist), construído aula a aula em Clean Architecture.
 
-Veja a [árvore de aulas](arvore_aulas.html) para a visualização completa.
+## 🛡️ Privacidade e LGPD
+
+Eixo transversal de todas as 40 aulas: **dado de paciente nunca entra no Claude Code, e o app roda 100% na máquina do médico.** Nada sobe para a nuvem.
+
+---
+
+<sub>MDlife Academy · Claude Code para Médicos, do Zero ao Avançado · Liderado por Dr. Petrus Silva Costa</sub>

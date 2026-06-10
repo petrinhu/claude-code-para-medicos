@@ -21,8 +21,7 @@ claude-code-para-medicos/
 ├── aulas/                 <- organização das aulas por fase e módulo
 ├── clinmd_tribe/          <- o aplicativo de exemplo (gabarito do instrutor)
 ├── docs/                  <- documentos do projeto (incluindo esta wiki)
-├── resources/             <- imagens e arquivos de apoio
-└── workshop_iago/         <- material de referência (apresentações)
+└── resources/             <- imagens e arquivos de apoio
 ```
 
 Agora vamos cômodo por cômodo.
@@ -88,13 +87,10 @@ A pasta de **documentos do projeto**. Aqui ficam decisões, planos e a própria 
 - `docs/decisoes_curriculo.md` - um **registro das decisões sobre o currículo** do curso (por exemplo: por que tal aula absorveu tal conteúdo). É a fonte oficial dessas decisões; a página [[O-Curso]] aponta para ele em vez de repetir o conteúdo, para que exista uma só verdade num só lugar.
 - `docs/wiki/` - é **onde estas páginas de wiki vivem** dentro do repositório, antes de serem publicadas. A página [[Como-Publicar-Esta-Wiki]] explica como levá-las para o ar.
 
-## Os apoios (almoxarifado e biblioteca)
+## Os apoios (almoxarifado de recursos)
 
 ### `resources/`
 Pasta de **imagens e arquivos de apoio** usados nos materiais (logotipos, máscaras de gravação, ícones). Nada que você precise mexer; é o almoxarifado de recursos visuais do projeto.
-
-### `workshop_iago/`
-**Material de referência** em formato de apresentação (arquivos de slides e PDFs), guardado para consulta. Funciona como uma pequena biblioteca de apoio ligada ao tema do curso.
 
 ## E os arquivos que começam com ponto?
 

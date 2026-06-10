@@ -86,7 +86,7 @@ Item fixo de fim-de-pipeline (regra `feedback_wiki_docs_iniciante`): todo repo t
 | ID | Grupo | Descrição | Pré-req | Status | Auditado |
 |---|---|---|---|:---:|:---:|
 | W7.01 | Pós-release · Docs | Wiki + doc iniciante (8 páginas em `docs/wiki/`, registro leigo total) gerada via `technical-writer` + `ux-writer` | release 52/52 | ✅ Conteúdo pronto | ✅ |
-| W7.02 | Pós-release · Docs | Publicar a wiki no Codeberg nativo (`...wiki.git`) — ação MANUAL do dono, passo a passo em `docs/wiki/Como-Publicar-Esta-Wiki.md` | W7.01 | ⏳ Pendente (manual) | — |
+| W7.02 | Pós-release · Docs | Publicar a wiki no Codeberg nativo (`...wiki.git`) — PUBLICADA 2026-06-10 (commit 3e0445c no wiki repo, branch main), navegável em codeberg.org/petrinhu/claude-code-para-medicos/wiki | W7.01 | ✅ Publicada | ✅ |
 
 **Débitos técnicos:**
 - ✅ **Retrofit zero-código do S07** (aulas 27-30) — RESOLVIDO 2026-06-10: leitura supervisionada de código e heredocs Python substituídos por laudos em português e prompts; threshold do RAG cravado. Via 3 learning-designers + revisão engineering-coach. Ver memória `feedback-zero-codigo-para-ler`.

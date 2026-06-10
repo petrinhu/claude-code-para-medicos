@@ -122,6 +122,7 @@ infrastructure/rag/chroma_repositorio.py
   - SEMPRE incluir fonte e numero_trecho nos resultados
 
 application/servicos/busca_service.py
+  - def buscar(consulta: str, n: int = 3) -> list[ResultadoBusca]   ← função pública (não classe)
   - Recebe a pergunta do médico (str) e n (int, padrão 3)
   - Chama BuscaRAG.buscar()
   - Se lista vazia: retorna lista vazia — nunca texto inventado
@@ -217,16 +218,9 @@ Para verificar.
 Para citar.
 Para discordar, se necessário.
 
-O padrão esperado é algo assim:
-
-```python
-ResultadoBusca(
-    trecho=doc['texto'],
-    fonte=doc['nome_arquivo'],
-    numero_trecho=doc['numero_trecho'],
-    score=float(distancia)
-)
-```
+"O que importa verificar não são as chaves internas do ChromaDB — essas mudam conforme a implementação.
+O que importa: cada `ResultadoBusca` retornado tem o campo `fonte` preenchido?
+Abra `infrastructure/rag/chroma_repositorio.py` e confirme que nenhum `ResultadoBusca` é criado com `fonte=''` ou `fonte=None`."
 
 **[TELA: mostrar o código do método de busca — confirmar fonte preenchida em cada resultado]**
 
@@ -274,15 +268,15 @@ Pergunta dentro do knowledge_base.
 Os artigos que indexamos falam sobre anticoagulação em FA.
 Vamos perguntar sobre anticoagulação em FA.
 
-```
-uv run python -c "
+```bash
+uv run python - <<'EOF'
 from application.servicos.busca_service import buscar
 resultados = buscar('anticoagulação em fibrilação atrial', n=3)
 for r in resultados:
     print(f'Fonte: {r.fonte} | Trecho {r.numero_trecho}')
     print(r.trecho[:200])
     print('---')
-"
+EOF
 ```
 
 **[TELA: mostrar o terminal rodando o comando]**
@@ -336,15 +330,15 @@ Isso é rastreabilidade clínica."
 
 Mas que fala sobre a mesma coisa.
 
-```
-uv run python -c "
+```bash
+uv run python - <<'EOF'
 from application.servicos.busca_service import buscar
 resultados = buscar('quando suspender o anticoagulante antes de procedimento', n=3)
 for r in resultados:
     print(f'Fonte: {r.fonte} | Trecho {r.numero_trecho}')
     print(r.trecho[:200])
     print('---')
-"
+EOF
 ```
 
 **[TELA: mostrar o terminal rodando o comando]**
@@ -429,14 +423,14 @@ Dizer que não sabe.
 
 [pausa de 3 segundos antes de rodar o teste]
 
-```
-uv run python -c "
+```bash
+uv run python - <<'EOF'
 from application.servicos.busca_service import buscar
 resultados = buscar('como tratar diabetes tipo 2 com metformina', n=3)
 print(f'Resultados encontrados: {len(resultados)}')
 if not resultados:
     print('Lista vazia.')
-"
+EOF
 ```
 
 **[TELA: mostrar o terminal rodando o comando — aguardar o output]**
@@ -491,7 +485,19 @@ eles vão tentar responder sempre.
 O RAG com busca semântica não responde além do que foi indexado.
 
 Se não está nos artigos,
-não está na resposta."
+não está na resposta.
+
+---
+
+E tem mais uma camada de segurança aqui.
+
+O app não consultou nenhum servidor externo para responder isso.
+Não logou a pergunta do médico em lugar nenhum.
+Não enviou o nome do paciente para a nuvem.
+
+Isso é LGPD na prática: a pergunta ficou na sua máquina.
+O resultado ficou na sua máquina.
+O banco vetorial ficou na sua máquina."
 
 ---
 

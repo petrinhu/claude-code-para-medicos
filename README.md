@@ -30,7 +30,7 @@ São **40 aulas** (encontros gravados) em **3 fases**, do zero absoluto ao app c
 
 ## 🧭 Por onde começar
 
-- 🌳 **[Árvore visual de aulas](arvore_aulas.html)** : o mapa completo do curso, fase a fase.
+- 🌳 **[Árvore visual de aulas](https://htmlpreview.github.io/?https://github.com/petrinhu/claude-code-para-medicos/blob/main/arvore_aulas.html)** : o mapa completo do curso, fase a fase (abre renderizada no navegador).
 - 📖 **Wiki para iniciante total em computação:** pasta [`docs/wiki/`](docs/wiki/), publicada em [codeberg.org/petrinhu/claude-code-para-medicos/wiki](https://codeberg.org/petrinhu/claude-code-para-medicos/wiki).
 - ✅ **[TODO.md](TODO.md)** : sequência das aulas, status e fonte de verdade.
 

@@ -42,7 +42,7 @@ A **lista oficial de todas as aulas**, com o status de cada uma (concluída, pen
 Explica **como avisar, com sigilo, se alguém encontrar uma falha de segurança** no projeto. É uma boa prática de qualquer repositório público. Veja [SECURITY.md](../../SECURITY.md).
 
 ### `arvore_aulas.html`
-Um **mapa visual do curso, feito para abrir no navegador** (por isso termina em `.html`). Para vê-lo, basta dar dois cliques no arquivo e ele abre no Chrome, Firefox ou Safari, mostrando a árvore completa das aulas de forma bonita, com as cores da identidade TribeMD (o roxo `#5213B9`).
+Um **mapa visual do curso, feito para abrir no navegador** (por isso termina em `.html`). Para vê-lo, basta dar dois cliques no arquivo e ele abre no Chrome, Firefox ou Safari, mostrando a árvore completa das aulas de forma bonita, com as cores da identidade TribeMD (o roxo `#5213B9`). Você também pode [ver a árvore renderizada online aqui](https://htmlpreview.github.io/?https://github.com/petrinhu/claude-code-para-medicos/blob/main/arvore_aulas.html), sem baixar nada.
 
 ## As pastas de aula (os consultórios)
 

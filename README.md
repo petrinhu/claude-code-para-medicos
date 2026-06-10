@@ -15,7 +15,7 @@ aulas/
 clinmd_tribe/         # app capstone da fase avançada (Clean Architecture)
 workshop_iago/        # material de referência (Dieckmann)
 docs/                 # specs e planos do projeto
-roadmap.html          # visualização do curso (design MDlife Academy)
+arvore_aulas.html     # árvore visual de aulas (design MDlife Academy)
 ```
 
 ## Como usar
@@ -67,4 +67,4 @@ uv run python -m src.presentation.main
 
 **Total: 22 aulas obrigatórias + 31 aulas fase avançada**
 
-Veja o [roadmap.html](roadmap.html) para visualização completa.
+Veja a [árvore de aulas](arvore_aulas.html) para a visualização completa.

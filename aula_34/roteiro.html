@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 34 — O Guardião do Aproximado: Controle de Qualidade de uma Busca que Muda</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 34 — O Guardião do Aproximado: Controle de
+Qualidade de uma Busca que Muda</h1>
+</header>
+<h1
+id="aula-34-o-guardião-do-aproximado-controle-de-qualidade-de-uma-busca-que-muda">Aula
+34 — O Guardião do Aproximado: Controle de Qualidade de uma Busca que
+Muda</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~55 min <strong>Tom:</strong>
+Clínico-arquiteto que aprende a testar o que não tem resposta cravada —
+calmo, depois visceral no clímax da honestidade <strong>Módulo:</strong>
+S09.02 — Testes do RAG (busca semântica não-determinística)</p>
+<hr />
+<h2 id="seção-1-abertura-o-exame-que-não-dá-um-número-6-min">SEÇÃO 1:
+ABERTURA — O EXAME QUE NÃO DÁ UM NÚMERO — 6 min</h2>
+<p><strong>Tom:</strong> Reflexivo, instigante. Retoma literalmente o
+gancho que a aula anterior deixou no ar.</p>
+<p>“Na aula passada eu te deixei no ar com uma pergunta.</p>
+<p>A calculadora é exata. Sessenta e oito anos, hipertenso e diabético,
+dá três. Sempre três. O gabarito é cravado, e o guardião só precisa
+conferir se o número bate.</p>
+<p>Mas eu te perguntei: e a busca do RAG, aquele buscador de artigos que
+você construiu? Ela não dá sempre a mesma resposta exata. Ela traz o
+mais parecido. Como você cria um guardião pra uma coisa que muda?</p>
+<p>Hoje eu respondo.</p>
+<hr />
+<p>Deixa eu te tirar do laboratório de bioquímica e te levar pra beira
+do leito.</p>
+<p>A glicemia é um exame quantitativo. Dá um número. E o controle
+confere o número — deu cem, calibrado.</p>
+<p>Agora pensa num teste rápido. Reagente, não-reagente. Ele não te dá
+cento e vinte. Ele te diz: está aqui, ou não está.</p>
+<p>Como é que o laboratório valida um teste desses? Não perguntando se
+deu cento e vinte. Perguntando duas coisas.</p>
+<hr />
+<p>Primeira: quando a doença ESTÁ ali, o teste acha? Isso é
+sensibilidade.</p>
+<p>Segunda: quando a doença NÃO está, o teste fica quieto, dá negativo?
+Isso é especificidade.</p>
+<p>Um teste bom faz as duas. Acha o que existe. E não inventa o que não
+existe.</p>
+<hr />
+<p>A busca do seu app é exatamente um exame qualitativo.</p>
+<p>Pergunta sobre anticoagulação — está nos artigos? Ela tem que achar.
+Sensibilidade.</p>
+<p>Pergunta sobre algo que não está em artigo nenhum — ela tem que ficar
+quieta, devolver vazio. Especificidade.</p>
+<p>O guardião de hoje não confere um número. Ele confere essas duas
+perguntas. É assim que se faz controle de qualidade de uma coisa que, de
+propósito, não tem resposta cravada.”</p>
+<hr />
+<h2 id="seção-2-por-que-não-dá-pra-pedir-o-trecho-exato-7-min">SEÇÃO 2:
+POR QUE NÃO DÁ PRA PEDIR “O TRECHO EXATO” — 7 min</h2>
+<p><strong>Tom:</strong> Didático, revelador. Aqui o aluno entende por
+que a receita da aula passada não serve — e isso é o conteúdo da
+aula.</p>
+<p>“O instinto, depois da aula passada, seria esse: ‘então é só eu dar o
+gabarito — a busca por anticoagulação TEM que devolver exatamente aquele
+trecho do primeiro artigo’.</p>
+<p>Parece a mesma receita. Mas é uma armadilha. Deixa eu te mostrar por
+quê.</p>
+<hr />
+<p>Imagina que amanhã você baixa um quarto artigo. Melhor, mais recente.
+Você reindexa.</p>
+<p>A busca, que agora tem material melhor, passa a trazer um trecho
+ainda mais relevante — de outro artigo.</p>
+<p>O que o guardião do ‘trecho exato’ faria? Ficaria vermelho. Ele
+gritaria ‘ERRO’ porque a busca melhorou.</p>
+<p>Um guardião que trava uma melhoria não é um guardião. É um
+sabotador.</p>
+<hr />
+<p>Então a gente vira a chave.</p>
+<p>A gente não testa a RESPOSTA — que tem direito de mudar. A gente
+testa a PROPRIEDADE — o que tem que valer sempre, não importa qual
+trecho venha.</p>
+<p>E você já sabe duas delas, porque eu te dei na abertura:
+sensibilidade — achou o que existe? — e especificidade — ficou quieto
+quando não havia nada? Essas duas são o par do exame qualitativo, o que
+todo médico já tem no corpo.</p>
+<p>E tem uma terceira, de outra natureza — essa não é do laboratório, é
+da emergência: a ordem da fila. O caso certo no topo. Eu te mostro ela
+daqui a pouco.</p>
+<p>As três valem hoje, valem com três artigos, valem com trezentos. A
+resposta muda. A propriedade, não.</p>
+<hr />
+<p>E repara: eu não vou olhar dentro do guardião. Eu não preciso. Eu
+pergunto a ele, em português, ‘a lista veio vazia, sim ou não?’ — e ele
+me responde verde ou vermelho.</p>
+<p>Do mesmo jeito que você lê ‘reagente’ sem saber a química do
+reagente.”</p>
+<hr />
+<h2 id="seção-3-você-define-as-propriedades-9-min">SEÇÃO 3: VOCÊ DEFINE
+AS PROPRIEDADES — 9 min</h2>
+<p><strong>Tom:</strong> Colaborativo. O médico decide o que vira
+propriedade testável. Duas perguntas, nenhum código.</p>
+<p>“Antes de pedir os guardiões, duas perguntas. Raciocínio clínico.</p>
+<hr />
+<p><strong>PERGUNTA UM — qual pedido vira um guardião que funciona, e
+qual vira um sabotador?</strong></p>
+<p>Você quer um guardião pra busca de anticoagulação. Três jeitos de
+pedir. Qual cria um guardião confiável — e qual vai te dar vermelho
+mesmo quando o app está certo?</p>
+<p>A: ‘a busca tem que devolver exatamente este trecho do artigo,
+palavra por palavra.’</p>
+<p>B: ‘a busca tem que devolver uma lista não-vazia, com pelo menos um
+resultado, e com fonte.’</p>
+<p>C: ‘a busca tem que devolver pelo menos cinco resultados,
+sempre.’</p>
+<p>Pensa um segundo.</p>
+<hr />
+<p>É a B.</p>
+<p>A é o sabotador. Exige a resposta exata. No dia em que você indexar
+um artigo melhor, a busca traz um trecho melhor — e A fica vermelho por
+uma melhoria. A testa a resposta. A resposta tem direito de mudar.</p>
+<p>C é arbitrário. Por que cinco? Se o corpus tem material pra três
+trechos realmente relevantes, exigir cinco força o app a raspar o fundo
+do tacho e trazer lixo só pra bater a meta. Número mágico não é
+propriedade.</p>
+<p>B é a propriedade. Não amarra qual trecho, nem quantos exatos. Amarra
+o que tem que valer sempre: achou algo, e tem fonte. Sobrevive a artigos
+novos, a reindexação, a melhorias.</p>
+<p>Critério que fica: propriedade boa é a que continua verdadeira depois
+de uma melhoria. Se uma melhoria deixa o guardião vermelho, você testou
+a coisa errada.</p>
+<hr />
+<p><strong>PERGUNTA DOIS — qual erro do app é mais perigoso para o
+paciente: não achar, ou inventar?</strong></p>
+<p>A busca pode falhar de dois jeitos opostos.</p>
+<p>A: você pergunta sobre anticoagulação — que ESTÁ nos artigos — e o
+app devolve lista vazia. Tinha a informação e não achou.</p>
+<p>B: você pergunta sobre algo que NÃO está em artigo nenhum — e o app,
+em vez de dizer ‘não tenho’, inventa um trecho plausível com cara de
+fonte real.</p>
+<p>Qual é o mais perigoso?</p>
+<hr />
+<p>B. Guarda essa resposta — ela vai voltar mais tarde, do jeito mais
+incômodo possível.</p>
+<p>A é ruim, sem dúvida. Frustra, te obriga a procurar na mão. Mas A tem
+uma vantagem enorme: ele falha às claras. A lista veio vazia, você VÊ
+que não achou, você sabe que precisa procurar em outro lugar. Falha
+honesta.</p>
+<p>B é o pesadelo. O app te entrega uma resposta com cara de certa,
+fonte com cara de real, e você não tem como saber que é invenção. Você
+pode levar isso pro paciente. B é o residente que chuta com confiança —
+e o chute com confiança é o que mata.</p>
+<p>Critério que fica: num sistema clínico, o erro silencioso e confiante
+— inventar — é pior que o erro barulhento e visível — não achar. A gente
+testa os dois. O clímax é o silencioso.”</p>
+<hr />
+<h2
+id="seção-4-prompt-1-o-guardião-da-sensibilidade-e-o-primeiro-verde-11-min">SEÇÃO
+4: PROMPT 1 — O GUARDIÃO DA SENSIBILIDADE E O PRIMEIRO VERDE — 11
+min</h2>
+<p><strong>Tom:</strong> Mãos à obra. Pede os primeiros guardiões da
+busca, roda, lê a barra como laudo.</p>
+<p>“Vou pedir ao Claude os primeiros guardiões da busca. Repara no
+formato: eu não dou o trecho que tem que vir. Eu dou a propriedade.</p>
+<p>E tem uma coisa importante que eu peço junto: um corpus de teste
+separado. O guardião não vai buscar nos seus artigos de verdade — porque
+se você trocar os artigos amanhã, ele quebraria sem o app estar errado.
+Ele monta uns textinhos de teste só dele, num cantinho separado, e testa
+lá. Os seus artigos de verdade ficam intocados.</p>
+<p>Cola o prompt:”</p>
+<p>[TELA: digitar o Prompt 1 no Claude Code]</p>
+<pre><code>Você é meu par de programação. Quero criar testes automatizados (pytest) para a
+busca semântica do ClinMd-Tribe — a função busca_service.buscar(consulta, n), que
+devolve uma lista de ResultadoBusca (campos: trecho, fonte, numero_trecho, score).
+
+Essa busca é diferente da calculadora: ela NÃO devolve sempre o mesmo texto exato.
+Então NÃO quero testar igualdade de texto — quero testar PROPRIEDADES estáveis.
+
+Para os testes não dependerem dos artigos que estão na minha máquina hoje, monte um
+knowledge_base de TESTE pequeno e fixo — 2 ou 3 textos curtos sobre anticoagulação
+em fibrilação atrial, criados só para o teste — e indexe num banco vetorial
+SEPARADO, numa pasta temporária de teste. NUNCA use o data/chroma_db/ real do app.
+O teste cria esse corpus, roda contra ele, e descarta no fim.
+
+Crie estes guardiões:
+  - SENSIBILIDADE: buscar um tema que ESTÁ no corpus de teste
+    (&quot;anticoagulação em fibrilação atrial&quot;) devolve lista NÃO-vazia.
+  - BUSCA POR SENTIDO: buscar o mesmo assunto com outras palavras
+    (&quot;quando suspender o anticoagulante antes de um procedimento&quot;) também devolve
+    lista NÃO-vazia — a busca entende o sentido, não só a palavra exata.
+  - PROCEDÊNCIA: todo resultado devolvido tem o campo &#39;fonte&#39; preenchido e o campo
+    &#39;trecho&#39; preenchido — um médico nunca recebe um trecho sem saber de qual artigo
+    veio.
+
+NÃO me mostre o código. Coloque os testes em tests/, com nomes descritivos em
+português, somados aos guardiões da calculadora que já existem. Cada propriedade
+deve ser uma função de teste separada, com nome próprio, para aparecer como uma
+linha distinta nos resultados. Ao final, sem mostrar código, diga quantos testes
+criou e o comando para rodar todos.</code></pre>
+<p>“Cola, enter, deixa ele montar o corpus de teste e os guardiões.
+Quando terminar, rodo:”</p>
+<p>[TELA: rodar]</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Olha a barra. Os guardiões da sensibilidade — verdes.</p>
+<p>Deixa eu traduzir, apontando pra tela:</p>
+<p>A linha do tema presente passou — perguntei sobre anticoagulação e
+ele achou.</p>
+<p>A linha da busca por sentido passou — perguntei com outras palavras,
+e ele achou mesmo assim. Entendeu o significado, não só a palavra.</p>
+<p>A linha da procedência passou — todo trecho que ele trouxe tinha a
+fonte. Nenhum trecho órfão.</p>
+<hr />
+<p>E repara no que eu NÃO fiz: nem uma vez eu disse qual trecho tinha
+que vir. Eu só exigi que viesse alguma coisa, e com fonte.</p>
+<p>Você leu verde, não leu Python. Verde aqui significa: quando a doença
+está na lâmina, o app enxerga. Sensibilidade confirmada.”</p>
+<hr />
+<h2 id="seção-5-o-guardião-da-triagem-o-caso-certo-no-topo-8-min">SEÇÃO
+5: O GUARDIÃO DA TRIAGEM — O CASO CERTO NO TOPO — 8 min</h2>
+<p><strong>Tom:</strong> Satisfação narrativa, eleva a régua.</p>
+<p>“Achar alguma coisa é o piso. Mas pensa na triagem do
+pronto-socorro.</p>
+<p>Não importa a ordem exata dos quarenta e sete da fila. Importa que o
+infarto não fique em trigésimo. O caso certo no topo.</p>
+<p>O guardião da triagem confere isso: quando eu pergunto sobre o que um
+artigo cobre, o trecho daquele artigo aparece entre os primeiros — não
+enterrado lá embaixo.</p>
+<hr />
+<p>E olha a beleza: eu ainda não estou exigindo o trecho exato. Estou
+exigindo que a fonte certa apareça no topo. A busca tem liberdade de
+escolher qual pedaço daquele artigo trazer — mas o artigo relevante tem
+que estar lá em cima.</p>
+<p>Liberdade no detalhe, rigor na propriedade. Cola:”</p>
+<p>[TELA: digitar o Prompt 2]</p>
+<pre><code>Agora adicione um guardião da TRIAGEM, no mesmo conjunto de testes e usando o mesmo
+corpus de teste isolado. NÃO me mostre o código.
+
+  - Para uma consulta sobre um tema concentrado em UM dos textos do corpus de teste,
+    buscar com n=3 deve trazer um trecho cuja &#39;fonte&#39; seja aquele texto, entre os 3
+    primeiros resultados. Não exijo posição exata, nem o trecho exato — só que a
+    fonte certa apareça no top-3. Verifique pela &#39;fonte&#39;, não pelo conteúdo do trecho.
+
+Ao final, sem mostrar código, me diga o comando para rodar tudo.</code></pre>
+<p>[TELA: rodar]</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Verde. O caso certo chegou ao topo da fila.</p>
+<p>A triagem do app funciona. E funcionaria igual se a busca trocasse de
+trecho amanhã — porque eu testei o que importa, não a forma.</p>
+<hr />
+<p>Até aqui foi tudo verde, tudo bonito. O app acha o que existe e põe
+no topo.</p>
+<p>Mas eu guardei a propriedade mais importante pro final. A que protege
+o paciente de verdade.</p>
+<p>E pra mostrar o que ela faz, eu vou fazer o app mentir de
+propósito.”</p>
+<hr />
+<h2 id="seção-6-clímax-a-sabotagem-da-honestidade-11-min">SEÇÃO 6:
+CLÍMAX — A SABOTAGEM DA HONESTIDADE — 11 min</h2>
+<p><strong>Tom:</strong> O ápice. Ritmo desacelera. Silêncios. O momento
+que o aluno leva pra vida.</p>
+<p>“A terceira propriedade é a especificidade. A honestidade.</p>
+<p>Lembra da aula da busca, quando eu perguntei sobre diabetes — que não
+estava em artigo nenhum — e o app devolveu lista vazia? Não inventou.
+Disse ‘não tenho’.</p>
+<p>Naquele dia eu provei isso uma vez, na mão. Hoje eu transformo aquela
+prova num guardião que reconfere pra sempre.</p>
+<p>Primeiro, crio o guardião:”</p>
+<p>[TELA: digitar o Prompt 3]</p>
+<pre><code>Agora o guardião mais importante, no mesmo conjunto e mesmo corpus de teste. NÃO me
+mostre o código.
+
+  - HONESTIDADE: buscar um tema médico de verdade que NÃO está no corpus de teste
+    de anticoagulação (&quot;como tratar diabetes tipo 2 com metformina&quot;) deve devolver
+    lista VAZIA. O app não pode inventar nada quando não tem a informação.
+
+Ao final, sem mostrar código, me diga o comando para rodar tudo.</code></pre>
+<p>[TELA: rodar]</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Verde. Perguntei sobre diabetes — um tema médico de verdade, mas que
+não está nos meus artigos de anticoagulação — e o guardião confirmou: o
+app devolveu nada. Não chutou uma resposta só porque a pergunta tinha
+cara de plausível. A honestidade está provada, sozinha.</p>
+<hr />
+<p>Agora vem a parte que importa. Pra você ver esse guardião trabalhar,
+eu vou cometer o pecado que aquele app jurou nunca cometer: vou fazer
+ele inventar.</p>
+<p>Existe um vício clássico — o residente que, perguntado sobre algo que
+não sabe, em vez de dizer ‘não sei’, enrola uma resposta genérica pra
+não ficar mal. ‘Bom, de modo geral, considerando o quadro…’.</p>
+<p>Eu vou ensinar esse vício pro app. Vou fazer ele, quando não achar
+nada, devolver um texto de enchimento em vez de lista vazia. É a
+alucinação. É o que o ChatGPT faria. E é exatamente o que esse app foi
+construído pra nunca fazer.”</p>
+<p>[TELA: digitar o Prompt da sabotagem]</p>
+<pre><code>Quero te mostrar uma coisa sobre o guardião da honestidade. De propósito, introduza
+no busca_service.buscar este erro: faça com que, quando a busca não encontrar nada
+relevante, em vez de devolver lista vazia ele devolva um único resultado genérico
+inventado — um texto tipo &quot;Não há trecho específico, mas de modo geral sobre o
+tema...&quot; com fonte &quot;conhecimento_geral&quot;. NÃO mexa nos testes — só na regra do
+serviço. Quero ver o que o controle faz.</code></pre>
+<p>“Pronto. Agora o app, quando não acha, inventa. Se eu abrisse a tela
+e perguntasse sobre algo fora dos artigos, ele me devolveria um textinho
+plausível, com cara de resposta. Eu poderia até acreditar.</p>
+<p>Mas eu não vou abrir a tela. Eu vou rodar o controle.”</p>
+<p>[TELA: rodar]</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Olha.</p>
+<p>Vermelho.</p>
+<p>A linha da honestidade: falhou. O guardião perguntou ‘busca fora do
+corpus devolveu lista vazia?’ — e o app respondeu ‘não, devolvi um
+resultado’. Um, quando tinha que ser zero.</p>
+<hr />
+<p>[pausa]</p>
+<p>Para um segundo.</p>
+<p>Esse é o guardião mais importante do app inteiro. Ele não confere se
+uma conta deu certo. Ele confere se o app é HONESTO. Se ele admite o que
+não sabe.</p>
+<p>Aquele comportamento que eu te mostrei uma vez, na aula da busca —
+‘quando não sei, devolvo vazio’ — agora tem um guardião que reconfere
+isso a cada mudança, pra sempre. E ele acabou de pegar o app no exato
+momento em que ele começou a mentir.</p>
+<hr />
+<p>Por que isso importa mais que tudo? Porque um app que inventa uma
+dose, uma conduta, uma referência — com confiança, com cara de certo — é
+mais perigoso que um app que diz ‘não sei’. O ‘não sei’ você complementa
+com a sua cabeça. A invenção, você pode não pegar.</p>
+<p>O guardião da honestidade é a prova, reconferida automaticamente, de
+que esse app nunca vai te empurrar uma resposta que ele não tem.</p>
+<hr />
+<p>Agora eu conserto.”</p>
+<p>[TELA: digitar o Prompt do conserto]</p>
+<pre><code>Perfeito, o guardião pegou. Agora conserte: quando a busca não encontrar nada
+relevante, o serviço tem que voltar a devolver lista VAZIA — nunca um resultado
+inventado. Depois confirme que todos os testes voltaram a passar.</code></pre>
+<p>[TELA: rodar]</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run pytest <span class="at">-v</span></span></code></pre></div>
+<p>“Verde de novo. O app voltou a ser honesto.</p>
+<p>E olha o ciclo inteiro: estava tudo verde. Alguém mexeu — fui eu
+agora, mas amanhã pode ser o Claude fazendo uma melhoria que você pediu,
+e sem querer estragando a honestidade. O guardião acordou, ficou
+vermelho, apontou exatamente a regra: ‘o app parou de admitir que não
+sabe’. Consertou. Verde.</p>
+<p>Você não confia no app porque ele é bonito. Você confia porque o
+guardião da honestidade está verde.”</p>
+<hr />
+<h2 id="seção-7-encerramento-o-guardião-que-não-dorme-3-min">SEÇÃO 7:
+ENCERRAMENTO — O GUARDIÃO QUE NÃO DORME — 3 min</h2>
+<p><strong>Tom:</strong> Síntese conduzida pelo aluno, caloroso, abre a
+tensão da próxima aula. LGPD orgânico.</p>
+<p>“Recapitula — e quero você dizendo na sua cabeça.</p>
+<p>Você criou guardiões pra uma coisa que muda. Não testou o trecho
+exato — testou três propriedades que valem sempre: o app acha o que
+existe, sensibilidade; põe o certo no topo, triagem; e fica quieto
+quando não há nada, especificidade. Você sabotou a honestidade do app e
+viu o guardião pegar. E fez tudo isso sem ler uma linha de código. Você
+leu laudos: reagente, não-reagente.</p>
+<hr />
+<p>E repara na privacidade.</p>
+<p>As perguntas que eu fiz nos testes — anticoagulação, prevenção de AVC
+— não têm paciente nenhum. São consultas-controle, como a
+amostra-controle nunca é sangue real.</p>
+<p>E o guardião roda inteiro na sua máquina. A sua biblioteca de artigos
+é sua, o banco vetorial é seu, o controle é seu. Arranca o cabo de rede
+e ele confere tudo igual. O controle de qualidade do app que lê seus
+artigos é tão privado quanto os artigos. Nada disso liga pra lugar
+nenhum.</p>
+<hr />
+<p>Agora pensa numa coisa.</p>
+<p>Você já tem os guardiões — da calculadora, do checklist, da busca.
+Mas tem um problema humano: você precisa LEMBRAR de rodar o controle.
+Toda vez que mexer no app, digitar o comando.</p>
+<p>E se você esquecer? E se for tarde, você está cansado, faz uma
+mudancinha rápida e não roda? O guardião só protege se for acordado.</p>
+<p>Na próxima aula, a gente resolve isso de vez: um guardião que não
+precisa ser acordado. Que roda sozinho, automático, toda vez que o app
+muda — sem você lembrar de nada. O controle de qualidade que liga
+sozinho.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+<hr />
+<blockquote>
+<p><strong>NOTAS DE PRODUÇÃO (não falar — operacional):</strong></p>
+<ul>
+<li><strong>Honestidade depende de limiar de relevância (CRÍTICO p/ o
+clímax):</strong> o ChromaDB sempre devolve os N vizinhos mais próximos
+— “tema ausente → lista vazia” só funciona se
+<code>busca_service.buscar()</code> aplicar um corte de score/distância
+(comportamento prometido na aula_29, mas cujo limiar nunca foi cravado).
+Confirmar na pré-gravação que
+<code>buscar("como tratar diabetes tipo 2 com metformina")</code> no
+corpus de teste devolve lista vazia ANTES de gravar. Se não devolver, o
+corte não existe/está frouxo — pedir ao Claude para revisar o limiar em
+<code>busca_service</code>/<code>chroma_repositorio</code> antes (é
+pré-condição do clímax, não conteúdo de aula). Se diabetes (tema médico,
+semanticamente mais perto) não cair vazio de forma estável, usar um tema
+mais distante como fallback.</li>
+<li><strong>Forma do FAILED da honestidade:</strong> se o
+<code>-v</code> mostrar <code>assert [ResultadoBusca(...)] == []</code>
+em vez de <code>assert 1 == 0</code>, ajustar a fala “Um, quando tinha
+que ser zero” para “ele trouxe um resultado, e o guardião exigia nenhum”
+(apontar a tela, sem ler string em inglês).</li>
+<li><strong>Corpus de teste isolado (CRÍTICO):</strong> confirmar na
+pré-gravação que os testes criam o próprio knowledge_base de teste e NÃO
+apontam para o <code>data/chroma_db/</code> real. Prova: apagar
+<code>data/chroma_db/</code> e rodar — os testes do RAG devem seguir
+verdes. Se falharem por ambiente, repetir o Prompt 1 enfatizando “banco
+vetorial separado, não o data/chroma_db real”.</li>
+<li><strong>Propriedade do top-N (Seção 5) — risco de
+instabilidade:</strong> se o guardião da triagem não passar de forma
+estável (~5 execuções seguidas) com o corpus de teste, afrouxar para
+top-5 ou trocar a consulta por um tema mais inequivocamente concentrado
+em um texto. Não gravar antes de passar consistente.</li>
+<li><strong>Custo do embedding:</strong> sentence-transformers carrega o
+modelo na 1ª execução (pode demorar/baixar). Aquecer rodando uma vez
+antes de gravar.</li>
+<li><strong>Reversibilidade da sabotagem (Seção 6):</strong> working
+tree limpo e commitado antes. Se o conserto divergir,
+<code>git checkout -- application/servicos/busca_service.py</code>
+restaura. Nunca encerrar a gravação com o serviço divergente do
+commit.</li>
+<li><strong>Números e nomes dos testes:</strong> ajustar as falas que
+citam contagem/nomes ao que o <code>-v</code> listar na
+pré-gravação.</li>
+<li><strong>Saída do FAILED:</strong> o pytest costuma imprimir algo
+como <code>assert 1 == 0</code>. Fala mantida agnóstica (“um, quando
+tinha que ser zero”) — apontar a tela, sem citar string em inglês.</li>
+</ul>
+</blockquote>
+</body>
+</html>

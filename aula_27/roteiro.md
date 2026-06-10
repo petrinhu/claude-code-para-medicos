@@ -364,6 +364,13 @@ Mas para um médico que precisa de informação confiável,
 uma resposta vazia e honesta
 vale mais do que uma resposta completa e inventada.
 
+Esse é o comportamento que vamos construir:
+um app que admite quando não sabe.
+
+Ele não chuta. Ele admite que não sabe.
+
+E isso, no contexto clínico, é segurança.
+
 ---
 
 Na próxima aula: PubMed, `knowledge_base/`, e o indexador.

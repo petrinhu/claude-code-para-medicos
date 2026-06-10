@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 35 — O Guardião que Acorda Sozinho: o Controle que Roda a Cada Entrega</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 35 — O Guardião que Acorda Sozinho: o Controle
+que Roda a Cada Entrega</h1>
+</header>
+<h1
+id="aula-35-o-guardião-que-acorda-sozinho-o-controle-que-roda-a-cada-entrega">Aula
+35 — O Guardião que Acorda Sozinho: o Controle que Roda a Cada
+Entrega</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~55 min <strong>Tom:</strong>
+Clínico-arquiteto; o alívio de não depender mais da própria memória, e o
+impacto de ver o robô pegar o erro sozinho, longe do paciente
+<strong>Módulo:</strong> S10.01 — Integração Contínua (CI) com GitHub
+Actions</p>
+<hr />
+<h2
+id="seção-1-abertura-o-controle-que-ainda-precisa-de-você-5-min">SEÇÃO
+1: ABERTURA — O CONTROLE QUE AINDA PRECISA DE VOCÊ — 5 min</h2>
+<p><strong>Tom:</strong> Reflexivo. Retoma literalmente o gancho da
+aula_34 e nomeia o problema humano.</p>
+<p>“Nas últimas duas aulas você construiu os guardiões. O da
+calculadora, o do checklist, o da busca. Pequenas testemunhas
+automáticas que conferem, em meio segundo, se as regras que importam
+continuam de pé.</p>
+<p>E no fim da aula passada eu te deixei com um incômodo. Lembra?</p>
+<p>Esses guardiões só protegem se forem acordados. Você precisa LEMBRAR
+de rodar o controle. Digitar o comando, toda vez que mexer no app.</p>
+<hr />
+<p>E se você esquecer?</p>
+<p>Pensa numa sexta à noite. Você está cansado. Faz uma mudancinha
+rápida no app — ‘só um ajuste, é pequeno’. Não roda o controle. Sobe
+assim mesmo.</p>
+<p>E aquela mudancinha quebrou a regra do AVC prévio sem você ver.</p>
+<p>O guardião existia. Estava lá, pronto. Mas dormindo. Ninguém o
+acordou.</p>
+<hr />
+<p>Hoje a gente resolve isso de vez.</p>
+<p>Hoje você vai fazer o que todo laboratório de verdade já faz: o
+controle deixa de depender de alguém lembrar. Ele passa a rodar
+<strong>sozinho</strong>.</p>
+<p>Um guardião que acorda por conta própria — toda vez que você entrega
+uma mudança. Você nunca mais vai precisar lembrar. Porque ele não
+esquece.”</p>
+<hr />
+<h2 id="seção-2-o-controle-que-liga-sozinho-7-min">SEÇÃO 2: O CONTROLE
+QUE LIGA SOZINHO — 7 min</h2>
+<p><strong>Tom:</strong> Didático, tranquilo. A maquete mental antes de
+qualquer comando.</p>
+<p>“Volta comigo pro laboratório, que é onde essa ideia já vive.</p>
+<p>Toda manhã, antes do primeiro exame de paciente sair, a máquina roda
+a amostra-controle. Sozinha. Ninguém chega às seis da manhã e aperta um
+botão de ‘rodar controle’. Está programado: deu o horário, a máquina
+roda. Se o controle bate, libera o dia. Se não bate, trava tudo.</p>
+<p>O controle não espera o técnico lembrar. Ele tem um gatilho
+automático: o relógio.</p>
+<hr />
+<p>O seu app vai ganhar exatamente isso. Um controle com gatilho
+automático.</p>
+<p>Só que o gatilho não vai ser o relógio. Vai ser a
+<strong>entrega</strong>.</p>
+<p>Toda vez que você entrega uma mudança — toda vez que você faz aquele
+<code>git push</code> que você já conhece desde a aula nove — esse ato,
+sozinho, dispara o controle. Você não aperta o botão do controle. O ato
+de entregar aperta por você.</p>
+<p>É a mesma lógica da prescrição eletrônica que checa a interação
+medicamentosa antes de você assinar: ninguém pediu a checagem, ela
+acontece sozinha, no caminho. O robô é isso para o seu código.</p>
+<hr />
+<p>E tem uma diferença linda em relação às aulas passadas.</p>
+<p>Antes, o controle rodava na sua máquina. Agora ele vai rodar
+<strong>lá no servidor</strong>, no GitHub, longe da sua máquina. Você
+entrega o código, e um robô do GitHub — não você — pega esse código,
+roda todos os guardiões, e mostra o resultado: verde ou vermelho.</p>
+<p>Você pode até desligar o computador. O robô roda mesmo assim, no
+servidor. O controle não está mais preso à sua memória, nem à sua
+máquina.</p>
+<hr />
+<p>Esse robô tem um nome técnico: integração contínua. Em inglês, CI.
+Mas esquece a sigla. Lembra do controle da manhã que roda sozinho. É
+isso, do começo ao fim.”</p>
+<hr />
+<h2 id="seção-3-você-decide-9-min">SEÇÃO 3: VOCÊ DECIDE — 9 min</h2>
+<p><strong>Tom:</strong> Colaborativo. Duas perguntas, raciocínio
+clínico, zero código.</p>
+<p>“Duas perguntas antes de a gente ligar o robô. Pensa como médico.</p>
+<hr />
+<p><strong>PERGUNTA UM — por que botar um robô pra rodar os testes, se
+você já roda na sua máquina?</strong></p>
+<p>Você já tem o hábito de rodar o controle antes de entregar. Então
+qual é a real vantagem de um robô fazer de novo, no servidor?</p>
+<p>A: porque o robô roda mais rápido que a sua máquina.</p>
+<p>B: porque você, humano, esquece. O robô não. Ele roda SEMPRE, a cada
+entrega, mesmo na sexta à noite, mesmo cansado, mesmo quando você
+decidiu pular o controle ‘só dessa vez’.</p>
+<p>C: porque o robô roda testes melhores que os seus.</p>
+<p>Pensa um segundo.</p>
+<hr />
+<p>É a B.</p>
+<p>Não é sobre velocidade — A está errado, a sua máquina até roda mais
+rápido. Não é sobre qualidade — C está errado, são exatamente os mesmos
+guardiões, os seus.</p>
+<p>É sobre uma fraqueza humana que você conhece bem: a gente esquece. A
+gente pula etapa quando está cansado. A gente confia que ‘dessa vez não
+precisa’.</p>
+<p>O robô não tem sexta à noite. Não tem cansaço. Não tem ‘só dessa
+vez’. Ele roda o controle em toda entrega, sem falta. É a rede embaixo
+do trapezista — você espera nunca precisar, mas é ela que te deixa
+trabalhar tranquilo.</p>
+<p>Critério que fica: o robô não substitui você rodar o controle. Ele
+garante que o controle SEMPRE roda, mesmo nas vezes em que você não
+rodaria.</p>
+<hr />
+<p><strong>PERGUNTA DOIS — o robô ficou vermelho numa entrega. O que
+isso significa?</strong></p>
+<p>Você entregou uma mudança, o robô rodou, e ficou vermelho. Como você
+deve tratar isso?</p>
+<p>A: nada demais, é só um aviso, pode seguir em frente e consertar
+depois.</p>
+<p>B: que aquela entrega tem uma regra quebrada e não deveria ser usada
+— nem publicada, nem mostrada a ninguém — até você consertar. O vermelho
+é um portão fechado.</p>
+<p>Pensa.</p>
+<hr />
+<p>É a B.</p>
+<p>Vermelho não é um aviso decorativo. É um portão fechado. Significa:
+tem uma regra clínica quebrada nessa versão do app. Se o AVC prévio está
+valendo um ponto em vez de dois, essa versão subtrata paciente — e ela
+não pode ser usada até voltar pro verde.</p>
+<p>Tratar o vermelho como ‘depois eu vejo’ é o mesmo que liberar exames
+com o controle da manhã alterado. Ninguém faz isso. Você trava,
+conserta, e só então segue.</p>
+<p>Critério que fica: verde é ‘pode seguir’. Vermelho é ‘pare e conserte
+antes de qualquer coisa’. Guarda isso — na próxima aula a gente vai
+transformar esse portão num porteiro de verdade.”</p>
+<hr />
+<h2 id="seção-4-pedindo-o-robô-11-min">SEÇÃO 4: PEDINDO O ROBÔ — 11
+min</h2>
+<p><strong>Tom:</strong> Mãos à obra. Dois prompts: um blinda o terreno,
+o outro cria o robô.</p>
+<p>“Antes de criar o robô, deixa o Claude conferir que o terreno está
+limpo. Eu quero ter certeza de duas coisas: que o meu projeto está mesmo
+conectado ao GitHub, e — mais importante — que nenhum dado de paciente
+sobe junto.</p>
+<p>Cola este primeiro prompt:”</p>
+<p>[TELA: digitar o Prompt 0 no Claude Code]</p>
+<pre><code>Você é meu par de programação. Antes de eu criar o robô de testes automáticos,
+confira o estado do meu Git e me diga, em português e SEM me mostrar saída técnica
+crua, apenas:
+  1. se este projeto já está conectado ao meu repositório no GitHub (o clinmd-tribe
+     que eu criei lá atrás) e se o meu último commit já foi enviado (push);
+  2. se a pasta data/ — onde ficam o banco do app, os artigos e o banco vetorial —
+     está protegida pelo .gitignore e portanto NUNCA é enviada para o GitHub. Eu não
+     quero dado de paciente nem banco nenhum saindo da minha máquina.
+
+Se algo estiver faltando (não conectado, push pendente, ou data/ desprotegida),
+conserte você mesmo e confirme em uma frase que está tudo certo. NÃO me mostre
+código nem arquivos de configuração.</code></pre>
+<p>“O Claude confere e responde em português: está conectado, o push
+está em dia, e — repara nisso — a pasta <code>data/</code> está
+protegida. O banco com os horários das suas cirurgias, os artigos, o
+banco vetorial: nada disso sobe. Só o código do app e os controles,
+aqueles pacientes fictícios. O paciente não viaja. Esse é o nosso eixo,
+e o Claude acabou de confirmar pra você, em voz alta.</p>
+<hr />
+<p>Terreno limpo. Agora eu peço o robô. Repara no formato: eu descrevo,
+em português, o que o robô faz. Eu não escrevo robô nenhum, não escrevo
+configuração nenhuma. Cola:”</p>
+<p>[TELA: digitar o Prompt 1 no Claude Code]</p>
+<pre><code>Agora crie o robô de integração contínua (CI) deste projeto no GitHub, usando
+GitHub Actions. O objetivo, em uma frase: toda vez que eu enviar uma mudança
+(git push), um robô do GitHub instala as dependências do projeto com uv e roda os
+meus testes automaticamente, mostrando verde se passarem ou vermelho se algum falhar.
+
+Requisitos:
+  - O robô roda os mesmos testes que eu rodo na minha máquina com: uv run pytest
+  - Por enquanto, rode apenas os testes da calculadora e do checklist. Deixe os
+    testes da busca/RAG de fora deste primeiro robô — eles baixam um modelo grande,
+    e a gente liga isso numa próxima aula. Se precisar, marque os testes da busca
+    com uma etiqueta para o robô conseguir pulá-los de forma limpa.
+  - Deve disparar a cada push na branch main e também quando eu pedir manualmente
+    pelo site do GitHub.
+  - Use uma versão de Python compatível com a do meu projeto e instale tudo com uv,
+    do mesmo jeito que funciona aqui na máquina.
+  - O robô não precisa de nenhum dado meu: roda só o código e os testes com
+    pacientes fictícios. Ele nunca acessa a pasta data/.
+
+Coloque o arquivo do robô no lugar certo do projeto. NÃO me mostre o conteúdo do
+arquivo — eu não preciso ler. Quando terminar, me diga em português: (1) que o robô
+está pronto; (2) exatamente quais comandos git eu rodo para enviá-lo ao GitHub;
+(3) onde no site do GitHub eu vou ver a bolinha do robô trabalhando.</code></pre>
+<p>“O Claude cria o arquivo do robô — num cantinho do projeto que você
+nunca vai precisar abrir — e te explica em português o que fazer. O robô
+está pronto na sua máquina. Mas ele só ganha vida quando você ENTREGA. É
+o que a gente faz na próxima seção.”</p>
+<hr />
+<h2 id="seção-5-a-primeira-entrega-verde-11-min">SEÇÃO 5: A PRIMEIRA
+ENTREGA VERDE — 11 min</h2>
+<p><strong>Tom:</strong> O payoff. O robô ganha vida na frente do
+aluno.</p>
+<p>“Hora de entregar o robô e vê-lo trabalhar pela primeira vez. Os
+comandos que o Claude te deu são estes — os mesmos <code>add</code>,
+<code>commit</code>, <code>push</code> que você já conhece desde a aula
+nove:”</p>
+<p>[TELA: no terminal]</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;feat: adiciona robô de CI que roda os guardiões a cada push&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<p>“Enter. O código subiu. Agora abre o navegador, vai no seu
+repositório <code>clinmd-tribe</code> no GitHub, e clica na aba lá em
+cima escrita <strong>Actions</strong>.</p>
+<hr />
+<p>Olha o que aparece.</p>
+<p>Uma linha, com a mensagem da sua entrega, e do lado uma
+<strong>bolinha amarela girando</strong>. Essa bolinha é o robô
+trabalhando. Ele pegou a sua entrega logo depois do push, e começou a
+rodar.</p>
+<p>Clica na linha. Você vê as etapas, uma a uma, virando verdes:
+instalar as ferramentas, instalar as dependências, rodar os
+guardiões.</p>
+<p>E no topo, a bolinha vira um <strong>✓ verde</strong>.</p>
+<hr />
+<p>Para um segundo nisso.</p>
+<p>Verde. O robô rodou os guardiões da calculadora e do checklist —
+sozinho, no servidor — e todos passaram.</p>
+<p>E olha o que você NÃO fez: você não digitou <code>pytest</code>. Você
+não rodou nada. Você só entregou. O robô fez o resto, no servidor do
+GitHub, no exato instante em que você deu push.</p>
+<p>Aquele incômodo da abertura — ‘e se eu esquecer de rodar o controle?’
+— acabou de morrer. Você não precisa mais lembrar. O robô lembra por
+você.</p>
+<hr />
+<p>E não é uma vez só. É pra sempre, a cada entrega.</p>
+<p>Deixa eu provar. Vou pedir uma mudança boba pro Claude — só um ajuste
+de texto, nada que quebre regra — e entregar de novo.”</p>
+<p>[TELA: após a mudança trivial]</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;chore: pequeno ajuste de texto&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<p>“Volta na aba Actions. Olha: uma nova bolinha amarela, girando, já
+apareceu. Sozinha. Eu não pedi. O ato de entregar acordou o robô de
+novo. Vira verde.</p>
+<p>Isso agora faz parte de respirar. Toda entrega, o controle roda. Sem
+você lembrar.</p>
+<p>E se um dia você quiser rodar o controle sem entregar nada — só pra
+conferir — tem um botão ‘Run workflow’ ali mesmo na aba Actions. Mas no
+dia a dia você nem precisa: o push já faz por você.”</p>
+<hr />
+<h2
+id="seção-6-o-clímax-a-sabotagem-que-fica-vermelha-sozinha-9-min">SEÇÃO
+6: O CLÍMAX — A SABOTAGEM QUE FICA VERMELHA SOZINHA — 9 min</h2>
+<p><strong>Tom:</strong> O ápice. Desacelera. O robô pega o erro
+sozinho, no servidor, longe do paciente.</p>
+<p>“Até agora foi tudo verde. Lindo. Mas o robô só vale alguma coisa se
+ele pegar o erro quando ele acontece. Então vamos fazer um erro
+acontecer.</p>
+<p>Vou pedir ao Claude pra quebrar uma regra de propósito. A mesma da
+aula dos testes: o AVC prévio valendo um ponto em vez de dois. O erro
+que subtrata paciente.</p>
+<p>E presta atenção no que eu vou pedir junto: <strong>não rode nada na
+minha máquina</strong>. Eu não quero conferir aqui. Eu quero ver o robô
+do GitHub pegar sozinho.”</p>
+<p>[TELA: digitar o Prompt da sabotagem]</p>
+<pre><code>Quero mostrar o robô trabalhando quando algo dá errado. De propósito, introduza no
+serviço da calculadora CHA2DS2-VASc o erro mais comum: faça o AVC prévio valer 1
+ponto em vez de 2. NÃO mexa nos testes — só na regra. Não rode nada na minha
+máquina. Eu quero ver o robô do GitHub pegar o erro sozinho.</code></pre>
+<p>“Pronto. O app está quebrado agora. Silenciosamente quebrado. Se eu
+não tivesse robô nenhum, eu entregaria isso numa sexta à noite e nem
+perceberia.</p>
+<p>Vou entregar:”</p>
+<p>[TELA: no terminal]</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;test: quebra a regra do AVC de propósito para validar o robô&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<p>“Entrega feita. Agora abre a aba Actions, e olha.</p>
+<p>Bolinha amarela girando… e vira <strong>✗ vermelho</strong>.</p>
+<hr />
+<p>[pausa]</p>
+<p>Vermelho. No servidor.</p>
+<p>Eu não rodei nada aqui na minha máquina. Não digitei
+<code>pytest</code>, não conferi nada. Eu só entreguei o código quebrado
+— e o robô, lá no GitHub, rodou os guardiões sozinho, logo que recebeu a
+entrega, e pegou.</p>
+<p>Clica no vermelho. Ele te mostra exatamente qual guardião falhou: o
+do AVC prévio — aquela regra que você conhece de cor: AVC ou AIT prévio
+pesa dois pontos no escore, não um. É a letra que dobra. Com um ponto, o
+paciente cai abaixo do corte e fica sem anticoagular. O guardião
+esperava dois, recebeu um. O robô aponta o dedo na regra que quebrou — e
+eu não li uma linha de código pra saber disso.</p>
+<hr />
+<p>Pensa no que isso significa. Numa sexta à noite, cansado, eu subi um
+app que subtrata paciente. E em vez de isso chegar num paciente, chegou
+num robô — que travou, pintou de vermelho, registrou exatamente o que
+está errado. De graça. Em segundos. Longe de qualquer pessoa de
+verdade.</p>
+<p>Esse é o guardião que não dorme E não depende da sua memória. Agora
+eu conserto.”</p>
+<p>[TELA: digitar o Prompt do conserto]</p>
+<pre><code>Perfeito, o robô pegou o erro. Agora conserte: o AVC prévio tem que voltar a valer
+2 pontos. Depois confirme que está corrigido. Eu vou enviar de novo e quero ver o
+robô ficar verde.</code></pre>
+<p>[TELA: no terminal]</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;fix: AVC prévio volta a valer 2 pontos&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<p>“Entrega. Aba Actions. Nova bolinha, gira… <strong>✓
+verde</strong>.</p>
+<p>Recalibrado, e o servidor confirma. O ciclo inteiro: estava verde,
+alguém quebrou, o robô gritou vermelho na hora — sozinho, no servidor —
+consertou, verde de novo. E em nenhum momento você precisou lembrar de
+rodar nada.”</p>
+<hr />
+<h2
+id="seção-7-encerramento-o-robô-avisa-mas-ainda-não-bloqueia-3-min">SEÇÃO
+7: ENCERRAMENTO — O ROBÔ AVISA, MAS AINDA NÃO BLOQUEIA — 3 min</h2>
+<p><strong>Tom:</strong> Síntese pelo aluno, LGPD orgânico, e abre a
+tensão da próxima aula.</p>
+<p>“Recapitula — você dizendo, na sua cabeça.</p>
+<p>Você criou um robô que roda os guardiões sozinho, no servidor, toda
+vez que você entrega. Viu ele ficar verde quando o app está são. Quebrou
+uma regra de propósito e viu ele ficar vermelho sozinho, longe de
+qualquer paciente, apontando exatamente o erro. E fez tudo isso sem ler
+uma linha de código ou de configuração. Você leu bolinhas: verde,
+vermelho.</p>
+<hr />
+<p>E a privacidade, que é o eixo de tudo.</p>
+<p>Lembra que, antes de criar o robô, o Claude confirmou pra você que a
+pasta <code>data/</code> está trancada? Isso não foi detalhe. O que
+subiu pro GitHub foi a receita do app e os controles fictícios — a
+calculadora, o checklist, os pacientes de mentira dos testes. O banco
+com as suas cirurgias de verdade, os seus artigos, o prontuário: nada
+disso saiu da sua máquina. O robô roda no servidor, mas ele nunca toca
+no que é sensível. O paciente não viaja — nem quando o código viaja.</p>
+<hr />
+<p>Agora, um detalhe que vai te incomodar — de propósito.</p>
+<p>O robô hoje AVISA. Verde ou vermelho. Mas repara: quando ele ficou
+vermelho, eu ainda CONSEGUI entregar o código quebrado. Ele não me
+impediu. Ele só pintou de vermelho e me deixou seguir, se eu quisesse
+ignorar.</p>
+<p>E se o robô pudesse fazer mais? E se ele virasse um porteiro de
+verdade — que não deixa código quebrado passar, que tranca a porta até
+estar tudo verde?</p>
+<p>É isso que vem na próxima aula. O robô deixa de ser um aviso e vira
+um portão que não abre no vermelho.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+<hr />
+<blockquote>
+<p><strong>NOTAS DE PRODUÇÃO (não falar — operacional):</strong></p>
+<ul>
+<li><strong>GitHub Actions é habilitado por padrão</strong> em
+repositórios — basta o <code>.github/workflows/ci.yml</code> existir e
+dar push; não precisa “ligar” em Settings. Confirmar na pré-gravação que
+a aba Actions aparece e executa.</li>
+<li><strong>Cota de Actions:</strong> repo privado consome minutos da
+cota gratuita. Confirmar saldo na conta de gravação; se necessário,
+gravar com a conta-piloto do Dr. Petrus num
+<code>clinmd-tribe-demo</code>.</li>
+<li><strong>Escopo determinístico:</strong> o Prompt 1 exclui os testes
+do RAG (modelo <code>sentence-transformers</code> ~90MB → risco de
+lentidão/timeout no runner ao vivo). O RAG entra no CI na aula_36.</li>
+<li><strong>Isolamento RAG (pré-condição do CI verde):</strong>
+confirmar na pré-gravação COMO o pipeline separa calculadora+checklist
+do RAG — por caminho
+(<code>tests/test_calculadora.py tests/test_checklist.py</code>), por
+marcador (<code>-m "not rag"</code>), ou por nome. Se não houver
+mecanismo limpo, instruir o Claude a criar um marcador
+<code>@pytest.mark.rag</code> nos testes da busca ANTES de configurar o
+robô. Sem isso, o runner pode baixar o modelo de 90MB e estourar timeout
+ao vivo.</li>
+<li><strong>Upstream do push:</strong> confirmar que
+<code>git push</code> simples funciona (upstream
+<code>origin/main</code> já setado pelo <code>-u</code> da aula_09); se
+não, rodar <code>git push -u origin main</code> uma vez antes de
+gravar.</li>
+<li><strong>Latência da run (estado “Queued”):</strong> após o push, a
+run pode aparecer como “Queued” (relógio) por alguns segundos antes da
+bolinha amarela “in progress”. Narrar o beat (“o robô recebeu, está
+entrando na fila”) em vez de afirmar surgimento instantâneo; cortar a
+espera na edição se for longa.</li>
+<li><strong>Sabotagem reversível:</strong> working tree limpo/commitado
+antes do clímax; a sabotagem é um commit real que vai ao remote (ok, é
+didático); o conserto restaura. Não encerrar com o app quebrado.</li>
+<li><strong>Nomes/aparência reais:</strong> ajustar as falas que citam
+contagem de testes e a aparência da aba Actions ao que aparecer na
+pré-gravação (label exato, ordem das etapas).</li>
+<li><strong>Autenticação:</strong> o aluno usa o git já autenticado da
+aula_09 (token/credencial guardada); nenhuma chave é colada em arquivo —
+gancho para S12.01 (“nunca suba seu token”).</li>
+</ul>
+</blockquote>
+</body>
+</html>

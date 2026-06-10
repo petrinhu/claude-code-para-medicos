@@ -210,9 +210,28 @@ Limpa. Organizada. Ordenada. Em CSV pronto para importar.
 
 Uma nota rápida sobre modelos:
 
-Existem versões diferentes do Claude — Haiku, Sonnet, Opus.
-Para esta aula, o Sonnet — que é o padrão — serve para tudo.
-Vamos aprofundar essa escolha quando você tiver mais fluência.
+Existem versões diferentes do Claude — pensa nelas como uma equipe de níveis diferentes.
+O Haiku é o residente rápido: resolve o simples num instante.
+O Sonnet é o clínico geral competente — dá conta de quase tudo, e é o padrão.
+O Opus é o especialista, que você chama nos casos mais difíceis.
+E o mais novo e mais forte de todos é o Fable 5: o professor titular, que aguenta os casos
+mais longos e complexos sem perder o fio do raciocínio — daqueles que levam horas de
+trabalho seguido. Ele tem até um cuidado de segurança embutido: em temas sensíveis, passa
+o caso sozinho para o Opus.
+
+Para esta aula — limpar uma planilha, gerar bullets — o Sonnet, que é o padrão, serve para
+tudo. Você não chama o professor titular para medir uma pressão.
+
+E tem mais um controle que vale conhecer desde já: o esforço — em inglês, o 'effort'.
+É quanto o Claude pensa antes de responder. É igual ao seu raciocínio clínico: num resfriado
+você decide rápido; num caso difícil, você para, revisa e pensa com calma. Você pode pedir
+ao Claude mais esforço para um problema cabeludo — ele pensa mais fundo, demora um pouco
+mais — ou menos esforço para uma tarefa boba e rápida. No dia a dia desta aula, o esforço
+padrão dá conta.
+
+Regra de bolso: comece sempre com o padrão — Sonnet, esforço normal. Conforme o curso
+avançar e os seus pedidos ficarem mais complexos, aí você sobe o modelo (Opus ou Fable 5)
+e o esforço. Vamos aprofundar essa escolha quando você tiver mais fluência.
 
 E gráficos? Para gerar gráficos o Claude precisaria de Python.
 Isso fica para a fase avançada do curso — por enquanto,

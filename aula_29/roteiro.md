@@ -81,7 +81,8 @@ Hoje ele vai ser atualizado para implementar a interface do domínio.
 
 **`application/servicos/busca_service.py`** — o orquestrador.
 Recebe a pergunta do médico, chama a busca, devolve os resultados.
-Se não encontrar nada: devolve lista vazia. Nunca texto inventado.
+E aqui mora a parte mais importante, que eu preciso te explicar antes: o banco vetorial é teimoso. Ele SEMPRE devolve os três trechos mais próximos da sua pergunta, mesmo que os três sejam ruins, mesmo que o tema esteja a quilômetros dos seus artigos. Ele nunca devolve vazio sozinho.
+Então quem decide 'isto está perto o bastante pra contar' é uma régua: o corte de relevância. Cada trecho volta com um score de distância; se o melhor estiver longe demais, além da régua, o serviço descarta e devolve lista vazia. É assim que o app consegue dizer 'não tenho', sem texto inventado.
 
 ---
 
@@ -125,7 +126,12 @@ application/servicos/busca_service.py
   - def buscar(consulta: str, n: int = 3) -> list[ResultadoBusca]   ← função pública (não classe)
   - Recebe a pergunta do médico (str) e n (int, padrão 3)
   - Chama BuscaRAG.buscar()
-  - Se lista vazia: retorna lista vazia — nunca texto inventado
+  - CORTE DE RELEVÂNCIA (essencial): o banco vetorial SEMPRE devolve os N trechos mais
+    próximos, mesmo quando o tema está fora dos artigos. Para o app poder dizer "não tenho",
+    descarte os resultados cujo score de distância ultrapasse um LIMIAR de relevância; se
+    não sobrar nenhum, devolva lista VAZIA (nunca texto inventado). Exponha esse limiar como
+    uma constante nomeada e ajustável (ex.: LIMIAR_DISTANCIA), com valor inicial conservador
+    que eu vou calibrar depois.
   - Retorna list[ResultadoBusca]
 
 Regras:
@@ -450,6 +456,8 @@ Não disse 'baseado no meu conhecimento geral sobre diabetes...'.
 Não disse 'metformina é a droga de escolha...'.
 Devolveu zero resultados.
 
+E sabe por quê? Pela régua que a gente botou: o corte de relevância. Os trechos mais próximos de 'diabetes' nos seus artigos de anticoagulação até existem, mas estão longe demais, além da régua. O serviço mediu a distância, viu que nada estava perto o bastante pra contar, e descartou tudo. Zero não foi sorte, foi a régua funcionando.
+
 ---
 
 Para um cardiologista que vai usar essa informação com um paciente real —
@@ -558,3 +566,11 @@ onde você vai conectar exatamente esse comportamento na interface do app."
 ---
 
 **FIM DO ROTEIRO**
+
+---
+
+> **NOTAS DE PRODUÇÃO (não falar, operacional):**
+>
+> - **Corte de relevância / LIMIAR_DISTANCIA (CRÍTICO p/ o clímax da Seção 6 e p/ a aula_34):** o ChromaDB nunca devolve lista vazia sozinho; o "tema ausente devolve vazio" SÓ funciona com o corte de relevância que o Prompt da Seção 2 agora exige explicitamente. Antes de gravar, calibrar o limiar empiricamente: rodar 3 a 4 perguntas que ESTÃO nos artigos (devem passar) e 3 a 4 que NÃO estão (devem cair para vazio), observar os scores de distância, e fixar o `LIMIAR_DISTANCIA` num ponto conservador que separe os dois grupos (no app clínico, preferir devolver vazio a devolver trecho irrelevante). Validar que `buscar("como tratar diabetes tipo 2 com metformina")` devolve vazio ANTES de gravar a Seção 6.
+> - **Métrica de distância:** confirmar se o ChromaDB do projeto está em distância de cosseno ou L2 (muda a escala do limiar). O valor do corte é relativo ao modelo de embeddings e ao corpus, então NÃO existe número mágico universal; é calibração local.
+> - **Débito zero-código (S07):** esta aula ainda traz leitura supervisionada de código e heredoc Python no terminal (paradigma antigo, pré-regra "zero código para LER"). Retrofit pendente em rodada futura (ver memória feedback-zero-codigo-para-ler); as edições do threshold acima foram cirúrgicas e não ampliam esse débito.

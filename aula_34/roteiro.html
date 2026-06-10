@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Aula 34 — O Guardião do Aproximado: Controle de Qualidade de uma Busca que Muda</title>
+  <title>Aula 34 — O Guardião do Aproximado</title>
   <style>
     html {
       color: #1a1a1a;
@@ -235,8 +235,7 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Aula 34 — O Guardião do Aproximado: Controle de
-Qualidade de uma Busca que Muda</h1>
+<h1 class="title">Aula 34 — O Guardião do Aproximado</h1>
 </header>
 <h1
 id="aula-34-o-guardião-do-aproximado-controle-de-qualidade-de-uma-busca-que-muda">Aula
@@ -617,19 +616,20 @@ sozinho.</p>
 <blockquote>
 <p><strong>NOTAS DE PRODUÇÃO (não falar — operacional):</strong></p>
 <ul>
-<li><strong>Honestidade depende de limiar de relevância (CRÍTICO p/ o
-clímax):</strong> o ChromaDB sempre devolve os N vizinhos mais próximos
-— “tema ausente → lista vazia” só funciona se
-<code>busca_service.buscar()</code> aplicar um corte de score/distância
-(comportamento prometido na aula_29, mas cujo limiar nunca foi cravado).
-Confirmar na pré-gravação que
+<li><strong>Honestidade depende do limiar de relevância (CRÍTICO p/ o
+clímax):</strong> o ChromaDB sempre devolve os N vizinhos mais próximos;
+“tema ausente, lista vazia” só funciona porque o
+<code>busca_service.buscar()</code> aplica um corte de score/distância.
+Esse corte agora é ensinado explicitamente na aula_29 (constante
+<code>LIMIAR_DISTANCIA</code>, calibrada empiricamente, valor
+conservador), então o serviço construído lá já deve trazê-lo. Mesmo
+assim, confirmar na pré-gravação que
 <code>buscar("como tratar diabetes tipo 2 com metformina")</code> no
-corpus de teste devolve lista vazia ANTES de gravar. Se não devolver, o
-corte não existe/está frouxo — pedir ao Claude para revisar o limiar em
-<code>busca_service</code>/<code>chroma_repositorio</code> antes (é
-pré-condição do clímax, não conteúdo de aula). Se diabetes (tema médico,
-semanticamente mais perto) não cair vazio de forma estável, usar um tema
-mais distante como fallback.</li>
+corpus de teste devolve lista vazia ANTES de gravar; se não devolver, o
+limiar está frouxo: pedir ao Claude para apertá-lo (é pré-condição do
+clímax, não conteúdo de aula). Se diabetes (tema médico, semanticamente
+mais perto) não cair vazio de forma estável, usar um tema mais distante
+como fallback.</li>
 <li><strong>Forma do FAILED da honestidade:</strong> se o
 <code>-v</code> mostrar <code>assert [ResultadoBusca(...)] == []</code>
 em vez de <code>assert 1 == 0</code>, ajustar a fala “Um, quando tinha

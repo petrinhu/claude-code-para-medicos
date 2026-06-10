@@ -11,7 +11,7 @@
 > Curso prático de Claude Code para médicos: sem programação nas fases iniciante e intermediária, Python completo na fase avançada (opcional).
 
 **Plataforma:** MDlife Academy  
-**Parceria:** Dr. Petrus Silva Costa x TribeMD (Luiz Dieckmann)
+**Liderança:** Dr. Petrus Silva Costa · **Gestão:** Dr. Luiz Dieckmann (CEO, TribeMD)
 
 ---
 
@@ -100,4 +100,4 @@ Eixo transversal de todas as 40 aulas: **dado de paciente nunca entra no Claude 
 
 ---
 
-<sub>MDlife Academy · Claude Code para Médicos, do Zero ao Avançado · Liderado por Dr. Petrus Silva Costa</sub>
+<sub>MDlife Academy · Claude Code para Médicos, do Zero ao Avançado · Liderado por Dr. Petrus Silva Costa e gerenciado por Dr. Luiz Dieckmann (CEO)</sub>

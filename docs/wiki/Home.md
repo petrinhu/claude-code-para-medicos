@@ -8,7 +8,7 @@ A regra desta wiki é simples: **nenhuma palavra técnica passa sem explicação
 
 ## O que é este repositório, em uma frase
 
-Este é o material completo do curso **"Claude Code para Médicos, do Zero ao Avançado"**, uma formação da MDlife Academy em parceria entre o Dr. Petrus Silva Costa e a TribeMD (Luiz Dieckmann). Ele ensina médicos a usar o **Claude Code** (uma ferramenta de inteligência artificial) para tarefas reais do dia a dia clínico e acadêmico.
+Este é o material completo do curso **"Claude Code para Médicos, do Zero ao Avançado"**, uma formação da MDlife Academy, liderada por Dr. Petrus Silva Costa e gerenciada por Dr. Luiz Dieckmann (CEO da TribeMD). Ele ensina médicos a usar o **Claude Code** (uma ferramenta de inteligência artificial) para tarefas reais do dia a dia clínico e acadêmico.
 
 > Termo novo: **repositório** é só uma pasta organizada com todos os arquivos de um projeto, guardada de um jeito que registra cada mudança ao longo do tempo. Pense num prontuário do projeto: tudo o que já aconteceu fica registrado e dá para voltar atrás. A página [[Glossario]] explica isso com calma.
 

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 36 — O Porteiro: o Robô que Tranca a Porta, Não Só Acende a Luz</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 36 — O Porteiro: o Robô que Tranca a Porta, Não
+Só Acende a Luz</h1>
+</header>
+<h1
+id="aula-36-o-porteiro-o-robô-que-tranca-a-porta-não-só-acende-a-luz">Aula
+36 — O Porteiro: o Robô que Tranca a Porta, Não Só Acende a Luz</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~55 min <strong>Tom:</strong>
+Clínico-arquiteto; do alívio da aula passada ao rigor inegociável —
+“agora ele não me deixa errar nem se eu insistir”. Visceral no instante
+em que a entrega é recusada. <strong>Módulo:</strong> S10.02 — Branch
+protection: o CI que bloqueia (GitHub)</p>
+<hr />
+<h2 id="seção-1-abertura-o-alerta-que-você-pode-ignorar-5-min">SEÇÃO 1:
+ABERTURA — O ALERTA QUE VOCÊ PODE IGNORAR — 5 min</h2>
+<p><strong>Tom:</strong> Reflexivo. Retoma o gancho da aula_35 e nomeia
+o defeito.</p>
+<p>“Aula passada foi uma vitória. Você criou um robô que roda os
+guardiões sozinho, no servidor, toda vez que você entrega. Nunca mais
+precisa lembrar.</p>
+<p>Mas eu te deixei com um incômodo de propósito. Lembra?</p>
+<p>Quando o robô ficou vermelho — quando eu quebrei a regra do AVC — eu
+ainda consegui entregar o código quebrado. O robô pintou de vermelho… e
+me deixou seguir. Ele avisou. Mas não me impediu.</p>
+<hr />
+<p>Pensa no seu sistema de prescrição eletrônica. Aquele alerta amarelo
+que pisca: ‘atenção, interação medicamentosa’. Você lê, clica em
+‘ciente’, e prescreve assim mesmo. O alerta informa. Mas a porta
+continua aberta. O erro continua possível.</p>
+<p>O robô de ontem é esse alerta amarelo. Útil. Mas ignorável.</p>
+<hr />
+<p>Hoje a gente fecha a porta.</p>
+<p>Hoje o robô deixa de ser o alerta que você clica ‘ciente’ — e vira o
+bloqueio que não te deixa assinar. O hard-stop. Aquele que, na interação
+fatal, deixa o botão de confirmar cinza, e te obriga a corrigir antes de
+seguir.</p>
+<p>Ele não vai te avisar do erro. Ele não vai te deixar cometer o erro
+sem perceber.</p>
+<hr />
+<p>Mas antes de trancar a porta, eu preciso conferir uma coisa: estão
+todos os guardiões de plantão? Porque não adianta trancar a porta se um
+deles ainda está dormindo. E tem um dormindo — desde a aula
+passada.”</p>
+<hr />
+<h2
+id="seção-2-o-guardião-que-faltava-trazendo-a-busca-para-o-robô-9-min">SEÇÃO
+2: O GUARDIÃO QUE FALTAVA — TRAZENDO A BUSCA PARA O ROBÔ — 9 min</h2>
+<p><strong>Tom:</strong> Mãos à obra. Resolve o débito da aula_35. Um
+prompt, fecha o arco do CI.</p>
+<p>“Lembra que, na aula do robô, eu deixei um guardião de fora? O da
+busca. O da honestidade — aquele que confere se o app admite quando não
+sabe, em vez de inventar.</p>
+<p>Eu deixei de fora por um motivo técnico bobo: o cérebro da busca é um
+arquivo grande, e eu não quis fazer você esperar ele baixar ao vivo. Mas
+o robô estava incompleto. Ele vigiava a calculadora e o checklist — e
+deixava a parte mais perigosa do app, a que pode inventar uma
+referência, sem vigia no servidor.</p>
+<p>Um porteiro que vigia duas portas e ignora a terceira não é porteiro.
+Então, antes de trancar, eu trago o terceiro guardião pra dentro.</p>
+<hr />
+<p>Mas primeiro, o ritual de sempre — conferir que o terreno está limpo
+e que nada de paciente sobe. Cola:”</p>
+<p>[TELA: digitar o Prompt 0 no Claude Code]</p>
+<pre><code>Você é meu par de programação. Hoje eu vou transformar o robô de testes num porteiro
+que BLOQUEIA código quebrado. Antes de começar, confira o estado do meu projeto e me
+responda em português, SEM me mostrar saída técnica crua, apenas:
+  1. se o meu projeto está conectado ao repositório clinmd-tribe no GitHub e se o meu
+     último trabalho já foi enviado (push), com a branch main em dia;
+  2. se a pasta data/ continua protegida pelo .gitignore — eu não quero banco, artigos
+     nem dado de paciente saindo da minha máquina;
+  3. se o robô de testes que eu criei na aula passada (o que roda a calculadora e o
+     checklist a cada push) ainda está no projeto e funcionando.
+
+Se algo estiver pendente, conserte você mesmo e confirme em uma frase. NÃO me mostre
+código nem arquivos de configuração.</code></pre>
+<p>“Terreno confirmado, <code>data/</code> trancada. Agora o terceiro
+guardião. Repara no formato — eu descrevo em português, não toco em
+configuração:”</p>
+<p>[TELA: digitar o Prompt do RAG no robô]</p>
+<pre><code>Lembra do robô de CI (GitHub Actions) que a gente criou? Ele hoje roda só os testes
+da calculadora e do checklist e deixa os testes da busca/RAG de fora, porque eles
+baixam o modelo grande de embeddings.
+
+Agora quero COMPLETAR o robô: faça ele rodar TAMBÉM os testes da busca, para cobrir
+todos os guardiões — inclusive o da honestidade.
+
+Requisitos:
+  - Para o download do modelo não repetir a cada entrega, configure o robô para
+    GUARDAR esse modelo em cache entre uma execução e outra (o cache do próprio
+    GitHub Actions). A primeira entrega baixa; as próximas reaproveitam.
+  - Coloque os testes da busca num TRABALHO separado dos da calculadora e do checklist,
+    para a parte rápida continuar terminando rápido mesmo se a busca demorar a carregar
+    o modelo. Eu quero enxergar os dois trabalhadores na aba Actions.
+  - Continua sem tocar na pasta data/: a busca dos testes usa o corpus fictício
+    separado que a gente já montou, nunca os meus artigos de verdade.
+
+NÃO me mostre o conteúdo do arquivo. Quando terminar, me diga em português: (1) que o
+robô agora cobre todos os guardiões; (2) os comandos git para enviar; (3) o que vou
+ver de novo na aba Actions.</code></pre>
+<p>[TELA: enviar, com os comandos que o Claude deu]</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;ci: robô passa a cobrir todos os guardiões, inclusive a busca&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<p>“Abre a aba Actions. Agora você vê dois trabalhadores: um rápido —
+calculadora e checklist — que fica verde num instante; e um mais
+vagaroso — a busca — que nesta primeira vez está carregando a biblioteca
+pesada e guardando uma cópia. Espera ele… e os dois ficam verdes.</p>
+<p>Agora sim. Os três guardiões — calculadora, checklist, e a
+honestidade da busca — todos de plantão, no servidor, a cada entrega. O
+robô está completo. Agora ele merece virar porteiro.”</p>
+<hr />
+<h2 id="seção-3-você-decide-9-min">SEÇÃO 3: VOCÊ DECIDE — 9 min</h2>
+<p><strong>Tom:</strong> Colaborativo. Duas perguntas, raciocínio
+clínico, zero código.</p>
+<p>“Antes de trancar a porta, duas perguntas. Pensa na diferença entre
+um alerta que pisca e um bloqueio que segura a sua mão.</p>
+<hr />
+<p><strong>PERGUNTA UM — qual a diferença, de verdade, entre o robô de
+ontem e o porteiro de hoje?</strong></p>
+<p>Ontem o robô já ficava vermelho quando você quebrava uma regra. Então
+o que muda hoje?</p>
+<p>A: o robô de hoje roda os testes mais rápido.</p>
+<p>B: o robô de hoje roda testes melhores, diferentes.</p>
+<p>C: os testes são exatamente os mesmos — o que muda é a consequência.
+Ontem o vermelho avisava, mas deixava você entregar mesmo assim. Hoje o
+vermelho tranca a porta, e a entrega não é aceita até voltar ao
+verde.</p>
+<p>Pensa.</p>
+<hr />
+<p>É a C. Os guardiões são os mesmos — A e B estão errados, não tem
+teste novo nem mais rápido.</p>
+<p>O que mudou não está dentro do robô. Está no que acontece depois dele
+ficar vermelho.</p>
+<p>Ontem: alerta amarelo. Pisca, você clica ‘ciente’, prescreve a
+interação assim mesmo. A decisão de errar continuava sua.</p>
+<p>Hoje: hard-stop. O botão de assinar fica cinza. A decisão de errar
+saiu da mesa — a máquina não te deixa.</p>
+<p>Critério que fica: a diferença entre avisar e impedir não está na
+inteligência do controle. Está na consequência que você liga em cima
+dele. O mesmo robô, com uma trava, vira porteiro.</p>
+<hr />
+<p><strong>PERGUNTA DOIS — a porta trancou no vermelho. Você precisa
+MESMO entregar. Como você abre?</strong></p>
+<p>A: procurar um jeito de forçar a entrega, contornar o porteiro,
+mandar o código entrar na marra.</p>
+<p>B: desligar a trava que você acabou de ligar, entregar o código
+quebrado, e religar depois.</p>
+<p>C: consertar a regra — fazer o robô voltar pro verde. A porta abre
+sozinha no instante em que o controle passa.</p>
+<p>Pensa.</p>
+<hr />
+<p>É a C. E repara por que A e B, mesmo sendo possíveis, são
+perigosos.</p>
+<p>A — forçar a entrada na marra. Aqui eu vou ser honesto com você: como
+a casa é sua, o GitHub te dá, sim, um botão de emergência pra furar. Mas
+ele te obriga a marcar, com todas as letras, ‘estou ignorando os
+controles de propósito’. É uma confissão assinada, não um atalho
+confortável. E pra qualquer pessoa que entre no seu time e não seja
+dona, esse botão nem aparece. Forçar nunca é o caminho — é a saída de
+incêndio que você não quer ter que usar.</p>
+<p>B — desligar a trava pra passar o quebrado — é pior ainda: é
+desativar o alarme de incêndio pra poder fumar dentro do hospital. Você
+entrega o erro E deixa a porta destrancada pro próximo.</p>
+<p>C é o único caminho honesto: você conserta, e a porta abre sozinha,
+limpa, sem confissão nenhuma. O verde é a chave, e o conserto é o que
+fabrica a chave.</p>
+<p>Critério que fica: um porteiro de verdade só abre de um jeito
+tranquilo — corrigindo o que ele apontou. Furar até pode, sendo dono —
+mas o sistema te obriga a assinar embaixo. E o que você quer não é
+aprender a furar; é não precisar.”</p>
+<hr />
+<h2 id="seção-4-a-antecâmara-e-a-fechadura-11-min">SEÇÃO 4: A ANTECÂMARA
+E A FECHADURA — 11 min</h2>
+<p><strong>Tom:</strong> Mãos à obra, mas calmo. Aqui entra o único
+conceito novo do dia — o Pull Request — ancorado numa imagem que o
+médico já tem no corpo.</p>
+<p>“Pra trancar a porta, eu preciso te apresentar uma ideia nova. Uma
+só. E você já conhece ela do bloco cirúrgico.</p>
+<p>Você não entra no centro cirúrgico direto do corredor. Você passa por
+uma antecâmara. Para. Confere a paramentação. E só então a segunda
+porta, a que dá pra sala, abre.</p>
+<p>No código existe exatamente essa antecâmara. O nome técnico é Pull
+Request — mas esquece o nome, lembra da antecâmara. Em vez de empurrar a
+sua mudança direto pra linha principal do app, você a deixa esperando na
+antecâmara. O robô confere. E a porta pra principal só abre se ele
+aprovar.</p>
+<hr />
+<p>Vou pedir ao Claude pra preparar essa antecâmara e me ensinar a ligar
+a fechadura. Repara: a fechadura em si, quem liga sou eu, clicando no
+GitHub. Porque trancar a porta da casa é decisão do dono — não dá pra
+terceirizar. Cola:”</p>
+<p>[TELA: digitar o Prompt da antecâmara + guia]</p>
+<pre><code>Eu quero transformar o robô num porteiro: nada deve entrar na minha branch principal
+(main) sem o robô de testes ter ficado verde. Para o GitHub conseguir bloquear, a
+minha mudança precisa primeiro passar por uma &quot;antecâmara&quot; chamada Pull Request, em
+vez de eu empurrar direto na main.
+
+Faça duas coisas:
+
+PARTE 1 (você faz, me entregando o comando pronto):
+  - Crie uma branch de trabalho separada da main, chamada &quot;teste-do-porteiro&quot;, e me
+    deixe pronto para trabalhar nela. Me diga, em uma linha, o comando que eu rodo
+    para enviar minhas mudanças para essa branch (já com o nome dela preenchido).
+
+PARTE 2 (eu faço, clicando — você é meu guia):
+  - Me conduza, passo a passo, em português, pelos cliques em Settings -&gt; Branches do
+    meu repositório clinmd-tribe no GitHub, para criar uma regra que proteja a main e
+    EXIJA que o robô de testes fique verde antes de permitir juntar (merge) qualquer
+    mudança na main. Eu trabalho sozinho, então NÃO quero exigir aprovação de outra
+    pessoa — só o robô verde. Liste os cliques com o nome de cada botão como aparece
+    na tela. NÃO mude a configuração por mim; eu quero clicar.
+
+NÃO me mostre arquivos de configuração.</code></pre>
+<p>“O Claude prepara a branch e me dá o passo a passo. Eu sigo os
+cliques na tela dele — Settings, lá em cima; Branches, na lateral; criar
+a regra; nome da branch protegida, <code>main</code>; e a caixinha que
+importa: ‘exigir que os controles passem antes de juntar’. Seleciono o
+meu robô na lista. Salvo.</p>
+<hr />
+<p>Pronto. Não escrevi uma linha. Cliquei. A porta agora tem fechadura:
+o GitHub passou a exigir que o robô esteja verde antes de aceitar
+qualquer mudança na linha principal.</p>
+<p>Em português de gente, isso quer dizer uma coisa só: daqui pra
+frente, mudança quebrada não entra na <code>main</code>. A antecâmara
+segura. Agora vamos ver isso acontecer — e a melhor forma de ver uma
+fechadura funcionar é tentar entrar com a chave errada.”</p>
+<hr />
+<h2 id="seção-5-o-clímax-a-porta-que-não-abre-12-min">SEÇÃO 5: O CLÍMAX
+— A PORTA QUE NÃO ABRE — 12 min</h2>
+<p><strong>Tom:</strong> O ápice. Desacelera, silêncios. A sabotagem
+reencena a da aula_35 — mas o desfecho é o oposto: a entrega é
+recusada.</p>
+<p>“Aula passada, quando eu sabotei o AVC, o robô ficou vermelho — mas
+eu consegui entregar mesmo assim. Hoje eu vou fazer a mesmíssima
+sabotagem. Presta atenção no que vai ser diferente.</p>
+<p>O mesmo erro de sempre: o AVC prévio valendo um ponto em vez de dois.
+O erro que subtrata paciente. Mas agora na antecâmara — na branch de
+teste, não na principal.”</p>
+<p>[TELA: digitar o Prompt da sabotagem]</p>
+<pre><code>Agora eu quero PROVAR que o porteiro bloqueia. Na minha branch de teste
+(teste-do-porteiro), introduza de propósito o mesmo erro de antes: faça o AVC prévio
+valer 1 ponto em vez de 2 no serviço da calculadora CHA2DS2-VASc. NÃO mexa nos testes
+— só na regra. Não rode nada na minha máquina. Quando terminar, me lembre em uma linha
+os comandos para enviar essa mudança para a branch teste-do-porteiro.</code></pre>
+<p>[TELA: enviar para a branch, com os comandos que o Claude deu]</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;test: quebra a regra do AVC para validar o porteiro&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<p>“A mudança quebrada foi pra antecâmara — a branch de teste. Repara:
+eu não estou mais mexendo na linha principal. Estou na antecâmara, de
+propósito, justamente pra poder quebrar as coisas longe da
+<code>main</code>. Por isso o comando de enviar que o Claude me deu tem
+o nome dela no fim.</p>
+<p>Agora abre o GitHub no navegador. Logo depois do push costuma
+aparecer uma faixa amarela no topo: ‘teste-do-porteiro’ teve mudanças,
+com o botão ‘Compare &amp; pull request’. Clico nele. (Se a faixa não
+estiver lá, dá no mesmo lugar: aba ‘Pull requests’, botão ‘New pull
+request’, escolho a branch ‘teste-do-porteiro’.) Depois, ‘Create pull
+request’. Não preciso escrever nada.</p>
+<hr />
+<p>Olha a tela do Pull Request. A antecâmara, aberta.</p>
+<p>Desce um pouco. Tem uma caixa com os controles, e os guardiões já
+estão lá dentro trabalhando — bolinhas amarelas girando. O rápido, da
+calculadora e do checklist, termina primeiro. E fica vermelho: pegou o
+AVC. O da busca pode ainda estar girando, carregando a biblioteca pesada
+— mas não importa. Um guardião vermelho já basta pra trancar.</p>
+<p>E o botão ‘Merge pull request’ — o de abrir a segunda porta? Ele não
+fica verde. O GitHub deixa explícito, ali, que os controles não
+passaram: a entrega não está liberada.</p>
+<hr />
+<p>[pausa]</p>
+<p>Para um segundo nisso. E presta atenção, porque aqui tem uma
+honestidade que eu não vou te esconder.</p>
+<p>Esse repositório é seu. Você é o dono do prédio inteiro. E o GitHub,
+pro dono, não tranca a porta com você do lado de fora — ele te dá uma
+saída de emergência. Se eu quiser MESMO furar, aparece uma opção pra
+isso. Mas olha o que ela me obriga a marcar, com todas as letras:
+‘juntar sem cumprir os requisitos — ignorar a proteção’.</p>
+<p>Sentiu a diferença pra ontem? Ontem, o código quebrado entrava liso,
+no automático, sem ninguém perceber. Hoje, pra ele entrar, EU tenho que
+parar, ler, e assinar conscientemente que estou ignorando o porteiro. O
+erro deixou de ser silencioso. Virou uma confissão.</p>
+<p>E tem mais: no dia em que entrar mais alguém no seu time, esse botão
+de furar some pra quem não é dono. Aí o porteiro é absoluto — ninguém
+passa no vermelho, ponto.</p>
+<hr />
+<p>Esse é o pulo de hoje. Ontem: ‘o robô me avisa, e eu ignoro sem nem
+pensar’. Hoje: ‘o robô não me deixa errar sem perceber — pra furar, eu
+tenho que confessar’. O alerta amarelo virou um hard-stop que, no
+mínimo, me obriga a olhar nos olhos do erro antes de cometê-lo.</p>
+<p>E o jeito certo, claro, não é furar. É consertar. A porta abre
+sozinha, limpa, no instante em que o robô voltar pro verde — sem marcar
+nada, sem confissão nenhuma.”</p>
+<p>[TELA: digitar o Prompt do conserto]</p>
+<pre><code>Perfeito, o porteiro bloqueou. Agora conserte na branch teste-do-porteiro: o AVC prévio
+tem que voltar a valer 2 pontos. Confirme que está corrigido, e me lembre os comandos
+para enviar de novo para a mesma branch. Quero ver o robô ficar verde e o botão de
+juntar liberar.</code></pre>
+<p>[TELA: enviar o conserto para a mesma branch]</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;fix: AVC prévio volta a valer 2 pontos&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<p>“Repara: eu mandei pra mesma antecâmara. Não preciso abrir um Pull
+Request novo — o que já está aberto se atualiza sozinho.</p>
+<p>Volta na tela do PR. Bolinhas amarelas de novo, girando… e vira
+verde. ‘Todos os controles passaram.’</p>
+<p>E o botão ‘Merge pull request’ agora está verde e limpo — clicável,
+sem nenhum aviso, sem nenhuma caixa de ‘ignorar’ pra marcar. A porta
+destrancou do jeito certo.</p>
+<p>Clico. ‘Confirm merge.’ E aparece: ‘juntado com sucesso’. Agora sim —
+só agora, com o verde — o código entrou na linha principal. Posso até
+apagar a branch de teste; ela cumpriu o papel.</p>
+<hr />
+<p>Olha o ciclo inteiro: app são, eu quebrei, tentei entregar, a porta
+trancou, consertei, a porta abriu. Em nenhum momento o código quebrado
+encostou na linha principal do seu app. O porteiro fez o trabalho que
+ontem ficava na sua memória — e hoje não depende nem da sua memória, nem
+da sua disciplina, nem da sua boa vontade numa sexta à noite.”</p>
+<hr />
+<h2 id="seção-6-encerramento-o-porteiro-está-de-plantão-9-min">SEÇÃO 6:
+ENCERRAMENTO — O PORTEIRO ESTÁ DE PLANTÃO — 9 min</h2>
+<p><strong>Tom:</strong> Síntese pelo aluno, LGPD orgânico, o brinde do
+selo, e a ponte para a forma visível.</p>
+<p>“Recapitula — você dizendo, na sua cabeça.</p>
+<p>Você completou o robô: os três guardiões — calculadora, checklist e a
+honestidade da busca — rodam no servidor a cada entrega. Você ligou a
+fechadura, clicando, sem digitar nada. E viu a porta trancar: o mesmo
+código quebrado que ontem entrou, hoje foi barrado, e só passou depois
+de consertado. O robô deixou de avisar e passou a impedir.</p>
+<hr />
+<p>E a privacidade, que é o eixo de tudo.</p>
+<p>Repara: a fechadura que você ligou hoje protege a qualidade do código
+— não muda nada sobre o que sobe pro servidor. O que o robô roda
+continua sendo só a receita do app e os pacientes fictícios dos
+controles. A pasta <code>data/</code> — o banco com as suas cirurgias,
+os seus artigos — segue trancada, como sempre. O porteiro vigia o que
+entra no seu código; ele nunca vê, nunca toca, nunca deixa sair o que é
+do paciente. Você ganhou uma trava de qualidade sem abrir um milímetro
+na trava de privacidade.</p>
+<hr />
+<p>E um presentinho de dois minutos, porque você merece um troféu na
+parede. Cola:”</p>
+<p>[TELA: digitar o Prompt do selo]</p>
+<pre><code>Por último, coloque no topo do meu arquivo README.md um selo (badge) que mostra, para
+quem abrir o repositório, se os testes estão passando — aquele selinho verde escrito
+&quot;passing&quot; quando o robô está verde. Use o selo oficial do GitHub Actions, que reflete
+o estado real do meu robô. Edite o README por mim e, quando terminar, me diga os
+comandos git para enviar e onde no GitHub eu vou ver o selo. Não precisa me mostrar o
+conteúdo do README.</code></pre>
+<p>[TELA: enviar]</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;docs: adiciona selo de testes passando no README&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div>
+<p>“Abre a página inicial do seu repositório. Lá no topo, um selo verde:
+‘passing’. É o crachá do seu app na recepção, dizendo a quem chega:
+‘aqui o porteiro está de plantão, e está tudo verde’. Você não fez por
+vaidade — fez porque um app clínico que se diz seguro tem que provar, na
+porta, que é.</p>
+<p>(E um detalhe pra próxima fronteira: esse robô usou uma chave pra
+trabalhar — uma credencial. Guarda essa palavra: chave. Mais pra frente
+a gente garante que ela nunca vaze.)</p>
+<hr />
+<p>Agora para um segundo e pensa onde a gente chegou.</p>
+<p>A fundação do seu app está à prova de bala. As contas estão certas e
+guardadas por testes. O checklist é imutável. A busca é honesta. E um
+porteiro tranca a porta pra qualquer coisa quebrada — sem depender de
+você lembrar de nada. Por dentro, esse app é sólido como poucos sistemas
+que você usa no hospital.</p>
+<p>Mas tem uma coisa que a gente nunca cuidou. Uma coisa que o paciente
+— e você, todo santo dia — vê primeiro.</p>
+<p>A cara do app.</p>
+<p>As cores. As letras. Os ícones. O espaço entre as coisas. Tudo que
+faz a diferença entre uma tela que dá confiança e uma tela que parece um
+experimento de laboratório.</p>
+<p>Na próxima aula, agora que a fundação está à prova de bala, a gente
+cuida do que o paciente VÊ: a aparência do ClinMd-Tribe. Vamos vestir
+esse app sólido com uma roupa à altura — uma identidade visual médica,
+limpa, profissional. A engenharia está pronta. Agora vem a forma.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+<hr />
+<blockquote>
+<p><strong>NOTAS DE PRODUÇÃO (não falar — operacional):</strong></p>
+<ul>
+<li><strong>RAG no runner (Seção 2):</strong> confirmar o robô completo
+(com RAG) verde ANTES de gravar; cache do modelo configurado. A narração
+da Seção 2 descreve a experiência real do aluno na 1ª vez (download +
+“guardar a cópia”); na gravação, ou registrar esse 1º download de fato
+(cortando a espera na edição) OU, se o cache já estiver quente, ajustar
+a fala para “restaurando a cópia guardada, rápido”.</li>
+<li><strong>Branch protection (CRÍTICO, Seção 4):</strong> confirmar o
+caminho exato (Settings → Branches <strong>ou</strong> Settings → Rules
+→ Rulesets) na conta-piloto e gravar com os rótulos exatos da tela. O
+status check só aparece na lista DEPOIS de o CI ter rodado ≥1 vez;
+selecionar o check com o nome do job <strong>idêntico</strong> ao do
+robô (divergência = check “pendente eterno”).</li>
+<li><strong>NÃO ligar “Include administrators” / “Do not allow
+bypassing”:</strong> senão o dono solo se tranca fora da própria main
+sem rota de correção emergencial.</li>
+<li><strong>Required status checks (Seção 4):</strong> marcar como
+obrigatório ao menos o check do job RÁPIDO (calculadora+checklist) — é o
+que pega a sabotagem do AVC e garante o vermelho rápido no clímax. Se
+marcar também o job do RAG como obrigatório, confirmar na pré-gravação
+que o cache está quente e ele fica verde rápido, senão o conserto pode
+ficar “pendente” esperando o RAG e o merge não liberar ao vivo.</li>
+<li><strong>Comportamento do clímax (Seção 5) — admin/dono solo
+(CRÍTICO):</strong> branch protection NÃO se aplica ao admin por padrão
+(e a nota acima manda NÃO trancar o admin). Logo, no vermelho, o botão
+“Merge” limpo não fica disponível, MAS o GitHub oferece a caixa “Merge
+without waiting for requirements to be met (bypass branch protections)”.
+O roteiro foi escrito para ESSA verdade (o dono pode furar marcando a
+confissão; o merge limpo só aparece no verde). <strong>NÃO</strong>
+prometer botão morto/inclicável — isso só ocorreria com “Do not allow
+bypassing” ligado, que trancaria o dono. Confirmar os rótulos exatos na
+pré-gravação.</li>
+<li><strong>PR atualiza sozinho:</strong> o 2º push (conserto) vai para
+a MESMA branch; o PR existente reavalia — NÃO abrir PR novo.</li>
+<li><strong>1º push da branch nova:</strong> o upstream da
+<code>teste-do-porteiro</code> pode não estar setado; o Claude entrega o
+comando correto (ex.: <code>git push origin teste-do-porteiro</code>); o
+aluno não adivinha flag.</li>
+<li><strong>Reversibilidade:</strong> a sabotagem vive na branch
+descartável (deletada no merge); a <code>main</code> nunca recebe o
+quebrado — sem working tree sujo no fim.</li>
+<li><strong>Cota de Actions:</strong> 2 jobs + cache consomem mais
+minutos; usar <code>clinmd-tribe-demo</code> se apertar.</li>
+</ul>
+</blockquote>
+</body>
+</html>

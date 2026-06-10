@@ -1,7 +1,7 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-09
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 45 ✅ · 0 🚫 · 7 ⏳ · **Total: 52 aulas**
+> **Resumo:** 46 ✅ · 0 🚫 · 6 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
@@ -14,11 +14,10 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ⏳ Pendente — 7 itens
+## ⏳ Pendente — 6 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| S10.02 | 15 | Avançado · S10 CI/CD | CI como porteiro: branch protection (o robô bloqueia, não só avisa) + RAG no pipeline → aula_36 [GitHub Actions; era Woodpecker, mudado por decisão do Dr. Petrus] | Baixa | S10.01 | Complexo | ⏳ Pendente | ⏳ |
 | S11.01 | 16 | Avançado · S11 Polimento | UI médica: paleta, tipografia, ícones → aula_37 | Baixa | S10 | Médio | ⏳ Pendente | ⏳ |
 | S11.02 | 16 | Avançado · S11 Polimento | Exportar como .exe para Windows → aula_38 | Baixa | S11.01 | Médio | ⏳ Pendente | ⏳ |
 | S11.03 | 16 | Avançado · S11 Polimento | Auditoria final e distribuição → aula_39 | Baixa | S11.02 | Médio | ⏳ Pendente | ⏳ |
@@ -28,7 +27,7 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ✅ Concluído — 45 itens
+## ✅ Concluído — 46 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -77,3 +76,4 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 | S09.01 | 14 | Avançado · S09 Testes | TDD + pytest: o guardião que confere as próprias regras → aula_33 (~55min, controle de qualidade lab, clímax sabotagem CHA₂DS₂-VASc, sem leitura de código) | Baixa | S05+S07 | Médio | ✅ Concluído | ✅ |
 | S09.02 | 14 | Avançado · S09 Testes | Testar o RAG não-determinístico (sensibilidade/especificidade) → aula_34 (~55min, clímax sabotagem da honestidade, corpus de teste isolado) | Baixa | S09.01 | Médio | ✅ Concluído | ✅ |
 | S10.01 | 15 | Avançado · S10 CI/CD | CI com GitHub Actions: o robô que roda os guardiões a cada push → aula_35 (~55min, clímax sabotagem AVC vermelha no servidor, escopo determinístico; **decisão Dr. Petrus = GitHub, não Forgejo**) | Baixa | S09 | Complexo | ✅ Concluído | ✅ |
+| S10.02 | 15 | Avançado · S10 CI/CD | O porteiro: branch protection + Pull Request (web) bloqueia merge no vermelho + RAG no CI (cache, job separado) → aula_36 (~55min, clímax do bypass-de-admin honesto, badge) | Baixa | S10.01 | Complexo | ✅ Concluído | ✅ |

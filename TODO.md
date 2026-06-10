@@ -1,7 +1,8 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-09
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 52 ✅ · 0 🚫 · 0 ⏳ · **Total: 52 aulas — CRONOGRAMA COMPLETO** 🎉
+> **Resumo:** 52 tópicos ✅ em 40 aulas · 0 🚫 · 0 ⏳ · **CRONOGRAMA COMPLETO** 🎉
+> **40 aulas, 52 tópicos:** o curso tem **40 aulas** (encontros gravados que o aluno assiste) que cobrem **52 tópicos** do currículo (os códigos M0.01, S07.03 etc. nas tabelas). Vários tópicos foram condensados num mesmo encontro mais longo (ex.: M0.01 a M0.05 viram a aula_01; S08.01 e S08.02 viram a aula_31). As tabelas abaixo listam os 52 tópicos.
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.

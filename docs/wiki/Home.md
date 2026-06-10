@@ -22,7 +22,7 @@ Você **não precisa** saber programar para aproveitar esta wiki. As fases inici
 
 ## O que você vai encontrar aqui
 
-O curso tem **40 aulas**, organizadas em três fases que vão do "nunca toquei num terminal" até "construí um aplicativo clínico do zero". Tem também um aplicativo de exemplo (o **ClinMd-Tribe**), pronto e funcionando, que serve de gabarito do instrutor.
+O curso tem **40 aulas** (os encontros gravados que você assiste), organizadas em três fases que vão do "nunca toquei num terminal" até "construí um aplicativo clínico do zero". Essas 40 aulas cobrem **52 tópicos** do currículo: alguns assuntos próximos foram reunidos num mesmo encontro mais longo, por isso há menos aulas que tópicos. Tem também um aplicativo de exemplo (o **ClinMd-Tribe**), pronto e funcionando, que serve de gabarito do instrutor.
 
 Um fio conduz tudo isso do começo ao fim: **privacidade e LGPD**. Dado de paciente nunca entra no Claude Code, e o aplicativo do curso roda 100% no seu computador. Esse cuidado aparece em toda aula, e a gente reforça aqui também.
 

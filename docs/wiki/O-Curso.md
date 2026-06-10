@@ -56,9 +56,9 @@ Esse eixo não é um aviso isolado no começo; ele é reforçado aula após aula
 
 ## As 40 aulas e a fonte oficial
 
-O curso tem **40 aulas**, distribuídas pelas três fases e por módulos temáticos. A contagem, a ordem, o status de cada aula (concluída, pendente) e a que módulo pertencem estão na **lista oficial do projeto**: o arquivo [TODO.md](../../TODO.md) na raiz do repositório. Quando houver qualquer dúvida sobre a estrutura, é esse o documento que vale.
+O curso tem **40 aulas** (os encontros gravados que o aluno assiste), que cobrem **52 tópicos** do currículo (cada assunto planejado). A diferença entre os dois números é simples: vários tópicos próximos foram **condensados** num mesmo encontro mais longo, então os 52 tópicos couberam em 40 aulas. A contagem, a ordem, o status de cada uma e a que módulo pertencem estão na **lista oficial do projeto**: o arquivo [TODO.md](../../TODO.md) na raiz do repositório. Quando houver qualquer dúvida sobre a estrutura, é esse o documento que vale.
 
-> Por que a numeração das pastas vai só até `aula_42`? Porque várias aulas foram **condensadas** em encontros únicos mais longos (de 45 a 60 minutos). Nada se perdeu; é só uma forma de agrupar. O [TODO.md](../../TODO.md) mostra exatamente como as aulas se distribuem.
+> Por que a numeração das pastas vai até `aula_42` se o curso tem 40 aulas? Porque dois números não têm pasta própria: foram fundidos ou condensados em outras aulas ao longo do caminho. Nada se perdeu; é só a forma de agrupar os 52 tópicos do currículo em 40 encontros. O [TODO.md](../../TODO.md) mostra exatamente como tudo se distribui.
 
 ## Decisões de currículo: onde mora o detalhe
 

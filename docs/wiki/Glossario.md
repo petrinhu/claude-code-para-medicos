@@ -6,6 +6,13 @@ Os termos estão agrupados por assunto para facilitar. Dentro de cada grupo, vã
 
 ---
 
+## Sobre o curso
+
+### Aula e tópico
+Dois números aparecem ao falar do tamanho do curso, e eles medem coisas diferentes. Um **tópico** é um assunto do currículo (por exemplo, "como instalar o Claude Code"); o curso planejou **52 tópicos**. Uma **aula** é um encontro gravado que você assiste; o curso tem **40 aulas**. A diferença existe porque vários tópicos próximos foram reunidos num mesmo encontro mais longo: assim, os 52 tópicos couberam em 40 aulas. Quando alguém diz "o curso tem 40 aulas", está contando os encontros; "52 tópicos", os assuntos.
+
+---
+
 ## O básico do computador
 
 ### Terminal (ou linha de comando)

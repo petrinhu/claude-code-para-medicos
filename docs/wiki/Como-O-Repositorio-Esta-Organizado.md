@@ -54,7 +54,7 @@ Cada aula do curso tem **a sua própria pasta**. Dentro de cada uma, você encon
 - `roteiro.md` - o roteiro da aula **em Markdown** (texto puro, fácil de editar). É o conteúdo escrito da aula: a fala, as seções, os comandos.
 - `roteiro.html` - o **mesmo roteiro, mas em formato de página** para abrir no navegador, formatado e agradável de ler.
 
-> Você vai notar que a numeração vai até `aula_42`, mas o curso tem 40 aulas. Não falta nada: a numeração pula alguns números porque aulas foram **condensadas** ou fundidas (combinadas em um único encontro mais longo, de 45 a 60 minutos cada). A lista oficial em [TODO.md](../../TODO.md) mostra exatamente como as aulas se distribuem pelas pastas.
+> Você vai notar que a numeração vai até `aula_42`, mas o curso tem 40 aulas. Não falta nada: a numeração pula alguns números porque aulas foram **condensadas** ou fundidas (combinadas em um único encontro mais longo, de 45 a 60 minutos cada). Essas 40 aulas cobrem os **52 tópicos** do currículo. A lista oficial em [TODO.md](../../TODO.md) mostra exatamente como tudo se distribui pelas pastas.
 
 ### Por que existem dois arquivos (`.md` e `.html`) para cada aula?
 Boa pergunta, e a resposta mostra uma ideia bonita do projeto: **escreve-se uma vez, publica-se de duas formas**.

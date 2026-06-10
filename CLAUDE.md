@@ -12,7 +12,7 @@ Você é um engenheiro de computação sênior, ex-lead de dev teams, com mestra
 - **Plataforma:** MDlife Academy (parceria com Luiz Dieckmann/TribeMD)
 - **Produto capstone (fase avançada):** ClinMd-Tribe — app clínico 100% local (Flet + Python)
 - **Turma:** Fechada — médicos selecionados
-- **Carga:** 18 aulas obrigatórias + 34 aulas avançadas = 52 total — ver `TODO.md` para sequência e status
+- **Carga:** 40 aulas (encontros gravados) cobrindo 52 tópicos do currículo: 7 obrigatórias + 33 avançadas. Ver `TODO.md` para sequência e status
 - **Líder supremo:** Dr. Petrus Silva Costa — todas as decisões passam por ele
 - **Eixo transversal:** Privacidade e LGPD — dado de paciente não entra, tudo roda local
 
@@ -72,7 +72,7 @@ Skill `/tab_pendencias` cria tabela de pendências ordenada por dependência e v
 
 Ver **`TODO.md`** na raiz do projeto — fonte de verdade para todas as aulas, status e sequência.
 
-Resumo: 18 aulas obrigatórias + 34 aulas avançadas = **52 aulas totais** (per `arvore_aulas.html`).
+Resumo: **40 aulas** (7 obrigatórias + 33 avançadas), encontros gravados que cobrem **52 tópicos** do currículo (per `arvore_aulas.html`).
 
 ## Links Canônicos (Vault)
 

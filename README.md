@@ -17,7 +17,7 @@
 
 ## 📚 Sobre o curso
 
-São **40 aulas** em **3 fases**, do zero absoluto ao app clínico próprio. Um eixo costura tudo do começo ao fim: **privacidade e LGPD** (dado de paciente nunca entra no Claude Code, e tudo roda na sua máquina).
+São **40 aulas** (encontros gravados) em **3 fases**, do zero absoluto ao app clínico próprio, cobrindo **52 tópicos** do currículo. Um eixo costura tudo do começo ao fim: **privacidade e LGPD** (dado de paciente nunca entra no Claude Code, e tudo roda na sua máquina).
 
 | Fase | Precisa programar? | Aulas |
 |------|:---:|:---:|
@@ -25,6 +25,8 @@ São **40 aulas** em **3 fases**, do zero absoluto ao app clínico próprio. Um 
 | 🟡 Intermediário | Não | 5 |
 | 🔵 Avançado (opcional) | Python + Flet | 33 |
 | | **Total** | **40** |
+
+> **40 aulas, 52 tópicos:** as **40 aulas** são os encontros gravados que você assiste; elas cobrem os **52 tópicos** do currículo (cada assunto planejado, com códigos como M0.01 ou S07.03 no `TODO.md`). Vários tópicos foram condensados num mesmo encontro mais longo (por exemplo, os 5 tópicos da introdução viram 1 aula). Por isso a numeração das pastas vai até `aula_42`, mas o total de aulas é 40.
 
 ## 🧭 Por onde começar
 

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 28 — PubMed → knowledge_base/ → Banco Vetorial</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 28 — PubMed → knowledge_base/ → Banco
+Vetorial</h1>
+</header>
+<h1 id="aula-28-pubmed-knowledge_base-banco-vetorial">Aula 28 — PubMed →
+knowledge_base/ → Banco Vetorial</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~55 min <strong>Tom:</strong> Cardiologista
+que transforma sua biblioteca de artigos em memória do app
+<strong>Módulo:</strong> S07.02 — Construindo a Biblioteca do
+Residente</p>
+<hr />
+<h2 id="seção-1-abertura-bridge-com-aula_03-5-min">SEÇÃO 1: ABERTURA —
+BRIDGE COM AULA_03 — 5 min</h2>
+<p><strong>Tom:</strong> Reconhecimento de conquista passada — o aluno
+já usou o MCP do PubMed; hoje esse mesmo MCP alimenta o app</p>
+<p>“Na aula 03 você usou o MCP do PubMed pela primeira vez.</p>
+<p>Lembra o que você fez?</p>
+<p>Digitou uma pergunta em português. O Claude Code foi até o PubMed,
+trouxe artigos, resumiu, referenciou.</p>
+<p>Era pesquisa. Você estava estudando.</p>
+<hr />
+<p>Hoje o mesmo MCP vai fazer algo diferente.</p>
+<p>Não vai trazer artigos para você ler. Vai trazer artigos para o app
+ler.</p>
+<p>A diferença é enorme.</p>
+<hr />
+<p>Quando um residente começa o plantão, ele não pesquisa do zero cada
+decisão que vai tomar.</p>
+<p>Ele tem memória. Anos de leitura, cursos, casos vistos.</p>
+<p>O ClinMd-Tribe ainda não tem isso.</p>
+<p>Hoje ele vai ter.</p>
+<hr />
+<p>A estrutura é simples.</p>
+<p>Uma pasta chamada <code>knowledge_base/</code>. Cada arquivo
+<code>.txt</code> dentro dela é um artigo que o residente ‘leu’.</p>
+<p>Ao final desta aula, o app vai ter lido três artigos sobre
+anticoagulação em fibrilação atrial.</p>
+<p>Amanhã — na aula 29 — você vai fazer a primeira pergunta a ele.</p>
+<p>Mas antes de perguntar, ele precisa ter estudado.</p>
+<p>Isso é o que fazemos hoje.”</p>
+<hr />
+<h2 id="seção-2-prompt-de-download-12-min">SEÇÃO 2: PROMPT DE DOWNLOAD —
+12 min</h2>
+<p><strong>Tom:</strong> Professor conduz ao vivo — mostrar o prompt,
+executar, ver os arquivos nascerem</p>
+<p>“Antes de digitar, abra o terminal na raiz do projeto.</p>
+<p>Verifique que a pasta <code>knowledge_base/</code> existe. Se não
+existir, o Claude vai criá-la — mas é bom confirmar.</p>
+<p><strong>[TELA: mostrar o terminal na raiz do projeto
+ClinMd-Tribe]</strong></p>
+<hr />
+<p>Agora o prompt.</p>
+<p>Vou ler cada parte antes de enviar.</p>
+<p>[ler em voz alta e digitar]</p>
+<pre><code>Busque 3 artigos sobre anticoagulação em fibrilação atrial no PubMed.
+Para cada artigo encontrado:
+  - Salve o texto completo em knowledge_base/&lt;pmid&gt;_&lt;titulo_curto&gt;.txt
+  - Se o texto completo não estiver disponível, salve título + abstract + PMID
+  - O nome do arquivo deve ser seguro (sem caracteres especiais, espaços substituídos por _)
+Ao final, liste os arquivos criados com o tamanho de cada um.</code></pre>
+<hr />
+<p>[enviar o prompt ao Claude Code]</p>
+<p><strong>[TELA: mostrar o Claude Code buscando — MCP do PubMed em
+ação]</strong></p>
+<p>Repare que o Claude não está abrindo o navegador. Ele está usando o
+MCP do PubMed diretamente — a mesma integração da aula 03.</p>
+<p>A diferença é o destino. Na aula 03, o resultado foi para o chat.
+Agora, o resultado vai para arquivos.</p>
+<hr />
+<p>[aguardar conclusão]</p>
+<p>O output esperado vai ser algo assim:</p>
+<pre><code>Arquivos criados em knowledge_base/:
+  39123456_anticoagulation_fa_guidelines_2023.txt   (42 KB)
+  38765432_warfarin_vs_noac_systematic_review.txt   (38 KB)
+  40234567_af_stroke_prevention_meta_analysis.txt   (51 KB)</code></pre>
+<p><strong>[NOTA DE PRODUÇÃO: anotar os nomes e tamanhos reais dos
+arquivos antes de gravar — os nomes acima são exemplos]</strong></p>
+<hr />
+<p>Agora abra um dos arquivos.</p>
+<p><strong>[NOTA DE PRODUÇÃO: confirmar que o VS Code está instalado e o
+comando <code>code</code> está no PATH antes de gravar. Alternativa se
+não estiver disponível: abrir o arquivo pelo explorador de arquivos, ou
+usar
+<code>cat knowledge_base/&lt;nome_do_arquivo&gt;.txt | head -60</code>
+no terminal.]</strong></p>
+<pre><code>code knowledge_base/39123456_anticoagulation_fa_guidelines_2023.txt</code></pre>
+<p><strong>[NOTA DE PRODUÇÃO: usar o nome real do primeiro arquivo
+criado]</strong></p>
+<p><strong>[TELA: mostrar o conteúdo do .txt — parágrafos de texto
+médico em inglês]</strong></p>
+<p>Título. Abstract. Introdução. Métodos. Resultados. Conclusão.</p>
+<p>Texto médico real. Em inglês, como está no PubMed.</p>
+<p>Isso é o que o app vai indexar.”</p>
+<hr />
+<h2 id="seção-3-ver-os-.txt-criados-a-biblioteca-existe-3-min">SEÇÃO 3:
+VER OS .TXT CRIADOS — A BIBLIOTECA EXISTE — 3 min</h2>
+<p><strong>Tom:</strong> Pausa para deixar o momento assentar —
+contraste com as aulas anteriores</p>
+<p>“Três arquivos. Três artigos. Sobre anticoagulação em FA.</p>
+<p>Pause por um segundo.</p>
+<hr />
+<p>Nas últimas aulas — calculadoras, dashboard, formulários — você era o
+autor dos dados.</p>
+<p>Você digitava a bilirrubina. Você digitava a receita do
+consultório.</p>
+<p>Aqui foi diferente.</p>
+<p>Você não digitou nenhum dado. O Claude Code foi buscar o
+conhecimento. O MCP do PubMed entregou os artigos. Os arquivos foram
+criados.</p>
+<p>A biblioteca existe.</p>
+<hr />
+<p>Mas ela existe como texto. Parágrafos e mais parágrafos.</p>
+<p>Para que o app consiga responder perguntas baseado nesses artigos,
+ele precisa transformar esse texto em outra coisa.</p>
+<p>Em vetores. Em memória pesquisável.</p>
+<p>Isso se chama indexação.</p>
+<p>E é o que fazemos agora.”</p>
+<hr />
+<h2 id="seção-4-prompt-do-indexador-8-min">SEÇÃO 4: PROMPT DO INDEXADOR
+— 8 min</h2>
+<p><strong>Tom:</strong> Professor explica os três riscos antes de
+digitar — didático e clínico</p>
+<p>“Antes de escrever o prompt do indexador, preciso explicar três
+regras.</p>
+<p>Não são detalhes técnicos opcionais. São regras críticas. Se uma
+delas for violada, o indexador vai funcionar — mas de forma errada. E o
+erro vai aparecer só depois, quando você tentar fazer uma busca.</p>
+<hr />
+<p>Regra 1: caminho ancorado.</p>
+<p>O banco vetorial vai ser criado em <code>data/chroma_db/</code>. O
+Claude vai precisar saber onde essa pasta está.</p>
+<p>Se usar uma string simples — <code>'data/chroma_db'</code> — o banco
+vai ser criado no lugar errado quando você rodar o programa de outra
+pasta. Sem dar erro. Sem avisar. O banco vai estar lá, mas não onde você
+espera.</p>
+<p>A forma correta usa
+<code>Path(__file__).parent.parent / 'data' / 'chroma_db'</code>. Isso
+significa: ‘vai dois níveis acima do arquivo que estou escrevendo, e
+procura a pasta data/chroma_db’. Ancorado ao código. Sempre no lugar
+certo.</p>
+<hr />
+<p>Regra 2: idempotência.</p>
+<p>Idempotência é uma palavra que você vai usar bastante no
+ClinMd-Tribe.</p>
+<p>Significa: rodar a mesma operação duas vezes dá o mesmo resultado que
+rodar uma vez.</p>
+<p>Se você rodar o indexador hoje, ele vai criar os trechos no banco. Se
+você rodar de novo amanhã — porque atualiza os artigos, ou porque deu
+erro — ele deve atualizar os trechos existentes, não duplicar.</p>
+<p>A forma de garantir isso: IDs determinísticos e <code>upsert</code>
+em vez de <code>add</code>.</p>
+<p>ID determinístico significa que o mesmo trecho sempre tem o mesmo
+nome. <code>upsert</code> significa: se já existe, atualiza. Se não
+existe, cria.</p>
+<p>Com <code>add</code>, rodar duas vezes = cada trecho duplicado. Com
+<code>upsert</code>, rodar duas vezes = mesmo resultado.</p>
+<hr />
+<p>Regra 3: chunking por parágrafo.</p>
+<p>O indexador vai cortar os artigos em trechos. A pergunta é: como
+cortar?</p>
+<p>A forma errada é cortar por número fixo de caracteres. Imagine: ‘a
+dose de rivaroxabana deve ser ajustada conforme a fun—’ Trecho termina
+aqui. Próximo trecho começa: ‘—ção renal do paciente.’ Clinicamente
+inútil.</p>
+<p>A forma correta é cortar por parágrafo. Cada parágrafo é uma unidade
+de sentido. Com overlap de um parágrafo entre trechos consecutivos —
+assim o contexto não se perde na divisão.</p>
+<hr />
+<p>Essas três regras estão no prompt. Agora vamos digitar.</p>
+<p>[ler cada parte em voz alta e digitar]</p>
+<pre><code>Implemente o indexador do ClinMd-Tribe respeitando Clean Architecture (4 camadas).
+Lê arquivos .txt de knowledge_base/ e indexa no banco vetorial em data/chroma_db/.
+
+infrastructure/rag/txt_loader.py
+  - Lê todos os .txt de knowledge_base/
+    (caminho ancorado na raiz: Path(__file__).parent.parent / &quot;knowledge_base&quot;)
+  - Chunking por parágrafo com overlap de 1 parágrafo entre trechos consecutivos
+  - Descarta trechos com menos de 150 caracteres (referências bibliográficas)
+  - Cada trecho guarda metadado: nome_arquivo (str) e numero_trecho (int)
+  - Retorna lista de dicts: {&quot;texto&quot;: str, &quot;nome_arquivo&quot;: str, &quot;numero_trecho&quot;: int}
+
+infrastructure/rag/chroma_repositorio.py
+  - chromadb.PersistentClient com path ANCORADO na raiz do projeto:
+    Path(__file__).parent.parent / &quot;data&quot; / &quot;chroma_db&quot;
+  - Usa get_or_create_collection(&quot;clinmd_rag&quot;)
+  - Método indexar(documentos: list[dict]) → None
+    IDs determinísticos: f&quot;{doc[&#39;nome_arquivo&#39;]}_{doc[&#39;numero_trecho&#39;]}&quot;
+    Usa upsert (não add) para garantir idempotência
+
+application/servicos/indexador_service.py   (sem acento em &quot;servicos&quot; — Python não tolera acentos em nomes de módulo)
+  - Importa txt_loader e chroma_repositorio
+  - Chama o loader, manda indexar
+  - Imprime no terminal: &quot;X trechos indexados de Y arquivos&quot;
+
+NÃO importe chromadb em application/ nem em domain/. Apenas em infrastructure/.
+Ao final, me diga como rodar o indexador pelo terminal.</code></pre>
+<hr />
+<p>[enviar o prompt ao Claude Code]</p>
+<p><strong>[TELA: mostrar o Claude Code gerando os
+arquivos]</strong>”</p>
+<hr />
+<h2 id="seção-5-claude-implementa-leitura-supervisionada-15-min">SEÇÃO
+5: CLAUDE IMPLEMENTA + LEITURA SUPERVISIONADA — 15 min</h2>
+<p><strong>Tom:</strong> Aguardar + auditar — três perguntas, cada uma
+corresponde a um risco técnico explicado na seção anterior</p>
+<p>[aguardar o Claude Code processar]</p>
+<p><strong>[TELA: mostrar os arquivos sendo criados]</strong></p>
+<p>“Três arquivos novos.</p>
+<p><code>infrastructure/rag/txt_loader.py</code> — criado.
+<code>infrastructure/rag/chroma_repositorio.py</code> — criado.
+<code>application/servicos/indexador_service.py</code> — criado.</p>
+<p>Você não escreveu nenhuma linha. Você escreveu o prompt.</p>
+<p>Agora você lê antes de rodar.</p>
+<p>Três perguntas. Cada uma verifica uma das regras que eu
+expliquei.”</p>
+<hr />
+<p><strong>Pergunta 1 — Caminho ancorado (Risco A):</strong></p>
+<p>“Abra <code>infrastructure/rag/chroma_repositorio.py</code>.</p>
+<p>Você está procurando o <code>PersistentClient</code>. Ele usa
+<code>Path(__file__)</code> ou usa uma string simples?</p>
+<p>O padrão correto é este:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>_DB_PATH <span class="op">=</span> Path(<span class="va">__file__</span>).parent.parent <span class="op">/</span> <span class="st">&quot;data&quot;</span> <span class="op">/</span> <span class="st">&quot;chroma_db&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> chromadb.PersistentClient(path<span class="op">=</span><span class="bu">str</span>(_DB_PATH))</span></code></pre></div>
+<p>Se você ver
+<code>chromadb.PersistentClient(path='data/chroma_db')</code> — string
+simples — o banco vai ser criado em um lugar diferente dependendo de
+onde você rodar o programa. Você vai indexar os artigos, fechar o
+terminal, abrir de outra pasta, e o banco vai parecer vazio.</p>
+<p>Esse é o erro mais silencioso desta aula.</p>
+<p><strong>[TELA: mostrar o código — confirmar
+Path(<strong>file</strong>) ancorado]</strong></p>
+<p>Correto — caminho ancorado.”</p>
+<hr />
+<p><strong>Pergunta 2 — Idempotência (Risco B):</strong></p>
+<p>“Agora, no mesmo arquivo, procure o método que grava os trechos.</p>
+<p>Você está procurando duas coisas:</p>
+<p>Primeira: os IDs são determinísticos? Procure algo como:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span> <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>doc[<span class="st">&#39;nome_arquivo&#39;</span>]<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>doc[<span class="st">&#39;numero_trecho&#39;</span>]<span class="sc">}</span><span class="ss">&quot;</span></span></code></pre></div>
+<p>Segunda: o método usa <code>upsert</code> ou <code>add</code>?</p>
+<p>Com <code>upsert</code>, rodar o indexador duas vezes = mesmo número
+de trechos no banco. Com <code>add</code>, rodar o indexador duas vezes
+= cada trecho duplicado.</p>
+<p>Quando você fizer uma busca num banco duplicado, vai receber o mesmo
+trecho duas vezes na resposta. O app vai parecer repetitivo — e vai ser
+difícil saber por quê.</p>
+<p><strong>[TELA: mostrar o código — confirmar upsert e IDs
+determinísticos]</strong></p>
+<p>Correto — upsert, IDs determinísticos.”</p>
+<hr />
+<p><strong>Pergunta 3 — Chunking por parágrafo (Risco C):</strong></p>
+<p>“Agora abra <code>infrastructure/rag/txt_loader.py</code>.</p>
+<p>O texto está sendo dividido por <code>\n\n</code> — quebra dupla de
+linha — ou por número fixo de caracteres?</p>
+<p>Procure algo assim:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>paragrafos <span class="op">=</span> texto.split(<span class="st">&#39;</span><span class="ch">\n\n</span><span class="st">&#39;</span>)</span></code></pre></div>
+<p>Se você ver <code>texto[i:i+500]</code> — corte por número fixo de
+caracteres — os trechos vão quebrar no meio de frases clínicas. Um
+trecho que termina em ‘a dose de rivaroxabana deve ser ajustada conforme
+a função’ é inútil para o app responder perguntas sobre dosagem.</p>
+<p>O chunking por parágrafo respeita a unidade de sentido do texto
+médico.</p>
+<p><strong>[TELA: mostrar o código — confirmar split(‘’) com
+overlap]</strong></p>
+<p>Correto — chunking por parágrafo com overlap.</p>
+<hr />
+<p>As três regras estão respeitadas.</p>
+<p>O indexador está pronto para rodar.”</p>
+<hr />
+<h2 id="seção-6-rodar-o-indexador-5-min">SEÇÃO 6: RODAR O INDEXADOR — 5
+min</h2>
+<p><strong>Tom:</strong> Aviso crítico antes de executar — modelo, LGPD,
+output esperado</p>
+<p>“Antes de rodar, um aviso importante.</p>
+<p>Na primeira execução, o indexador vai baixar um modelo de linguagem.
+O nome é <code>all-MiniLM-L6-v2</code>. Tamanho: aproximadamente 90
+MB.</p>
+<p>Pense como a calibração inicial de um equipamento novo. Um
+ecocardiograma novo chega ao consultório e precisa de uma configuração
+inicial. Depois: funciona instantaneamente. O modelo é a mesma
+coisa.</p>
+<p>Não interrompa enquanto o progresso aparecer no terminal.</p>
+<hr />
+<p>Uma nota sobre LGPD.</p>
+<p>Esse download é o único momento nesta aula em que algo sai da sua
+máquina. É o modelo que desce — não o seu dado.</p>
+<p>Os artigos do PubMed estão na sua pasta. A indexação acontece
+localmente. O banco vetorial fica no seu computador.</p>
+<p>Depois que o modelo baixar: 100% offline. Dado de paciente não entra,
+dado de paciente não sai.</p>
+<hr />
+<p>Agora rodamos.</p>
+<pre><code>uv run python -m application.servicos.indexador_service</code></pre>
+<p><strong>[TELA: mostrar o terminal — progresso do download do modelo
+na primeira execução]</strong></p>
+<p>[aguardar o download e a indexação]</p>
+<hr />
+<p>O output esperado:</p>
+<pre><code>141 trechos indexados de 3 arquivos.</code></pre>
+<p><strong>[NOTA DE PRODUÇÃO: anotar o número exato de trechos antes de
+gravar — o número 141 é uma estimativa baseada em artigos típicos de
+~40KB]</strong></p>
+<hr />
+<p>Três artigos. Cento e quarenta e um trechos.</p>
+<p>Cada trecho é um parágrafo — ou par de parágrafos com overlap — que o
+app vai conseguir buscar quando você fizer uma pergunta.</p>
+<p>A biblioteca está indexada.”</p>
+<hr />
+<h2 id="seção-7-idempotência-ao-vivo-4-min">SEÇÃO 7: IDEMPOTÊNCIA AO
+VIVO — 4 min</h2>
+<p><strong>Tom:</strong> Demonstração prática da Regra 2 — fechar,
+reabrir, rodar de novo</p>
+<p>“Vou provar a Regra 2 ao vivo.</p>
+<p>Fecha o terminal.</p>
+<p><strong>[TELA: fechar o terminal]</strong></p>
+<hr />
+<p>Abre um terminal novo.</p>
+<p><strong>[TELA: abrir terminal na raiz do projeto]</strong></p>
+<p>Roda o indexador de novo.</p>
+<pre><code>uv run python -m application.servicos.indexador_service</code></pre>
+<p><strong>[TELA: mostrar o terminal rodando — sem o download desta vez,
+apenas a indexação]</strong></p>
+<hr />
+<p>O output:</p>
+<pre><code>141 trechos indexados de 3 arquivos.</code></pre>
+<p>Mesmo número.</p>
+<hr />
+<p>O banco não duplicou.</p>
+<p>O indexador reconheceu os IDs —
+<code>nome_arquivo_numero_trecho</code> — verificou que já existiam, e
+atualizou sem criar duplicatas.</p>
+<p>Um indexador ingênuo — usando <code>add</code> em vez de
+<code>upsert</code> — teria 282 trechos agora. E quando você buscasse
+‘dose de rivaroxabana em FA com clearance reduzido’, receberia cada
+trecho relevante duas vezes. O app pareceria com um eco — repetindo as
+mesmas informações.</p>
+<p>Idempotência resolve isso. Rodar duas vezes — ou dez vezes — dá o
+mesmo resultado.”</p>
+<hr />
+<h2 id="seção-8-encerramento-3-min">SEÇÃO 8: ENCERRAMENTO — 3 min</h2>
+<p><strong>Tom:</strong> Consolidar o que foi construído + gancho para
+aula_29</p>
+<p>“O que está pronto.</p>
+<p>A pasta <code>knowledge_base/</code> com três artigos sobre
+anticoagulação em FA. O banco vetorial em <code>data/chroma_db/</code>
+com 141 trechos indexados. Um indexador idempotente que você pode rodar
+quantas vezes quiser.</p>
+<hr />
+<p>Voltando à analogia do residente.</p>
+<p>Antes desta aula, o ClinMd-Tribe não tinha lido nada.</p>
+<p>Agora ele leu.</p>
+<p>Três artigos. Anticoagulação. Fibrilação atrial.</p>
+<p>A biblioteca existe. O banco está indexado.</p>
+<hr />
+<p>Mas ele ainda não respondeu nenhuma pergunta.</p>
+<p>E o momento mais importante não vai ser quando ele responder
+certo.</p>
+<p>Vai ser quando ele disser que não sabe.</p>
+<p>Um residente que inventa respostas é perigoso. Um app que alucina é
+perigoso.</p>
+<p>Na próxima aula você vai fazer a primeira pergunta ao ClinMd-Tribe. E
+você vai ver como ele responde — e como ele reconhece quando a resposta
+não está na biblioteca.</p>
+<p>Até lá.”</p>
+<hr />
+<p><strong>Dever de casa:</strong></p>
+<p>“Antes da próxima aula, adicione um quarto artigo ao
+<code>knowledge_base/</code>.</p>
+<p>Pode ser qualquer tema clínico do seu interesse — não precisa ser
+FA.</p>
+<p>Peça ao Claude Code:</p>
+<pre><code>Busque 1 artigo sobre [tema da sua escolha] no PubMed e salve em knowledge_base/.</code></pre>
+<p>Depois rode o indexador novamente.</p>
+<p>Observe: o número de trechos vai subir — e os trechos dos três
+artigos anteriores não vão duplicar.</p>
+<p>Isso confirma que a idempotência funciona com dados novos
+também.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

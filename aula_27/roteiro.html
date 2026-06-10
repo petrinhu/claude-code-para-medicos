@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 27 — RAG: O Residente que Leu Todos os Guidelines</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 27 — RAG: O Residente que Leu Todos os
+Guidelines</h1>
+</header>
+<h1 id="aula-27-rag-o-residente-que-leu-todos-os-guidelines">Aula 27 —
+RAG: O Residente que Leu Todos os Guidelines</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~42 min <strong>Tom:</strong> Cardiologista
+que quer que o app saiba o que está nos artigos que ele lê
+<strong>Módulo:</strong> S07.01 — RAG: O que é e por que importa</p>
+<hr />
+<h2 id="seção-1-abertura-3-min">SEÇÃO 1: ABERTURA — 3 min</h2>
+<p><strong>Tom:</strong> Contraste direto com S06 — o app que calcula e
+guarda, mas não lê</p>
+<p>“Nas últimas seis aulas você construiu um app que calcula e
+guarda.</p>
+<p>Seis calculadoras clínicas. Um dashboard financeiro que persiste
+entre sessões.</p>
+<p>O app processa o que você digita. Mas não lê o que você já tem.</p>
+<hr />
+<p>Você tem artigos salvos. Guidelines em PDF. Protocolos que você
+consultou na última internação.</p>
+<p>Se você perguntar para o seu app: ‘Quando suspender a anticoagulação
+antes de uma cardioversão?’</p>
+<p>Ele não sabe.</p>
+<p>Porque ninguém ensinou a ele o que está nos seus artigos.</p>
+<hr />
+<p>Isso muda hoje.</p>
+<p>Hoje o ClinMd-Tribe aprende a ler.</p>
+<p>E quando você perguntar algo que ele não sabe — ele vai dizer que não
+sabe.</p>
+<p>Isso pode parecer fraqueza. Mas é o que diferencia IA confiável de IA
+que inventa.</p>
+<hr />
+<p>O personagem de hoje é um cardiologista.</p>
+<p>Especialista em arritmias. Acompanha pacientes com fibrilação atrial
+há dez anos. Tem uma pasta com artigos sobre anticoagulação que ele
+consultou ao longo da carreira.</p>
+<p>Hoje esses artigos viram a memória do app.”</p>
+<hr />
+<h2 id="seção-2-analogia-o-residente-que-leu-tudo-5-min">SEÇÃO 2:
+ANALOGIA — O RESIDENTE QUE LEU TUDO — 5 min</h2>
+<p><strong>Tom:</strong> Narrativo. A analogia deve ser cristalina antes
+de mostrar qualquer técnica.</p>
+<p>“Você já trabalhou com um residente que leu tudo.</p>
+<p>Não o que chuta. O que leu o Harrison, os guidelines, os artigos do
+NEJM.</p>
+<p>Quando você pergunta: ‘qual a dose de rivaroxabana em FA com função
+renal reduzida?’ Ele responde: ‘está na diretriz de 2022, página 14,
+segunda coluna.’</p>
+<p>Ele não inventou. Ele leu e aponta a fonte.</p>
+<hr />
+<p>E quando você pergunta algo que não está nos artigos que ele leu?</p>
+<p>Ele diz: ‘não tenho isso aqui, doutor.’</p>
+<p>Não chuta. Não tenta parecer que sabe.</p>
+<hr />
+<p>O RAG é exatamente isso.</p>
+<p>RAG: Retrieval-Augmented Generation. Geração augmentada por
+recuperação.</p>
+<p>Tradução clínica: o app vai buscar nos artigos antes de responder. E
+vai te dizer de qual artigo veio.</p>
+<hr />
+<p>Três etapas:</p>
+<p>Primeiro: você entrega os artigos para o app indexar. O app lê,
+divide em trechos, guarda o ‘sabor’ de cada trecho.</p>
+<p>Segundo: você faz uma pergunta. O app compara o ‘sabor’ da pergunta
+com o ‘sabor’ de cada trecho. Traz os mais parecidos.</p>
+<p>Terceiro: você vê o trecho e a fonte. Sem inventar. Sem misturar.</p>
+<hr />
+<p>‘Sabor’ — isso é uma metáfora.</p>
+<p>O nome técnico é embedding.</p>
+<p>E é aí que está a mágica.”</p>
+<hr />
+<h2 id="seção-3-o-que-é-embedding-7-min">SEÇÃO 3: O QUE É EMBEDDING — 7
+min</h2>
+<p><strong>Tom:</strong> Didático, sem fórmulas. A ideia central:
+significado virou número.</p>
+<p>“Embedding é uma palavra técnica para uma ideia simples.</p>
+<p>Toda palavra, toda frase, todo parágrafo pode ser representado como
+uma lista de números.</p>
+<p>Não os caracteres. O significado.</p>
+<hr />
+<p>Pense numa escala de dor.</p>
+<p>Zero é sem dor. Dez é insuportável.</p>
+<p>Se eu disser ‘dor torácica intensa’ — esse paciente está onde na
+escala? Próximo ao dez.</p>
+<p>Se eu disser ‘desconforto leve no peito’ — onde está? Em torno do
+quatro.</p>
+<p>Esses dois pacientes têm sintomas parecidos. Eles estão próximos na
+escala.</p>
+<hr />
+<p>Embedding faz isso para qualquer texto. Mas com muito mais
+dimensões.</p>
+<p>Não uma escala de um a dez. Centenas de escalas simultâneas.</p>
+<p>Urgência. Localização. Órgão. Gravidade. Tempo.</p>
+<hr />
+<p>O resultado:</p>
+<p>‘Dor torácica intensa’ e ‘angina pectoris’ ficam próximos nesse
+espaço.</p>
+<p>‘Como tratar diabetes tipo 2’ fica longe.</p>
+<p>Não porque alguém programou isso. Porque o modelo aprendeu, lendo
+bilhões de frases médicas, que essas expressões têm o mesmo
+significado.</p>
+<hr />
+<p>Busca semântica é isso: você pergunta em linguagem natural, o sistema
+encontra os trechos mais próximos no espaço do significado.</p>
+<p>Não a mesma palavra. O mesmo sentido.”</p>
+<hr />
+<h2 id="seção-4-demo-ao-vivo-embedding-10-min">SEÇÃO 4: DEMO AO VIVO —
+EMBEDDING — 10 min</h2>
+<p><strong>Tom:</strong> Professor roda o script. Aluno observa o
+output. Zero explicação de código.</p>
+<p>“Vou mostrar isso acontecendo.</p>
+<p>Tenho um script preparado. Não quero que você leia o código agora.
+Quero que você veja o resultado.”</p>
+<hr />
+<p><strong>[TELA: abrir aula_27/resources/demo_embedding.py — mostrar
+brevemente, não explicar linha a linha]</strong></p>
+<p><strong>[TELA: rodar no terminal]</strong></p>
+<pre><code>uv run python aula_27/resources/demo_embedding.py</code></pre>
+<p><strong>[NOTA DE PRODUÇÃO: na primeira execução o modelo é baixado
+(~90MB). Rodar antes da gravação para o modelo já estar em cache. Se
+aparecer barra de download durante a gravação: pausar o OBS, aguardar o
+download concluir, reiniciar o take da seção 4.]</strong></p>
+<p><strong>[OUTPUT — aproximado:]</strong></p>
+<pre><code>Referência: &#39;dor torácica intensa&#39;
+
+  0.71  ██████████████  angina pectoris
+  0.46  █████████       fibrilação atrial com flutter
+  0.39  ████████        prescrição de varfarina
+  0.21  ████            como tratar diabetes tipo 2</code></pre>
+<hr />
+<p>“Olha o que aconteceu.</p>
+<p>Ninguém disse para o sistema que ‘angina pectoris’ e ‘dor torácica’
+são a mesma coisa.</p>
+<p>O modelo aprendeu isso lendo textos médicos.</p>
+<p>O número 0.71 significa: esses dois conceitos ficam muito próximos no
+espaço do significado.</p>
+<p>Diabetes — 0.21. Longe. Varfarina — 0.39. Mais próximo. Faz sentido:
+é um medicamento cardiovascular.</p>
+<hr />
+<p>É assim que o RAG funciona.</p>
+<p>Você pergunta. O sistema calcula a distância entre a sua pergunta e
+cada trecho dos artigos. Traz os mais próximos.</p>
+<p>E te diz de qual artigo veio.</p>
+<p>Sem inventar. Sem misturar.”</p>
+<hr />
+<h2 id="seção-5-arquitetura-rag-8-min">SEÇÃO 5: ARQUITETURA RAG — 8
+min</h2>
+<p><strong>Tom:</strong> Visual e claro. Mostrar o fluxo completo antes
+de construir.</p>
+<p>“Antes de construir, deixa eu mostrar o que vai existir no final.</p>
+<p>Quatro etapas. Quatro lugares.</p>
+<hr />
+<p><strong>Etapa 1: Baixar</strong></p>
+<p>Você pede para o Claude Code buscar artigos no PubMed. Ele usa o MCP
+— o mesmo conector que você usou na aula três. Os artigos chegam como
+arquivos de texto em uma pasta chamada <code>knowledge_base/</code>.</p>
+<p><strong>Etapa 2: Indexar</strong></p>
+<p>Um script lê todos os <code>.txt</code>. Divide em trechos. Calcula o
+embedding de cada trecho. Guarda em um banco vetorial local — o
+ChromaDB.</p>
+<p>O ChromaDB é para embeddings o que o SQLite é para tabelas.
+Persistente, local, sem servidor.</p>
+<p><strong>Etapa 3: Buscar</strong></p>
+<p>Você digita uma pergunta. O sistema calcula o embedding da pergunta.
+Compara com os embeddings guardados. Traz os trechos mais próximos. Com
+o nome do arquivo de onde veio.</p>
+<p><strong>Etapa 4: Exibir</strong></p>
+<p>A tela Flet mostra o resultado: o trecho e a fonte. O médico vê e
+decide.</p>
+<hr />
+<p>Esses quatro passos respeitam as quatro camadas da Clean Architecture
+que você aprendeu na aula quinze.</p>
+<p><strong>[TELA: mostrar a estrutura de pastas do projeto —
+presentation/, application/, domain/, infrastructure/]</strong></p>
+<p>O ChromaDB fica na camada de infraestrutura. A lógica de busca fica
+no domínio e na aplicação. A tela fica na apresentação.</p>
+<p>Cada camada cuida do que é dela.”</p>
+<hr />
+<h2 id="seção-6-o-que-vem-a-seguir-5-min">SEÇÃO 6: O QUE VEM A SEGUIR —
+5 min</h2>
+<p><strong>Tom:</strong> Mapa claro das próximas três aulas.</p>
+<p>“Quatro aulas. Quatro etapas. Aqui está o mapa.</p>
+<hr />
+<p><strong>Aula de hoje — aula vinte e sete:</strong> Você entendeu o
+conceito. O que é embedding. Como o RAG funciona. Qual é a
+arquitetura.</p>
+<p>Nenhum prompt ainda. Só o mapa.</p>
+<p><strong>Aula vinte e oito:</strong> Você vai ao PubMed com o Claude
+Code. Baixa três artigos sobre anticoagulação em FA. Constrói o
+indexador. No final: uma pasta <code>knowledge_base/</code> com artigos
+reais e um banco vetorial com todos os trechos.</p>
+<p><strong>Aula vinte e nove:</strong> Você pergunta ao banco vetorial.
+Testa no terminal. O clímax: você pergunta algo que não está nos artigos
+— e o app diz que não sabe.</p>
+<p><strong>Aula trinta:</strong> Você liga tudo na tela Flet. E aprende
+a diagnosticar quando a busca está ruim.</p>
+<hr />
+<p>Quatro aulas. Um módulo.</p>
+<p>No final, o ClinMd-Tribe vai ter uma feature que a maioria dos apps
+clínicos comerciais não tem: ele vai citar a fonte.”</p>
+<hr />
+<h2 id="seção-7-encerramento-3-min">SEÇÃO 7: ENCERRAMENTO — 3 min</h2>
+<p><strong>Tom:</strong> A frase que fica. Confiança como critério.</p>
+<p>“Antes de encerrar, quero deixar uma ideia que vai guiar as próximas
+aulas.</p>
+<hr />
+<p>O que diferencia o residente que você confia do que você não
+confia?</p>
+<p>Não é o que ele sabe.</p>
+<p>É o que ele faz quando não sabe.</p>
+<p>O que não confia — chuta. O que confia — diz: ‘não tenho isso aqui,
+doutor.’</p>
+<hr />
+<p>O RAG que vamos construir vai fazer a mesma coisa.</p>
+<p>Se você perguntar algo que não está nos artigos indexados, o app vai
+retornar uma lista vazia.</p>
+<p>Não vai inventar. Não vai misturar.</p>
+<hr />
+<p>Isso parece pouco.</p>
+<p>Mas para um médico que precisa de informação confiável, uma resposta
+vazia e honesta vale mais do que uma resposta completa e inventada.</p>
+<p>Esse é o comportamento que vamos construir: um app que admite quando
+não sabe.</p>
+<p>Ele não chuta. Ele admite que não sabe.</p>
+<p>E isso, no contexto clínico, é segurança.</p>
+<hr />
+<p>Na próxima aula: PubMed, <code>knowledge_base/</code>, e o
+indexador.</p>
+<p>Vejo você lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

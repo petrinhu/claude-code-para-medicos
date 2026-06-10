@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 30 — Integração Flet + Qualidade da Busca</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 30 — Integração Flet + Qualidade da Busca</h1>
+</header>
+<h1 id="aula-30-integração-flet-qualidade-da-busca">Aula 30 — Integração
+Flet + Qualidade da Busca</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~46 min <strong>Tom:</strong> Cardiologista
+usando o app e aprendendo a confiar (ou não) na busca
+<strong>Módulo:</strong> S07.04 — Integração e Qualidade</p>
+<hr />
+<h2
+id="seção-1-abertura-buscador-funciona-no-terminal.-hora-de-ligar-na-tela.-3-min">SEÇÃO
+1: ABERTURA — BUSCADOR FUNCIONA NO TERMINAL. HORA DE LIGAR NA TELA. — 3
+min</h2>
+<p><strong>Tom:</strong> Bridge com aula_29 — celebrar os três gabaritos
+e anunciar a virada: terminal → interface</p>
+<p>“Na aula anterior você validou três gabaritos.</p>
+<p>Pergunta dentro do knowledge_base — trechos retornados com fonte.
+Busca por sentido — sinônimos e paráfrases funcionaram. Pergunta fora do
+knowledge_base — lista vazia. Sem invenção.</p>
+<p>O buscador semântico do ClinMd-Tribe funciona.</p>
+<hr />
+<p>Mas funciona onde?</p>
+<p>No terminal.</p>
+<p>O médico não vai usar o terminal. Ele vai abrir o app, digitar uma
+pergunta num campo de texto, e ver os resultados na tela.</p>
+<hr />
+<p>Hoje são duas coisas.</p>
+<p>Primeira: ligar o buscador na interface Flet. Segunda: aprender a
+diagnosticar quando a busca retornar resultados ruins.</p>
+<hr />
+<p>Porque o app vai funcionar. Mas em alguns momentos ele vai retornar
+trechos sem sentido. Ou uma lista vazia quando deveria encontrar algo.
+Ou o mesmo resultado repetido.</p>
+<p>E você vai precisar saber o que fazer quando isso acontecer.</p>
+<hr />
+<p>O médico que sabe diagnosticar é mais valioso do que o app que nunca
+falha.</p>
+<p>Um app perfeito é uma abstração. Um médico que sabe o que fazer
+quando o app falha — esse é o profissional que você está se
+tornando.”</p>
+<hr />
+<h2 id="seção-2-criar-tela_busca_rag.py-12-min">SEÇÃO 2: CRIAR
+TELA_BUSCA_RAG.PY — 12 min</h2>
+<p><strong>Tom:</strong> Professor explica o contexto antes do prompt —
+o aluno já sabe construir telas</p>
+<p>“Você já construiu várias telas no ClinMd-Tribe.</p>
+<p>Cada calculadora tem uma tela. O dashboard financeiro tem uma
+tela.</p>
+<p>O padrão que você usou em todas elas vale aqui também. A diferença é
+que esta tela não calcula — ela busca.</p>
+<hr />
+<p>Antes de escrever o prompt, visualize o que a tela precisa ter:</p>
+<p>Um campo de texto para digitar a pergunta. Um botão ‘Buscar’. Uma
+lista onde cada item mostra: — o trecho encontrado — o nome do arquivo
+de onde veio — o número do trecho</p>
+<p>E dois estados especiais: — ‘Nenhum resultado encontrado.’ quando a
+lista estiver vazia — um indicador de carregamento enquanto a busca
+roda</p>
+<hr />
+<p>E uma regra: a tela nunca acessa o ChromaDB diretamente. A tela chama
+<code>busca_service.buscar()</code>.</p>
+<p>Você já aprendeu por que isso importa na aula anterior: se o ChromaDB
+for substituído, a tela não precisa mudar.</p>
+<hr />
+<p>Agora o prompt.</p>
+<p>[ler cada parte em voz alta antes de enviar]</p>
+<pre><code>Crie a tela de busca RAG do ClinMd-Tribe em presentation/telas/tela_busca_rag.py.
+
+A tela deve ter:
+  - Um campo de texto para digitar a pergunta
+  - Um botão &quot;Buscar&quot;
+  - Uma lista de resultados onde cada item mostra:
+      • O trecho encontrado (primeiros 300 caracteres)
+      • O nome do arquivo de origem em destaque
+      • O número do trecho (ex: &quot;Trecho 12&quot;)
+  - Mensagem &quot;Nenhum resultado encontrado.&quot; quando a lista estiver vazia
+  - Indicador de carregamento enquanto a busca roda
+
+A tela chama busca_service.buscar() — nunca acessa chromadb diretamente.
+Use as cores padrão do ClinMd-Tribe.
+Siga o padrão das outras telas do projeto.</code></pre>
+<p>[enviar o prompt ao Claude Code]</p>
+<p><strong>[TELA: mostrar o Claude Code gerando o arquivo
+presentation/telas/tela_busca_rag.py]</strong>”</p>
+<hr />
+<p>“Quatro elementos na tela.</p>
+<p>Campo de texto. Botão. Lista de resultados com trecho, fonte e
+número. Estado vazio com mensagem.</p>
+<p>Você não escreveu nenhuma linha de Python. Você escreveu o
+prompt.</p>
+<hr />
+<p>Agora rodar e testar ao vivo.</p>
+<p><strong>[NOTA DE PRODUÇÃO: a tela_busca_rag ainda não está no menu —
+o Flet vai abrir, mas a tela de busca só aparecerá após a Seção 3. Esta
+execução é para confirmar que o app não quebrou.]</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run flet run main.py</span></code></pre></div>
+<p><strong>[TELA: mostrar o app abrindo no navegador]</strong></p>
+<p>Navegue até a tela de busca — ela ainda não está no menu. Por
+enquanto rode direto:
+<code>uv run flet run presentation/telas/tela_busca_rag.py</code></p>
+<p>Digite: <code>anticoagulação em FA</code> Clique em Buscar.</p>
+<p><strong>[NOTA DE PRODUÇÃO: confirmar que a busca retorna resultados
+antes de gravar — se a tela abre mas retorna lista vazia, verificar que
+data/chroma_db/ existe e que os artigos foram indexados na
+aula_28]</strong></p>
+<hr />
+<p>O trecho aparece. O nome do arquivo aparece embaixo. O número do
+trecho aparece.</p>
+<p>O médico sabe o que o app encontrou. O médico sabe de onde veio.</p>
+<p>Isso é o que você construiu.”</p>
+<hr />
+<h2
+id="seção-3-adicionar-tela-de-busca-no-menu-do-clinmd-tribe-5-min">SEÇÃO
+3: ADICIONAR TELA DE BUSCA NO MENU DO CLINMD-TRIBE — 5 min</h2>
+<p><strong>Tom:</strong> Rápido e prático — o aluno já fez isso antes
+para outras telas</p>
+<p>“O app tem a tela. Mas a tela ainda não está acessível pelo menu.</p>
+<p>O médico não vai digitar comandos no terminal para abrir uma tela.
+Ele vai clicar no menu.</p>
+<hr />
+<p>Mesmo prompt que você usou para adicionar as calculadoras ao
+menu.</p>
+<pre><code>Adicione a tela de busca RAG ao menu de navegação do ClinMd-Tribe.
+O item do menu deve ter o texto &quot;Busca em Artigos&quot;.
+Siga o padrão dos outros itens de menu do projeto.</code></pre>
+<p>[enviar o prompt ao Claude Code]</p>
+<p><strong>[TELA: mostrar o Claude Code atualizando o
+menu]</strong>”</p>
+<hr />
+<p>“Agora rodamos o app completo — com a tela de busca no menu:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run flet run main.py</span></code></pre></div>
+<p><strong>[TELA: mostrar o app abrindo — clicar no item ‘Busca em
+Artigos’ no menu]</strong></p>
+<p>A tela abre.</p>
+<hr />
+<p>Digitar ‘anticoagulação em FA’. Clicar em Buscar. Ver os resultados
+aparecerem com a fonte embaixo de cada trecho.</p>
+<p>O trecho está na tela. O nome do arquivo aparece. O médico sabe de
+qual artigo veio.</p>
+<hr />
+<p>Seis calculadoras. Um dashboard financeiro. Um buscador semântico com
+interface.</p>
+<p>O módulo de RAG do ClinMd-Tribe está funcionando de ponta a
+ponta.”</p>
+<hr />
+<h2
+id="seção-4-pergunta-de-supervisão-algum-import-chromadb-fora-de-infrastructure-4-min">SEÇÃO
+4: PERGUNTA DE SUPERVISÃO — ALGUM <code>import chromadb</code> FORA DE
+<code>infrastructure/</code>? — 4 min</h2>
+<p><strong>Tom:</strong> Auditoria arquitetural — a regra mais
+importante do módulo</p>
+<p>“Antes de seguir, uma pergunta de supervisão.</p>
+<p>É a regra arquitetural mais importante do módulo inteiro.</p>
+<hr />
+<p>Você aprendeu na aula_27 que apenas um arquivo do projeto pode
+importar o ChromaDB.</p>
+<p><code>infrastructure/rag/chroma_repositorio.py</code>.</p>
+<p>Só esse.</p>
+<hr />
+<p>Após adicionar a tela de busca, vamos verificar que a regra continua
+valendo.</p>
+<p>Três arquivos para verificar:</p>
+<p><code>domain/rag/porta_busca.py</code> — tem
+<code>import chromadb</code>? Não deve.
+<code>application/servicos/busca_service.py</code> — tem
+<code>import chromadb</code>? Não deve.
+<code>presentation/telas/tela_busca_rag.py</code> — tem
+<code>import chromadb</code>? Não deve.</p>
+<hr />
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-r</span> <span class="st">&quot;import chromadb&quot;</span> domain/ application/ presentation/</span></code></pre></div>
+<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
+<p>Output esperado: nenhuma linha.</p>
+<p>O grep retorna vazio.</p>
+<hr />
+<p>Agora verificar onde ele deve aparecer:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-r</span> <span class="st">&quot;import chromadb&quot;</span> infrastructure/</span></code></pre></div>
+<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
+<p>Output esperado:</p>
+<pre><code>infrastructure/rag/chroma_repositorio.py:import chromadb</code></pre>
+<p>Uma linha. Um único arquivo.</p>
+<hr />
+<p>Por que isso importa?</p>
+<p>Se amanhã sair um banco vetorial melhor que o ChromaDB — você troca
+um arquivo.</p>
+<p><code>infrastructure/rag/chroma_repositorio.py</code>.</p>
+<p>Só esse.</p>
+<p>A tela não sabe que mudou. O serviço não sabe que mudou. O domínio
+não sabe que mudou.</p>
+<p>Apenas a infraestrutura sabe. E a infraestrutura é o único lugar que
+pode mudar.</p>
+<hr />
+<p>Isso é Clean Architecture protegendo o seu trabalho.”</p>
+<hr />
+<h2
+id="seção-5-.gitignore-adicionar-knowledge_base-e-datachroma_db-3-min">SEÇÃO
+5: <code>.gitignore</code> — ADICIONAR <code>knowledge_base/</code> E
+<code>data/chroma_db/</code> — 3 min</h2>
+<p><strong>Tom:</strong> Rápido e direto — analogia com o clinmd.db da
+aula_25</p>
+<p>“Você lembra da aula_25.</p>
+<p>O banco de dados <code>clinmd.db</code> ficou no
+<code>.gitignore</code>.</p>
+<p>O raciocínio: dados locais não sobem para o repositório. O banco do
+médico A não deve ir para a máquina do médico B.</p>
+<hr />
+<p>O mesmo raciocínio vale aqui.</p>
+<p><code>knowledge_base/</code> — os artigos que você baixou do PubMed.
+<code>data/chroma_db/</code> — o banco vetorial gerado a partir desses
+artigos.</p>
+<p>Esses diretórios são dados locais. Cada médico vai ter os seus
+próprios artigos. Cada médico vai ter o seu próprio banco vetorial.</p>
+<p>Não devem ir para o repositório compartilhado.</p>
+<hr />
+<pre><code>Adicione ao .gitignore do projeto:
+  knowledge_base/
+  data/chroma_db/
+
+Esses diretórios são dados locais — artigos e banco vetorial.
+Cada médico vai ter os seus próprios artigos e seu próprio banco.
+Não devem ir para o repositório.</code></pre>
+<p>[enviar o prompt ao Claude Code]</p>
+<p><strong>[TELA: mostrar o Claude Code atualizando o
+.gitignore]</strong></p>
+<hr />
+<p>E aqui tem uma camada de LGPD.</p>
+<p>Os artigos que você indexou podem conter dados sensíveis. O banco
+vetorial é derivado desses artigos.</p>
+<p>Ambos ficam na máquina de quem usa. Não no repositório
+compartilhado.</p>
+<p>O código sobe. Os dados ficam.”</p>
+<hr />
+<h2 id="seção-6-qualidade-da-busca-3-diagnósticos-ao-vivo-14-min">SEÇÃO
+6: QUALIDADE DA BUSCA — 3 DIAGNÓSTICOS AO VIVO — 14 min</h2>
+<p><strong>Tom:</strong> Médico diagnosticando o app — cada problema tem
+sintoma, causa e tratamento</p>
+<p>“O app está funcionando.</p>
+<p>Mas às vezes a busca vai retornar resultados ruins.</p>
+<p>Trechos sem sentido. Lista vazia para perguntas que deveriam
+encontrar algo. O mesmo resultado aparecendo duas vezes.</p>
+<p>Isso não é defeito do conceito. É configuração.</p>
+<p>E assim como o médico diagnostica pelo sintoma — você vai aprender a
+diagnosticar pelo que a busca retorna.</p>
+<hr />
+<p>Três diagnósticos.”</p>
+<hr />
+<p><strong>Diagnóstico 1 — Trechos muito curtos ou sem
+sentido:</strong></p>
+<p>“Sintoma: você pergunta sobre ‘protocolo de anticoagulação
+peri-operatória’ e o resultado retornado é:</p>
+<pre><code>et al. (2019). Journal of Cardiology.</code></pre>
+<p>Uma referência bibliográfica. Não um trecho clínico.</p>
+<hr />
+<p>Causa: o indexador incluiu trechos muito curtos — referências,
+rodapés, fragmentos. O filtro de tamanho mínimo está baixo demais.</p>
+<hr />
+<p>O indexador da aula_27 já filtra trechos com menos de 150 caracteres.
+Mas referências bibliográficas costumam ter mais de 150 caracteres.</p>
+<p>Solução: aumentar o critério de tamanho mínimo para 200.</p>
+<pre><code>Em infrastructure/rag/txt_loader.py, aumente o critério de tamanho mínimo do trecho para 200 caracteres.</code></pre>
+<p>[enviar o prompt ao Claude Code]</p>
+<hr />
+<p>Depois de implementar: deletar o banco vetorial e reindexar.</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.indexador_service import indexar_pasta</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">indexar_pasta(&#39;knowledge_base/&#39;)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<p><strong>[NOTA DE PRODUÇÃO: mostrar o terminal rodando a reindexação —
+confirmar que os trechos retornados após o ajuste são
+melhores]</strong></p>
+<p>Os trechos curtos não vão mais aparecer. O filtro mais rigoroso
+elimina referências bibliográficas e fragmentos.</p>
+<p>Sintoma resolvido.”</p>
+<hr />
+<p><strong>Diagnóstico 2 — Lista vazia para perguntas que deveriam
+encontrar algo:</strong></p>
+<p>“Sintoma: você pergunta sobre ‘dose de varfarina em idoso’ — lista
+vazia. Mas você tem certeza que um dos artigos fala sobre isso.</p>
+<hr />
+<p>Duas causas possíveis.</p>
+<p><strong>Causa A: o arquivo .txt está vazio.</strong></p>
+<p>O PubMed nem sempre fornece o texto completo dos artigos. Às vezes o
+.txt foi criado mas está vazio — só o título e o abstract.</p>
+<p>Verificar: abrir o arquivo .txt correspondente e checar se tem
+conteúdo clínico.</p>
+<p>Se vazio: buscar outro artigo com texto disponível no PubMed e
+reindexar.</p>
+<hr />
+<p><strong>Causa B: o artigo está em inglês e a busca foi feita em
+português.</strong></p>
+<p>Os modelos de embedding têm desempenho melhor quando a pergunta e o
+artigo estão no mesmo idioma.</p>
+<p>Tentar buscar em inglês:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.busca_service import buscar</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">for r in buscar(&#39;warfarin dosing elderly&#39;, n=2):</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">    print(r.fonte, r.trecho[:150])</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
+<hr />
+<p>Se retornou resultados em inglês mas não em português: a causa era o
+idioma da busca.</p>
+<p>Isso é uma limitação real do RAG com artigos em inglês. Buscar em
+inglês pode funcionar melhor quando os artigos estão em inglês.</p>
+<hr />
+<p>Para o médico: quando o artigo estiver em inglês e a busca não
+encontrar — tente reformular a pergunta em inglês. O app vai
+encontrar.</p>
+<hr />
+<p>Se precisar de artigos em português, use o prompt:</p>
+<pre><code>Busque 1 artigo sobre [tema] no PubMed que tenha abstract em português. Salve em knowledge_base/.</code></pre>
+<p>Depois reindexe normalmente. O banco combina artigos em inglês e
+português — cada busca vai encontrar nos dois idiomas.”</p>
+<hr />
+<p><strong>Diagnóstico 3 — Resultados repetidos:</strong></p>
+<p>“Sintoma: o mesmo trecho aparece duas vezes no resultado.</p>
+<pre><code>Fonte: 39123456_anticoagulation_fa.txt | Trecho 4
+The CHA₂DS₂-VASc score...
+---
+Fonte: 39123456_anticoagulation_fa.txt | Trecho 4
+The CHA₂DS₂-VASc score...
+---</code></pre>
+<hr />
+<p>Causa: o indexador rodou mais de uma vez sem idempotência correta. Os
+IDs dos vetores não eram determinísticos — o mesmo trecho foi inserido
+duas vezes com IDs diferentes.</p>
+<hr />
+<p>Diagnóstico via terminal:</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.busca_service import buscar</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">r = buscar(&#39;anticoagulação&#39;, n=6)</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">fontes = [f&#39;{x.fonte}_{x.numero_trecho}&#39; for x in r]</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">print(fontes)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="st">print(&#39;duplicatas:&#39;, len(fontes) - len(set(fontes)))</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<p><strong>[TELA: mostrar o terminal rodando o comando]</strong></p>
+<p>Se <code>duplicatas:</code> retornar um número maior que zero — há
+duplicatas no banco.</p>
+<hr />
+<p>Solução: deletar o banco e reindexar uma vez.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.indexador_service import indexar_pasta</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">indexar_pasta(&#39;knowledge_base/&#39;)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<p>O <code>upsert</code> do ChromaDB vai garantir que cada trecho seja
+inserido apenas uma vez.</p>
+<hr />
+<p>Três diagnósticos. Três tratamentos.</p>
+<p>O médico que sabe diagnosticar o app é mais valioso do que o app
+perfeito.</p>
+<p>Porque nenhum app é perfeito. Mas todo problema tem causa. E toda
+causa tem solução.”</p>
+<hr />
+<h2 id="seção-7-encerramento-bridge-s08-dever-de-casa-4-min">SEÇÃO 7:
+ENCERRAMENTO + BRIDGE S08 + DEVER DE CASA — 4 min</h2>
+<p><strong>Tom:</strong> Consolidar o módulo inteiro — de quatro aulas
+para um produto funcionando</p>
+<p>“O módulo S07 está encerrado.</p>
+<p>O que você construiu em quatro aulas:</p>
+<p>Aula_27: entendeu embeddings e Clean Architecture. Indexou os
+primeiros artigos no ChromaDB. Aula_28: baixou artigos do PubMed via
+MCP. Construiu o knowledge_base com artigos reais. Aula_29: validou os
+três gabaritos no terminal. O buscador funcionou — com rastreabilidade,
+com semântica, sem invenção. Aula_30: ligou o buscador na interface
+Flet. Aprendeu a diagnosticar quando a busca está ruim.</p>
+<hr />
+<p>Seis calculadoras. Um dashboard financeiro. Um buscador semântico que
+lê artigos e cita a fonte.</p>
+<hr />
+<p>Pense no que aconteceu em quatro aulas.</p>
+<p>Você usou o MCP do PubMed — que aprendeu na aula_03 — para construir
+uma feature de IA. O conhecimento acumulou.</p>
+<p>Uma habilidade que parecia isolada — usar o MCP para buscar artigos —
+virou o bloco de entrada de um sistema RAG completo.</p>
+<p>É assim que o ClinMd-Tribe cresce. Cada módulo usa o que veio
+antes.</p>
+<hr />
+<p>O S08 é completamente diferente.</p>
+<p>Não é sobre saber. É sobre não esquecer.</p>
+<p>O médico sabe que existe um protocolo de sedação para procedimentos.
+Mas em situação de urgência — com o paciente instável — ele pode pular
+uma etapa.</p>
+<p>O S08 é o módulo de checklists. Estilo OMS.</p>
+<p>Na aula trinta e um você começa o S08 — o primeiro checklist.</p>
+<p>Você vai construir um app que acompanha procedimentos passo a passo.
+Cada item marcado. Timestamp registrado. O app que não deixa você pular
+uma etapa.</p>
+<hr />
+<p>Dever de casa:</p>
+<p>Antes da próxima aula, teste o Diagnóstico 1.</p>
+<p>Aumente o mínimo de caracteres para 200 em
+<code>txt_loader.py</code>. Delete o banco vetorial e reindexe.</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> data/chroma_db/</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run python <span class="at">-</span> <span class="op">&lt;&lt;&#39;EOF&#39;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">from application.servicos.indexador_service import indexar_pasta</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">indexar_pasta(&#39;knowledge_base/&#39;)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div>
+<p>Faça a mesma busca de antes — ‘anticoagulação em FA’. Compare os
+trechos retornados com os de antes.</p>
+<p>Observe a diferença. Registre o que mudou.</p>
+<p>Esse exercício vai consolidar o diagnóstico que você aprendeu
+hoje.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+</body>
+</html>

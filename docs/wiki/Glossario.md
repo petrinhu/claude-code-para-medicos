@@ -47,7 +47,7 @@ No contexto do curso, um agente é um **assistente de IA com um papel definido**
 O **git** é um programa que registra cada mudança feita nos arquivos de um projeto, com data, autor e descrição. É o "prontuário do código": toda alteração fica registrada, e você pode voltar a qualquer ponto do passado. Se algo der errado, dá para desfazer com segurança. O curso ensina git como uma ferramenta de organização, não de programação.
 
 ### Repositório
-Uma pasta de projeto que está sendo acompanhada pelo git. Reúne todos os arquivos mais o histórico completo de mudanças. "Este repositório" é justamente a pasta do curso, com as 52 aulas, o aplicativo de exemplo e os documentos. Em inglês aparece abreviado como *repo*.
+Uma pasta de projeto que está sendo acompanhada pelo git. Reúne todos os arquivos mais o histórico completo de mudanças. "Este repositório" é justamente a pasta do curso, com as 40 aulas, o aplicativo de exemplo e os documentos. Em inglês aparece abreviado como *repo*.
 
 ### Commit
 Um **commit** é uma "foto" salva do projeto num momento específico, com uma mensagem curta dizendo o que mudou (por exemplo: "adiciona aula 15"). É como assinar e datar uma evolução no prontuário: fica registrado que naquele instante o projeto estava daquele jeito, e por quê. O histórico de um projeto é uma sequência de commits.

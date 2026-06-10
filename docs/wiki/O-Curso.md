@@ -1,6 +1,6 @@
 # O curso: como ele foi pensado
 
-Esta página explica a **lógica pedagógica** do curso: as fases, as 52 aulas, a filosofia de ensino e o cuidado constante com a privacidade. Se a página [[Como-O-Repositorio-Esta-Organizado]] mostrou *onde* estão as coisas, esta aqui mostra *por que* o curso é do jeito que é.
+Esta página explica a **lógica pedagógica** do curso: as fases, as 40 aulas, a filosofia de ensino e o cuidado constante com a privacidade. Se a página [[Como-O-Repositorio-Esta-Organizado]] mostrou *onde* estão as coisas, esta aqui mostra *por que* o curso é do jeito que é.
 
 ## O que o curso ensina, de novo e em uma frase
 
@@ -54,11 +54,11 @@ Da primeira à última aula, um cuidado nunca sai de cena: a **proteção dos da
 
 Esse eixo não é um aviso isolado no começo; ele é reforçado aula após aula, porque é parte da responsabilidade de quem cuida de gente.
 
-## As 52 aulas e a fonte oficial
+## As 40 aulas e a fonte oficial
 
-O curso tem **52 aulas**, distribuídas pelas três fases e por módulos temáticos. A contagem, a ordem, o status de cada aula (concluída, pendente) e a que módulo pertencem estão na **lista oficial do projeto**: o arquivo [TODO.md](../../TODO.md) na raiz do repositório. Quando houver qualquer dúvida sobre a estrutura, é esse o documento que vale.
+O curso tem **40 aulas**, distribuídas pelas três fases e por módulos temáticos. A contagem, a ordem, o status de cada aula (concluída, pendente) e a que módulo pertencem estão na **lista oficial do projeto**: o arquivo [TODO.md](../../TODO.md) na raiz do repositório. Quando houver qualquer dúvida sobre a estrutura, é esse o documento que vale.
 
-> Por que a numeração das pastas vai só até `aula_42`? Porque várias aulas foram **condensadas** em encontros únicos mais longos (de 45 a 60 minutos). Nada se perdeu; é só uma forma de agrupar. O [TODO.md](../../TODO.md) mostra exatamente como as 52 aulas se distribuem.
+> Por que a numeração das pastas vai só até `aula_42`? Porque várias aulas foram **condensadas** em encontros únicos mais longos (de 45 a 60 minutos). Nada se perdeu; é só uma forma de agrupar. O [TODO.md](../../TODO.md) mostra exatamente como as aulas se distribuem.
 
 ## Decisões de currículo: onde mora o detalhe
 
@@ -72,6 +72,6 @@ Esse registro é o arquivo [docs/decisoes_curriculo.md](../../docs/decisoes_curr
 - São **três fases**: iniciante e intermediária (sem programação) e avançada (opcional, constrói o aplicativo ClinMd-Tribe).
 - A **regra de ouro** é aprender pelo comportamento observável: o aluno nunca precisa ler código.
 - A **LGPD** atravessa tudo: dado de paciente fora do Claude Code, aplicativo rodando 100% local.
-- A estrutura oficial das **52 aulas** está no [TODO.md](../../TODO.md); as decisões de currículo, em [docs/decisoes_curriculo.md](../../docs/decisoes_curriculo.md).
+- A estrutura oficial das **40 aulas** está no [TODO.md](../../TODO.md); as decisões de currículo, em [docs/decisoes_curriculo.md](../../docs/decisoes_curriculo.md).
 
 Próxima parada sugerida: **[[O-App-ClinMd-Tribe]]**, para conhecer o aplicativo de exemplo por dentro (com analogias) e rodar os testes você mesmo.

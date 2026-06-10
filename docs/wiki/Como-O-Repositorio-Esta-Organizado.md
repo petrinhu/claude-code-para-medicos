@@ -12,10 +12,9 @@ Pense nisto como conhecer um hospital novo: primeiro alguém te mostra onde fica
 claude-code-para-medicos/
 ├── README.md              <- apresentação curta do projeto
 ├── CLAUDE.md              <- instruções internas do projeto (para a IA)
-├── TODO.md                <- a lista oficial das 52 aulas e seu status
+├── TODO.md                <- a lista oficial das aulas e seu status
 ├── SECURITY.md            <- como reportar uma falha de segurança
 ├── arvore_aulas.html      <- mapa visual das aulas (abre no navegador)
-├── roadmap.html           <- visão geral do curso (abre no navegador)
 ├── aula_01/ ... aula_42/  <- uma pasta por aula, com o roteiro
 ├── aula_abertura/         <- a aula de abertura do curso
 ├── aulas/                 <- organização das aulas por fase e módulo
@@ -37,13 +36,13 @@ O **cartão de visitas** do repositório. Em quase todo projeto, o arquivo chama
 Um arquivo de **instruções internas**, escrito para orientar o próprio Claude Code quando ele trabalha neste projeto. Define o tom das aulas, o público-alvo (médicos iniciantes em tecnologia), as ferramentas usadas na fase avançada e as regras de ensino. Você pode lê-lo por curiosidade, mas ele é mais um "manual de bordo" para a IA do que material de aula. Está em [CLAUDE.md](../../CLAUDE.md).
 
 ### `TODO.md`
-A **lista oficial de todas as 52 aulas**, com o status de cada uma (concluída, pendente, a refatorar), a fase a que pertence e a ordem em que aparecem. "TODO" é inglês para "a fazer". Este é o documento que manda: quando há dúvida sobre quantas aulas existem ou em que ordem, a resposta está aqui. Veja [TODO.md](../../TODO.md).
+A **lista oficial de todas as aulas**, com o status de cada uma (concluída, pendente, a refatorar), a fase a que pertence e a ordem em que aparecem. "TODO" é inglês para "a fazer". Este é o documento que manda: quando há dúvida sobre quantas aulas existem ou em que ordem, a resposta está aqui. Veja [TODO.md](../../TODO.md).
 
 ### `SECURITY.md`
 Explica **como avisar, com sigilo, se alguém encontrar uma falha de segurança** no projeto. É uma boa prática de qualquer repositório público. Veja [SECURITY.md](../../SECURITY.md).
 
-### `arvore_aulas.html` e `roadmap.html`
-Dois **mapas visuais do curso, feitos para abrir no navegador** (por isso terminam em `.html`). Para vê-los, basta dar dois cliques no arquivo e ele abre no Chrome, Firefox ou Safari, mostrando a estrutura do curso de forma bonita, com as cores da identidade TribeMD (o roxo `#5213B9`). O `arvore_aulas.html` mostra a árvore completa das aulas; o `roadmap.html` dá a visão geral do caminho.
+### `arvore_aulas.html`
+Um **mapa visual do curso, feito para abrir no navegador** (por isso termina em `.html`). Para vê-lo, basta dar dois cliques no arquivo e ele abre no Chrome, Firefox ou Safari, mostrando a árvore completa das aulas de forma bonita, com as cores da identidade TribeMD (o roxo `#5213B9`).
 
 ## As pastas de aula (os consultórios)
 
@@ -55,7 +54,7 @@ Cada aula do curso tem **a sua própria pasta**. Dentro de cada uma, você encon
 - `roteiro.md` - o roteiro da aula **em Markdown** (texto puro, fácil de editar). É o conteúdo escrito da aula: a fala, as seções, os comandos.
 - `roteiro.html` - o **mesmo roteiro, mas em formato de página** para abrir no navegador, formatado e agradável de ler.
 
-> Você vai notar que a numeração vai até `aula_42`, embora o curso tenha 52 aulas. Não falta nada: várias aulas foram **condensadas** (combinadas em um único encontro mais longo, de 45 a 60 minutos cada). A lista oficial em [TODO.md](../../TODO.md) mostra exatamente como as 52 aulas se distribuem pelas pastas.
+> Você vai notar que a numeração vai até `aula_42`, mas o curso tem 40 aulas. Não falta nada: a numeração pula alguns números porque aulas foram **condensadas** ou fundidas (combinadas em um único encontro mais longo, de 45 a 60 minutos cada). A lista oficial em [TODO.md](../../TODO.md) mostra exatamente como as aulas se distribuem pelas pastas.
 
 ### Por que existem dois arquivos (`.md` e `.html`) para cada aula?
 Boa pergunta, e a resposta mostra uma ideia bonita do projeto: **escreve-se uma vez, publica-se de duas formas**.
@@ -67,7 +66,7 @@ A vantagem é evitar trabalho duplicado e evitar erros: o instrutor edita só o 
 > Termo do [[Glossario]]: **pandoc** é um conversor de documentos. Ele pega o `.md` e produz o `.html` sem ninguém refazer nada à mão.
 
 ### `aula_abertura/`
-A **aula de boas-vindas do curso**, que apresenta o instrutor, desmistifica a inteligência artificial e dá o tom do que vem pela frente. Ela existe fora da numeração porque é uma introdução especial, não uma das 52 aulas regulares. Segue o mesmo padrão `roteiro.md` + `roteiro.html`.
+A **aula de boas-vindas do curso**, que apresenta o instrutor, desmistifica a inteligência artificial e dá o tom do que vem pela frente. Ela existe fora da numeração porque é uma introdução especial, não uma das 40 aulas regulares. Segue o mesmo padrão `roteiro.md` + `roteiro.html`.
 
 ### `aulas/`
 Uma pasta que **organiza as aulas por fase e por módulo**, com pequenos arquivos de apoio (README) que explicam cada agrupamento. Ajuda a enxergar o curso pela lógica das fases (iniciante, intermediário, avançado), enquanto as pastas `aula_NN/` guardam o conteúdo de cada encontro. A página [[O-Curso]] explica essa divisão em fases com calma.

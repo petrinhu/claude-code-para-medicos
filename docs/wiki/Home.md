@@ -22,7 +22,7 @@ Você **não precisa** saber programar para aproveitar esta wiki. As fases inici
 
 ## O que você vai encontrar aqui
 
-O curso tem **52 aulas**, organizadas em três fases que vão do "nunca toquei num terminal" até "construí um aplicativo clínico do zero". Tem também um aplicativo de exemplo (o **ClinMd-Tribe**), pronto e funcionando, que serve de gabarito do instrutor.
+O curso tem **40 aulas**, organizadas em três fases que vão do "nunca toquei num terminal" até "construí um aplicativo clínico do zero". Tem também um aplicativo de exemplo (o **ClinMd-Tribe**), pronto e funcionando, que serve de gabarito do instrutor.
 
 Um fio conduz tudo isso do começo ao fim: **privacidade e LGPD**. Dado de paciente nunca entra no Claude Code, e o aplicativo do curso roda 100% no seu computador. Esse cuidado aparece em toda aula, e a gente reforça aqui também.
 
@@ -31,7 +31,7 @@ Um fio conduz tudo isso do começo ao fim: **privacidade e LGPD**. Dado de pacie
 Sugestão de caminho, na ordem que faz mais sentido para quem está chegando agora:
 
 1. **[[Glossario]]** - comece por aqui se as palavras técnicas estão te assustando. É o seu dicionário de bolso. Pode voltar a ele a qualquer momento.
-2. **[[O-Curso]]** - a visão geral: as três fases, as 52 aulas, a filosofia de ensino e o cuidado com LGPD.
+2. **[[O-Curso]]** - a visão geral: as três fases, as 40 aulas, a filosofia de ensino e o cuidado com LGPD.
 3. **[[Como-O-Repositorio-Esta-Organizado]]** - um passeio guiado pelas pastas e arquivos: o que é cada coisa e por que está ali.
 4. **[[O-App-ClinMd-Tribe]]** - o aplicativo de exemplo do curso, explicado por dentro (com analogias) e o passo a passo para rodar os testes você mesmo.
 5. **[[Como-Publicar-Esta-Wiki]]** - instruções para o dono do repositório publicar estas páginas (passo manual, técnico).

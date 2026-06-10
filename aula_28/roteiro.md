@@ -119,6 +119,8 @@ Arquivos criados em knowledge_base/:
 
 Agora abra um dos arquivos.
 
+**[NOTA DE PRODUÇÃO: confirmar que o VS Code está instalado e o comando `code` está no PATH antes de gravar. Alternativa se não estiver disponível: abrir o arquivo pelo explorador de arquivos, ou usar `cat knowledge_base/<nome_do_arquivo>.txt | head -60` no terminal.]**
+
 ```
 code knowledge_base/39123456_anticoagulation_fa_guidelines_2023.txt
 ```
@@ -278,7 +280,7 @@ infrastructure/rag/chroma_repositorio.py
     IDs determinísticos: f"{doc['nome_arquivo']}_{doc['numero_trecho']}"
     Usa upsert (não add) para garantir idempotência
 
-application/servicos/indexador_service.py
+application/servicos/indexador_service.py   (sem acento em "servicos" — Python não tolera acentos em nomes de módulo)
   - Importa txt_loader e chroma_repositorio
   - Chama o loader, manda indexar
   - Imprime no terminal: "X trechos indexados de Y arquivos"
@@ -565,6 +567,26 @@ E você vai ver como ele responde —
 e como ele reconhece quando a resposta não está na biblioteca.
 
 Até lá."
+
+---
+
+**Dever de casa:**
+
+"Antes da próxima aula, adicione um quarto artigo ao `knowledge_base/`.
+
+Pode ser qualquer tema clínico do seu interesse — não precisa ser FA.
+
+Peça ao Claude Code:
+
+```
+Busque 1 artigo sobre [tema da sua escolha] no PubMed e salve em knowledge_base/.
+```
+
+Depois rode o indexador novamente.
+
+Observe: o número de trechos vai subir — e os trechos dos três artigos anteriores não vão duplicar.
+
+Isso confirma que a idempotência funciona com dados novos também."
 
 ---
 

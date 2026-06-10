@@ -1,7 +1,7 @@
 # TODO — Curso Claude Code para Médicos
 > **Fonte de verdade:** `arvore_aulas.html` · Atualizado: 2026-06-09
 > **Legenda:** ✅ Concluído · 🚫 Refatorar (conteúdo ≠ HTML) · ⏳ Pendente
-> **Resumo:** 47 ✅ · 0 🚫 · 5 ⏳ · **Total: 52 aulas**
+> **Resumo:** 48 ✅ · 0 🚫 · 4 ⏳ · **Total: 52 aulas**
 >
 > Nota: condensação de aulas é permitida (45–60 min por aula). 🚫 marca apenas **conteúdo errado ou ausente**, não quantidade de aulas.
 > `aula_abertura` existe mas não é numerada no HTML — mantida como intro especial fora da contagem.
@@ -14,11 +14,10 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ⏳ Pendente — 5 itens
+## ⏳ Pendente — 4 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
-| S11.02 | 16 | Avançado · S11 Polimento | Exportar como .exe para Windows → aula_38 | Baixa | S11.01 | Médio | ⏳ Pendente | ⏳ |
 | S11.03 | 16 | Avançado · S11 Polimento | Auditoria final e distribuição → aula_39 | Baixa | S11.02 | Médio | ⏳ Pendente | ⏳ |
 | S12.01 | 17 | Avançado · S12 Boas Práticas | Segurança: nunca suba seu token de API → aula_40 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
 | S12.02 | 17 | Avançado · S12 Boas Práticas | Arquitetura modular: evitando o monolito → aula_41 | Baixa | S11 | Simples | ⏳ Pendente | ⏳ |
@@ -26,7 +25,7 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 
 ---
 
-## ✅ Concluído — 47 itens
+## ✅ Concluído — 48 itens
 
 | ID | Onda | Grupo | Descrição | Prioridade | Pré-req | Dificuldade | Status | Auditado |
 |---|:---:|---|---|:---:|---|:---:|:---:|:---:|
@@ -77,3 +76,4 @@ Nenhuma aula pendente de refatoração. Todas as correções de conteúdo foram 
 | S10.01 | 15 | Avançado · S10 CI/CD | CI com GitHub Actions: o robô que roda os guardiões a cada push → aula_35 (~55min, clímax sabotagem AVC vermelha no servidor, escopo determinístico; **decisão Dr. Petrus = GitHub, não Forgejo**) | Baixa | S09 | Complexo | ✅ Concluído | ✅ |
 | S10.02 | 15 | Avançado · S10 CI/CD | O porteiro: branch protection + Pull Request (web) bloqueia merge no vermelho + RAG no CI (cache, job separado) → aula_36 (~55min, clímax do bypass-de-admin honesto, badge) | Baixa | S10.01 | Complexo | ✅ Concluído | ✅ |
 | S11.01 | 16 | Avançado · S11 Polimento | UI médica: identidade visual TribeMD (tema central, Inter estática, ícones) → aula_37 (~60min, jaleco/4 princípios, antes-depois, "sala única") | Baixa | S10 | Médio | ✅ Concluído | ✅ |
+| S11.02 | 16 | Avançado · S11 Polimento | Exportar como .exe Windows (flet pack, versão leve sem RAG) → aula_38 (~58min, fórmula→remédio de prateleira, antivírus/SmartScreen, LGPD ápice; **decisão Dr. Petrus: .exe leve**) | Baixa | S11.01 | Médio | ✅ Concluído | ✅ |

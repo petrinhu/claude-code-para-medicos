@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 38 — Da Bancada pra Prateleira: o App que Anda Sozinho</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 38 — Da Bancada pra Prateleira: o App que Anda
+Sozinho</h1>
+</header>
+<h1 id="aula-38-da-bancada-pra-prateleira-o-app-que-anda-sozinho">Aula
+38 — Da Bancada pra Prateleira: o App que Anda Sozinho</h1>
+<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<strong>Duração:</strong> ~58 min <strong>Tom:</strong> Do orgulho de
+construir ao orgulho de entregar. “Você não é mais só quem usa software
+— é quem entrega software.” Honesto sobre os limites (é grande, o
+antivírus cheira), encantado com o resultado (dois cliques, na mão de
+qualquer um). <strong>Módulo:</strong> S11.02 — Empacotar o app como
+.exe de Windows (flet pack)</p>
+<hr />
+<h2 id="seção-1-abertura-a-fórmula-na-bancada-5-min">SEÇÃO 1: ABERTURA —
+A FÓRMULA NA BANCADA — 5 min</h2>
+<p><strong>Tom:</strong> Reflexivo. Retoma o gancho da aula_37 e nomeia
+o desconforto: o app lindo está preso.</p>
+<p>“Na aula passada você passou o ferro no jaleco do app. Paleta da
+TribeMD, fonte Inter, ícones, tudo respirando. Por dentro é à prova de
+bala, por fora tem a cara disso. E aí eu te deixei com uma farpa no fim.
+Lembra?</p>
+<p>Esse app maravilhoso só abre de um jeito: você, abrindo o terminal,
+digitando <code>uv run flet run main.py</code>. Pra você, que fez o
+curso inteiro, isso é trivial. Mas pensa no seu colega cardiologista, da
+sala ao lado — o que não sabe o que é um terminal, exatamente como você
+não sabia na aula um.</p>
+<p>Como é que ELE abre o seu app?</p>
+<hr />
+<p>Hoje, ele não abre.</p>
+<p>O seu app é uma fórmula manipulada: poderosíssima, mas só funciona na
+sua bancada, com você do lado, sob a sua receita — aquele comando no
+terminal. Na farmácia de manipulação, o paciente não entra e se
+serve.</p>
+<hr />
+<p>Hoje a gente faz o que a indústria faz: pega a sua fórmula e
+transforma ela no remédio de prateleira. Mesma molécula por dentro. Mas
+numa caixa que qualquer médico pega e usa, sem você, sem terminal, sem
+receita. Dois cliques.</p>
+<p>E, como sempre, você não vai escrever nem ler uma linha de código.
+Você vai pedir. E ver a caixa nascer.”</p>
+<hr />
+<h2 id="seção-2-o-remédio-de-prateleira-o-conceito-8-min">SEÇÃO 2: O
+REMÉDIO DE PRATELEIRA — O CONCEITO — 8 min</h2>
+<p><strong>Tom:</strong> Didático, tranquilo. A maquete mental de
+“empacotar = tornar independente” antes de qualquer comando.</p>
+<p>“Antes de pedir nada, a ideia que faz isso funcionar — e ela é linda
+de simples.</p>
+<p>Pensa em como o app abre hoje. Pra rodar, precisa de: ter o Python
+instalado, ter o uv instalado, ter os arquivos do projeto na máquina,
+abrir o terminal, e digitar o comando exato. Cinco pré-condições. Isso é
+a sua bancada de manipulação: tudo precisa estar ali, e você precisa
+saber o feitiço.</p>
+<hr />
+<p>Agora imagina o oposto. Um único arquivo:
+<code>ClinMd-Tribe.exe</code>. Clica. Abre. Fim.</p>
+<p>Zero pré-condição. O colega não tem Python? Não importa. Não sabe o
+que é terminal? Não importa. Nunca ouviu falar de Claude? Não importa. A
+caixa traz tudo dentro.</p>
+<hr />
+<p>Empacotar é isso: pegar tudo que o app precisa pra viver — o Python,
+as peças, as suas telas — e selar dentro de uma caixa só. Antes, o app
+dependia da sua bancada. Depois, anda com as próprias pernas.</p>
+<p>A palavra técnica é ‘independente’. Esquece a palavra. Lembra do
+remédio que anda sozinho na bolsa do médico, longe da farmácia.</p>
+<hr />
+<p>Agora, três verdades honestas sobre o remédio de prateleira — porque
+ele não é mágica, e é melhor você saber antes:</p>
+<p>Primeira: ele tem a embalagem do Windows. Quem usa Windows abre e
+usa. Quem usa Mac precisaria de outra caixa — mesma fórmula, embalagem
+diferente. Como a sua turma é quase toda Windows, a gente faz a do
+Windows hoje.</p>
+<p>Segunda: a caixa é maior que o pozinho da fórmula, porque vem com
+tudo dentro — inclusive o Python inteiro. Caixa cheia é caixa pesada. É
+o preço de não depender de nada lá fora.</p>
+<p>Terceira: quando o seu colega abrir uma caixa nova, o Windows pode
+parar e cheirar. Não porque tem veneno — porque é novo e ele não te
+conhece ainda. Eu te mostro como liberar, sem desarmar a segurança
+dele.</p>
+<p>Guarda a imagem: hoje, fórmula na bancada; no fim da aula, remédio na
+caixa.”</p>
+<hr />
+<h2 id="seção-3-você-decide-8-min">SEÇÃO 3: VOCÊ DECIDE — 8 min</h2>
+<p><strong>Tom:</strong> Colaborativo. Duas perguntas, raciocínio
+clínico, zero código.</p>
+<p>“Antes de pedir a caixa pro Claude, duas perguntas. Pensa como quem
+decide se um remédio está pronto pra sair da farmácia e ir pra
+prateleira.</p>
+<hr />
+<p><strong>PERGUNTA UM — por que o seu colega consegue abrir o programa
+mesmo sem ter Python, terminal ou Claude na máquina dele?</strong></p>
+<p>A: porque o Windows dele baixa o Python sozinho na hora de abrir.</p>
+<p>B: porque o programa é uma caixa que já traz tudo que o app precisa
+lacrado dentro — o Python, as peças, as telas. Nada precisa estar na
+máquina do colega.</p>
+<p>C: porque o app na verdade roda na SUA máquina pela internet, e o
+colega só vê a tela de longe.</p>
+<p>Pensa um segundo.</p>
+<hr />
+<p>É a B — e essa é a ideia inteira da aula numa frase.</p>
+<p>A está errado e é perigoso de acreditar: o Windows não sai baixando
+Python sozinho; se o app dependesse disso, ele falharia na máquina do
+colega. C está MUITO errado, e repara por que isso importa pra você: se
+o app rodasse na sua máquina pela internet, o dado do paciente do colega
+viajaria até você — e isso seria uma violação de privacidade gravíssima.
+Não é isso. O programa roda cem por cento na máquina do colega, sozinho,
+offline.</p>
+<p>Critério que fica: empacotar é tornar independente. A caixa não pede
+nada emprestado da máquina de quem recebe, e não conversa com ninguém
+pela rede. É essa independência que deixa você entregar o app pra
+qualquer um — e que mantém o dado de cada médico trancado na máquina
+dele.</p>
+<hr />
+<p><strong>PERGUNTA DUAS — quando o colega clicar no programa novo e o
+Windows mostrar ‘aplicativo não reconhecido’, qual é a atitude
+certa?</strong></p>
+<p>A: pedir pro colega desligar o antivírus do computador inteiro, abrir
+o app, e deixar desligado.</p>
+<p>B: entender que é o Windows desconfiando de uma caixa nova que ele
+ainda não conhece — e usar o ‘Mais informações’ e ‘Executar assim mesmo’
+pra liberar APENAS aquele app, mantendo todo o resto da segurança
+ligado.</p>
+<p>C: concluir que o app está com vírus e jogar fora.</p>
+<p>Pensa.</p>
+<hr />
+<p>É a B.</p>
+<p>A é o erro clássico, e é grave: desligar o antivírus inteiro pra
+abrir um programa é como desarmar o hospital inteiro pra deixar uma
+única caixa entrar. Você nunca faz isso, e nunca pede pro seu colega
+fazer. C também está errado e joga fora um app perfeitamente seguro — é
+como descartar um remédio bom porque o fiscal parou pra cheirar.</p>
+<p>O certo é a B: o fiscal cheirou porque a caixa é nova e ele não te
+conhece ainda, não porque tem veneno dentro. Você libera só AQUELA
+caixa, AQUELA vez, e deixa o fiscal de guarda pra todo o resto.</p>
+<p>Critério que fica: segurança não se desliga, se calibra. Você nunca
+compra autonomia desarmando a proteção de quem usa. Libera o específico,
+mantém o geral.”</p>
+<hr />
+<h2 id="seção-4-selando-a-caixa-o-primeiro-pack-11-min">SEÇÃO 4: SELANDO
+A CAIXA — O PRIMEIRO PACK — 11 min</h2>
+<p><strong>Tom:</strong> Mãos à obra. Ritual de terreno limpo, decisão
+honesta do que vai dentro, e o pedido de empacotamento.</p>
+<p>“Hora de montar a caixa. E como sempre, antes de mexer, o ritual:
+conferir que o terreno está limpo e que nada de paciente entra na caixa.
+Cola:”</p>
+<p>[TELA: digitar o Prompt 0 no Claude Code]</p>
+<pre><code>Você é meu par de programação. Hoje eu quero transformar o meu app ClinMd-Tribe
+(feito em Flet) num programa de Windows — um arquivo .exe — que abre com dois cliques,
+sem terminal e sem Python instalado, pra eu entregar na mão de um colega médico.
+
+Antes de tudo, confira o terreno e me responda em português, SEM saída técnica crua:
+  1. Eu estou num computador Windows? (Gerar .exe só funciona no Windows — se eu
+     estiver em Mac ou Linux, me avise e me diga meu caminho.)
+  2. O meu trabalho está salvo (git em dia)?
+  3. A pasta data/ continua protegida pelo .gitignore? Banco, artigos e qualquer dado
+     de paciente NÃO podem entrar no programa que eu vou distribuir.
+
+Se algo estiver pendente, conserte e confirme em uma frase. NÃO me mostre código nem
+configuração.</code></pre>
+<p>“Terreno confirmado, <code>data/</code> trancada. Agora, uma decisão
+honesta antes de empacotar: o que vai dentro da caixa.</p>
+<p>O seu app tem uma parte pesada — a busca inteligente, o RAG, com
+aquele cérebro de leitura de uns noventa megas e bibliotecas grandes.
+Embrulhar isso numa caixa de distribuição deixa o pacote enorme e
+frágil. Então a gente faz o que um bom produto faz: a versão de bolso,
+pro colega, leva o que ele mais usa no plantão — as calculadoras, o
+checklist cirúrgico, o painel. A busca inteligente continua sua, no seu
+ambiente completo, mas fica de fora desta caixa que viaja. Menos é mais
+quando o objetivo é caber na mão de qualquer um.</p>
+<p>Cola o pedido:”</p>
+<p>[TELA: digitar o Prompt 1 — o empacotamento]</p>
+<pre><code>Agora empacote o meu app ClinMd-Tribe como um programa de Windows (.exe), usando o
+flet pack, para qualquer médico abrir com dois cliques, sem Python e sem terminal.
+
+O escopo do que vai dentro:
+  - Inclua as partes leves e mais usadas: as calculadoras médicas, o checklist
+    cirúrgico e o painel/dashboard.
+  - NÃO inclua a busca inteligente (o RAG): ela depende de um modelo pesado de uns
+    90 MB e de bibliotecas grandes que tornam o pacote enorme e frágil. Deixe a busca
+    de fora desta versão de distribuição — ela continua existindo para mim no ambiente
+    completo, mas não vai nesta caixa de bolso.
+  - Dê ao programa o nome &quot;ClinMd-Tribe&quot; e o ícone clínico da identidade visual.
+  - NENHUM dado de paciente no pacote: a pasta data/ NÃO pode ser embrulhada junto.
+    O colega recebe o app limpo e começa do zero.
+
+Garanta que as bibliotecas pesadas da busca (torch, sentence-transformers, chromadb)
+NÃO entrem no pacote — nem por import indireto. Se o ponto de entrada atual importa a
+busca, crie um ponto de entrada de distribuição que não a importe e empacote esse.
+Confira o tamanho do .exe no fim: se passar de uns 300 MB, alguma biblioteca pesada
+vazou — investigue e corrija antes de me entregar.
+
+Cuide você mesmo de toda a parte de empacotamento (dependências, exclusão da busca,
+assets), sem me mostrar arquivo nenhum. Quando terminar, me diga em português: (1) que
+o app está empacotado, e o que ficou dentro (calculadoras, checklist, painel) e fora
+(a busca); (2) o comando exato que eu rodo para gerar e quanto costuma demorar; (3)
+onde o arquivo .exe vai aparecer e o tamanho dele.</code></pre>
+<p>“O Claude prepara tudo e te dá o comando pra rodar. É um comando só.
+Vai ser parecido com este, mas mais comprido — o Claude acrescenta os
+detalhes do ícone e o que fica de fora. Você não decora nada: cola
+exatamente o que o Claude te deu:”</p>
+<p>[TELA: no terminal — o comando que o Claude forneceu, na forma
+simplificada]</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flet</span> pack main.py <span class="at">--name</span> ClinMd-Tribe</span></code></pre></div>
+<p>“Dá enter. E aí vem a paciência: empacotar demora. A tela vai cuspir
+um monte de texto correndo — não precisa ler nada, é a caixa sendo
+montada peça por peça. Pode levar alguns minutos. Espera ele terminar e
+dizer ‘pronto’, ou apontar um erro.</p>
+<p>E se der erro na primeira vez — e pode dar — não entra em pânico. O
+jeito de resolver é o de sempre: você copia a última parte do que
+apareceu na tela e cola no Claude com este pedido:”</p>
+<p>[TELA: digitar o Prompt 2 — só se der erro]</p>
+<pre><code>O empacotamento deu erro. Vou colar a última parte do que apareceu na tela. Me
+explique em português simples o que aconteceu, conserte se for algo do projeto, e me
+diga o comando pra tentar de novo. NÃO me mostre arquivo.
+
+[colo aqui o erro]</code></pre>
+<p>“O Claude lê o erro como você lê um exame alterado, e te diz a
+conduta. Errar aqui é parte do processo, não é fracasso.”</p>
+<hr />
+<h2 id="seção-5-o-clímax-dois-cliques-12-min">SEÇÃO 5: O CLÍMAX — DOIS
+CLIQUES — 12 min</h2>
+<p><strong>Tom:</strong> O ápice. Desacelera. O .exe abre com dois
+cliques, sem terminal. Payoff observável.</p>
+<p>“O Claude terminou de montar. Ele te diz onde a caixa ficou — numa
+pasta chamada <code>dist</code>. Vamos abrir essa pasta pra achar o
+programa:”</p>
+<p>[TELA: no terminal]</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">explorer</span> dist</span></code></pre></div>
+<p>“O Windows abre a janela de arquivos direto na pasta. E olha o que
+tem ali: um arquivo chamado <code>ClinMd-Tribe.exe</code>, com o ícone
+do seu app. É um programa de Windows de verdade. Igual o do Word. Igual
+o do WhatsApp.</p>
+<p>Repara num detalhe: no comando você escreveu só
+<code>ClinMd-Tribe</code>, sem o <code>.exe</code>. O <code>.exe</code>
+é o sobrenome que o Windows dá automaticamente pra todo programa — você
+não digita, ele aparece sozinho no arquivo.</p>
+<hr />
+<p>Agora o momento.</p>
+<p>Duplo-clique no <code>ClinMd-Tribe.exe</code>.</p>
+<p>Um aviso honesto: como tudo está espremido num arquivo só, a primeira
+abertura pode levar uns segundinhos a mais — o programa está se
+desempacotando por dentro. Da segunda vez em diante, mais rápido.</p>
+<p>[pausa]</p>
+<p>Olha o que NÃO aconteceu. Você não abriu o terminal. Não digitou
+comando. Não tinha Claude por perto. Clicou. Abriu. Como o Word.</p>
+<p>E olha o que abriu: o seu app, com a roupa da TribeMD da aula
+passada, vivo, numa janela limpa. Sem nenhum terminal preto por
+trás.</p>
+<hr />
+<p>Navega. Abre uma calculadora — calcula um escore. Abre o checklist
+cirúrgico — marca um item, o horário aparece. Abre o painel. Tudo
+funcionando, dentro da caixa, sem internet, sem Python, sem nada.</p>
+<hr />
+<p>[pausa]</p>
+<p>E aqui vem o pulo do gato. Esse único arquivo — esse
+<code>.exe</code> sozinho — você copia num pen drive, manda pro seu
+colega, e ele clica na máquina DELE. Sem Python. Sem terminal. Sem você.
+A fórmula virou remédio que anda sozinho.</p>
+<p>Para um segundo e pensa no que você fez. No começo do curso, você não
+sabia o que era um terminal. Hoje você pegou um app que ajudou a
+construir, e transformou ele num programa de Windows que qualquer médico
+do planeta abre com dois cliques. Você não é mais só quem usa software.
+Você é quem entrega software. A fórmula saiu da bancada.”</p>
+<hr />
+<h2 id="seção-6-o-fiscal-na-porta-o-antivírus-6-min">SEÇÃO 6: O FISCAL
+NA PORTA — O ANTIVÍRUS — 6 min</h2>
+<p><strong>Tom:</strong> Tranquilizador e honesto. A armadilha do
+antivírus, enquadrada antes de assustar.</p>
+<p>“Agora uma coisa que PODE acontecer — e se acontecer, não é você que
+quebrou nada.</p>
+<p>Quando o seu colega clicar no programa pela primeira vez, o Windows
+pode parar e mostrar uma tela azul: ‘O Windows protegeu o seu
+computador’, ‘aplicativo não reconhecido’, ‘editor desconhecido’.</p>
+<hr />
+<p>Por quê? Lembra do fiscal na entrada do hospital. Caixa de remédio
+que ele nunca viu, de um laboratório que ele não conhece ainda — ele
+para e cheira. Não é que o remédio tá envenenado. É que é novo, e ele
+não te conhece.</p>
+<p>Tecnicamente: o seu programa não é ‘assinado’ — não tem ainda um
+carimbo de fabricante reconhecido que o Windows confie de cara. Então o
+fiscal desconfia por precaução. É chato, mas é o fiscal fazendo o
+trabalho dele.</p>
+<hr />
+<p>Como liberar, sem desligar a segurança do seu colega: naquela tela
+azul, tem um link pequeno, ‘Mais informações’. Clica nele. Aí aparece um
+botão: ‘Executar assim mesmo’. Isso diz pro Windows: ‘eu conheço esse
+programa, pode passar’.</p>
+<p>Repara no que você NUNCA faz: você nunca pede pro colega desligar o
+antivírus inteiro. Isso seria desarmar o hospital pra entregar uma
+caixa. Você libera só AQUELA caixa, AQUELA vez. Da segunda abertura em
+diante, o Windows já confia e nem pergunta mais.</p>
+<hr />
+<p>E o jeito definitivo de o fiscal nunca mais te parar — assinar
+digitalmente o seu programa, como um CRM do software — é assunto de
+produto profissional, e a gente toca nele na próxima aula, quando falar
+de soltar isso no mundo direito.”</p>
+<hr />
+<h2 id="seção-7-a-caixa-tem-tamanho-e-tá-tudo-bem-3-min">SEÇÃO 7: A
+CAIXA TEM TAMANHO (E TÁ TUDO BEM) — 3 min</h2>
+<p><strong>Tom:</strong> Desmistificador, leve. O peso e o Windows-only
+como esperados, não como defeito.</p>
+<p>“Mais duas coisas que você vai notar, e que são normais.</p>
+<p>A primeira: o arquivo é maior que um app comum. Mesmo sem a busca
+pesada, a caixa traz o Python inteiro dentro pra não depender de nada lá
+fora. É o preço da independência, e é um preço justo: você troca ‘leve,
+mas preso à minha bancada’ por ‘maior, mas anda sozinho na mão de
+qualquer um’. Por isso a entrega vai de pen drive ou link, não por
+e-mail.</p>
+<p>A segunda: esse programa é do Windows. Roda em qualquer Windows, do
+seu colega, da secretária, da clínica. Um colega no Mac precisaria de
+uma caixa diferente — mesma fórmula, outra embalagem. Pra sua turma, que
+é quase toda Windows, essa é a caixa certa.</p>
+<p>Nada disso é defeito. É a natureza de um remédio de prateleira: vem
+pronto, vem completo, e por isso vem numa caixa de tamanho de gente
+grande.”</p>
+<hr />
+<h2 id="seção-8-encerramento-da-bancada-pra-prateleira-6-min">SEÇÃO 8:
+ENCERRAMENTO — DA BANCADA PRA PRATELEIRA — 6 min</h2>
+<p><strong>Tom:</strong> Síntese pelo aluno, LGPD como ápice do eixo, e
+a ponte para aula_39.</p>
+<p>“Recapitula, você dizendo na sua cabeça.</p>
+<p>Você pegou a sua fórmula manipulada — o app que só rodava na sua
+bancada, com o seu comando — e transformou ela num remédio de
+prateleira. Um programa de Windows que abre com dois cliques, sem
+terminal, sem você, na máquina de qualquer médico. Você decidiu, com
+cabeça de produto, o que vai na caixa de bolso: as calculadoras e o
+checklist, o que mais se usa. Aprendeu que a caixa é maior porque traz
+tudo dentro, e que o fiscal-antivírus pode cheirar uma caixa nova e como
+liberar sem desarmar o hospital. E não escreveu nem leu uma linha de
+código. Você pediu uma caixa e abriu ela.</p>
+<hr />
+<p>E agora a privacidade — e essa é a aula onde tudo que a gente
+martelou o curso inteiro fecha com chave de ouro.</p>
+<p>Durante semanas eu repeti: dado de paciente não sai, tudo roda local,
+na sua máquina. Hoje aconteceu uma coisa nova e poderosa. O app saiu da
+sua máquina — virou uma caixa que você entrega pro colega. E mesmo
+assim, repara: o eixo não quebrou. Ficou mais forte.</p>
+<p>Porque o programa roda cem por cento offline, na máquina do colega,
+sem internet. Quando ELE usar o app pra calcular um escore ou guardar um
+checklist de cirurgia, o dado do paciente DELE fica na máquina DELE —
+não vem pra você, não sobe pra lugar nenhum, não passa pela nuvem. Você
+entregou a ferramenta, não os dados. Cada médico vira dono do próprio
+cofre.</p>
+<p>E olha o detalhe que prova isso: lembra que a gente fez questão de
+NÃO deixar a pasta <code>data/</code> entrar na caixa? Foi de propósito.
+A caixa leva o app — as telas, as contas. A caixa NÃO leva paciente
+nenhum. O colega recebe uma farmácia vazia e limpa; quem coloca remédio
+nas prateleiras dele é ele, na máquina dele.</p>
+<p>Esse é o ápice do ‘tudo local’: não importa em quantas mãos o app
+chegue, o dado de cada um fica trancado em cada um. Isso é privacidade
+desenhada na raiz, não remendada depois.</p>
+<hr />
+<p>Mas calma antes de sair distribuindo. Você fez a caixa. Ela abre. O
+remédio funciona. Só que um laboratório sério não joga a caixa na rua
+assim.</p>
+<p>Antes de o remédio chegar na prateleira, tem uma última conferência:
+a caixa tá lacrada direito? Não escapou nada que não devia ir junto —
+nenhuma chave secreta, nenhum dado, nenhuma sobra? E o colega vai saber
+usar — cadê a bula?</p>
+<p>Na próxima aula, a última do polimento, a gente faz essa conferência
+final, como uma auditoria de qualidade antes do lote sair. Passa um
+pente-fino de segurança no que você vai entregar, monta um checklist de
+entrega — a sua bula — e fala de como soltar isso no mundo direito.</p>
+<p>Você já sabe fazer o remédio. Na próxima, a gente aprende a entregar
+ele como um laboratório de respeito entrega. Até lá.”</p>
+<hr />
+<p><strong>FIM DO ROTEIRO</strong></p>
+<hr />
+<blockquote>
+<p><strong>NOTAS DE PRODUÇÃO (não falar — operacional):</strong></p>
+<ul>
+<li><strong>Decisão do Dr. Petrus (escopo):</strong> o <code>.exe</code>
+é a versão LEVE — calculadoras + checklist + painel, SEM o RAG.
+Ferramenta: <strong><code>flet pack</code></strong> (PyInstaller), NÃO
+<code>flet build windows</code> (que exigiria Visual Studio + Flutter).
+Sem o torch/sentence-transformers, o empacotamento é robusto e o aluno
+não instala nada pesado.</li>
+<li><strong>Excluir o RAG do pack (CRÍTICO) — gate verificável:</strong>
+o Prompt 1 manda deixar a busca de fora E conferir o tamanho. <strong>Se
+o <code>.exe</code> passar de ~300-400 MB, o torch vazou</strong> →
+exigir um ponto de entrada de distribuição que NÃO importe o módulo de
+busca +
+<code>--exclude-module=torch --exclude-module=chromadb --exclude-module=sentence_transformers</code>.
+NÃO gravar antes de confirmar o tamanho. PyInstaller faz análise
+estática de imports: <code>--exclude-module</code> sozinho não basta se
+<code>main.py</code> importa a busca no topo — daí o entry-point de
+distribuição separado. <strong>Cravar o comportamento:</strong> a versão
+distribuível deve NÃO renderizar o item de busca no menu (REMOVER, não
+só desabilitar) — a narração diz “fica de fora”, então o app não pode
+mostrar a busca na tela. Validar que calculadoras/checklist/painel
+funcionam offline.</li>
+<li><strong><code>flet pack</code> só roda no Windows</strong> (para
+gerar .exe). Confirmar que a conta-piloto grava no Windows. Saída em
+<code>dist/</code> (padrão PyInstaller).</li>
+<li><strong>Tempo/tamanho:</strong> o pack demora (tela cheia de texto
+verbose — avisar “não precisa ler”); cortar a espera na edição. Sem o
+RAG, o tamanho é bem menor que seria, mas ainda dezenas-centenas de MB
+(Python runtime). Confirmar o tamanho real e ajustar a fala da Seção
+7.</li>
+<li><strong>SmartScreen/antivírus:</strong> <code>.exe</code>
+não-assinado dispara a tela azul do SmartScreen. Se na conta-piloto não
+disparar (varia por reputação), gravar como “pode acontecer, e se
+acontecer é isto”. Caminho: Mais informações → Executar assim mesmo.
+NUNCA ensinar a desligar o antivírus.</li>
+<li><strong>Prova do “máquina de qualquer um” (forte):</strong> se
+possível, gravar o <code>.exe</code> abrindo numa 2ª máquina Windows SEM
+Python instalado — é a prova definitiva. E mostrar uma busca… não: a
+busca está fora; mostrar calculadora+checklist offline (Wi-Fi desligado)
+reforça o LGPD.</li>
+<li><strong>Prompt 2 (diagnóstico):</strong> errar no 1º pack é
+esperado; o aluno cola o erro no Prompt 2 e o Claude orienta. Não cortar
+essa possibilidade da narração (Seção 4 já avisa).</li>
+<li><strong>Distribuição (onefile — CORRIGIDO):</strong> o
+<code>flet pack</code> (default) gera UM <code>.exe</code>
+autossuficiente em <code>dist/</code> — NÃO precisa de DLLs ao lado;
+pode entregar o <code>.exe</code> solto. Zipar é opcional (evita
+bloqueio de download do navegador). Pen drive (presencial, 100% offline)
+ou link (à distância); nunca e-mail (tamanho). Onefile: a 1ª abertura é
+mais lenta (auto-extração num tempdir) e tende a disparar MAIS o
+SmartScreen — ambos avisados na narração. A analogia “Word/WhatsApp” da
+Seção 5 é sobre “ser um programa de verdade”, NÃO sobre tamanho — não
+cruzar com a discussão de peso da Seção 7.</li>
+<li><strong>Armadilha bash:</strong> os únicos comandos são
+<code>flet pack ...</code>, <code>explorer dist</code>,
+<code>git</code>. Zero <code>uv run python -c</code>.</li>
+<li><strong>Gancho aula_39:</strong> auditoria final (token/segredo,
+<code>data/</code>, o que vai junto) + checklist de entrega (“bula”) +
+distribuição responsável.</li>
+</ul>
+</blockquote>
+</body>
+</html>

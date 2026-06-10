@@ -584,40 +584,34 @@ número de lugares que ele toca pra uma mudança (Prompt 2 item 4 / teste
 do MELD) e (b) “uma só verdade, um só lugar”. Ambos 100% observáveis em
 prosa. O skill ensinado é “pedir a vistoria e ler o laudo”, não “ver
 código”.</li>
-<li><strong>PRÉ-REQUISITO BLOQUEANTE DE GRAVAÇÃO — estado do
-<code>clinmd_tribe/</code> no disco (CRÍTICO, achado C1/I2/I3 dos
-revisores):</strong> no repo do curso, <code>clinmd_tribe/</code> é
-scaffold (camadas vazias, <code>domain/__init__.py</code> e
-<code>tests/__init__.py</code> com 0 linhas). As Seções 5 e 6 dependem
-de o app-piloto da gravação ter calculadoras committadas no Domínio +
-testes verdes. <strong>NÃO gravar as Seções 5-6 sem decidir um dos dois
-caminhos abaixo.</strong> A escolha é do Dr. Petrus; as duas falas estão
-escritas para não improvisar ao vivo.
+<li><strong>PRÉ-REQUISITO DE GRAVAÇÃO — RESOLVIDO (Caminho A executado
+em 2026-06-10):</strong> o app-piloto real foi construído em
+<code>clinmd_tribe/</code>. O <code>domain/</code> tem 4 calculadoras
+MODULARES, uma por arquivo (<code>meld.py</code>,
+<code>cha2ds2vasc.py</code>, <code>phq9.py</code>,
+<code>gad7.py</code>), e <code>tests/</code> tem 26 testes pytest VERDES
+(casos do CHA2DS2-VASc batem com a aula_33: 3/0/7/2). As demos das
+Seções 5-6 são GENUÍNAS:
 <ul>
-<li><strong>CAMINHO A (recomendado) — app-piloto real:</strong> ter pelo
-menos 2-3 calculadoras modulares no <code>domain/</code> (incluindo o
-MELD, da aula_24) + suíte pytest VERDE committada. Aí os prompts do
-corpo rodam de verdade: a fala “Toquei um arquivo. O do MELD, no
-Domínio. Mais nada.” (Seção 6) e os testes verdes do Prompt 3/4 são
-reais. <strong>Alinhar a lista de calculadoras do Prompt 2, item 1
-(Seção 5) EXATAMENTE com as que estiverem committadas</strong> — citar
-uma calculadora ausente faz o laudo dizer “não encontrado” ao vivo
-(achado I3).</li>
-<li><strong>CAMINHO B — scaffold/hipótese:</strong> trocar o prompt do
-teste (Seção 6) de “Faça a mudança… quantos arquivos você precisou
-tocar” por <strong>“Na estrutura saudável que a gente planejou para o
-ClinMd-Tribe, se eu mudasse um parâmetro da regra do MELD, em quantos
-arquivos isso mexeria? Responda como hipótese, sem código.”</strong> — e
-a fala da Seção 6 vira: <strong>“O Claude confirma: na casa arrumada,
-seria um arquivo só — o do MELD, no Domínio. Mais nada.”</strong> No
-Prompt 3 (arrumação), trocar “RODE os testes (pytest)” por “me explique
-como você CONFIRMARIA, com os testes, que nada quebrou” (descrição do
-hábito, não execução). O Prompt 2 (ronda) vira laudo da estrutura
-planejada, não auditoria do disco vazio.</li>
-<li><strong>Em ambos os caminhos:</strong> gravar fala pronta nos 2
-cenários da Seção 5 (laudo todo verde / laudo achou um
-amarelo-vermelho), igual ao padrão laudo-limpo/achou da aula_39 e
-cofre-vazio da aula_40.</li>
+<li><strong>Seção 5 (ronda):</strong> o Prompt 2 lista PHQ-9, GAD-7,
+CHA2DS2-VASc, MELD — todos existem no <code>domain/</code>, cada um num
+arquivo só. O laudo dá “casa arrumada” de verdade
+(presentation/application/infrastructure ainda vazios = nenhuma lógica
+clínica vazada).</li>
+<li><strong>Seção 6 (clímax MELD):</strong> mudar o piso de creatinina é
+alterar a constante <code>PISO_CREATININA</code> em <code>meld.py</code>
+= <strong>toca 1 arquivo</strong> de verdade. A fala “Toquei um arquivo.
+O do MELD, no Domínio. Mais nada.” é literal. Rodar <code>pytest</code>
+continua verde (a mudança é localizada). Comando de teste que NÃO exige
+flet (evita problema de wheel): a partir de <code>clinmd_tribe/</code>,
+<code>uv run --with pytest --no-project pytest -q</code>. No ambiente do
+aluno (Python 3.11-3.13) <code>uv run --extra dev pytest</code> também
+serve.</li>
+<li><strong>Seção 5, cenário do laudo:</strong> como a casa-piloto está
+limpa, o laudo virá verde. Gravar também a fala alternativa “achou um
+amarelo” só se o instrutor quiser demonstrar uma sala-depósito (basta,
+fora de gravação, colar temporariamente uma regra clínica num arquivo de
+presentation; reverter depois). Opcional.</li>
 </ul></li>
 <li><strong>Honestidade sobre o que o Claude faz na auditoria:</strong>
 é análise heurística/qualitativa de revisor sênior, NÃO medição objetiva

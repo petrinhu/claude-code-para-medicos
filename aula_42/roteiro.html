@@ -573,17 +573,12 @@ Recap factual (verbos, o que ele FEZ), virada como constatação,
 despedida curta. Médico sênior tem alergia a bajulação: “você é
 incrível” cortado; “saiu do zero e comanda um time” mantido (é
 fato).</li>
-<li><strong>PRÉ-REQUISITO HERDADO DA aula_41 (achado C1 dos
-revisores):</strong> esta aula reativa “as calculadoras” (recap S9) e
-“os testes que blindam a execução” (S6). DEVE usar o MESMO app-piloto e
-o MESMO caminho (A real / B hipótese) decidido para a aula_41 — as duas
-não podem divergir. Como a aula_42 é conversacional e NÃO executa pytest
-ao vivo (o Prompt 5 só pergunta “quem cuida e o que garantir”), o risco
-aqui é só de coerência narrativa, não de laudo quebrado ao vivo. O recap
-da S9 já fala das calculadoras como o que o aluno APRENDEU A CONSTRUIR
-(“calculadoras clínicas que você mesmo desenhou” — verbo de construção,
-não inventário do disco), e a S6 foi ajustada para “não quebrou nenhuma
-das regras que você já tem”. Robusto aos 2 caminhos.</li>
+<li><strong>PRÉ-REQUISITO HERDADO DA aula_41 — RESOLVIDO:</strong> o
+app-piloto real foi construído (Caminho A, 2026-06-10):
+<code>clinmd_tribe/domain/</code> tem MELD, CHA2DS2-VASc, PHQ-9 e GAD-7
+modulares + 26 testes pytest verdes. As “calculadoras” do recap (S9) e
+“os testes que blindam a execução” (S6) têm lastro real no disco. Nada a
+decidir — a coerência narrativa está garantida.</li>
 <li><strong>HONESTIDADE DO MECANISMO (CRÍTICO — achado do
 coach):</strong> NÃO existe, no Claude Code, vários subagentes debatendo
 entre si ao vivo num turno — subagente não conversa com subagente.

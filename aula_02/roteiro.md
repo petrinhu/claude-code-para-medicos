@@ -137,7 +137,7 @@ Liste as principais diferenças em bullets.
 
 Isso é o que eu chamo de inteligência de guideline.
 
-Você não precisa ler os 80 páginas da versão nova e lembrar o que a versão antiga dizia.
+Você não precisa ler as 80 páginas da versão nova e lembrar o que a versão antiga dizia.
 Você pergunta: o que mudou? O Claude compara.
 
 Na prática clínica isso vale ouro —
@@ -208,30 +208,41 @@ Me devolva a planilha limpa em formato CSV.
 
 Limpa. Organizada. Ordenada. Em CSV pronto para importar.
 
-Uma nota rápida sobre modelos:
+Uma nota rápida sobre modelos, e sobre uma confusão muito comum.
 
-Existem versões diferentes do Claude — pensa nelas como uma equipe de níveis diferentes.
-O Haiku é o residente rápido: resolve o simples num instante.
-O Sonnet é o clínico geral competente — dá conta de quase tudo, e é o padrão.
-O Opus é o especialista, que você chama nos casos mais difíceis.
-E o mais novo e mais forte de todos é o Fable 5: o professor titular, que aguenta os casos
-mais longos e complexos sem perder o fio do raciocínio — daqueles que levam horas de
-trabalho seguido. Ele tem até um cuidado de segurança embutido: em temas sensíveis, passa
-o caso sozinho para o Opus.
+Quando você usa o Claude, existem DUAS escolhas, e elas são independentes uma da outra. Quase
+todo mundo embaralha as duas, então presta atenção, porque entender isso te dá o controle.
 
-Para esta aula — limpar uma planilha, gerar bullets — o Sonnet, que é o padrão, serve para
-tudo. Você não chama o professor titular para medir uma pressão.
+A primeira escolha é QUAL modelo, ou seja, o tamanho da mente. O Claude vem em tamanhos
+diferentes, como uma equipe de níveis:
+o Haiku é o residente rápido, resolve o simples num instante;
+o Sonnet é o clínico geral competente, dá conta de quase tudo, e é o padrão;
+o Opus é o especialista, que você chama nos casos mais difíceis;
+o Fable 5 é o mais novo e mais capaz de todos, o professor titular, que você reserva para
+os casos mais difíceis.
+Você escolhe pelo nome. Quanto mais alto o modelo, mais capaz, e também mais caro e mais lento.
 
-E tem mais um controle que vale conhecer desde já: o esforço — em inglês, o 'effort'.
-É quanto o Claude pensa antes de responder. É igual ao seu raciocínio clínico: num resfriado
-você decide rápido; num caso difícil, você para, revisa e pensa com calma. Você pode pedir
-ao Claude mais esforço para um problema cabeludo — ele pensa mais fundo, demora um pouco
-mais — ou menos esforço para uma tarefa boba e rápida. No dia a dia desta aula, o esforço
-padrão dá conta.
+A segunda escolha é QUANTO esforço, ou seja, quanto essa mente pensa antes de responder.
+Em inglês, chama 'effort'. Vai do mais baixo ao máximo, e o médio é o padrão. É igual ao seu
+raciocínio clínico: num resfriado você decide rápido (esforço baixo); num caso difícil, você
+para, revisa e pensa com calma (esforço alto).
 
-Regra de bolso: comece sempre com o padrão — Sonnet, esforço normal. Conforme o curso
-avançar e os seus pedidos ficarem mais complexos, aí você sobe o modelo (Opus ou Fable 5)
-e o esforço. Vamos aprofundar essa escolha quando você tiver mais fluência.
+E aqui está a sacada que desfaz a confusão: as duas escolhas se combinam livremente. Dá para
+ter o clínico geral pensando rápido, ou o professor titular pensando no máximo. Modelo é QUEM
+atende; esforço é QUANTO essa pessoa pensa. São perguntas diferentes, e você responde as duas.
+
+Para esta aula, limpar uma planilha e gerar bullets, o Sonnet no esforço médio (o padrão das
+duas escolhas) já serve para tudo. Você não chama o professor titular no esforço máximo para
+medir uma pressão.
+
+Regra de bolso: comece sempre no padrão, Sonnet com esforço médio. Conforme o curso avançar
+e os pedidos ficarem mais complexos, aí você sobe o modelo (Opus ou Fable 5), o esforço, ou
+os dois, lembrando que são alavancas separadas. A gente aprofunda quando você tiver mais
+fluência.
+
+E três nomes para fechar, porque você vai ouvir muito: a Anthropic é a empresa, o Claude é a
+inteligência (a mente), e o Claude Code, que você usa no terminal, é a ferramenta movida por
+essa mente.
 
 E gráficos? Para gerar gráficos o Claude precisaria de Python.
 Isso fica para a fase avançada do curso — por enquanto,

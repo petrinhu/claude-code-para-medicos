@@ -1,14 +1,37 @@
 # Aula 06 — Pôster de Congresso + Análise de Dados
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~41 min  
 **Tom:** Colega com humor leve e didático  
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta desta aula.
+- [ ] Sessão limpa, sem conversa anterior carregada (a demo nasce do zero).
+
+**Confira antes de gravar:**
+
+- [ ] Esta aula gera tudo ao vivo: o CSV (`dados_pacientes.csv`) e os dois gráficos (`scatter_phq9_imc.png` e `boxplot_hba1c_phq9.png`) são criados pelo Claude durante a demo. Saiba em que pasta eles caem para abri-los na tela.
+- [ ] Confirme que o Claude consegue executar análise e gerar imagem PNG no seu ambiente: faça um teste rápido (gere um CSV minúsculo e um gráfico de ensaio) e descarte, para não descobrir um problema durante a gravação.
+- [ ] Tenha um visualizador de imagem pronto para abrir os PNGs gerados.
+
+**Navegador:** nenhum site é necessário nesta aula.
 
 ---
 
 ## SEÇÃO 1: ABERTURA (2 min)
 
 **Tom:** Direto, conectando com aula_05, elevando o nível
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Pausa de meio segundo pro recado de sempre: hoje tem tabela de estatística e tem gráfico, e número pequeno na tela é igual valor de p no rodapé do artigo, ninguém enxerga sem ajuda. Quem usa óculos pra leitura, é a hora de calçar, porque hoje a gente vai olhar dado de perto. Pronto? Então segura que lá vai."
 
 "Na semana passada você criou o carrossel sobre a tríade obesidade-inflamação-depressão
 e a newsletter da semana. Você tem Instagram agora.
@@ -20,9 +43,10 @@ Não ainda.
 
 Hoje você publica.
 
-Você vai pegar os dados reais do seu consultório — anonimizados —
-e sair daqui com análise estatística, dois gráficos para publicação
-e o texto completo do pôster pronto para diagramar.
+Hoje, pra demonstrar, a gente vai trabalhar com uma planilha simulada,
+mas o fluxo é exatamente o mesmo que você usaria com os dados reais do seu
+consultório, depois de anonimizar. Você sai daqui com análise estatística,
+dois gráficos para publicação e o texto completo do pôster pronto para diagramar.
 
 Vamos lá."
 
@@ -242,6 +266,14 @@ Métodos com o que você realmente fez.
 Resultados com os números reais da análise.
 Conclusão honesta — reconhece as limitações do estudo.
 Três referências ABNT.
+
+E aqui um aviso que vale ouro: quando você pede referências para qualquer IA,
+SEMPRE confira se cada artigo existe de verdade antes de submeter.
+A IA às vezes monta uma referência que parece perfeita — autor, revista, ano,
+tudo plausível — mas que não existe. A gente chama isso de alucinação.
+Pega cada referência, joga o título no PubMed ou no Google Acadêmico,
+e confirma. Pôster com referência inventada é tiro no pé na sua reputação.
+Use a IA para redigir e organizar; use o PubMed para confirmar que existe.
 
 Isso é o corpo do pôster. Você copia para o template no Word ou no Canva,
 insere os dois gráficos nas posições certas, ajusta o layout, e submete.

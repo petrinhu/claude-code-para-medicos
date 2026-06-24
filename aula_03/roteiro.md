@@ -1,14 +1,38 @@
 # Aula 03 — PubMed + Fichamento e Leitura Crítica
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~55 min  
 **Tom:** Colega com humor leve e didático  
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta desta aula.
+- [ ] Sessão limpa, sem conversa anterior carregada (a demo nasce do zero).
+- [ ] Conector PubMed (plugin `pubmed@life-sciences` da Anthropic) já instalado e ativo num perfil de backup, para o caso de a instalação ao vivo da Seção 4 falhar na gravação. Confirme com `/mcp` que ele aparece como ativo.
+
+**Confira antes de gravar:**
+
+- [ ] Internet ativa (o MCP do PubMed busca online em tempo real).
+- [ ] Faça uma busca de teste no PubMed (ex.: 'atrial fibrillation') e descarte, para confirmar que o conector responde antes de gravar.
+- [ ] Tenha em mente que os artigos retornados variam a cada busca (a aula já avisa o aluno disso); o que importa é o fluxo, não a lista exata.
+
+**Navegador:** nenhum site é necessário nesta aula (a busca no PubMed acontece dentro do Claude Code, via MCP).
 
 ---
 
 ## SEÇÃO 1: ABERTURA (2 min)
 
 **Tom:** Direto, conectando com a aula anterior, elevando o nível
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Rapidinho, antes de começar: hoje a gente vai ler títulos de artigo e abstract direto no terminal, e essa fonte às vezes encolhe que nem rótulo de ampola. Quem usa óculos pra perto, separa eles agora. A gente não vai diagnosticar de longe hoje, vai ler de perto. Combinado? Bora."
 
 "Na aula passada a gente trabalhou com arquivos locais — PDFs que estavam
 no seu computador, planilhas que você já tinha, slides que você montou.
@@ -96,18 +120,30 @@ Entendeu o conceito? Ótimo. Vamos instalar."
 
 **Tom:** Pausado, didático, mostrando cada passo com calma
 
-"Para instalar o conector PubMed no Claude Code, vocês vão copiar
-este comando exato no terminal:
+"A própria Anthropic, a empresa que faz o Claude, mantém um pacote pronto de
+conectores para ciências da vida, e o PubMed está dentro dele. A gente não precisa
+caçar nada por fora: instala direto.
+
+Primeiro passo, dentro do Claude Code, vocês digitam este comando, que adiciona o
+catálogo de conectores de ciências da vida da Anthropic:
 
 ```
-claude mcp add pubmed -- npx -y @modelcontextprotocol/server-pubmed
+/plugin marketplace add anthropics/life-sciences
 ```
 
 [colar e executar]
 
-Pode aparecer uma mensagem de confirmação — digitem 'y' e Enter se pedir.
+Agora instala o conector do PubMed a partir desse catálogo:
+
+```
+/plugin install pubmed@life-sciences
+```
 
 [aguardar instalação]
+
+Pode aparecer uma confirmação na tela. Confirmem.
+
+[aguardar]
 
 Pronto. O conector está instalado.
 
@@ -117,13 +153,23 @@ Agora reiniciem o Claude Code para ele reconhecer o novo conector:
 claude
 ```
 
-[reiniciar e mostrar que o PubMed aparece disponível]
+[reiniciar]
+
+E pra conferir que o PubMed está mesmo plugado, digitem:
+
+```
+/mcp
+```
+
+[mostrar que o PubMed aparece na lista de conectores ativos]
+
+Lá está ele. Conector do PubMed, ativo.
 
 Uma coisa importante: isso foi feito uma única vez.
 Da próxima vez que vocês abrirem o Claude Code, o PubMed já vai estar lá.
 Não precisam repetir este passo.
 
-É como instalar o cabo do ECG na primeira vez — depois fica plugado.
+É como instalar o cabo do ECG na primeira vez: depois fica plugado.
 
 Vamos testar? Vou digitar uma pergunta simples pra confirmar que está funcionando:
 

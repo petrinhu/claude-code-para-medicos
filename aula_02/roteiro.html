@@ -174,17 +174,63 @@
 </header>
 <h1 id="aula-02-claude-code-com-arquivos-reais">Aula 02 — Claude Code
 com Arquivos Reais</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~46-50 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — “hoje você para
 de conversar e começa a trabalhar”<br />
 <strong>Fio narrativo:</strong> Sexta 17h, palestrante de depressão
 cancelado, aula segunda às 8h</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Já preparado em <code>resources/</code> (é só
+usar):</strong></p>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>resources/madrs_piloto.csv</code> : a planilha
+MADRS de propósito “suja” (dados fictícios), insumo da Seção
+4.</label></li>
+</ul>
+<p><strong>Você providencia (material de terceiros):</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />O guideline da APA sobre depressão,
+em PDF. Baixe do site oficial (psychiatry.org) e deixe à mão. Não foi
+incluído no projeto por ter direitos autorais. Insumo das Seções 2 e
+3.</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta desta aula.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada (a demo nasce do zero).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />O PDF anexa e o Claude consegue
+lê-lo (faça um resumo de teste e descarte).</label></li>
+<li><label><input type="checkbox" />Você sabe onde os resultados
+(slides, folheto) serão salvos, para abri-los na tela.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula.</p>
+<hr />
 <h2 id="seção-1-âncora-cenário-4-min">SEÇÃO 1: ÂNCORA + CENÁRIO — 4
 min</h2>
 <p><strong>Tom:</strong> Callback direto da aula_01, cenário de urgência
 clínica real</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Ah, antes de tudo, um lembrete de colega: hoje a gente vive no
+terminal, e vez ou outra as letrinhas ficam pequenas que nem letra de
+bula. Então, se você é do time dos óculos, é a hora: põe eles aí, que eu
+não quero ninguém apertando o olho feito quem lê posologia no escuro.
+Pronto? Então bora.”</p>
+<hr />
 <p>“Na aula_01 você aprendeu a conversar com o Claude.</p>
 <p>Sabe pedir. Sabe anexar. Sabe revisar. Sabe iterar.</p>
 <p>Hoje você para de conversar e começa a trabalhar.</p>
@@ -342,8 +388,9 @@ fluência.</p>
 <p>E três nomes para fechar, porque você vai ouvir muito: a Anthropic é
 a empresa, o Claude é a inteligência (a mente), e o Claude Code, que
 você usa no terminal, é a ferramenta movida por essa mente.</p>
-<p>E gráficos? Para gerar gráficos o Claude precisaria de Python. Isso
-fica para a fase avançada do curso — por enquanto, planilha limpa e
+<p>E gráficos? Para gerar gráficos o Claude escreve e roda Python por
+baixo dos panos, sem você ver uma linha de código. A gente faz isso mais
+pra frente, lá no módulo de pesquisa. Por hoje, planilha limpa e
 organizada já resolve 80% dos casos.”</p>
 <hr />
 <h2 id="seção-5-slides-m1.03-10-min">SEÇÃO 5: SLIDES (M1.03) — 10
@@ -455,5 +502,18 @@ pesquisar.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

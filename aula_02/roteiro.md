@@ -1,15 +1,47 @@
 # Aula 02 — Claude Code com Arquivos Reais
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~46-50 min  
 **Tom:** Colega com humor leve e didático — "hoje você para de conversar e começa a trabalhar"  
 **Fio narrativo:** Sexta 17h, palestrante de depressão cancelado, aula segunda às 8h  
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/madrs_piloto.csv` : a planilha MADRS de propósito "suja" (dados fictícios), insumo da Seção 4.
+
+**Você providencia (material de terceiros):**
+
+- [ ] O guideline da APA sobre depressão, em PDF. Baixe do site oficial (psychiatry.org) e deixe à mão. Não foi incluído no projeto por ter direitos autorais. Insumo das Seções 2 e 3.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta desta aula.
+- [ ] Sessão limpa, sem conversa anterior carregada (a demo nasce do zero).
+
+**Confira antes de gravar:**
+
+- [ ] O PDF anexa e o Claude consegue lê-lo (faça um resumo de teste e descarte).
+- [ ] Você sabe onde os resultados (slides, folheto) serão salvos, para abri-los na tela.
+
+**Navegador:** nenhum site é necessário nesta aula.
+
+---
+
 ## SEÇÃO 1: ÂNCORA + CENÁRIO — 4 min
 
 **Tom:** Callback direto da aula_01, cenário de urgência clínica real
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Ah, antes de tudo, um lembrete de colega: hoje a gente vive no terminal, e vez ou outra as letrinhas ficam pequenas que nem letra de bula. Então, se você é do time dos óculos, é a hora: põe eles aí, que eu não quero ninguém apertando o olho feito quem lê posologia no escuro. Pronto? Então bora."
+
+---
 
 "Na aula_01 você aprendeu a conversar com o Claude.
 
@@ -244,9 +276,9 @@ E três nomes para fechar, porque você vai ouvir muito: a Anthropic é a empres
 inteligência (a mente), e o Claude Code, que você usa no terminal, é a ferramenta movida por
 essa mente.
 
-E gráficos? Para gerar gráficos o Claude precisaria de Python.
-Isso fica para a fase avançada do curso — por enquanto,
-planilha limpa e organizada já resolve 80% dos casos."
+E gráficos? Para gerar gráficos o Claude escreve e roda Python por baixo dos panos,
+sem você ver uma linha de código. A gente faz isso mais pra frente, lá no módulo de
+pesquisa. Por hoje, planilha limpa e organizada já resolve 80% dos casos."
 
 ---
 

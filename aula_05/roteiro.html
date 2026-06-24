@@ -1,12 +1,228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 05 — Instagram: Carrossel + Newsletter</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 05 — Instagram: Carrossel + Newsletter</h1>
+</header>
 <h1 id="aula-05-instagram-carrossel-newsletter">Aula 05 — Instagram:
 Carrossel + Newsletter</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~45 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático</p>
+<hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Você providencia:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Conta no Canva já logada (gratuita
+serve). Necessária para a Seção 5 (design do carrossel). Faça o login
+antes de gravar para não mostrar tela de senha.</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta desta aula.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada (a demo nasce do zero).</label></li>
+<li><label><input type="checkbox" />Canva aberto e logado em outra aba,
+pronto para a montagem ao vivo.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Os arquivos
+<code>carrossel_triadeinflamacao.txt</code> e
+<code>newsletter_semana01.md</code> são criados ao vivo pelo Claude;
+saiba em que pasta eles caem para abri-los na tela.</label></li>
+<li><label><input type="checkbox" />Localize de antemão um template de
+carrossel limpo no Canva (busca ‘carrossel instagram médico’ ou
+‘carrossel educativo’), para não perder tempo procurando durante a
+gravação.</label></li>
+</ul>
+<p><strong>Navegador:</strong> abra a aba: https://www.canva.com</p>
 <hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
 <p><strong>Tom:</strong> Direto, conectando com aula_04, revelando a
 virada</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes da gente começar, um lembrete rápido: hoje tem terminal e tem
+Canva, e em ambos a letra às vezes fica do tamanho daquele rodapé de
+termo de consentimento que ninguém lê. Quem usa óculos pra perto, coloca
+agora, que diagnóstico a gente até arrisca de longe, mas design a gente
+faz de perto. Beleza? Vamos.”</p>
 <p>“Na aula passada você montou um briefing automático que roda todo dia
 às 7h e já chega com as novidades do diabetes tipo 2 resumidas.</p>
 <p>Você está se atualizando sem esforço.</p>
@@ -58,10 +274,11 @@ sua sensibilidade à insulina?’ O paciente sente que pode agir. Ele te
 segue porque você deu autonomia a ele.</p>
 <p>Rotacione entre os 3. Nunca só um tipo.</p>
 <p><strong>Por que carrossel?</strong></p>
-<p>Carrossel tem 3 vezes mais salvamentos do que post único. O algoritmo
-do Instagram ama salvamento — é a métrica mais importante. Carrossel
-também mantém o usuário na plataforma mais tempo — outro sinal
-positivo.</p>
+<p>Carrossel costuma gerar bem mais salvamentos do que um post de imagem
+única. E salvamento é um dos sinais que o algoritmo do Instagram mais
+valoriza: quando alguém salva, é porque o conteúdo vale a pena guardar.
+O carrossel também segura o usuário na plataforma por mais tempo, que é
+outro sinal positivo.</p>
 <p><strong>LGPD no digital — regra de ouro:</strong></p>
 <p>Nunca foto de paciente. Nunca caso real com qualquer detalhe
 identificável. Todo conteúdo é educativo genérico, baseado em
@@ -84,6 +301,13 @@ das citocinas, o ciclo entre cortisol e compulsão. Você sabe isso de
 memória.</p>
 <p>Mas como você explica para um paciente que mal sabe o que é
 citocina?</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: o prompt abaixo cita biomarcadores específicos da
+hipótese inflamatória da depressão (IL-6, TNF-alfa, PCR, adipocinas) e o
+eixo cortisol-compulsão. Validar se a redação final do carrossel
+descreve esses mecanismos de forma cientificamente correta e sem afirmar
+causalidade além da evidência.]</p>
+</blockquote>
 <p>Vou construir o prompt ao vivo.</p>
 <pre><code>Você é uma metabologista especialista em obesidade e síndrome metabólica.
 Crie um carrossel de Instagram com 7 slides sobre a inter-relação entre
@@ -219,3 +443,18 @@ gráficos para publicação.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

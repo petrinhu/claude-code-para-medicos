@@ -1,12 +1,243 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 04 — Flashcards Anki + Briefing Automático</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 04 — Flashcards Anki + Briefing Automático</h1>
+</header>
 <h1 id="aula-04-flashcards-anki-briefing-automático">Aula 04 —
 Flashcards Anki + Briefing Automático</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~50 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático</p>
+<hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Você providencia (material de terceiros):</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />O guideline da ADA “Standards of
+Care in Diabetes 2024”, em PDF. Baixe do site oficial
+(diabetesjournals.org/care, seção Standards of Care) e deixe à mão. Não
+foi incluído no projeto por ter direitos autorais. Insumo da Seção
+3.</label></li>
+<li><label><input type="checkbox" />Anki instalado no computador. Baixe
+do site oficial (apps.ankiweb.net), gratuito. Insumo da Seção 3
+(importação dos flashcards).</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta desta aula.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada (a demo nasce do zero).</label></li>
+<li><label><input type="checkbox" />Anki já aberto na tela, pronto para
+a importação ao vivo do <code>anki_dm2.txt</code> (gerado durante a
+aula).</label></li>
+<li><label><input type="checkbox" />Conector MCP do PubMed ativo
+(reaproveitado da aula_03; o briefing das Seções 4 e 5 depende
+dele).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />O PDF da ADA anexa e o Claude
+consegue lê-lo (faça um resumo de teste e descarte).</label></li>
+<li><label><input type="checkbox" />Teste a importação no Anki uma vez:
+gere um <code>anki_dm2.txt</code> de ensaio, importe com separador
+ponto-e-vírgula e confirme que os cards entram, depois apague o deck de
+teste.</label></li>
+<li><label><input type="checkbox" />Os arquivos
+<code>anki_dm2.txt</code> e <code>briefing_dm2.txt</code> são criados ao
+vivo pelo Claude; saiba em que pasta eles caem para abri-los na
+tela.</label></li>
+<li><label><input type="checkbox" />Internet ativa (o briefing busca no
+PubMed em tempo real).</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é obrigatório durante a
+gravação. Se quiser mostrar a página de download do Anki, abra a aba:
+https://apps.ankiweb.net</p>
 <hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
 <p><strong>Tom:</strong> Direto, conectando com aula_03, anunciando as
 duas entregas do dia</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Um segundo antes de a gente começar: hoje tem flashcard e tem
+terminal, e os dois adoram letra miúda. Quem precisa de óculos pra
+leitura, é agora, porque eu não quero ninguém forçando a vista feito
+residente lendo bula de plantão às 3 da manhã. Ajeitou? Então
+vamos.”</p>
 <p>“Na aula passada a gente foi ao PubMed, buscou artigos sobre
 fibrilação atrial, triou por hierarquia de evidência e fez um fichamento
 completo com PICO, nível de evidência e vieses.</p>
@@ -109,8 +340,11 @@ Tom: direto, para especialista em endocrinologia.</code></pre>
 todo dia:</p>
 <pre><code>Salve o prompt de briefing acima em um arquivo chamado briefing_dm2.txt na pasta atual.</code></pre>
 <p>[executar]</p>
-<p>Toda manhã: você abre o Claude Code, digita:</p>
-<pre><code>claude &lt; briefing_dm2.txt</code></pre>
+<p>Toda manhã: você abre o terminal e digita uma linha só, que joga o
+conteúdo do arquivo pra dentro do Claude no modo de uma resposta só (o
+<code>-p</code>, de ‘print’, que faz ele responder e já sair, sem abrir
+a tela de conversa):</p>
+<pre><code>cat briefing_dm2.txt | claude -p</code></pre>
 <p>E ele executa o prompt e entrega o resumo.</p>
 <p>Mas espera — isso ainda é manual. Vou mostrar como automatizar de
 verdade.”</p>
@@ -129,12 +363,12 @@ dispara sozinho.</p>
 <p>Abro o terminal e digito:</p>
 <pre><code>crontab -e</code></pre>
 <p>Isso abre o agendador de tarefas do Linux. Adiciono esta linha:</p>
-<pre><code>0 7 * * * cd ~/briefings &amp;&amp; claude &lt; ~/briefing_dm2.txt &gt; briefing_$(date +%Y-%m-%d).txt 2&gt;&amp;1</code></pre>
+<pre><code>0 7 * * * cd ~/briefings &amp;&amp; cat ~/briefing_dm2.txt | claude -p &gt; briefing_$(date +%Y-%m-%d).txt 2&gt;&amp;1</code></pre>
 <p>[explicar lendo a linha em voz alta]</p>
 <p>’0 7 * * *’ significa: todo dia às 7h em ponto. ‘cd ~/briefings’
-entra na pasta onde quero salvar. ‘claude &lt; briefing_dm2.txt’ roda o
-prompt. ‘&gt; briefing_2024-01-15.txt’ salva o resultado com a data de
-hoje.</p>
+entra na pasta onde quero salvar. ‘cat ~/briefing_dm2.txt | claude -p’
+joga o prompt no Claude no modo resposta-única. ‘&gt;
+briefing_2024-01-15.txt’ salva o resultado com a data de hoje.</p>
 <p>Salvo, fecho. Pronto.</p>
 <p>[mostrar que o cron está ativo]</p>
 <p><strong>No Windows (Task Scheduler):</strong></p>
@@ -143,12 +377,17 @@ hoje.</p>
 <p>Clico em ‘Criar Tarefa Básica’. Nome: ‘Briefing DM2’. Disparador:
 diariamente, às 7h00. Ação: iniciar programa. Programa:
 <code>cmd.exe</code> Argumentos:</p>
-<pre><code>/c &quot;cd /d C:\Users\SeuNome\briefings &amp;&amp; claude &lt; C:\Users\SeuNome\briefing_dm2.txt &gt; briefing_%date:~-4,4%-%date:~-7,2%-%date:~0,2%.txt&quot;</code></pre>
+<pre><code>/c &quot;cd /d C:\Users\SeuNome\briefings &amp;&amp; type C:\Users\SeuNome\briefing_dm2.txt | claude -p &gt; briefing_%date:~-4,4%-%date:~-7,2%-%date:~0,2%.txt&quot;</code></pre>
 <p>[configurar e salvar]</p>
 <p>Pronto. Windows ou Linux — resultado igual.</p>
 <p>Todo dia de manhã, antes de você acordar, o Claude já foi ao PubMed,
 buscou as novidades, resumiu, e deixou o arquivo na pasta.</p>
 <p>Você acorda, abre o arquivo, lê em 2 minutos, e está atualizado.</p>
+<p>Um detalhe honesto pra não te frustrar: pra esse agendamento rodar
+sozinho de madrugada, o Claude já precisa estar logado na sua máquina e
+o conector do PubMed já instalado, que é o que a gente fez na aula
+passada. Você configura uma vez, e depois ele trabalha enquanto você
+dorme.</p>
 <p>Isso é o que eu chamo de medicina baseada em evidência
 automatizada.”</p>
 <hr />
@@ -181,3 +420,18 @@ com SEO, pôster de congresso e muito mais.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

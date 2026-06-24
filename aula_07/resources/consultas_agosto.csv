@@ -1,0 +1,121 @@
+Paciente,Data,Dia_semana,Tipo_atendimento,Convenio,Valor_tabela_R$,Valor_recebido_R$,Status,Mes
+Paciente 001,2025-08-29,sexta,Retorno,Convênio Alfa,280,256,Realizado,agosto
+Paciente 002,2025-08-07,quinta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 003,2025-08-26,terça,Retorno,Convênio Gama,280,265,Realizado,agosto
+Paciente 004,2025-08-11,segunda,Retorno,Convênio Gama,280,257,Realizado,agosto
+Paciente 005,2025-08-29,sexta,Procedimento,Convênio Beta,600,477,Realizado,agosto
+Paciente 006,2025-08-01,sexta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 007,2025-08-13,quarta,Retorno,Convênio Alfa,280,255,Realizado,agosto
+Paciente 008,2025-08-05,terça,Consulta,Convênio Alfa,350,318,Realizado,agosto
+Paciente 009,2025-08-13,quarta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 010,2025-08-06,quarta,Consulta,Convênio Alfa,350,308,Realizado,agosto
+Paciente 011,2025-08-28,quinta,Consulta,Convênio Gama,350,331,Realizado,agosto
+Paciente 012,2025-08-12,terça,Retorno,Convênio Alfa,280,246,Realizado,agosto
+Paciente 013,2025-08-19,terça,Retorno,Convênio Beta,280,226,Realizado,agosto
+Paciente 014,2025-08-18,segunda,Consulta,Convênio Alfa,350,311,Realizado,agosto
+Paciente 015,2025-08-29,sexta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 016,2025-08-26,terça,Retorno,Convênio Alfa,280,256,Realizado,agosto
+Paciente 017,2025-08-29,sexta,Procedimento,Convênio Alfa,600,528,Realizado,agosto
+Paciente 018,2025-08-04,segunda,Retorno,Convênio Alfa,280,254,Realizado,agosto
+Paciente 019,2025-08-05,terça,Retorno,Convênio Gama,280,261,Realizado,agosto
+Paciente 020,2025-08-29,sexta,Consulta,Convênio Beta,350,277,Realizado,agosto
+Paciente 021,2025-08-07,quinta,Retorno,Convênio Alfa,280,251,Realizado,agosto
+Paciente 022,2025-08-13,quarta,Procedimento,Convênio Beta,600,484,Realizado,agosto
+Paciente 023,2025-08-12,terça,Retorno,Convênio Gama,280,253,Realizado,agosto
+Paciente 024,2025-08-06,quarta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 025,2025-08-20,quarta,Procedimento,Convênio Alfa,600,537,Realizado,agosto
+Paciente 026,2025-08-21,quinta,Procedimento,Convênio Alfa,600,527,Realizado,agosto
+Paciente 027,2025-08-01,sexta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 028,2025-08-13,quarta,Consulta,Convênio Alfa,350,322,Realizado,agosto
+Paciente 029,2025-08-01,sexta,Retorno,Convênio Gama,280,257,Realizado,agosto
+Paciente 030,2025-08-06,quarta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 031,2025-08-11,segunda,Retorno,Convênio Beta,280,223,Realizado,agosto
+Paciente 032,2025-08-25,segunda,Retorno,Particular,280,280,Realizado,agosto
+Paciente 033,2025-08-01,sexta,Retorno,Convênio Beta,280,218,Realizado,agosto
+Paciente 034,2025-08-14,quinta,Retorno,Convênio Alfa,280,251,Realizado,agosto
+Paciente 035,2025-08-05,terça,Retorno,Particular,280,280,Realizado,agosto
+Paciente 036,2025-08-05,terça,Procedimento,Convênio Alfa,600,541,Realizado,agosto
+Paciente 037,2025-08-26,terça,Retorno,Convênio Alfa,280,250,Realizado,agosto
+Paciente 038,2025-08-11,segunda,Procedimento,Particular,600,600,Realizado,agosto
+Paciente 039,2025-08-14,quinta,Consulta,Particular,350,350,Realizado,agosto
+Paciente 040,2025-08-21,quinta,Procedimento,Convênio Beta,600,490,Realizado,agosto
+Paciente 041,2025-08-15,sexta,Retorno,Convênio Gama,280,256,Realizado,agosto
+Paciente 042,2025-08-01,sexta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 043,2025-08-12,terça,Retorno,Convênio Alfa,280,259,Realizado,agosto
+Paciente 044,2025-08-12,terça,Retorno,Particular,280,280,Realizado,agosto
+Paciente 045,2025-08-26,terça,Retorno,Particular,280,280,Realizado,agosto
+Paciente 046,2025-08-27,quarta,Procedimento,Convênio Gama,600,553,Realizado,agosto
+Paciente 047,2025-08-20,quarta,Retorno,Convênio Alfa,280,0,Cancelado,agosto
+Paciente 048,2025-08-20,quarta,Consulta,Convênio Beta,350,272,Realizado,agosto
+Paciente 049,2025-08-04,segunda,Retorno,Convênio Alfa,280,255,Realizado,agosto
+Paciente 050,2025-08-06,quarta,Retorno,Convênio Alfa,280,253,Realizado,agosto
+Paciente 051,2025-08-20,quarta,Retorno,Convênio Alfa,280,246,Realizado,agosto
+Paciente 052,2025-08-05,terça,Consulta,Convênio Gama,350,0,Cancelado,agosto
+Paciente 053,2025-08-29,sexta,Procedimento,Convênio Alfa,600,525,Realizado,agosto
+Paciente 054,2025-08-12,terça,Retorno,Convênio Beta,280,229,Realizado,agosto
+Paciente 055,2025-08-19,terça,Retorno,Convênio Alfa,280,244,Realizado,agosto
+Paciente 056,2025-08-13,quarta,Consulta,Convênio Beta,350,270,Realizado,agosto
+Paciente 057,2025-08-26,terça,Consulta,Convênio Alfa,350,321,Realizado,agosto
+Paciente 058,2025-08-04,segunda,Procedimento,Particular,600,600,Realizado,agosto
+Paciente 059,2025-08-15,sexta,Retorno,Convênio Alfa,280,252,Realizado,agosto
+Paciente 060,2025-08-25,segunda,Retorno,Convênio Alfa,280,259,Realizado,agosto
+Paciente 061,2025-08-08,sexta,Retorno,Particular,280,0,No-show,agosto
+Paciente 062,2025-08-12,terça,Consulta,Convênio Alfa,350,314,Realizado,agosto
+Paciente 063,2025-08-27,quarta,Procedimento,Convênio Alfa,600,543,Realizado,agosto
+Paciente 064,2025-08-27,quarta,Procedimento,Convênio Gama,600,561,Realizado,agosto
+Paciente 065,2025-08-15,sexta,Retorno,Convênio Alfa,280,249,Realizado,agosto
+Paciente 066,2025-08-14,quinta,Consulta,Convênio Beta,350,271,Realizado,agosto
+Paciente 067,2025-08-01,sexta,Consulta,Particular,350,350,Realizado,agosto
+Paciente 068,2025-08-06,quarta,Retorno,Convênio Gama,280,262,Realizado,agosto
+Paciente 069,2025-08-18,segunda,Retorno,Convênio Alfa,280,258,Realizado,agosto
+Paciente 070,2025-08-26,terça,Retorno,Particular,280,280,Realizado,agosto
+Paciente 071,2025-08-29,sexta,Procedimento,Convênio Alfa,600,538,Realizado,agosto
+Paciente 072,2025-08-06,quarta,Retorno,Convênio Alfa,280,259,Realizado,agosto
+Paciente 073,2025-08-26,terça,Retorno,Convênio Alfa,280,257,Realizado,agosto
+Paciente 074,2025-08-15,sexta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 075,2025-08-13,quarta,Procedimento,Convênio Gama,600,537,Realizado,agosto
+Paciente 076,2025-08-04,segunda,Retorno,Particular,280,280,Realizado,agosto
+Paciente 077,2025-08-13,quarta,Retorno,Convênio Alfa,280,258,Realizado,agosto
+Paciente 078,2025-08-13,quarta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 079,2025-08-20,quarta,Procedimento,Convênio Alfa,600,524,Realizado,agosto
+Paciente 080,2025-08-07,quinta,Procedimento,Convênio Alfa,600,537,Realizado,agosto
+Paciente 081,2025-08-07,quinta,Consulta,Convênio Alfa,350,0,No-show,agosto
+Paciente 082,2025-08-18,segunda,Retorno,Convênio Beta,280,0,Cancelado,agosto
+Paciente 083,2025-08-12,terça,Retorno,Convênio Beta,280,218,Realizado,agosto
+Paciente 084,2025-08-20,quarta,Procedimento,Particular,600,600,Realizado,agosto
+Paciente 085,2025-08-12,terça,Retorno,Convênio Alfa,280,260,Realizado,agosto
+Paciente 086,2025-08-15,sexta,Consulta,Particular,350,350,Realizado,agosto
+Paciente 087,2025-08-12,terça,Retorno,Convênio Alfa,280,259,Realizado,agosto
+Paciente 088,2025-08-04,segunda,Consulta,Convênio Alfa,350,0,Cancelado,agosto
+Paciente 089,2025-08-21,quinta,Consulta,Convênio Beta,350,272,Realizado,agosto
+Paciente 090,2025-08-12,terça,Retorno,Particular,280,280,Realizado,agosto
+Paciente 091,2025-08-15,sexta,Retorno,Convênio Alfa,280,256,Realizado,agosto
+Paciente 092,2025-08-29,sexta,Procedimento,Convênio Beta,600,468,Realizado,agosto
+Paciente 093,2025-08-15,sexta,Retorno,Convênio Alfa,280,256,Realizado,agosto
+Paciente 094,2025-08-27,quarta,Retorno,Convênio Alfa,280,0,Cancelado,agosto
+Paciente 095,2025-08-20,quarta,Consulta,Particular,350,350,Realizado,agosto
+Paciente 096,2025-08-20,quarta,Procedimento,Convênio Gama,600,538,Realizado,agosto
+Paciente 097,2025-08-11,segunda,Retorno,Convênio Alfa,280,260,Realizado,agosto
+Paciente 098,2025-08-26,terça,Retorno,Convênio Beta,280,216,Realizado,agosto
+Paciente 099,2025-08-15,sexta,Procedimento,Convênio Beta,600,494,Realizado,agosto
+Paciente 100,2025-08-14,quinta,Procedimento,Convênio Beta,600,486,Realizado,agosto
+Paciente 101,2025-08-14,quinta,Procedimento,Convênio Alfa,600,534,Realizado,agosto
+Paciente 102,2025-08-19,terça,Retorno,Particular,280,280,Realizado,agosto
+Paciente 103,2025-08-19,terça,Procedimento,Convênio Alfa,600,550,Realizado,agosto
+Paciente 104,2025-08-27,quarta,Procedimento,Particular,600,600,Realizado,agosto
+Paciente 105,2025-08-21,quinta,Consulta,Particular,350,350,Realizado,agosto
+Paciente 106,2025-08-22,sexta,Retorno,Particular,280,0,Cancelado,agosto
+Paciente 107,2025-08-25,segunda,Procedimento,Convênio Beta,600,0,No-show,agosto
+Paciente 108,2025-08-12,terça,Retorno,Convênio Alfa,280,258,Realizado,agosto
+Paciente 109,2025-08-04,segunda,Retorno,Convênio Gama,280,253,Realizado,agosto
+Paciente 110,2025-08-21,quinta,Consulta,Particular,350,350,Realizado,agosto
+Paciente 111,2025-08-19,terça,Consulta,Convênio Beta,350,277,Realizado,agosto
+Paciente 112,2025-08-01,sexta,Retorno,Convênio Beta,280,219,Realizado,agosto
+Paciente 113,2025-08-25,segunda,Consulta,Convênio Alfa,350,306,Realizado,agosto
+Paciente 114,2025-08-06,quarta,Consulta,Convênio Alfa,350,311,Realizado,agosto
+Paciente 115,2025-08-26,terça,Procedimento,Convênio Beta,600,466,Realizado,agosto
+Paciente 116,2025-08-28,quinta,Procedimento,Convênio Beta,600,478,Realizado,agosto
+Paciente 117,2025-08-08,sexta,Consulta,Convênio Beta,350,285,Realizado,agosto
+Paciente 118,2025-08-29,sexta,Retorno,Convênio Gama,280,262,Realizado,agosto
+Paciente 119,2025-08-21,quinta,Retorno,Particular,280,280,Realizado,agosto
+Paciente 120,2025-08-13,quarta,Consulta,Convênio Beta,350,289,Realizado,agosto

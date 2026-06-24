@@ -1,1 +1,9 @@
 workshop_iago/
+
+# Materiais de terceiros com direitos autorais: baixados localmente para a
+# gravacao, mas NAO redistribuidos nos repos publicos (Codeberg/GitHub).
+**/resources/_externos/
+
+# Artefato auxiliar de geracao (script de checkbox usado pelo pandoc) fica no repo;
+# nao ignorar. (checkbox-persist.html versionado de proposito.)
+

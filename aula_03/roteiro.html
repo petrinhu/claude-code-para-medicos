@@ -1,12 +1,226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 03 — PubMed + Fichamento e Leitura Crítica</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 03 — PubMed + Fichamento e Leitura Crítica</h1>
+</header>
 <h1 id="aula-03-pubmed-fichamento-e-leitura-crítica">Aula 03 — PubMed +
 Fichamento e Leitura Crítica</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~55 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático</p>
+<hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta desta aula.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada (a demo nasce do zero).</label></li>
+<li><label><input type="checkbox" />Conector PubMed (plugin
+<code>pubmed@life-sciences</code> da Anthropic) já instalado e ativo num
+perfil de backup, para o caso de a instalação ao vivo da Seção 4 falhar
+na gravação. Confirme com <code>/mcp</code> que ele aparece como
+ativo.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Internet ativa (o MCP do PubMed
+busca online em tempo real).</label></li>
+<li><label><input type="checkbox" />Faça uma busca de teste no PubMed
+(ex.: ‘atrial fibrillation’) e descarte, para confirmar que o conector
+responde antes de gravar.</label></li>
+<li><label><input type="checkbox" />Tenha em mente que os artigos
+retornados variam a cada busca (a aula já avisa o aluno disso); o que
+importa é o fluxo, não a lista exata.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula (a
+busca no PubMed acontece dentro do Claude Code, via MCP).</p>
 <hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
 <p><strong>Tom:</strong> Direto, conectando com a aula anterior,
 elevando o nível</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Rapidinho, antes de começar: hoje a gente vai ler títulos de artigo
+e abstract direto no terminal, e essa fonte às vezes encolhe que nem
+rótulo de ampola. Quem usa óculos pra perto, separa eles agora. A gente
+não vai diagnosticar de longe hoje, vai ler de perto. Combinado?
+Bora.”</p>
 <p>“Na aula passada a gente trabalhou com arquivos locais — PDFs que
 estavam no seu computador, planilhas que você já tinha, slides que você
 montou.</p>
@@ -65,22 +279,32 @@ fonte em todas as conversas futuras.</p>
 (8 min)</h2>
 <p><strong>Tom:</strong> Pausado, didático, mostrando cada passo com
 calma</p>
-<p>“Para instalar o conector PubMed no Claude Code, vocês vão copiar
-este comando exato no terminal:</p>
-<pre><code>claude mcp add pubmed -- npx -y @modelcontextprotocol/server-pubmed</code></pre>
+<p>“A própria Anthropic, a empresa que faz o Claude, mantém um pacote
+pronto de conectores para ciências da vida, e o PubMed está dentro dele.
+A gente não precisa caçar nada por fora: instala direto.</p>
+<p>Primeiro passo, dentro do Claude Code, vocês digitam este comando,
+que adiciona o catálogo de conectores de ciências da vida da
+Anthropic:</p>
+<pre><code>/plugin marketplace add anthropics/life-sciences</code></pre>
 <p>[colar e executar]</p>
-<p>Pode aparecer uma mensagem de confirmação — digitem ‘y’ e Enter se
-pedir.</p>
+<p>Agora instala o conector do PubMed a partir desse catálogo:</p>
+<pre><code>/plugin install pubmed@life-sciences</code></pre>
 <p>[aguardar instalação]</p>
+<p>Pode aparecer uma confirmação na tela. Confirmem.</p>
+<p>[aguardar]</p>
 <p>Pronto. O conector está instalado.</p>
 <p>Agora reiniciem o Claude Code para ele reconhecer o novo
 conector:</p>
 <pre><code>claude</code></pre>
-<p>[reiniciar e mostrar que o PubMed aparece disponível]</p>
+<p>[reiniciar]</p>
+<p>E pra conferir que o PubMed está mesmo plugado, digitem:</p>
+<pre><code>/mcp</code></pre>
+<p>[mostrar que o PubMed aparece na lista de conectores ativos]</p>
+<p>Lá está ele. Conector do PubMed, ativo.</p>
 <p>Uma coisa importante: isso foi feito uma única vez. Da próxima vez
 que vocês abrirem o Claude Code, o PubMed já vai estar lá. Não precisam
 repetir este passo.</p>
-<p>É como instalar o cabo do ECG na primeira vez — depois fica
+<p>É como instalar o cabo do ECG na primeira vez: depois fica
 plugado.</p>
 <p>Vamos testar? Vou digitar uma pergunta simples pra confirmar que está
 funcionando:</p>
@@ -230,3 +454,18 @@ manhã com as novidades do seu tema.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

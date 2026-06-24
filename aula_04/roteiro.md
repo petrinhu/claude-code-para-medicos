@@ -1,14 +1,45 @@
 # Aula 04 — Flashcards Anki + Briefing Automático
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~50 min  
 **Tom:** Colega com humor leve e didático  
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Você providencia (material de terceiros):**
+
+- [ ] O guideline da ADA "Standards of Care in Diabetes 2024", em PDF. Baixe do site oficial (diabetesjournals.org/care, seção Standards of Care) e deixe à mão. Não foi incluído no projeto por ter direitos autorais. Insumo da Seção 3.
+- [ ] Anki instalado no computador. Baixe do site oficial (apps.ankiweb.net), gratuito. Insumo da Seção 3 (importação dos flashcards).
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta desta aula.
+- [ ] Sessão limpa, sem conversa anterior carregada (a demo nasce do zero).
+- [ ] Anki já aberto na tela, pronto para a importação ao vivo do `anki_dm2.txt` (gerado durante a aula).
+- [ ] Conector MCP do PubMed ativo (reaproveitado da aula_03; o briefing das Seções 4 e 5 depende dele).
+
+**Confira antes de gravar:**
+
+- [ ] O PDF da ADA anexa e o Claude consegue lê-lo (faça um resumo de teste e descarte).
+- [ ] Teste a importação no Anki uma vez: gere um `anki_dm2.txt` de ensaio, importe com separador ponto-e-vírgula e confirme que os cards entram, depois apague o deck de teste.
+- [ ] Os arquivos `anki_dm2.txt` e `briefing_dm2.txt` são criados ao vivo pelo Claude; saiba em que pasta eles caem para abri-los na tela.
+- [ ] Internet ativa (o briefing busca no PubMed em tempo real).
+
+**Navegador:** nenhum site é obrigatório durante a gravação. Se quiser mostrar a página de download do Anki, abra a aba: https://apps.ankiweb.net
 
 ---
 
 ## SEÇÃO 1: ABERTURA (2 min)
 
 **Tom:** Direto, conectando com aula_03, anunciando as duas entregas do dia
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Um segundo antes de a gente começar: hoje tem flashcard e tem terminal, e os dois adoram letra miúda. Quem precisa de óculos pra leitura, é agora, porque eu não quero ninguém forçando a vista feito residente lendo bula de plantão às 3 da manhã. Ajeitou? Então vamos."
 
 "Na aula passada a gente foi ao PubMed, buscou artigos sobre fibrilação atrial,
 triou por hierarquia de evidência e fez um fichamento completo com PICO, nível de
@@ -161,10 +192,12 @@ Salve o prompt de briefing acima em um arquivo chamado briefing_dm2.txt na pasta
 
 [executar]
 
-Toda manhã: você abre o Claude Code, digita:
+Toda manhã: você abre o terminal e digita uma linha só, que joga o conteúdo do
+arquivo pra dentro do Claude no modo de uma resposta só (o `-p`, de 'print',
+que faz ele responder e já sair, sem abrir a tela de conversa):
 
 ```
-claude < briefing_dm2.txt
+cat briefing_dm2.txt | claude -p
 ```
 
 E ele executa o prompt e entrega o resumo.
@@ -196,14 +229,14 @@ Isso abre o agendador de tarefas do Linux.
 Adiciono esta linha:
 
 ```
-0 7 * * * cd ~/briefings && claude < ~/briefing_dm2.txt > briefing_$(date +%Y-%m-%d).txt 2>&1
+0 7 * * * cd ~/briefings && cat ~/briefing_dm2.txt | claude -p > briefing_$(date +%Y-%m-%d).txt 2>&1
 ```
 
 [explicar lendo a linha em voz alta]
 
 '0 7 * * *' significa: todo dia às 7h em ponto.
 'cd ~/briefings' entra na pasta onde quero salvar.
-'claude < briefing_dm2.txt' roda o prompt.
+'cat ~/briefing_dm2.txt | claude -p' joga o prompt no Claude no modo resposta-única.
 '> briefing_2024-01-15.txt' salva o resultado com a data de hoje.
 
 Salvo, fecho. Pronto.
@@ -224,7 +257,7 @@ Programa: `cmd.exe`
 Argumentos:
 
 ```
-/c "cd /d C:\Users\SeuNome\briefings && claude < C:\Users\SeuNome\briefing_dm2.txt > briefing_%date:~-4,4%-%date:~-7,2%-%date:~0,2%.txt"
+/c "cd /d C:\Users\SeuNome\briefings && type C:\Users\SeuNome\briefing_dm2.txt | claude -p > briefing_%date:~-4,4%-%date:~-7,2%-%date:~0,2%.txt"
 ```
 
 [configurar e salvar]
@@ -235,6 +268,11 @@ Todo dia de manhã, antes de você acordar, o Claude já foi ao PubMed,
 buscou as novidades, resumiu, e deixou o arquivo na pasta.
 
 Você acorda, abre o arquivo, lê em 2 minutos, e está atualizado.
+
+Um detalhe honesto pra não te frustrar: pra esse agendamento rodar sozinho de
+madrugada, o Claude já precisa estar logado na sua máquina e o conector do PubMed
+já instalado, que é o que a gente fez na aula passada. Você configura uma vez,
+e depois ele trabalha enquanto você dorme.
 
 Isso é o que eu chamo de medicina baseada em evidência automatizada."
 

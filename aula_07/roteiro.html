@@ -176,16 +176,74 @@ Faturamento e Automação</h1>
 <h1
 id="aula-07-gestão-do-consultório-indicadores-faturamento-e-automação">Aula
 07 — Gestão do Consultório: Indicadores, Faturamento e Automação</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~48 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — “hoje você vira
 gestora do próprio negócio”<br />
 <strong>Persona:</strong> Metabologista de consultório — continuidade
 das aulas 05 e 06</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Já preparado em <code>resources/</code> (é só
+usar):</strong></p>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>resources/consultas_agosto.csv</code> : planilha
+fictícia de 120 atendimentos de agosto/2025 (mesmo formato do CSV gerado
+ao vivo, dados diferentes), insumo da Seção 5 (demonstração de
+reaproveitar o prompt trocando só o arquivo).</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta desta aula.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada (a demo nasce do zero).</label></li>
+<li><label><input type="checkbox" />O
+<code>resources/consultas_agosto.csv</code> copiado para a pasta de
+trabalho da sessão (ou tenha o caminho à mão), para que o Claude o leia
+quando você “mostrar o segundo CSV” na Seção 5.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />O CSV principal
+(<code>consultas_2025.csv</code>) e o dashboard
+(<code>dashboard_consultorio.html</code>) são criados ao vivo pelo
+Claude; saiba em que pasta eles caem para abri-los na tela.</label></li>
+<li><label><input type="checkbox" />Abra o
+<code>consultas_agosto.csv</code> uma vez antes de gravar para confirmar
+que está legível (120 linhas, colunas de convênio, valores e
+status).</label></li>
+<li><label><input type="checkbox" />Teste a abertura do dashboard HTML
+no navegador (duplo-clique) antes de gravar. Para o momento de impacto
+da Seção 6 no celular, mande o arquivo <code>.html</code> para o seu
+próprio WhatsApp ou e-mail e confirme que ele abre no navegador do
+telefone (arquivo self-contained abre em qualquer celular). Não dependa
+do <code>/remote</code> para isso: o Remote Control conecta a SESSÃO do
+Claude ao celular, não serve um arquivo HTML local para o navegador do
+telefone.</label></li>
+</ul>
+<p><strong>Navegador:</strong> o dashboard HTML gerado é aberto no
+navegador na Seção 6 (arquivo local, sem site externo). Nenhuma URL
+precisa estar pré-aberta.</p>
+<hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA — 2 min</h2>
 <p><strong>Tom:</strong> Callback do arco do M3 — fechar o módulo com
 sensação de progressão</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Último recado dos óculos antes do grand finale do módulo: hoje a
+tela vai ter planilha, número de faturamento e dashboard, e dígito
+pequeno a gente não chuta, a gente confere. Quem usa óculos pra perto, é
+a deixa pra colocar, porque conta de consultório errada por causa de
+vista cansada dói mais que glosa. Ajeitou? Então vamos fechar esse
+módulo com chave de ouro.”</p>
 <p>“Nas últimas duas aulas você aprendeu a comunicar e a publicar.</p>
 <p>aula_05: posts para o Instagram, newsletter, conteúdo para o
 Substack. aula_06: estudo científico, análise estatística, pôster de
@@ -206,15 +264,15 @@ dado.”</p>
 problemas concretos</p>
 <p>“Cenário.</p>
 <p>A mesma metabologista das últimas duas aulas. Consultório próprio.
-Seis anos de carreira. Três convênios no CNPJ: Unimed, Bradesco,
-SulAmérica. Mais particular.</p>
+Seis anos de carreira. Três convênios no CNPJ: Convênio Alfa, Convênio
+Beta, Convênio Gama. Mais particular.</p>
 <p>Ela atende 20 a 25 pacientes por semana — consultas de primeira vez,
 retornos, pequenos procedimentos ambulatoriais.</p>
 <p>Dois problemas que ela não consegue resolver sem dado.</p>
 <hr />
 <p>Problema 1: ela não sabe qual convênio paga mais pela mesma
 consulta.</p>
-<p>Acha que é o Unimed. Mas não tem certeza. Só descobre quando o
+<p>Acha que é o Convênio Alfa. Mas não tem certeza. Só descobre quando o
 extrato chega no fim do mês — e nem entende o extrato porque vem cheio
 de glosa.</p>
 <p>Glosa: o valor que o convênio deveria pagar menos o que efetivamente
@@ -247,8 +305,8 @@ Colunas:
 - Dia_semana: segunda a sexta
 - Tipo_atendimento: Consulta (primeira vez), Retorno, Procedimento
   (proporções realistas — Retorno é o mais frequente)
-- Convenio: Unimed, Bradesco, SulAmérica, Particular
-  (distribua de forma realista — Unimed é o mais comum)
+- Convenio: Convênio Alfa, Convênio Beta, Convênio Gama, Particular
+  (distribua de forma realista — Convênio Alfa é o mais comum)
 - Valor_tabela_R$: valor que o convênio deveria pagar
 - Valor_recebido_R$: valor que efetivamente entrou (menor que tabela = glosa)
 - Status: Realizado, No-show, Cancelado
@@ -296,11 +354,11 @@ Para cada indicador: uma tabela + uma frase de interpretação prática.</code><
 <p>Olha o que saiu.</p>
 <p>Faturamento total: você sabe pela primeira vez exatamente quanto
 entrou em 6 meses.</p>
-<p>Ranking de convênios: o Unimed realmente paga mais? Ou o Particular
-bate todos? Isso muda decisão de credenciamento.</p>
+<p>Ranking de convênios: o Convênio Alfa realmente paga mais? Ou o
+Particular bate todos? Isso muda decisão de credenciamento.</p>
 <p>Glosa por convênio: qual convênio desconta mais do que deveria? Se o
-Bradesco glosa 20% e o SulAmérica glosa 8% — você tem argumento para
-renegociar.</p>
+Convênio Beta glosa 20% e o Convênio Gama glosa 8% — você tem argumento
+para renegociar.</p>
 <p>No-show por dia: segunda realmente lidera? Confirme aqui e já ajuste
 a agenda — segunda pode virar dia de retorno curto, não de primeira
 consulta.</p>
@@ -420,9 +478,11 @@ Salve como dashboard_consultorio.html.</code></pre>
 de barras — em dois segundos você vê qual convênio paga mais. Gráfico de
 linha — a tendência dos 6 meses na frente dos seus olhos. Tabela de
 sazonalidade — os meses fracos em vermelho, os fortes em verde.</p>
-<p>[abrir no celular via /remote ou QR code]</p>
-<p>E abre no celular. Mesmo arquivo. Você manda por WhatsApp para o
-contador — ele abre, sem instalar nada.</p>
+<p>[mandar o arquivo .html para o próprio WhatsApp e abrir no
+celular]</p>
+<p>E abre no celular. Mesmo arquivo. Porque ele é self-contained,
+autossuficiente: tudo dentro de um arquivo só. Você manda por WhatsApp
+para o contador, ele toca no arquivo, e abre, sem instalar nada.</p>
 <hr />
 <p>Agora para um segundo.</p>
 <p>Este arquivo tem 400, 500 linhas de código por dentro. Você não viu
@@ -487,5 +547,18 @@ inteligente em PDFs de guideline.</p>
 <p>Nos dois casos: obrigado por chegar até aqui.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

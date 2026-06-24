@@ -1,15 +1,43 @@
 # Aula 07 — Gestão do Consultório: Indicadores, Faturamento e Automação
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~48 min  
 **Tom:** Colega com humor leve e didático — "hoje você vira gestora do próprio negócio"  
 **Persona:** Metabologista de consultório — continuidade das aulas 05 e 06  
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/consultas_agosto.csv` : planilha fictícia de 120 atendimentos de agosto/2025 (mesmo formato do CSV gerado ao vivo, dados diferentes), insumo da Seção 5 (demonstração de reaproveitar o prompt trocando só o arquivo).
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta desta aula.
+- [ ] Sessão limpa, sem conversa anterior carregada (a demo nasce do zero).
+- [ ] O `resources/consultas_agosto.csv` copiado para a pasta de trabalho da sessão (ou tenha o caminho à mão), para que o Claude o leia quando você "mostrar o segundo CSV" na Seção 5.
+
+**Confira antes de gravar:**
+
+- [ ] O CSV principal (`consultas_2025.csv`) e o dashboard (`dashboard_consultorio.html`) são criados ao vivo pelo Claude; saiba em que pasta eles caem para abri-los na tela.
+- [ ] Abra o `consultas_agosto.csv` uma vez antes de gravar para confirmar que está legível (120 linhas, colunas de convênio, valores e status).
+- [ ] Teste a abertura do dashboard HTML no navegador (duplo-clique) antes de gravar. Para o momento de impacto da Seção 6 no celular, mande o arquivo `.html` para o seu próprio WhatsApp ou e-mail e confirme que ele abre no navegador do telefone (arquivo self-contained abre em qualquer celular). Não dependa do `/remote` para isso: o Remote Control conecta a SESSÃO do Claude ao celular, não serve um arquivo HTML local para o navegador do telefone.
+
+**Navegador:** o dashboard HTML gerado é aberto no navegador na Seção 6 (arquivo local, sem site externo). Nenhuma URL precisa estar pré-aberta.
+
+---
+
 ## SEÇÃO 1: ABERTURA — 2 min
 
 **Tom:** Callback do arco do M3 — fechar o módulo com sensação de progressão
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Último recado dos óculos antes do grand finale do módulo: hoje a tela vai ter planilha, número de faturamento e dashboard, e dígito pequeno a gente não chuta, a gente confere. Quem usa óculos pra perto, é a deixa pra colocar, porque conta de consultório errada por causa de vista cansada dói mais que glosa. Ajeitou? Então vamos fechar esse módulo com chave de ouro."
 
 "Nas últimas duas aulas você aprendeu a comunicar e a publicar.
 
@@ -40,7 +68,7 @@ Perguntas que todo médico tem — e quase nenhum consegue responder com dado."
 
 A mesma metabologista das últimas duas aulas.
 Consultório próprio. Seis anos de carreira.
-Três convênios no CNPJ: Unimed, Bradesco, SulAmérica. Mais particular.
+Três convênios no CNPJ: Convênio Alfa, Convênio Beta, Convênio Gama. Mais particular.
 
 Ela atende 20 a 25 pacientes por semana —
 consultas de primeira vez, retornos, pequenos procedimentos ambulatoriais.
@@ -51,7 +79,7 @@ Dois problemas que ela não consegue resolver sem dado.
 
 Problema 1: ela não sabe qual convênio paga mais pela mesma consulta.
 
-Acha que é o Unimed. Mas não tem certeza.
+Acha que é o Convênio Alfa. Mas não tem certeza.
 Só descobre quando o extrato chega no fim do mês —
 e nem entende o extrato porque vem cheio de glosa.
 
@@ -97,8 +125,8 @@ Colunas:
 - Dia_semana: segunda a sexta
 - Tipo_atendimento: Consulta (primeira vez), Retorno, Procedimento
   (proporções realistas — Retorno é o mais frequente)
-- Convenio: Unimed, Bradesco, SulAmérica, Particular
-  (distribua de forma realista — Unimed é o mais comum)
+- Convenio: Convênio Alfa, Convênio Beta, Convênio Gama, Particular
+  (distribua de forma realista — Convênio Alfa é o mais comum)
 - Valor_tabela_R$: valor que o convênio deveria pagar
 - Valor_recebido_R$: valor que efetivamente entrou (menor que tabela = glosa)
 - Status: Realizado, No-show, Cancelado
@@ -165,11 +193,11 @@ Olha o que saiu.
 
 Faturamento total: você sabe pela primeira vez exatamente quanto entrou em 6 meses.
 
-Ranking de convênios: o Unimed realmente paga mais? Ou o Particular bate todos?
+Ranking de convênios: o Convênio Alfa realmente paga mais? Ou o Particular bate todos?
 Isso muda decisão de credenciamento.
 
 Glosa por convênio: qual convênio desconta mais do que deveria?
-Se o Bradesco glosa 20% e o SulAmérica glosa 8% — você tem argumento para renegociar.
+Se o Convênio Beta glosa 20% e o Convênio Gama glosa 8% — você tem argumento para renegociar.
 
 No-show por dia: segunda realmente lidera?
 Confirme aqui e já ajuste a agenda —
@@ -347,10 +375,11 @@ Gráfico de barras — em dois segundos você vê qual convênio paga mais.
 Gráfico de linha — a tendência dos 6 meses na frente dos seus olhos.
 Tabela de sazonalidade — os meses fracos em vermelho, os fortes em verde.
 
-[abrir no celular via /remote ou QR code]
+[mandar o arquivo .html para o próprio WhatsApp e abrir no celular]
 
 E abre no celular. Mesmo arquivo.
-Você manda por WhatsApp para o contador — ele abre, sem instalar nada.
+Porque ele é self-contained, autossuficiente: tudo dentro de um arquivo só.
+Você manda por WhatsApp para o contador, ele toca no arquivo, e abre, sem instalar nada.
 
 ---
 

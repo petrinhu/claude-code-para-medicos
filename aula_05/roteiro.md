@@ -1,14 +1,41 @@
 # Aula 05 — Instagram: Carrossel + Newsletter
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~45 min  
 **Tom:** Colega com humor leve e didático  
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Você providencia:**
+
+- [ ] Conta no Canva já logada (gratuita serve). Necessária para a Seção 5 (design do carrossel). Faça o login antes de gravar para não mostrar tela de senha.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta desta aula.
+- [ ] Sessão limpa, sem conversa anterior carregada (a demo nasce do zero).
+- [ ] Canva aberto e logado em outra aba, pronto para a montagem ao vivo.
+
+**Confira antes de gravar:**
+
+- [ ] Os arquivos `carrossel_triadeinflamacao.txt` e `newsletter_semana01.md` são criados ao vivo pelo Claude; saiba em que pasta eles caem para abri-los na tela.
+- [ ] Localize de antemão um template de carrossel limpo no Canva (busca 'carrossel instagram médico' ou 'carrossel educativo'), para não perder tempo procurando durante a gravação.
+
+**Navegador:** abra a aba: https://www.canva.com
 
 ---
 
 ## SEÇÃO 1: ABERTURA (2 min)
 
 **Tom:** Direto, conectando com aula_04, revelando a virada
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes da gente começar, um lembrete rápido: hoje tem terminal e tem Canva, e em ambos a letra às vezes fica do tamanho daquele rodapé de termo de consentimento que ninguém lê. Quem usa óculos pra perto, coloca agora, que diagnóstico a gente até arrisca de longe, mas design a gente faz de perto. Beleza? Vamos."
 
 "Na aula passada você montou um briefing automático que roda todo dia às 7h
 e já chega com as novidades do diabetes tipo 2 resumidas.
@@ -83,9 +110,10 @@ Rotacione entre os 3. Nunca só um tipo.
 
 **Por que carrossel?**
 
-Carrossel tem 3 vezes mais salvamentos do que post único.
-O algoritmo do Instagram ama salvamento — é a métrica mais importante.
-Carrossel também mantém o usuário na plataforma mais tempo — outro sinal positivo.
+Carrossel costuma gerar bem mais salvamentos do que um post de imagem única.
+E salvamento é um dos sinais que o algoritmo do Instagram mais valoriza:
+quando alguém salva, é porque o conteúdo vale a pena guardar.
+O carrossel também segura o usuário na plataforma por mais tempo, que é outro sinal positivo.
 
 **LGPD no digital — regra de ouro:**
 
@@ -113,6 +141,8 @@ Com o Claude, são 30 minutos. Vamos ver por quê."
 o ciclo entre cortisol e compulsão. Você sabe isso de memória.
 
 Mas como você explica para um paciente que mal sabe o que é citocina?
+
+> [CONFERIR CLÍNICO: o prompt abaixo cita biomarcadores específicos da hipótese inflamatória da depressão (IL-6, TNF-alfa, PCR, adipocinas) e o eixo cortisol-compulsão. Validar se a redação final do carrossel descreve esses mecanismos de forma cientificamente correta e sem afirmar causalidade além da evidência.]
 
 Vou construir o prompt ao vivo.
 

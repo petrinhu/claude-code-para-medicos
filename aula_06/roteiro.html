@@ -1,12 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 06 — Pôster de Congresso + Análise de Dados</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 06 — Pôster de Congresso + Análise de Dados</h1>
+</header>
 <h1 id="aula-06-pôster-de-congresso-análise-de-dados">Aula 06 — Pôster
 de Congresso + Análise de Dados</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~41 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático</p>
+<hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta desta aula.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada (a demo nasce do zero).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Esta aula gera tudo ao vivo: o CSV
+(<code>dados_pacientes.csv</code>) e os dois gráficos
+(<code>scatter_phq9_imc.png</code> e
+<code>boxplot_hba1c_phq9.png</code>) são criados pelo Claude durante a
+demo. Saiba em que pasta eles caem para abri-los na tela.</label></li>
+<li><label><input type="checkbox" />Confirme que o Claude consegue
+executar análise e gerar imagem PNG no seu ambiente: faça um teste
+rápido (gere um CSV minúsculo e um gráfico de ensaio) e descarte, para
+não descobrir um problema durante a gravação.</label></li>
+<li><label><input type="checkbox" />Tenha um visualizador de imagem
+pronto para abrir os PNGs gerados.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula.</p>
 <hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
 <p><strong>Tom:</strong> Direto, conectando com aula_05, elevando o
 nível</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Pausa de meio segundo pro recado de sempre: hoje tem tabela de
+estatística e tem gráfico, e número pequeno na tela é igual valor de p
+no rodapé do artigo, ninguém enxerga sem ajuda. Quem usa óculos pra
+leitura, é a hora de calçar, porque hoje a gente vai olhar dado de
+perto. Pronto? Então segura que lá vai.”</p>
 <p>“Na semana passada você criou o carrossel sobre a tríade
 obesidade-inflamação-depressão e a newsletter da semana. Você tem
 Instagram agora.</p>
@@ -14,9 +225,11 @@ Instagram agora.</p>
 publicado em algum congresso?’</p>
 <p>Não ainda.</p>
 <p>Hoje você publica.</p>
-<p>Você vai pegar os dados reais do seu consultório — anonimizados — e
-sair daqui com análise estatística, dois gráficos para publicação e o
-texto completo do pôster pronto para diagramar.</p>
+<p>Hoje, pra demonstrar, a gente vai trabalhar com uma planilha
+simulada, mas o fluxo é exatamente o mesmo que você usaria com os dados
+reais do seu consultório, depois de anonimizar. Você sai daqui com
+análise estatística, dois gráficos para publicação e o texto completo do
+pôster pronto para diagramar.</p>
 <p>Vamos lá.”</p>
 <hr />
 <h2 id="seção-2-o-cenário-3-min">SEÇÃO 2: O CENÁRIO (3 min)</h2>
@@ -184,6 +397,14 @@ Tom: acadêmico e preciso. Sem especulação além do que os dados mostram.</cod
 justificativa. Métodos com o que você realmente fez. Resultados com os
 números reais da análise. Conclusão honesta — reconhece as limitações do
 estudo. Três referências ABNT.</p>
+<p>E aqui um aviso que vale ouro: quando você pede referências para
+qualquer IA, SEMPRE confira se cada artigo existe de verdade antes de
+submeter. A IA às vezes monta uma referência que parece perfeita —
+autor, revista, ano, tudo plausível — mas que não existe. A gente chama
+isso de alucinação. Pega cada referência, joga o título no PubMed ou no
+Google Acadêmico, e confirma. Pôster com referência inventada é tiro no
+pé na sua reputação. Use a IA para redigir e organizar; use o PubMed
+para confirmar que existe.</p>
 <p>Isso é o corpo do pôster. Você copia para o template no Word ou no
 Canva, insere os dois gráficos nas posições certas, ajusta o layout, e
 submete.</p>
@@ -221,3 +442,18 @@ com um dashboard de métricas do consultório funcionando.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

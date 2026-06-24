@@ -1,6 +1,6 @@
 # Aula 23 — PHQ-9 e GAD-7: O Paradigma Likert
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~55 min  
 **Tom:** Médico de família — prático, acolhedor, sabe que a paciente disse mais do que parecia  
 **Módulo:** S05.03 — Calculadoras Médicas  
@@ -8,9 +8,38 @@
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/casos_teste_phq9_gad7.md` : os três casos clínicos fictícios com gabarito (PHQ-9 score 7 Leve sem alerta; PHQ-9 score 20 Grave com alerta de suicídio; GAD-7 score 11 Moderado). Apoio das Seções 5 e 7. Só o instrutor vê; não aparece na aula.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O ClinMd-Tribe já com as calculadoras CHA₂DS₂-VASc e HAS-BLED das aulas anteriores (esta aula adiciona PHQ-9 e GAD-7). O `uv run python main.py` deve subir o app no navegador.
+
+**Confira antes de gravar:**
+
+- [ ] Tenha o prompt do PHQ-9 (Seção 3) à mão para colar de uma vez; lembre que o GAD-7 (Seção 6) é o aluno quem escreve, você só confere as 4 faixas.
+- [ ] Os arquivos do PHQ-9 e do GAD-7 são gerados ao vivo (`domain/calculadoras/phq9.py`, `gad7.py`, telas em `presentation/telas/`, e o `application/servicos/calculadora_service.py` ganha as funções). Saiba onde caem para a leitura supervisionada.
+- [ ] Atenção ao método `alerta_suicidio()` do PHQ-9: deve existir separado de `interpretar()` e disparar com `item_9 >= 1`, independente do score. É o ponto crítico da Seção 4.
+- [ ] Rode `uv run python main.py` uma vez antes de gravar para confirmar que o app abre sem erro.
+
+**Navegador:** o app Flet abre no navegador local (`uv run python main.py`); nenhum site externo é necessário.
+
+---
+
 ## SEÇÃO 1: ABERTURA + PARADIGMA LIKERT — 5 min
 
 **Tom:** Narrativo — a frase que muda a consulta
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes da gente começar: põe os óculos. Hoje a tela tem nove perguntas com quatro opções cada, e a mais importante de todas, o item 9, é justamente a que some no rodapé se a fonte estiver pequena. Essa eu não deixo você perder de vista. Aproxima a tela."
 
 "Tô meio triste, doutor."
 
@@ -116,6 +145,8 @@ Score total: 0 a 27.
 | 15 a 19 | Moderadamente grave |
 | 20 a 27 | Grave |
 
+> [CONFERIR CLÍNICO: 5 faixas do PHQ-9 (0-4 Mínimo, 5-9 Leve, 10-14 Moderado, 15-19 Moderadamente grave, 20-27 Grave) e cutoff de ação em 10. Bate com o resource e com o prompt da Seção 3.]
+
 Cutoff de ação clínica: 10.
 Abaixo de 10 — monitorar.
 A partir de 10 — intervir.
@@ -144,6 +175,8 @@ não é 'Mínimo'.
 
 O alerta de suicídio existe fora da faixa.
 O app vai implementar isso como método separado.
+
+> [CONFERIR CLÍNICO: regra do item 9 - qualquer resposta >= 1 dispara alerta de risco, independente do score total. Decisão clínica crítica; confirmar que o gatilho é >= 1 (e não, por exemplo, >= 2).]
 
 ---
 
@@ -174,6 +207,8 @@ Item 9 = 0 → sem alerta.
 
 Esse é o gabarito.
 O app vai ter que bater esse número."
+
+> [CONFERIR CLÍNICO: caso âncora 45a feminina, itens 1+1+2+2+1=7, faixa Leve, item 9 = 0 sem alerta. Bate com o resource (Caso 1).]
 
 ---
 
@@ -448,6 +483,8 @@ E abaixo do score:
 
 ⚠ Avaliar risco de suicídio imediatamente.
 
+> [CONFERIR CLÍNICO: Caso 2 - 58a masculino, soma 3+3+3+3+2+2+2+1+1=20, faixa Grave, item 9 = 1 dispara alerta. Bate com o resource (Caso 2).]
+
 ---
 
 Dois resultados na tela ao mesmo tempo.
@@ -500,6 +537,7 @@ O que muda:
   - 5 a 9: 'Leve'
   - 10 a 14: 'Moderado'
   - 15 a 21: 'Grave'
+  > [CONFERIR CLÍNICO: 4 faixas do GAD-7 (0-4, 5-9, 10-14, 15-21) e ausência de item de alerta. Bate com o resource.]
 - Função no service: calcular_gad7(dados: dict) → {"score": int, "faixa": str}
 - Tela: presentation/telas/calculadora_gad7.py
   - 7 dropdowns (mesmas opções: Nunca / Alguns dias / Mais da metade / Quase todo dia)
@@ -563,6 +601,8 @@ Queixa de ansiedade e palpitações.
 4 × 2 + 3 × 1 = 8 + 3 = 11.
 Faixa: Moderado.
 
+> [CONFERIR CLÍNICO: Caso 3 - 32a masculino, itens 2+2+2+2+1+1+1=11, faixa Moderado. Bate com o resource (Caso 3).]
+
 Transferência confirmada.
 
 O padrão que você aprendeu com o PHQ-9
@@ -606,13 +646,14 @@ Registra a conduta que você tomou.
 
 ---
 
-Na próxima aula: o padrão continua — mas com variações.
+Na próxima aula: dois paradigmas genuinamente novos.
 
-HAM-D e YMRS são escalas Likert com estrutura diferente.
-AUDIT e CAGE voltam ao padrão booleano.
+O MELD não soma, ele calcula: uma fórmula contínua com logaritmos
+de três variáveis laboratoriais.
+O MMSE soma subtestes com tetos diferentes, cada um com seu máximo.
 
-Você já conhece os dois padrões.
-Na aula_24, você vai identificar qual é qual antes de escrever o prompt.
+Você já domina o booleano e o Likert.
+Na aula_24, você ganha o terceiro padrão: fórmula contínua e subtestes heterogêneos.
 
 Até lá."
 

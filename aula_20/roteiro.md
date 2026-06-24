@@ -1,14 +1,42 @@
 # Aula 20 — /tab_pendencias: A Escala Cirúrgica do Projeto
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~35 min  
 **Tom:** Colega com humor leve e didático — fechar o bloco de agents como quem fecha um plantão bem coordenado
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/prompts_aula20.md` : cola com `/tab_pendencias --create`, o texto pronto das seis calculadoras a fornecer quando a skill pedir os itens, e `/tab_pendencias`. Apoio das Seções 4 e 7.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] A skill `/tab_pendencias` disponível (deve aparecer ao digitar `/`); o ADR-001 da aula_19 já no projeto, pois a tabela referencia decisões já tomadas.
+
+**Confira antes de gravar:**
+
+- [ ] Digite `/` e confirme que `/tab_pendencias` aparece na lista de skills.
+- [ ] O `TODO.md` é gerado/atualizado ao vivo; saiba onde ele cai para mostrar o topo da tabela na tela.
+- [ ] Após o `--create`, o CHA₂DS₂-VASc deve sair na primeira linha (alto custo de atraso, baixo esforço). Se não subir, refaça o `--create` conferindo a descrição dos itens.
+
+**Navegador:** nenhum site é necessário nesta aula.
 
 ---
 
 ## SEÇÃO 1: RECONEXÃO — O CHEFE DE EQUIPE QUE VOCÊ SE TORNOU (3 min)
 
 **Tom:** Callback narrativo — fechar o arco do submódulo com satisfação
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Rapidinho: ajeita os óculos. A tabela de pendências de hoje tem nove colunas espremidas no terminal, e ler isso de longe é igual tentar bater um martelo na ponta do dedão sem olhar: dói e ainda erra a linha. Aproxima e foca, que vale a pena."
 
 "Vamos fazer um balanço rápido do que aconteceu nas últimas quatro aulas.
 
@@ -150,14 +178,15 @@ Prompt:
 
 ---
 
-Quando a skill pedir os itens, vou fornecer as cinco calculadoras
+Quando a skill pedir os itens, vou fornecer as seis calculadoras
 que estão no próximo módulo do curso:
 
-CHA₂DS₂-VASc — escore de risco de AVC em fibrilação atrial
-PHQ-9 — escala de depressão de Patient Health Questionnaire
-GAD-7 — escala de ansiedade generalizada
-HAM-D — escala de Hamilton para depressão
-YMRS — Young Mania Rating Scale
+CHA₂DS₂-VASc, escore de risco de AVC em fibrilação atrial
+HAS-BLED, escore de risco de sangramento na anticoagulação
+PHQ-9, escala de rastreio de depressão (Patient Health Questionnaire)
+GAD-7, escala de rastreio de ansiedade generalizada
+MELD, fórmula de gravidade da doença hepática terminal
+MMSE, mini-exame do estado mental
 
 [aguardar o Claude processar e mostrar a tabela]
 
@@ -190,8 +219,8 @@ FA é a arritmia mais prevalente em consultório. O risco tromboembólico é rea
 De todas as calculadoras, essa é a que você mais usa — e a que mais impacto tem se não existir.
 
 Tamanho do Trabalho: baixo.
-A fórmula está definida, os critérios estão no ADR-001 que a gente criou na aula_19.
-Sete parâmetros booleanos, um inteiro, retorna um número. Sem pré-requisito.
+A regra do score já está definida e consolidada na literatura, você conhece de cor.
+Sete parâmetros booleanos, um inteiro de idade, retorna um número. Sem pré-requisito.
 
 WSJF alto ÷ esforço baixo = sobe ao topo.
 A triagem cirúrgica foi exata.

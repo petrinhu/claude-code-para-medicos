@@ -1,14 +1,43 @@
 # Aula 18 — MCP, Skills, Hooks e Plugins: Estendendo o Bisturi
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~38 min  
 **Tom:** Colega com humor leve e didático — aprofundar o que já existe e apresentar o único conceito novo: hooks
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O scaffold da aula 16 presente (4 pastas + `arquitetura.txt` + `main.py`), pois a Seção 5 manda atualizar o `arquitetura.txt` para disparar o hook.
+- [ ] O plugin superpowers e as skills `/forgejo`, `/memo_persistente`, `/tab_pendencias` instalados (referência da Seção 1 e leitura da skill na Seção 2).
+- [ ] O MCP do GitHub configurado e autenticado, com o repositório do ClinMd-Tribe já criado e contendo pelo menos 5 commits (insumo da Seção 3, `@github liste os últimos 5 commits`). Use um repositório de demonstração só com código do app, sem qualquer dado de paciente.
+- [ ] Ambiente Python/uv pronto.
+
+**Confira antes de gravar:**
+
+- [ ] Teste o prompt da skill na Seção 2 (`leia o arquivo da skill tab_pendencias`) antes de gravar e confira que o conteúdo exibido é texto/instrução, sem nenhum dado sensível.
+- [ ] Teste o `@github` da Seção 3 antes de gravar: confirme que a autenticação está válida e os 5 commits aparecem; se pedir login, resolva fora da gravação.
+- [ ] Confira se já existe `.claude/settings.json` no projeto. A Seção 5 cria/modifica esse arquivo com o hook PostToolUse. Se já houver hooks ali de outro teste, decida antes se vai mostrar a criação do zero (apague) ou a modificação (mantenha).
+- [ ] Depois de gravar a demo do hook (Seção 5), lembre que o hook continua ativo na sua máquina: a cada escrita ou edição de arquivo o hook vai anexar uma linha no `registro_residente.txt` nas próximas sessões. Remova o hook do `settings.json` (e apague o `registro_residente.txt`) após a gravação se não quiser esse comportamento permanente.
+- [ ] Teste o comando do hook fora da gravação antes: a saída de stdout de um hook PostToolUse não aparece direto na tela do terminal (fica no log de debug), por isso a demo anexa num arquivo e depois mostra o conteúdo com `type registro_residente.txt`. Confirme que o arquivo recebe a linha ao salvar.
+
+**Navegador:** nenhum site é necessário nesta aula. O acesso ao GitHub acontece pelo MCP dentro do Claude Code, não pelo browser.
 
 ---
 
 ## SEÇÃO 1: REVISÃO RELÂMPAGO — OS TRÊS CONHECIDOS (3 min)
 
 **Tom:** Reconexão, não introdução — o aluno já sabe, só precisa nomear
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes da gente começar: óculos de perto, por favor. Hoje vai ter um trecho de configuração com chaves, aspas e dois-pontos, aquele JSON cheio de pontuação miúda. Ler isso sem óculos é tipo auscultar com o estetoscópio entupido: dá pra tentar, mas você perde o detalhe que importa."
 
 "Você já usa três dessas extensões há semanas.
 
@@ -67,7 +96,7 @@ Leia o arquivo da skill tab_pendencias e me mostre o conteúdo completo.
 
 Olha o que apareceu.
 
-É texto. Em português. Sem código.
+É basicamente texto: instruções em linguagem comum, descrevendo passo a passo o que o Claude deve fazer. Pode ter um cabeçalho curto no topo e algum exemplo, mas o miolo é instrução escrita, não um programa que você precisa entender.
 
 Uma skill é um protocolo escrito que alguém deixou pronto.
 Igual ao POP da UTI — Procedimento Operacional Padrão.
@@ -216,11 +245,11 @@ No arquivo `.claude/settings.json` dentro do projeto.
   \"hooks\": {
     \"PostToolUse\": [
       {
-        \"matcher\": \"Write\",
+        \"matcher\": \"Write|Edit\",
         \"hooks\": [
           {
             \"type\": \"command\",
-            \"command\": \"echo '✓ residente salvou um arquivo'\"
+            \"command\": \"echo residente salvou um arquivo >> registro_residente.txt\"
           }
         ]
       }
@@ -232,11 +261,15 @@ No arquivo `.claude/settings.json` dentro do projeto.
 Leia junto comigo.
 
 PostToolUse — depois de usar uma ferramenta.
-matcher: Write — quando a ferramenta for a de escrita de arquivo.
-command — execute este comando no terminal.
+matcher: Write|Edit — quando a ferramenta for de escrita ou edição de arquivo.
+command — execute este comando.
 
-Toda vez que o Claude salvar um arquivo, essa mensagem aparece.
-Sem você pedir. Automático.
+Detalhe importante de como o hook se comunica:
+a saída de um comando de hook não aparece direto na tela do terminal,
+ela fica nos bastidores. Por isso o nosso comando não tenta 'falar' na tela:
+ele anexa uma linha num arquivo de registro, o `registro_residente.txt`.
+Toda vez que o Claude salvar um arquivo, uma linha nova entra nesse registro.
+Sem você pedir. Automático. E depois a gente abre o registro pra ver a prova.
 
 [preencher linha 3 da tabela — mas ainda sem demo]
 
@@ -254,10 +287,10 @@ Prompt ao Claude Code:
 
 ```
 No arquivo .claude/settings.json do projeto ClinMd-Tribe,
-adiciona um hook PostToolUse que executa após qualquer operação Write
-e imprime no terminal a mensagem:
-'✓ residente salvou: arquivo modificado no projeto'
-Cria o arquivo se não existir.
+adiciona um hook PostToolUse com matcher para Write e Edit.
+A cada disparo, o hook deve anexar a linha 'residente salvou um arquivo'
+no arquivo registro_residente.txt na raiz do projeto.
+Cria o settings.json se ele não existir.
 ```
 
 [aguardar o Claude criar ou modificar o settings.json]
@@ -272,11 +305,15 @@ Atualiza o arquitetura.txt para incluir uma linha indicando
 que o scaffold foi concluído na aula_16.
 ```
 
-[aguardar — e mostrar a mensagem aparecendo no terminal]
+[aguardar o Claude salvar o arquivo]
+
+Agora a prova. Vou abrir o registro:
 
 ```
-✓ residente salvou: arquivo modificado no projeto
+type registro_residente.txt
 ```
+
+[mostrar — a linha 'residente salvou um arquivo' apareceu sozinha no registro]
 
 ---
 
@@ -284,7 +321,8 @@ Aconteceu sem você pedir.
 
 Você pediu uma atualização de arquivo.
 O residente atualizou.
-E o hook disparou sozinho, confirmando que o arquivo foi tocado.
+E o hook disparou sozinho, anexando a linha no registro —
+prova de que o arquivo foi tocado, sem nenhum comando seu para isso.
 
 É pequeno. Mas o princípio é poderoso.
 

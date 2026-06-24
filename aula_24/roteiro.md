@@ -1,6 +1,6 @@
 # Aula 24 — MELD + MMSE: Fórmula e Subtestes
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~58 min  
 **Tom:** Dois especialistas — hepatologista diante de um fígado que está falhando; geriatra diante de uma memória que está partindo  
 **Módulo:** S05.04 — Calculadoras Médicas  
@@ -8,9 +8,39 @@
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/casos_teste_meld_mmse.md` : os quatro casos clínicos fictícios com gabarito (MELD score 20 e 31; MMSE score 20 leve e 7 grave), incluindo a conferência à mão dos logaritmos do MELD. Apoio das Seções 5 e 9. Só o instrutor vê; não aparece na aula.
+- [ ] `resources/pentagonos_mmse.png` : figura de referência dos dois pentágonos sobrepostos (subteste linguagem e praxia do MMSE), para usar no ícone/tooltip da tela. Há também o `pentagonos_mmse.svg` (fonte editável). Insumo da Seção 7.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O ClinMd-Tribe já com as quatro calculadoras das aulas 21 a 23 (esta aula adiciona MELD e MMSE, fechando seis). O `uv run python main.py` deve subir o app no navegador.
+
+**Confira antes de gravar:**
+
+- [ ] Tenha os dois prompts à mão (MELD na Seção 3, MMSE na Seção 7) para colar de uma vez.
+- [ ] MELD: confira na leitura que o domínio usa `math.log` (logaritmo natural, não `math.log10`) e aplica `max(valor, 1.0)` antes do logaritmo, dentro de `calcular()` e não na tela. É o ponto crítico da Seção 4.
+- [ ] Copie o `resources/pentagonos_mmse.png` para onde a tela do MMSE espera a imagem (ou tenha o caminho à mão) antes de demonstrar o tooltip dos pentágonos na Seção 7.
+- [ ] Rode `uv run python main.py` uma vez antes de gravar para confirmar que o app abre sem erro.
+
+**Navegador:** o app Flet abre no navegador local (`uv run python main.py`); nenhum site externo é necessário.
+
+---
+
 ## SEÇÃO 1: ABERTURA — 3 min
 
 **Tom:** Retrospectivo e provocativo — dois paradigmas, dois saltos
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Última do módulo, então capriche na profilaxia: óculos no rosto. Hoje tem fórmula com logaritmo na tela, e ponto de vírgula trocado em coeficiente de MELD é igual zero a mais na dose: muda tudo. Aproxima a tela que a gente confere número por número."
 
 "Nas últimas três aulas você implementou quatro calculadoras.
 
@@ -75,6 +105,8 @@ Não é uma escala clínica.
 MELD = 3,78 × ln(bilirrubina) + 11,2 × ln(INR) + 9,57 × ln(creatinina) + 6,43
 ```
 
+> [CONFERIR CLÍNICO: coeficientes da fórmula MELD original (3,78 bilirrubina, 11,2 INR, 9,57 creatinina, constante 6,43), logaritmo natural, convenção min 1,0, arredondamento ao inteiro. Esta é a fórmula MELD clássica, não a MELD-Na nem a MELD 3.0. Confirmar que é a versão pretendida para o app.]
+
 Três variáveis laboratoriais.
 Três logaritmos naturais.
 O resultado é arredondado para o inteiro mais próximo.
@@ -113,6 +145,8 @@ Vamos ver isso de perto quando o Claude implementar."
 | 30 a 39 | 52,6% |
 | ≥ 40 | 71,3% |
 
+> [CONFERIR CLÍNICO: percentuais de mortalidade em 90 dias por faixa de MELD (<10: 3,7%; 10-19: 6,0%; 20-29: 19,6%; 30-39: 52,6%; >=40: 71,3%). Valores citados também no resource; confirmar contra a fonte adotada.]
+
 ---
 
 "Agora o caso âncora.
@@ -137,6 +171,8 @@ Score 20 → Mortalidade em 90 dias: 19,6%.
 
 Esse é o gabarito.
 O app vai ter que bater esse número."
+
+> [CONFERIR CLÍNICO: caso âncora bili 4,5 / INR 1,8 / crea 1,2 -> MELD 20, mortalidade 19,6%. Os três produtos parciais (5,685 / 6,583 / 1,745) e a soma 20,44 conferem matematicamente e batem com o resource (Caso 1). Validar os valores de ln usados.]
 
 ---
 
@@ -394,6 +430,8 @@ Todos os marcadores elevados.
 Score: **31**.
 Mortalidade em 90 dias: **52,6%**.
 
+> [CONFERIR CLÍNICO: Caso 2 - bili 8,0 / INR 2,5 / crea 2,0 -> MELD 31, mortalidade 52,6%. Confere matematicamente (31,19 -> 31) e bate com o resource (Caso 2).]
+
 ---
 
 Veja a diferença entre os dois casos.
@@ -447,6 +485,8 @@ Seis subtestes:
 | Evocação (memória tardia) | evocacao | 3 |
 | Linguagem e praxia | linguagem_praxia | 9 |
 
+> [CONFERIR CLÍNICO: tetos dos 6 subtestes do MMSE (orientação temporal 5, orientação espacial 5, registro 3, atenção e cálculo 5, evocação 3, linguagem e praxia 9) somando 30. Bate com o resource.]
+
 Score total: 0 a 30.
 
 ---
@@ -468,6 +508,8 @@ Quatro faixas:
 | 10 a 17 | Comprometimento moderado |
 | < 10 | Comprometimento grave |
 
+> [CONFERIR CLÍNICO: faixas do MMSE (>=24 Normal, 18-23 leve, 10-17 moderado, <10 grave). Pontos de corte do MMSE variam na literatura conforme escolaridade; confirmar que estes cortes são os adotados para o app. Batem com o resource.]
+
 ---
 
 Agora o caso âncora.
@@ -488,6 +530,8 @@ Paciente de 72 anos.
 Score 20 → Comprometimento leve.
 
 Esse é o gabarito."
+
+> [CONFERIR CLÍNICO: caso âncora 72a feminina, subtestes 3+4+2+3+1+7=20, Comprometimento leve. Bate com o resource (Caso 3).]
 
 ---
 
@@ -714,6 +758,8 @@ Linguagem comprometida.
 
 Score: **7**.
 Faixa: **Comprometimento grave** — em vermelho.
+
+> [CONFERIR CLÍNICO: Caso 4 - subtestes 1+1+0+1+0+4=7, Comprometimento grave. Bate com o resource (Caso 4).]
 
 ---
 

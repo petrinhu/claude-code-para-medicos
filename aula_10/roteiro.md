@@ -1,6 +1,6 @@
 # Aula 10 — Terminal + uv: o Bisturi Digital
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~48 min  
 **Tom:** Colega com humor leve e didático — "você passa de usuário para construtor"  
 **Módulo:** S01.01 — Fundação da Fase Avançada  
@@ -8,9 +8,35 @@
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] PowerShell aberto e limpo (esta aula é toda no PowerShell; o Claude Code é só citado, não usado nas demos).
+- [ ] Pasta `Documents\projetos` já criada (foi pedida na aula de abertura): a Seção 4 entra nela com `cd $HOME\Documents\projetos`. Se não existir, crie antes para o `cd` não falhar na câmera.
+- [ ] Garanta que `clinmd-tribe` ainda NÃO existe dentro de `projetos` (apague se sobrou de um teste): o `uv init clinmd-tribe` da Seção 4 precisa criar a pasta do zero, e o `type pyproject.toml` da Seção 5 deve mostrar `dependencies = []` antes do primeiro `uv add`.
+- [ ] Decida se grava a instalação do uv (Seção 4): se o uv já estiver instalado, o `winget install` não roda igual. Para gravar a instalação completa, use uma máquina/usuário sem uv; para pular, deixe instalado e foque no `uv --version`.
+
+**Confira antes de gravar:**
+
+- [ ] Teste antes, numa pasta de rascunho, o fluxo inteiro (`uv init`, `type pyproject.toml`, `uv add flet`, `dir`, `type uv.lock`, `uv run python main.py`), para confirmar cada saída. O primeiro `uv add flet` baixa pacotes da internet e pode demorar: garanta conexão estável e, se quiser, deixe o cache do uv já populado para o download sair rápido na gravação.
+- [ ] Confirme que o `dir` na Seção 4 mostra exatamente os três arquivos descritos (`.python-version`, `main.py`, `pyproject.toml`) e que, após o `uv add flet` na Seção 6, aparecem a pasta `.venv` e o `uv.lock`, como o roteiro narra.
+- [ ] Se o `winget` não estiver disponível na sua máquina, tenha o comando alternativo (`irm https://astral.sh/uv/install.ps1 | iex`) já testado, para não improvisar diante da câmera.
+- [ ] Lembre que após instalar o uv é preciso FECHAR e abrir um novo PowerShell para o `uv --version` reconhecer o comando, como o roteiro avisa; tenha esse segundo PowerShell pronto.
+
+**Navegador:** nenhum site é necessário nesta aula (a instalação do uv é por comando no PowerShell, não por download manual no navegador).
+
+---
+
 ## SEÇÃO 1: ABERTURA — 2 min
 
 **Tom:** Virada de página — a fase avançada começa aqui
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Recado de pré-consulta: ajuste os óculos antes da gente abrir o terminal. Hoje vai ter saída de instalação rolando rápido na tela, nome de pacote, número de versão, e essas letrinhas são finas que nem cateter. Vista o foco certo agora pra não perder nenhum sinal vital do uv."
 
 "Nas últimas nove aulas você aprendeu a pedir.
 

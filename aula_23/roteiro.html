@@ -174,16 +174,72 @@
 </header>
 <h1 id="aula-23-phq-9-e-gad-7-o-paradigma-likert">Aula 23 — PHQ-9 e
 GAD-7: O Paradigma Likert</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~55 min<br />
 <strong>Tom:</strong> Médico de família — prático, acolhedor, sabe que a
 paciente disse mais do que parecia<br />
 <strong>Módulo:</strong> S05.03 — Calculadoras Médicas<br />
 <strong>Persona:</strong> Médico de família / clínico geral</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Já preparado em <code>resources/</code> (é só
+usar):</strong></p>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>resources/casos_teste_phq9_gad7.md</code> : os
+três casos clínicos fictícios com gabarito (PHQ-9 score 7 Leve sem
+alerta; PHQ-9 score 20 Grave com alerta de suicídio; GAD-7 score 11
+Moderado). Apoio das Seções 5 e 7. Só o instrutor vê; não aparece na
+aula.</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />O ClinMd-Tribe já com as
+calculadoras CHA₂DS₂-VASc e HAS-BLED das aulas anteriores (esta aula
+adiciona PHQ-9 e GAD-7). O <code>uv run python main.py</code> deve subir
+o app no navegador.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Tenha o prompt do PHQ-9 (Seção 3) à
+mão para colar de uma vez; lembre que o GAD-7 (Seção 6) é o aluno quem
+escreve, você só confere as 4 faixas.</label></li>
+<li><label><input type="checkbox" />Os arquivos do PHQ-9 e do GAD-7 são
+gerados ao vivo (<code>domain/calculadoras/phq9.py</code>,
+<code>gad7.py</code>, telas em <code>presentation/telas/</code>, e o
+<code>application/servicos/calculadora_service.py</code> ganha as
+funções). Saiba onde caem para a leitura supervisionada.</label></li>
+<li><label><input type="checkbox" />Atenção ao método
+<code>alerta_suicidio()</code> do PHQ-9: deve existir separado de
+<code>interpretar()</code> e disparar com <code>item_9 &gt;= 1</code>,
+independente do score. É o ponto crítico da Seção 4.</label></li>
+<li><label><input type="checkbox" />Rode
+<code>uv run python main.py</code> uma vez antes de gravar para
+confirmar que o app abre sem erro.</label></li>
+</ul>
+<p><strong>Navegador:</strong> o app Flet abre no navegador local
+(<code>uv run python main.py</code>); nenhum site externo é
+necessário.</p>
+<hr />
 <h2 id="seção-1-abertura-paradigma-likert-5-min">SEÇÃO 1: ABERTURA +
 PARADIGMA LIKERT — 5 min</h2>
 <p><strong>Tom:</strong> Narrativo — a frase que muda a consulta</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes da gente começar: põe os óculos. Hoje a tela tem nove
+perguntas com quatro opções cada, e a mais importante de todas, o item
+9, é justamente a que some no rodapé se a fonte estiver pequena. Essa eu
+não deixo você perder de vista. Aproxima a tela.”</p>
 <p>“Tô meio triste, doutor.”</p>
 <p>Ela disse de passagem. No final da consulta. Enquanto você ainda
 estava digitando o ajuste da insulina.</p>
@@ -322,6 +378,11 @@ morto</strong></td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>[CONFERIR CLÍNICO: 5 faixas do PHQ-9 (0-4 Mínimo, 5-9 Leve, 10-14
+Moderado, 15-19 Moderadamente grave, 20-27 Grave) e cutoff de ação em
+10. Bate com o resource e com o prompt da Seção 3.]</p>
+</blockquote>
 <p>Cutoff de ação clínica: 10. Abaixo de 10 — monitorar. A partir de 10
 — intervir.</p>
 <hr />
@@ -338,6 +399,12 @@ conduta imediatamente. Independente do score total.</p>
 avaliar agora.</p>
 <p>O alerta de suicídio existe fora da faixa. O app vai implementar isso
 como método separado.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: regra do item 9 - qualquer resposta &gt;= 1
+dispara alerta de risco, independente do score total. Decisão clínica
+crítica; confirmar que o gatilho é &gt;= 1 (e não, por exemplo, &gt;=
+2).]</p>
+</blockquote>
 <hr />
 <p>Agora: nosso caso âncora.</p>
 <p>Paciente de 45 anos, mulher. Consulta de rotina para DM. ‘Tô meio
@@ -357,6 +424,10 @@ triste, doutor.’</p>
 <p>1 + 1 + 2 + 2 + 1 = <strong>7</strong></p>
 <p>Score 7 → Leve. Item 9 = 0 → sem alerta.</p>
 <p>Esse é o gabarito. O app vai ter que bater esse número.”</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: caso âncora 45a feminina, itens 1+1+2+2+1=7, faixa
+Leve, item 9 = 0 sem alerta. Bate com o resource (Caso 1).]</p>
+</blockquote>
 <hr />
 <h2 id="seção-3-prompt-phq-9-7-min">SEÇÃO 3: PROMPT PHQ-9 — 7 min</h2>
 <p><strong>Tom:</strong> Professor conduz — lê cada parte em voz alta,
@@ -534,6 +605,11 @@ completa. Queixas em quase todos os itens.</p>
 <p>Score: 20. Faixa: Grave — em vermelho.</p>
 <p>E abaixo do score:</p>
 <p>⚠ Avaliar risco de suicídio imediatamente.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: Caso 2 - 58a masculino, soma 3+3+3+3+2+2+2+1+1=20,
+faixa Grave, item 9 = 1 dispara alerta. Bate com o resource (Caso
+2).]</p>
+</blockquote>
 <hr />
 <p>Dois resultados na tela ao mesmo tempo.</p>
 <p>A faixa Grave diz o que o score significa. A caixa vermelha diz o que
@@ -565,7 +641,9 @@ preocupacao_excessiva, relaxar, inquietacao, irritabilidade, medo</li>
 <li>0 a 4: ‘Mínimo’</li>
 <li>5 a 9: ‘Leve’</li>
 <li>10 a 14: ‘Moderado’</li>
-<li>15 a 21: ‘Grave’</li>
+<li>15 a 21: ‘Grave’ &gt; [CONFERIR CLÍNICO: 4 faixas do GAD-7 (0-4,
+5-9, 10-14, 15-21) e ausência de item de alerta. Bate com o
+resource.]</li>
 </ul></li>
 <li>Função no service: calcular_gad7(dados: dict) → {“score”: int,
 “faixa”: str}</li>
@@ -614,6 +692,10 @@ palpitações.</p>
 </ul>
 <p>[clicar Calcular GAD-7]</p>
 <p>4 × 2 + 3 × 1 = 8 + 3 = 11. Faixa: Moderado.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: Caso 3 - 32a masculino, itens 2+2+2+2+1+1+1=11,
+faixa Moderado. Bate com o resource (Caso 3).]</p>
+</blockquote>
 <p>Transferência confirmada.</p>
 <p>O padrão que você aprendeu com o PHQ-9 funcionou quando você usou
 sozinho no GAD-7.”</p>
@@ -640,13 +722,27 @@ clínica.</p>
 <p>Se o item 9 for maior que zero: anota que o alerta apareceu. Registra
 a conduta que você tomou.</p>
 <hr />
-<p>Na próxima aula: o padrão continua — mas com variações.</p>
-<p>HAM-D e YMRS são escalas Likert com estrutura diferente. AUDIT e CAGE
-voltam ao padrão booleano.</p>
-<p>Você já conhece os dois padrões. Na aula_24, você vai identificar
-qual é qual antes de escrever o prompt.</p>
+<p>Na próxima aula: dois paradigmas genuinamente novos.</p>
+<p>O MELD não soma, ele calcula: uma fórmula contínua com logaritmos de
+três variáveis laboratoriais. O MMSE soma subtestes com tetos
+diferentes, cada um com seu máximo.</p>
+<p>Você já domina o booleano e o Likert. Na aula_24, você ganha o
+terceiro padrão: fórmula contínua e subtestes heterogêneos.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

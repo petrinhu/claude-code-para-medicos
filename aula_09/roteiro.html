@@ -1,14 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 09 — Git Remoto: Seu Código na Nuvem + Clone de Ferramentas</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 09 — Git Remoto: Seu Código na Nuvem + Clone de
+Ferramentas</h1>
+</header>
 <h1
-id="aula-09--git-remoto-seu-código-na-nuvem--clone-de-ferramentas">Aula
-09 — Git Remoto: Seu Código na Nuvem + Clone de Ferramentas</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+id="aula-09-git-remoto-seu-código-na-nuvem-clone-de-ferramentas">Aula 09
+— Git Remoto: Seu Código na Nuvem + Clone de Ferramentas</h1>
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~42 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — Git remoto e
 primeiro clone real</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />PowerShell aberto e limpo (esta aula
+é toda no PowerShell + navegador; o Claude Code não é usado nas
+demos).</label></li>
+<li><label><input type="checkbox" />Git já instalado e configurado
+(<code>git --version</code>, <code>user.name</code> e
+<code>user.email</code>) da aula_08, esse é o pré-requisito
+direto.</label></li>
+<li><label><input type="checkbox" />Repositório local da aula anterior
+pronto, com pelo menos um commit no histórico
+(<code>meu-primeiro-repo</code> ou <code>consultorio-digital</code>, o
+do dever de casa da aula_08): é ele que vai receber o
+<code>git remote add</code> e o primeiro <code>git push</code> na Seção
+4.</label></li>
+<li><label><input type="checkbox" />Conta no GitHub: decida se grava a
+criação ao vivo (Seção 3) ou se já tem conta logada. Para gravar o
+<code>Sign up</code>, use uma conta nova; para pular, deixe o GitHub já
+logado no navegador.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Faça um ensaio do
+<code>git push</code> antes da gravação: a primeira autenticação do
+GitHub no Windows abre uma janela de login/token e pode travar a tomada.
+Deixe a credencial já memorizada (Git Credential Manager) para o push da
+Seção 4 sair fluido na câmera.</label></li>
+<li><label><input type="checkbox" />O GitHub não aceita mais senha pura
+no push: tenha um Personal Access Token ou o login pelo navegador (Git
+Credential Manager) pronto, caso a janela de autenticação
+apareça.</label></li>
+<li><label><input type="checkbox" />Confirme que o repositório
+<code>clinmd-tribe</code> ainda NÃO existe na sua conta GitHub (apague
+se sobrou de um teste), para criá-lo do zero na Seção 3 sem erro de nome
+duplicado.</label></li>
+<li><label><input type="checkbox" />Teste antes o <code>git clone</code>
+do Codeberg da Seção 5
+(<code>https://codeberg.org/petrinhu/memo_persistente.git</code>) numa
+pasta de rascunho, para confirmar que o repositório está público e o
+clone funciona. Apague a cópia de teste depois, para o clone na gravação
+cair numa pasta <code>~\.claude\skills\memo_persistente</code> ainda
+inexistente.</label></li>
+<li><label><input type="checkbox" />Privacidade: na hora de criar o
+repositório, escolha mesmo <code>Private</code> como o roteiro manda, e
+evite expor na tela e-mail/token reais.</label></li>
+</ul>
+<p><strong>Navegador:</strong> abra a aba: https://github.com (usada nas
+Seções 3 e 4 para criar a conta, criar o repositório e conferir o push).
+O Codeberg (Seção 5) é acessado só via <code>git clone</code> no
+terminal, não precisa de aba aberta.</p>
+<hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
 <p><strong>Tom:</strong> Continuidade direta da aula anterior</p>
-<p>"Na aula passada você instalou o Git e fez seus primeiros
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Rotina de hoje, primeiro item: óculos no rosto. A gente vai mexer em
+URLs e tokens cheios de caractere pequeno, e errar uma letra ali é tipo
+trocar mg por mcg na prescrição: muda tudo. Foco ajustado? Então bora
+subir código pra nuvem.”</p>
+<p>“Na aula passada você instalou o Git e fez seus primeiros
 commits.</p>
 <p>Seu repositório existe. Tem histórico. Funciona.</p>
 <p>Mas só na sua máquina.</p>
@@ -20,12 +259,12 @@ como compartilhar.</p>
 sem custo, e controlada por você.</p>
 <p>E no final desta aula, você vai usar esse mesmo conhecimento para
 clonar as ferramentas do Claude Code do Codeberg.</p>
-<p>Vamos lá."</p>
+<p>Vamos lá.”</p>
 <hr />
-<h2 id="seção-2-repositório-remoto--o-que-é-3-min">SEÇÃO 2: REPOSITÓRIO
+<h2 id="seção-2-repositório-remoto-o-que-é-3-min">SEÇÃO 2: REPOSITÓRIO
 REMOTO — O QUE É (3 min)</h2>
 <p><strong>Tom:</strong> Analogia clínica, sem jargão</p>
-<p>"Quando o prontuário eletrônico sincroniza com o servidor do
+<p>“Quando o prontuário eletrônico sincroniza com o servidor do
 hospital, você consegue acessá-lo de qualquer computador do plantão.</p>
 <p>Repositório remoto é a mesma coisa para o seu código.</p>
 <p>Você tem o repositório local — na sua máquina. Você tem o repositório
@@ -35,41 +274,38 @@ para o servidor. Se precisar pegar de outro computador, você baixa do
 servidor.</p>
 <p>A ferramenta que usamos para isso se chama GitHub.</p>
 <p>GitHub é gratuito, é o padrão da indústria, e é onde a maioria dos
-projetos de software do mundo vive — incluindo o código do Linux, do
-Python, e do próprio Claude Code.</p>
-<p>Vamos criar sua conta e subir o projeto."</p>
+projetos de software do mundo vive, incluindo o código do Linux e do
+Python.</p>
+<p>Vamos criar sua conta e subir o projeto.”</p>
 <hr />
-<h2 id="seção-3-conta-no-github--criar-repositório-8-min">SEÇÃO 3: CONTA
+<h2 id="seção-3-conta-no-github-criar-repositório-8-min">SEÇÃO 3: CONTA
 NO GITHUB + CRIAR REPOSITÓRIO (8 min)</h2>
 <p><strong>Tom:</strong> Passo a passo no navegador</p>
-<p>"Abra o navegador e acesse:</p>
+<p>“Abra o navegador e acesse:</p>
 <pre><code>https://github.com</code></pre>
-<p>Clique em 'Sign up' e crie uma conta gratuita. Use um e-mail
+<p>Clique em ‘Sign up’ e crie uma conta gratuita. Use um e-mail
 profissional — de preferência o mesmo que você configurou no Git na aula
 anterior.</p>
 <p>[aguardar criação de conta]</p>
-<p>Com a conta criada, clique no botão '+' no canto superior direito e
-escolha 'New repository'.</p>
-<p>Preencha:</p>
-<ul>
-<li>Repository name: clinmd-tribe</li>
-<li>Description: App clínico local — ClinMd-Tribe</li>
-<li>Visibilidade: Private (seu código, seus dados)</li>
-</ul>
-<p>Deixe as outras opções como estão. Clique em 'Create repository'.</p>
+<p>Com a conta criada, clique no botão ‘+’ no canto superior direito e
+escolha ‘New repository’.</p>
+<p>Preencha: - Repository name: clinmd-tribe - Description: App clínico
+local — ClinMd-Tribe - Visibilidade: Private (seu código, seus
+dados)</p>
+<p>Deixe as outras opções como estão. Clique em ‘Create repository’.</p>
 <p>[mostrar tela criada]</p>
 <p>O GitHub criou um repositório vazio e já mostrou os comandos que você
 precisa rodar para conectar o seu repositório local.</p>
-<p>Copie os comandos que aparecem na seção 'push an existing
-repository'. Vamos usar em seguida."</p>
+<p>Copie os comandos que aparecem na seção ‘push an existing
+repository’. Vamos usar em seguida.”</p>
 <hr />
-<h2 id="seção-4-conectar-local-ao-remoto--primeiro-push-10-min">SEÇÃO 4:
+<h2 id="seção-4-conectar-local-ao-remoto-primeiro-push-10-min">SEÇÃO 4:
 CONECTAR LOCAL AO REMOTO + PRIMEIRO PUSH (10 min)</h2>
 <p><strong>Tom:</strong> Mão na massa — os três comandos do ciclo
 remoto</p>
-<p>"Abra o PowerShell. Entre na pasta do projeto.</p>
-<p>Se você criou 'meu-primeiro-repo' na aula passada, entre nele. Se
-criou 'consultorio-digital', use esse.</p>
+<p>“Abra o PowerShell. Entre na pasta do projeto.</p>
+<p>Se você criou ‘meu-primeiro-repo’ na aula passada, entre nele. Se
+criou ‘consultorio-digital’, use esse.</p>
 <p>Vamos usar o repositório do dever de casa da aula anterior.</p>
 <hr />
 <p><strong>Conectar o repositório local ao remoto:</strong></p>
@@ -77,15 +313,20 @@ criou 'consultorio-digital', use esse.</p>
 <pre><code>git remote add origin https://github.com/seu-usuario/clinmd-tribe.git</code></pre>
 <p>Cole e execute esse comando com o URL do SEU repositório (o GitHub já
 mostra o URL correto na tela).</p>
-<p>'Remote' significa repositório remoto. 'Origin' é o apelido que damos
+<p>‘Remote’ significa repositório remoto. ‘Origin’ é o apelido que damos
 para o remoto principal. É como nomear o servidor do hospital:
-'hospital-central'.</p>
+‘hospital-central’.</p>
 <hr />
 <p><strong>Enviar os commits para o GitHub:</strong></p>
 <pre><code>git push -u origin main</code></pre>
-<p>[aguardar — pode pedir login]</p>
-<p>Se pedir usuário e senha: use o usuário e senha do GitHub. O Windows
-pode abrir uma janela de autenticação — pode autorizar.</p>
+<p>[aguardar, pode pedir login]</p>
+<p>Na primeira vez, o Windows costuma abrir uma janela de autenticação
+do GitHub. O caminho mais simples é clicar em ‘Sign in with your
+browser’ e autorizar pelo navegador, onde você já está logado.
+Importante: o GitHub não aceita mais a senha da conta direto no
+terminal, então é por essa janela do navegador (ou por um token) que a
+autenticação acontece. Uma vez autorizado, o Windows guarda a credencial
+e os próximos push saem sem pedir nada.</p>
 <p>[mostrar o resultado no terminal]</p>
 <p>[mostrar o repositório atualizado no GitHub]</p>
 <p>Os arquivos apareceram no GitHub. Seu código está na nuvem.</p>
@@ -95,18 +336,18 @@ pode abrir uma janela de autenticação — pode autorizar.</p>
 git commit -m &quot;...&quot;  ← tira a foto
 git push             ← envia para o GitHub</code></pre>
 <p>Três comandos. Você vai usar eles toda vez que terminar uma sessão de
-trabalho com o Claude Code."</p>
+trabalho com o Claude Code.”</p>
 <hr />
 <h2
-id="seção-5-demo--git-clone-instalar-ferramentas-do-codeberg-12-min">SEÇÃO
+id="seção-5-demo-git-clone-instalar-ferramentas-do-codeberg-12-min">SEÇÃO
 5: DEMO — GIT CLONE: INSTALAR FERRAMENTAS DO CODEBERG (12 min)</h2>
 <p><strong>Tom:</strong> Revelação prática — o motivo real de aprender
 Git agora</p>
-<p>"Agora vou mostrar por que você aprendeu Git antes de tudo.</p>
+<p>“Agora vou mostrar por que você aprendeu Git antes de tudo.</p>
 <p>Na próxima aula você vai instalar skills e agents para o Claude Code.
 Essas ferramentas ficam em repositórios Git — no Codeberg, que é meu
 servidor pessoal de repositórios.</p>
-<p>Para instalar, o comando é 'git clone'.</p>
+<p>Para instalar, o comando é ‘git clone’.</p>
 <p>Clone é baixar uma cópia de um repositório remoto para o seu
 computador.</p>
 <p>Vamos fazer um preview. No PowerShell:</p>
@@ -122,15 +363,16 @@ exemplo, para baixar o código-fonte do Flask (framework Python):</p>
 <pre><code>git clone https://github.com/pallets/flask.git</code></pre>
 <p>Claro que você não vai fazer isso agora. Mas é bom saber que o Git é
 a forma padrão de distribuir software no mundo inteiro.</p>
-<p>Quando o Claude Code instalar uma dependência Python usando uv, por
-baixo dos panos também tem Git envolvido.</p>
+<p>Boa parte das ferramentas e do código aberto que você vai usar no
+curso mora em repositórios Git, e é de lá que a gente baixa, com um
+clone.</p>
 <p>Git é invisível quando funciona. Você só percebe quando não está
-lá."</p>
+lá.”</p>
 <hr />
-<h2 id="seção-6-pull--atualizar-local-com-o-remoto-5-min">SEÇÃO 6: PULL
-— ATUALIZAR LOCAL COM O REMOTO (5 min)</h2>
+<h2 id="seção-6-pull-atualizar-local-com-o-remoto-5-min">SEÇÃO 6: PULL —
+ATUALIZAR LOCAL COM O REMOTO (5 min)</h2>
 <p><strong>Tom:</strong> Rápido, complementando o ciclo</p>
-<p>"Mais um comando para fechar o ciclo.</p>
+<p>“Mais um comando para fechar o ciclo.</p>
 <p>Imagine que você está num tablet no consultório e fez um commit. Em
 casa, no computador principal, você quer puxar essa atualização.</p>
 <p>O comando é:</p>
@@ -146,11 +388,11 @@ git push             ← envia para o servidor</code></pre>
 <p>É o mesmo ciclo de um médico que acessa o PEP no hospital, atualiza o
 prontuário e fecha.</p>
 <p>Com o tempo isso vira reflexo. Você não vai pensar nos comandos — vai
-só fazer, como salvar um documento."</p>
+só fazer, como salvar um documento.”</p>
 <hr />
 <h2 id="seção-7-encerramento-2-min">SEÇÃO 7: ENCERRAMENTO (2 min)</h2>
 <p><strong>Tom:</strong> Resumo, motivação e ponte para a aula_10</p>
-<p>"Resumo do que ficou pronto hoje.</p>
+<p>“Resumo do que ficou pronto hoje.</p>
 <p>Conta no GitHub criada. Repositório clinmd-tribe criado na nuvem.
 Primeiro push feito — código na nuvem. git clone demonstrado com skill
 real do Claude Code. Ciclo completo: pull, add, commit, push.</p>
@@ -173,6 +415,21 @@ os especialistas operacionais para cada parte do código.</p>
 <p>Git + /tab_pendencias + agents = o fluxo de trabalho completo de um
 dev profissional.</p>
 <p>Git pronto. Agora vamos montar o laboratório.</p>
-<p>Até lá."</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

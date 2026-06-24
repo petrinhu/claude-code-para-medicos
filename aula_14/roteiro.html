@@ -1,31 +1,251 @@
-<h1 id="aula-14--layout-flet-do-caos-à-clareza-clínica">Aula 14 — Layout
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 14 — Layout Flet: Do Caos à Clareza Clínica</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 14 — Layout Flet: Do Caos à Clareza Clínica</h1>
+</header>
+<h1 id="aula-14-layout-flet-do-caos-à-clareza-clínica">Aula 14 — Layout
 Flet: Do Caos à Clareza Clínica</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~42 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — transformar o
 funcional em profissional</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />O <code>main.py</code> da
+calculadora de IMC (resultado da aula 13) presente na pasta e
+funcionando: campos de Peso e Altura, botão roxo ‘Calcular IMC’, área de
+resultado com a classificação.</label></li>
+<li><label><input type="checkbox" />Ambiente Python/uv pronto (o comando
+<code>uv run python main.py</code> roda sem erro de
+dependência).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Rode
+<code>uv run python main.py</code> uma vez antes de gravar: a janela
+abre, e a calculadora ainda está no visual “feio” (elementos colados,
+sem espaçamento). Esse estado inicial é o gancho da Seção 1. Depois
+feche a janela.</label></li>
+<li><label><input type="checkbox" />Se você já tinha aplicado layout
+neste <code>main.py</code> em outro teste, restaure a versão crua da
+aula 13 antes de gravar (o “antes” precisa parecer dos anos
+90).</label></li>
+<li><label><input type="checkbox" />O agent <code>ux-ui-designer</code>
+está disponível na sessão (insumo da Seção 6.5).</label></li>
+<li><label><input type="checkbox" />A skill <code>/tab_pendencias</code>
+responde (insumo da Seção 6.5).</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula.</p>
+<hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
 <p><strong>Tom:</strong> Diagnóstico visual — a calculadora funciona mas
 não impressiona</p>
-<p>"Na aula passada você criou uma calculadora de IMC com interface
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes de começar: se você usa óculos para perto, coloca agora. Hoje
+a gente vai ficar olhando a tela de perto, comparando o ‘antes feio’ com
+o ‘depois bonito’, e os detalhes de espaçamento são finos. Pensa neles
+como aquelas microcalcificações na mamografia: o diagnóstico está nos
+detalhes pequenos.”</p>
+<p>“Na aula passada você criou uma calculadora de IMC com interface
 gráfica.</p>
 <p>Ela funciona. Calcula correto. Trata o erro de entrada.</p>
 <p>Mas se você abrir ela agora e mostrar para um colega médico, ele vai
-dizer: 'isso parece um software dos anos 90.'</p>
+dizer: ‘isso parece um software dos anos 90.’</p>
 <p>Os elementos estão colados. Sem margem. Sem organização. É como um
 prontuário em papel amassado na gaveta — os dados estão lá, mas a
 apresentação compromete a credibilidade.</p>
 <p>Hoje você vai pedir ao Claude Code para transformar essa tela. Cinco
 prompts. Cinco conceitos de layout. O mesmo app, mas com cara de
 software profissional.</p>
-<p>Vamos lá."</p>
+<p>Vamos lá.”</p>
 <hr />
-<h2 id="seção-2-column-com-spacing--o-espaço-que-organiza-8-min">SEÇÃO
-2: COLUMN COM SPACING — O ESPAÇO QUE ORGANIZA (8 min)</h2>
+<h2 id="seção-2-column-com-spacing-o-espaço-que-organiza-8-min">SEÇÃO 2:
+COLUMN COM SPACING — O ESPAÇO QUE ORGANIZA (8 min)</h2>
 <p><strong>Tom:</strong> Conceito central de layout vertical — o
 esqueleto da interface</p>
-<p>"Primeiro conceito: Column.</p>
+<p>“Primeiro conceito: Column.</p>
 <p>Você conhece a lista de problemas do PEP — Prontuário Eletrônico do
 Paciente. Cada problema na sua linha. Espaçados. Um embaixo do outro,
 com respiro visual.</p>
@@ -53,14 +273,14 @@ horizontal.</p>
 <p>Note: spacing é o espaço ENTRE os filhos. Não é o espaço interno de
 cada elemento. Isso vem no próximo conceito.</p>
 <p>A Column com spacing resolveu o problema do amontoamento. Mas os
-elementos ainda encostam na borda da janela."</p>
+elementos ainda encostam na borda da janela.”</p>
 <hr />
 <h2
-id="seção-3-container-com-padding--a-margem-do-receituário-7-min">SEÇÃO
+id="seção-3-container-com-padding-a-margem-do-receituário-7-min">SEÇÃO
 3: CONTAINER COM PADDING — A MARGEM DO RECEITUÁRIO (7 min)</h2>
 <p><strong>Tom:</strong> Conceito de respiro interno — a caixa que dá ar
 ao conteúdo</p>
-<p>"Segundo conceito: Container com padding.</p>
+<p>“Segundo conceito: Container com padding.</p>
 <p>Você usa receituário? Aquela margem branca em volta do conteúdo — ela
 existe para que o texto não encoste na borda do papel. O conteúdo
 respira. A leitura é confortável.</p>
@@ -87,13 +307,13 @@ filhos.</p>
 <p>Não são a mesma coisa. Confundir os dois é o erro mais comum em
 layout Flet.</p>
 <p>A calculadora já está melhor. Mas ainda parece uma caixa flutuando no
-nada. Falta elevação, falta moldura."</p>
+nada. Falta elevação, falta moldura.”</p>
 <hr />
-<h2 id="seção-4-card--o-prontuário-com-moldura-6-min">SEÇÃO 4: CARD — O
+<h2 id="seção-4-card-o-prontuário-com-moldura-6-min">SEÇÃO 4: CARD — O
 PRONTUÁRIO COM MOLDURA (6 min)</h2>
 <p><strong>Tom:</strong> Componente de destaque visual — elevação e
 identidade</p>
-<p>"Terceiro conceito: Card.</p>
+<p>“Terceiro conceito: Card.</p>
 <p>Prontuário impresso versus prontuário projetado na parede. O impresso
 tem papel, borda, elevação física — destaca do fundo.</p>
 <p>Card no Flet é isso: um Container com elevação (sombra sutil) e
@@ -114,19 +334,19 @@ cantos arredondados]</p>
 <p>Leia o código gerado comigo.</p>
 <p><code>ft.Card(elevation=2, shape=ft.RoundedRectangleBorder(radius=12), content=...)</code></p>
 <p><code>elevation=2</code> — sombra sutil que destaca do fundo. Não é
-pesada, é discreta. <code>border_radius=12</code> — cantos arredondados.
-Dá leveza ao componente.</p>
+pesada, é discreta. <code>radius=12</code> (dentro do shape) — cantos
+arredondados. Dá leveza ao componente.</p>
 <p>A armadilha: Card não tem padding automático. Se você colocar o
 conteúdo direto no Card, ele encosta nas bordas do Card. Por isso o
 Claude colocou um <code>ft.Container(padding=20)</code> dentro do Card —
 o Container cuida do respiro, o Card cuida da elevação.</p>
 <p>Card resolve o destaque visual. Mas os campos de Peso e Altura ainda
-estão empilhados quando poderiam estar lado a lado."</p>
+estão empilhados quando poderiam estar lado a lado.”</p>
 <hr />
-<h2 id="seção-5-row--a-linha-de-sinais-vitais-8-min">SEÇÃO 5: ROW — A
+<h2 id="seção-5-row-a-linha-de-sinais-vitais-8-min">SEÇÃO 5: ROW — A
 LINHA DE SINAIS VITAIS (8 min)</h2>
 <p><strong>Tom:</strong> Layout horizontal — o que fica lado a lado</p>
-<p>"Quarto conceito: Row.</p>
+<p>“Quarto conceito: Row.</p>
 <p>Você olha para uma planilha de sinais vitais: PA, FC, FR, SpO₂. Todos
 na mesma linha — não empilhados. Lado a lado, cada um no seu espaço.</p>
 <p>Row no Flet é a Column virada de lado: empilha elementos
@@ -149,20 +369,20 @@ espaço]</p>
 Cada <code>ft.TextField</code> com <code>expand=True</code>.</p>
 <p>A armadilha do <code>expand=True</code>: sem ele, os campos ficam
 espremidos ou saem da tela. <code>expand=True</code> diz ao Flet:
-'divide o espaço disponível igualmente entre os filhos que têm
-expand.'</p>
+‘divide o espaço disponível igualmente entre os filhos que têm
+expand.’</p>
 <p>Sem expand → campos espremidos no tamanho mínimo. Com expand → cada
 campo ocupa metade do espaço da Row.</p>
 <p>É o mesmo princípio de uma tabela HTML com colunas de largura igual.
 Você não especifica a largura exata — você diz que cada um expande.</p>
 <p>A calculadora está tomando forma. Mas ainda falta identidade visual
-no topo. Não tem nada que diga 'isso é o ClinMd-Tribe'."</p>
+no topo. Não tem nada que diga ‘isso é o ClinMd-Tribe’.”</p>
 <hr />
-<h2 id="seção-6-appbar--o-timbre-do-receituário-5-min">SEÇÃO 6: APPBAR —
+<h2 id="seção-6-appbar-o-timbre-do-receituário-5-min">SEÇÃO 6: APPBAR —
 O TIMBRE DO RECEITUÁRIO (5 min)</h2>
 <p><strong>Tom:</strong> Identidade no topo — o cabeçalho que identifica
 o sistema</p>
-<p>"Quinto e último conceito: AppBar.</p>
+<p>“Quinto e último conceito: AppBar.</p>
 <p>Receituário médico tem timbre no topo: nome do médico, CRM,
 especialidade. Identifica de quem é o documento antes mesmo de ler o
 conteúdo.</p>
@@ -179,7 +399,7 @@ ficar cinza-claro e o Card se destacar mais.</code></pre>
 <p>[aguardar e mostrar]</p>
 <p>Execute:</p>
 <pre><code>uv run python main.py</code></pre>
-<p>[mostrar — AppBar roxo com 'ClinMd-Tribe' em branco no topo, fundo
+<p>[mostrar — AppBar roxo com ‘ClinMd-Tribe’ em branco no topo, fundo
 cinza-claro, Card branco se destacando]</p>
 <hr />
 <p>Leia o código gerado comigo.</p>
@@ -190,13 +410,13 @@ dentro do <code>page.add()</code>, vai como propriedade da página.</p>
 <code>#E5E9EA</code> é o cinza de fundo da seção — cria contraste com o
 Card branco.</p>
 <p>Cinco prompts. A mesma calculadora de IMC da aula passada, agora com
-cara de software profissional."</p>
+cara de software profissional.”</p>
 <hr />
-<h2 id="seção-65-time-de-design--validando-o-layout-2-min">SEÇÃO 6.5:
+<h2 id="seção-6.5-time-de-design-validando-o-layout-2-min">SEÇÃO 6.5:
 TIME DE DESIGN — VALIDANDO O LAYOUT (2 min)</h2>
 <p><strong>Tom:</strong> Consulta ao especialista — o designer valida, o
 aluno aprende</p>
-<p>"Você aplicou cinco conceitos de layout.</p>
+<p>“Você aplicou cinco conceitos de layout.</p>
 <p>Antes de encerrar: vamos consultar o UX designer do time.</p>
 <p>No Claude Code:</p>
 <pre><code>@ux-ui-designer, apliquei Column com spacing, Container com padding,
@@ -211,11 +431,11 @@ sugestões: elas vão aparecer no módulo de polimento final.</p>
 <p>Atualize as pendências:</p>
 <pre><code>/tab_pendencias</code></pre>
 <p>[mostrar a tabela — layout concluído, Clean Architecture como próxima
-grande tarefa]"</p>
+grande tarefa]”</p>
 <hr />
 <h2 id="seção-7-encerramento-3-min">SEÇÃO 7: ENCERRAMENTO (3 min)</h2>
 <p><strong>Tom:</strong> Resumo, motivação e dever de casa</p>
-<p>"Resumo do que ficou pronto hoje.</p>
+<p>“Resumo do que ficou pronto hoje.</p>
 <p>Cinco conceitos de layout, cinco prompts ao Claude Code:</p>
 <p>Column com spacing — organiza verticalmente com respiro. Container
 com padding — cria margem interna. Card com elevation — destaca o
@@ -245,6 +465,21 @@ sem lógica clínica nova, só layout.</p>
 <p>Na próxima aula: arquitetura. Você vai entender por que o
 ClinMd-Tribe tem quatro camadas separadas e como o código vai se
 organizar conforme o projeto cresce.</p>
-<p>Até lá."</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,13 +1,314 @@
-<h1 id="aula-12--python-com-analogias-clínicas">Aula 12 — Python com
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 12 — Python com Analogias Clínicas</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 12 — Python com Analogias Clínicas</h1>
+</header>
+<h1 id="aula-12-python-com-analogias-clínicas">Aula 12 — Python com
 Analogias Clínicas</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~40 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — primeira aula
 de Python, zero presumido</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal,
+dentro da pasta do projeto:
+<code>cd Documents\projetos\clinmd-tribe</code> e depois
+<code>claude</code> (é o que a Seção 3 mostra).</label></li>
+<li><label><input type="checkbox" />Projeto <code>clinmd-tribe</code> já
+existente, criado com <code>uv init</code> na aula_10, com o uv
+funcionando (<code>uv --version</code>): todos os
+<code>uv run python conceitos.py</code> desta aula dependem desse
+ambiente.</label></li>
+<li><label><input type="checkbox" />Sessão do Claude Code limpa, sem
+conversa anterior carregada (a demo nasce do primeiro prompt, criando o
+<code>conceitos.py</code> do zero).</label></li>
+<li><label><input type="checkbox" />Garanta que
+<code>conceitos.py</code> ainda NÃO existe na pasta do projeto (apague
+se sobrou de um teste): o primeiro prompt da Seção 3 deve criar o
+arquivo do zero, e cada seção seguinte vai acrescentando a
+ele.</label></li>
+<li><label><input type="checkbox" />Agent <code>engineering-coach</code>
+instalado e disponível (é invocado na Seção 7.5 com
+<code>@engineering-coach</code>); confirme que ele responde antes de
+gravar.</label></li>
+<li><label><input type="checkbox" />Skill <code>/tab_pendencias</code>
+instalada (é chamada no fim da Seção 7.5); confirme que o comando existe
+nesta sessão.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Ensaie antes a sequência de prompts
+inteira (variáveis, função <code>calcular_imc</code>,
+<code>classificar_pressao</code>, lista com loop,
+<code>avaliar_paciente</code>), conferindo que o Claude vai
+acrescentando ao mesmo <code>conceitos.py</code> e que cada
+<code>uv run python conceitos.py</code> mostra a saída que o roteiro
+narra (IMCs, classificações de pressão, lista percorrida).</label></li>
+<li><label><input type="checkbox" />O Claude pode gerar nomes de
+variáveis ou formatação ligeiramente diferentes do que o roteiro
+descreve; tenha em mente as quatro variáveis-chave (<code>nome</code>
+string, <code>idade</code> int, <code>peso</code> float,
+<code>diabetico</code> bool) para narrar mesmo que o texto gerado
+varie.</label></li>
+<li><label><input type="checkbox" />Privacidade (LGPD): todos os dados
+são fictícios (pacientes inventados); confirme que nenhum dado de
+paciente real entra nos prompts.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula (tudo
+acontece no Claude Code e no terminal).</p>
+<hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
 <p><strong>Tom:</strong> Desarmador — tirar o medo antes de começar</p>
-<p>"Python.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Pequeno checklist antes da anamnese do Python: óculos de perto, se
+for o seu caso, agora. O código vai ter símbolo discreto, dois-pontos,
+parêntese, indentação, e perder isso de vista é como não enxergar a
+vírgula da posologia. Foco no ponto, e a gente começa leve.”</p>
+<p>“Python.</p>
 <p>Esse nome assusta muita gente que nunca programou. Parece coisa de
 TI, parece complexo, parece que você precisa de anos de estudo.</p>
 <p>Não precisa.</p>
@@ -21,17 +322,17 @@ escreveu — para poder validar, corrigir e evoluir.</p>
 aparelho. Mas você entende o resultado e assina se estiver certo.</p>
 <p>Hoje: quatro conceitos. Só quatro. Variáveis, funções, condições e
 listas.</p>
-<p>Vamos lá."</p>
+<p>Vamos lá.”</p>
 <hr />
 <h2 id="seção-2-o-que-é-python-3-min">SEÇÃO 2: O QUE É PYTHON (3
 min)</h2>
 <p><strong>Tom:</strong> Analogia médica — idioma de comunicação com o
 computador</p>
-<p>"Python é um idioma.</p>
+<p>“Python é um idioma.</p>
 <p>Você se comunica com pacientes em português. Você se comunica com
 colegas internacionais em inglês. Você se comunica com o computador em
 Python.</p>
-<p>O computador não entende 'calcule o IMC desse paciente'. Mas entende
+<p>O computador não entende ‘calcule o IMC desse paciente’. Mas entende
 isso:</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_imc(peso, altura):</span>
@@ -40,22 +341,22 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <p>Python foi criado com um princípio: ser legível. O criador, Guido van
 Rossum, queria que código Python lesse quase como inglês.</p>
 <p>Você vai ver isso agora — lendo o que o Claude Code escreve para
-você."</p>
+você.”</p>
 <hr />
-<h2 id="seção-3-variáveis--o-prontuário-do-código-10-min">SEÇÃO 3:
+<h2 id="seção-3-variáveis-o-prontuário-do-código-10-min">SEÇÃO 3:
 VARIÁVEIS — O PRONTUÁRIO DO CÓDIGO (10 min)</h2>
 <p><strong>Tom:</strong> Conceito central, exemplos médicos, quatro
 tipos</p>
-<p>"Variável é um lugar na memória do computador onde você guarda um
+<p>“Variável é um lugar na memória do computador onde você guarda um
 valor.</p>
 <p>Pense como um campo do prontuário eletrônico.</p>
 <p>No prontuário você tem: Nome, Idade, Peso, Diabético. Em Python é
 exatamente isso — cada campo tem um nome e um valor.</p>
 <p>Existem quatro tipos principais:</p>
-<p><strong>String</strong> — texto. Campo 'Queixa Principal': texto
+<p><strong>String</strong> — texto. Campo ‘Queixa Principal’: texto
 livre, entre aspas.</p>
 <p><strong>Integer</strong> — número inteiro. Número do leito: não tem
-'leito 12.5'.</p>
+‘leito 12.5’.</p>
 <p><strong>Float</strong> — número com decimal. Resultado de
 laboratório: sempre tem decimal. Python usa ponto, não vírgula: 82.5,
 não 82,5.</p>
@@ -76,22 +377,22 @@ o nome do campo e o valor. Use nomes de variáveis em português.</code></pre>
 <p>[aguardar o Claude gerar o arquivo]</p>
 <p>[mostrar o arquivo gerado]</p>
 <p>Leia o código gerado comigo.</p>
-<p>Veja: 'nome = João Silva' — a variável se chama 'nome' e guarda o
-texto. 'idade = 45' — número inteiro, sem ponto decimal. 'peso = 82.5' —
-número com decimal, ponto como separador. 'diabetico = True' — boolean,
+<p>Veja: ‘nome = João Silva’ — a variável se chama ‘nome’ e guarda o
+texto. ‘idade = 45’ — número inteiro, sem ponto decimal. ‘peso = 82.5’ —
+número com decimal, ponto como separador. ‘diabetico = True’ — boolean,
 começa com maiúscula.</p>
 <p>Agora execute:</p>
 <pre><code>uv run python conceitos.py</code></pre>
 <p>[mostrar o resultado no terminal]</p>
 <p>Cada print mostrou o valor da variável correspondente.</p>
 <p>print é como o display do monitor cardíaco — você manda exibir, ele
-exibe."</p>
+exibe.”</p>
 <hr />
-<h2 id="seção-4-funções--o-protocolo-clínico-10-min">SEÇÃO 4: FUNÇÕES —
-O PROTOCOLO CLÍNICO (10 min)</h2>
+<h2 id="seção-4-funções-o-protocolo-clínico-10-min">SEÇÃO 4: FUNÇÕES — O
+PROTOCOLO CLÍNICO (10 min)</h2>
 <p><strong>Tom:</strong> Conceito de reutilização — defina uma vez,
 aplique sempre</p>
-<p>"Você tem um protocolo para avaliar risco de AVC em fibrilação
+<p>“Você tem um protocolo para avaliar risco de AVC em fibrilação
 atrial. Toda vez que um paciente novo chega, você segue o mesmo
 protocolo.</p>
 <p>Não reescreve o protocolo do zero. Você aplica.</p>
@@ -104,20 +405,26 @@ Depois chame essa função com três pacientes diferentes e imprima os resultado
 <p>[aguardar o Claude atualizar o arquivo]</p>
 <p>[mostrar o código gerado]</p>
 <p>Leia comigo o que o Claude escreveu.</p>
-<p>A linha que começa com 'def' define o protocolo. 'def
-calcular_imc(peso, altura):' — defina um protocolo chamado calcular_imc
+<p>A linha que começa com ‘def’ define o protocolo. ‘def
+calcular_imc(peso, altura):’ — defina um protocolo chamado calcular_imc
 que precisa de peso e altura para funcionar.</p>
-<p>'return' — devolva o resultado calculado.</p>
+<p>‘return’ — devolva o resultado calculado.</p>
 <p>Abaixo, três chamadas com pacientes diferentes. O protocolo foi
 escrito uma vez e aplicado três vezes.</p>
 <p>Execute:</p>
 <pre><code>uv run python conceitos.py</code></pre>
-<p>Três IMCs calculados. A mesma função. Três pacientes."</p>
+<p>Três IMCs calculados. A mesma função. Três pacientes.”</p>
 <hr />
-<h2 id="seção-5-condições--tomada-de-decisão-clínica-8-min">SEÇÃO 5:
+<h2 id="seção-5-condições-tomada-de-decisão-clínica-8-min">SEÇÃO 5:
 CONDIÇÕES — TOMADA DE DECISÃO CLÍNICA (8 min)</h2>
 <p><strong>Tom:</strong> Lógica clínica direta — if/elif/else</p>
-<p>"Agora o conceito mais parecido com raciocínio clínico.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: faixas de classificação de PA sistólica (&gt;180
+crise, 140-180 grau 2, 120-140 grau 1, &lt;120 normal) usadas como
+exemplo didático. Conferir contra a diretriz adotada antes de
+gravar.]</p>
+</blockquote>
+<p>“Agora o conceito mais parecido com raciocínio clínico.</p>
 <p>Em medicina você faz isso o tempo todo:</p>
 <p>Se PA sistólica maior que 180: crise hipertensiva. Se entre 140 e
 180: hipertensão grau 2. Se entre 120 e 140: hipertensão grau 1. Se
@@ -132,7 +439,7 @@ Teste com os valores 185, 150, 125 e 110.</code></pre>
 <p>[aguardar o Claude atualizar o arquivo]</p>
 <p>[mostrar o código gerado]</p>
 <p>Leia comigo.</p>
-<p>'if' — se. 'elif' — senão, se. Abreviação de 'else if'. 'else' — em
+<p>‘if’ — se. ‘elif’ — senão, se. Abreviação de ‘else if’. ‘else’ — em
 qualquer outro caso.</p>
 <p>Percebe como lê quase como português?</p>
 <p>Os espaços no início de cada linha — a indentação — são obrigatórios.
@@ -140,12 +447,12 @@ Python usa isso para saber o que pertence a qual condição. É como a
 hierarquia do prontuário: seção e subseção.</p>
 <p>Execute:</p>
 <pre><code>uv run python conceitos.py</code></pre>
-<p>Quatro valores, quatro classificações corretas."</p>
+<p>Quatro valores, quatro classificações corretas.”</p>
 <hr />
-<h2 id="seção-6-listas--a-enfermaria-do-código-5-min">SEÇÃO 6: LISTAS —
-A ENFERMARIA DO CÓDIGO (5 min)</h2>
+<h2 id="seção-6-listas-a-enfermaria-do-código-5-min">SEÇÃO 6: LISTAS — A
+ENFERMARIA DO CÓDIGO (5 min)</h2>
 <p><strong>Tom:</strong> Rápido — conceito de coleção e loop</p>
-<p>"Última estrutura básica: lista.</p>
+<p>“Última estrutura básica: lista.</p>
 <p>Uma lista guarda vários valores na mesma variável. É como uma
 enfermaria — vários pacientes, um registro.</p>
 <p>Prompt ao Claude Code:</p>
@@ -154,17 +461,17 @@ e um loop que imprime cada nome com o numero do paciente na lista.
 Depois mostre como adicionar um paciente novo à lista e contar quantos tem.</code></pre>
 <p>[aguardar e mostrar o código gerado]</p>
 <p>Leia comigo.</p>
-<p>Colchetes marcam a lista. Cada item separado por vírgula. 'for
-paciente in pacientes' — para cada paciente na lista, execute este
-bloco. '.append' adiciona um item ao final. 'len' conta quantos itens
+<p>Colchetes marcam a lista. Cada item separado por vírgula. ‘for
+paciente in pacientes’ — para cada paciente na lista, execute este
+bloco. ‘.append’ adiciona um item ao final. ‘len’ conta quantos itens
 existem.</p>
 <p>Execute e veja a lista percorrida, o paciente novo adicionado, a
-contagem final."</p>
+contagem final.”</p>
 <hr />
 <h2 id="seção-7-juntando-tudo-5-min">SEÇÃO 7: JUNTANDO TUDO (5 min)</h2>
 <p><strong>Tom:</strong> Síntese — ver os quatro conceitos integrados
 num protocolo real</p>
-<p>"Agora peça ao Claude Code para integrar tudo num mini protocolo
+<p>“Agora peça ao Claude Code para integrar tudo num mini protocolo
 clínico.</p>
 <p>Prompt:</p>
 <pre><code>No arquivo conceitos.py, crie uma função avaliar_paciente que recebe
@@ -180,14 +487,14 @@ variáveis, funções, condições, lista, loop.</p>
 <p>Você não escreveu uma linha. Mas você entendeu cada uma.</p>
 <p>Isso é exatamente o que vai acontecer no ClinMd-Tribe: o Claude
 escreve, você lê, valida, e pede ajustes. Você é o médico. O Claude é o
-residente que executa."</p>
+residente que executa.”</p>
 <hr />
 <h2
-id="seção-75-engineering-coach--dúvida-clínica-sobre-python-2-min">SEÇÃO
+id="seção-7.5-engineering-coach-dúvida-clínica-sobre-python-2-min">SEÇÃO
 7.5: ENGINEERING COACH — DÚVIDA CLÍNICA SOBRE PYTHON (2 min)</h2>
 <p><strong>Tom:</strong> Recurso disponível — o aluno não precisa travar
 sozinho</p>
-<p>"Você acabou de ver quatro conceitos em Python.</p>
+<p>“Você acabou de ver quatro conceitos em Python.</p>
 <p>Se algum ficou com dúvida — retornar vs imprimir, função vs variável,
 qualquer coisa — existe um agent específico para aprendizado
 técnico.</p>
@@ -201,11 +508,11 @@ não precisa travar numa dúvida. Tem um coach disponível 24h.</p>
 <p>E antes de encerrar: veja o que está pendente no projeto.</p>
 <pre><code>/tab_pendencias</code></pre>
 <p>[mostrar a tabela — vai listar Python básico como concluído e
-interface Flet como próxima tarefa]"</p>
+interface Flet como próxima tarefa]”</p>
 <hr />
 <h2 id="seção-8-encerramento-2-min">SEÇÃO 8: ENCERRAMENTO (2 min)</h2>
 <p><strong>Tom:</strong> Resumo e ponte para Flet</p>
-<p>"Resumo do que ficou pronto hoje.</p>
+<p>“Resumo do que ficou pronto hoje.</p>
 <p>Quatro conceitos lidos e entendidos com analogias clínicas: —
 Variável: campo do prontuário — Função: protocolo clínico reutilizável —
 Condição: tomada de decisão com if/elif/else — Lista: enfermaria do
@@ -214,6 +521,12 @@ código com loop</p>
 terminal.</p>
 <hr />
 <p>Dever de casa.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: faixas de glicemia do dever (hipoglicemia &lt;70,
+normal 70-99, pré-diabetes 100-125, diabetes &gt;126) usadas como
+exemplo didático. Conferir contra a diretriz adotada antes de
+gravar.]</p>
+</blockquote>
 <p>Peça ao Claude Code:</p>
 <pre><code>No arquivo conceitos.py, adicione uma função classificar_glicemia
 que recebe o valor da glicemia e retorna: hipoglicemia (abaixo de 70),
@@ -223,6 +536,21 @@ Teste com os valores 60, 90, 110 e 140.</code></pre>
 corretas.</p>
 <p>Na próxima aula: Flet. A interface gráfica do ClinMd-Tribe. Você vai
 ver na tela o que hoje está só no terminal.</p>
-<p>Até lá."</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,26 +1,263 @@
-<h1 id="aula-13--flet-sua-primeira-tela-clínica">Aula 13 — Flet: Sua
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 13 — Flet: Sua Primeira Tela Clínica</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 13 — Flet: Sua Primeira Tela Clínica</h1>
+</header>
+<h1 id="aula-13-flet-sua-primeira-tela-clínica">Aula 13 — Flet: Sua
 Primeira Tela Clínica</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~42 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — momento de
 revelar a interface do ClinMd-Tribe</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal,
+dentro da pasta do projeto:
+<code>cd Documents\projetos\clinmd-tribe</code> e depois
+<code>claude</code> (é o que a Seção 3 mostra).</label></li>
+<li><label><input type="checkbox" />Projeto <code>clinmd-tribe</code> já
+existente com o uv funcionando e o Flet já instalado
+(<code>uv add flet</code>, feito na aula de Terminal + uv): a aula
+assume o Flet pronto e todos os <code>uv run python main.py</code>
+dependem disso.</label></li>
+<li><label><input type="checkbox" />Sessão do Claude Code limpa, sem
+conversa anterior carregada (a demo nasce do primeiro prompt,
+reescrevendo o <code>main.py</code> do zero).</label></li>
+<li><label><input type="checkbox" />Agent <code>frontend-engineer</code>
+instalado e disponível (é invocado na Seção 5.5 com
+<code>@frontend-engineer</code>); confirme que ele responde antes de
+gravar.</label></li>
+<li><label><input type="checkbox" />Skill <code>/tab_pendencias</code>
+instalada (é chamada no fim da Seção 5.5); confirme que o comando existe
+nesta sessão.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Ensaie antes os três prompts Flet
+(janela com identidade TribeMD, botão com evento, calculadora de IMC
+completa) e confirme que cada <code>uv run python main.py</code> ABRE de
+fato uma janela na sua máquina, esta aula depende da janela gráfica
+aparecer na captura de tela. Em alguns ambientes o Flet abre no
+navegador em vez de janela nativa; teste antes para saber onde a janela
+vai surgir e enquadrar a câmera/captura.</label></li>
+<li><label><input type="checkbox" />Confirme as cores TribeMD que o
+roteiro pede (<code>#5213B9</code> roxo, <code>#FAFAFA</code> fundo,
+<code>#646C6F</code> cinza, <code>#2E3233</code> texto escuro) aparecem
+corretas na janela gerada.</label></li>
+<li><label><input type="checkbox" />Teste o caso de erro da calculadora
+(Seção 5): digite texto onde se espera número e confirme que a mensagem
+de erro aparece (o Claude costuma adicionar <code>try/except</code>),
+pois o roteiro narra essa validação ao vivo.</label></li>
+<li><label><input type="checkbox" />O <code>main.py</code> desta aula é
+reescrito várias vezes pelos prompts; tudo bem ele já existir do
+<code>uv init</code>, o roteiro manda reescrever. Privacidade (LGPD):
+peso/altura/nome usados são fictícios, nenhum dado de paciente
+real.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site externo é necessário;
+observação: dependendo do ambiente, o próprio app Flet pode abrir numa
+aba do navegador local (não é um site, é o app rodando localmente).</p>
+<hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA (2 min)</h2>
 <p><strong>Tom:</strong> Virada de página — do terminal para a tela</p>
-<p>"Na aula passada você entendeu os conceitos básicos de Python.
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Última checagem antes de abrir a tela: os óculos. Hoje é dia de
+janela com cores e botões, mas o código por trás ainda tem hex de cor e
+nome de campo em letra fina. Ajusta o foco igual quem vai conferir a cor
+de uma lâmina no microscópio: detalhe importa. Pronto? Primeira tela
+clínica chegando.”</p>
+<p>“Na aula passada você entendeu os conceitos básicos de Python.
 Variáveis, funções, condições, listas. Tudo apareceu em texto numa tela
 preta.</p>
 <p>Hoje isso muda.</p>
 <p>Você vai pedir ao Claude Code para criar uma janela. Com botões. Com
 campos de texto. Com cores. Com a identidade visual do ClinMd-Tribe.</p>
 <p>A biblioteca que torna isso possível se chama Flet. E você já
-instalou ela na aula_11 com 'uv add flet'.</p>
-<p>Vamos abrir a primeira janela."</p>
+instalou ela na aula_10 com ‘uv add flet’.</p>
+<p>Vamos abrir a primeira janela.”</p>
 <hr />
 <h2 id="seção-2-o-que-é-flet-3-min">SEÇÃO 2: O QUE É FLET (3 min)</h2>
 <p><strong>Tom:</strong> Analogia médica — o que Flet faz e por que foi
 escolhido</p>
-<p>"Flet é uma biblioteca Python que cria interfaces gráficas.</p>
+<p>“Flet é uma biblioteca Python que cria interfaces gráficas.</p>
 <p>Pense assim: você conhece o prontuário em papel versus o PEP.</p>
 <p>O prontuário em papel é o Python puro no terminal — funciona, mas é
 texto, linha por linha, sem interface.</p>
@@ -33,13 +270,13 @@ código.</p>
 um duplo clique, sem precisar do Python instalado no computador do
 paciente.</p>
 <p>Terceira: a sintaxe que o Claude gera em Flet é legível. Você vai
-conseguir ler o código gerado e entender o que cada parte faz."</p>
+conseguir ler o código gerado e entender o que cada parte faz.”</p>
 <hr />
-<h2 id="seção-3-hello-world-médico--primeira-janela-12-min">SEÇÃO 3:
+<h2 id="seção-3-hello-world-médico-primeira-janela-12-min">SEÇÃO 3:
 HELLO WORLD MÉDICO — PRIMEIRA JANELA (12 min)</h2>
 <p><strong>Tom:</strong> Primeiro prompt Flet — explicar o resultado
 gerado</p>
-<p>"Abra o PowerShell, entre na pasta do projeto e abra o Claude
+<p>“Abra o PowerShell, entre na pasta do projeto e abra o Claude
 Code:</p>
 <pre><code>cd Documents\projetos\clinmd-tribe
 claude</code></pre>
@@ -59,28 +296,28 @@ e o subtitulo &#39;Seu assistente clinico local&#39; em cinza (#646C6F), tamanho
 <p>Agora leia o código gerado comigo — você precisa reconhecer as partes
 para saber o que pedir nas próximas aulas.</p>
 <p><strong>import flet as ft</strong> — importa a biblioteca com o
-apelido 'ft'. Em vez de escrever 'flet.Text', você escreve 'ft.Text'.
+apelido ‘ft’. Em vez de escrever ‘flet.Text’, você escreve ‘ft.Text’.
 Como chamar um colega pelo apelido.</p>
 <p><strong>def main(page: ft.Page):</strong> — função principal do app.
-O Flet chama essa função quando o app abre. 'page' é a janela — o canvas
+O Flet chama essa função quando o app abre. ‘page’ é a janela — o canvas
 onde os elementos são colocados.</p>
 <p><strong>page.title</strong> — o texto na barra de título da
 janela.</p>
 <p><strong>page.bgcolor</strong> — cor de fundo. #FAFAFA é o branco-gelo
 do TribeMD.</p>
-<p><strong>ft.Text(...)</strong> — um elemento de texto na tela. 'value'
-é o texto, 'size' é o tamanho, 'color' é a cor.</p>
-<p><strong>page.add(...)</strong> — coloca os elementos na janela, na
+<p><strong>ft.Text(…)</strong> — um elemento de texto na tela. ‘value’ é
+o texto, ‘size’ é o tamanho, ‘color’ é a cor.</p>
+<p><strong>page.add(…)</strong> — coloca os elementos na janela, na
 ordem que você listar.</p>
 <p><strong>ft.app(main)</strong> — inicia o app chamando a função
 main.</p>
-<p>Doze linhas. Janela com identidade visual TribeMD."</p>
+<p>Doze linhas. Janela com identidade visual TribeMD.”</p>
 <hr />
-<h2 id="seção-4-botão-e-evento--interatividade-8-min">SEÇÃO 4: BOTÃO E
+<h2 id="seção-4-botão-e-evento-interatividade-8-min">SEÇÃO 4: BOTÃO E
 EVENTO — INTERATIVIDADE (8 min)</h2>
 <p><strong>Tom:</strong> Evento clínico — ação que dispara uma
 resposta</p>
-<p>"Uma interface sem interatividade é um cartaz.</p>
+<p>“Uma interface sem interatividade é um cartaz.</p>
 <p>Prompt ao Claude Code:</p>
 <pre><code>No main.py, adicione um botao &#39;Iniciar sistema&#39; com fundo roxo (#5213B9)
 e texto branco. Quando clicar, deve aparecer a mensagem
@@ -102,16 +339,21 @@ com as mudanças.</p>
 <p>É o ciclo diagnóstico: estímulo, processamento, resposta. O paciente
 apresenta o sintoma. Você processa. Você age.</p>
 <p>Você não escreveu esse padrão. Mas agora você reconhece quando o
-Claude usa."</p>
+Claude usa.”</p>
 <hr />
 <h2
-id="seção-5-calculadora-de-imc--pedindo-ao-claude-o-app-completo-12-min">SEÇÃO
+id="seção-5-calculadora-de-imc-pedindo-ao-claude-o-app-completo-12-min">SEÇÃO
 5: CALCULADORA DE IMC — PEDINDO AO CLAUDE O APP COMPLETO (12 min)</h2>
 <p><strong>Tom:</strong> Síntese — um prompt claro gera um app clínico
 funcional</p>
-<p>"Agora o momento principal da aula.</p>
+<p>“Agora o momento principal da aula.</p>
 <p>Você vai pedir ao Claude Code para construir uma calculadora de IMC
 com interface. Num único prompt, descrevendo o resultado que quer.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: faixas de IMC do prompt (&lt;18.5 abaixo do peso,
+18.5-24.9 normal, 25-29.9 sobrepeso, &gt;30 obesidade) usadas como
+exemplo. Conferir contra a referência adotada antes de gravar.]</p>
+</blockquote>
 <p>Prompt:</p>
 <pre><code>Reescreve o main.py como uma calculadora de IMC com interface Flet.
 O app deve ter:
@@ -138,18 +380,18 @@ if/elif/else, float().</p>
 <p>Do Flet: ft.TextField para os campos, ft.ElevatedButton para o botão,
 ft.Text para o resultado, page.add, page.update.</p>
 <p>E um bloco que o Claude adicionou por conta própria: try/except.</p>
-<p>'try' — tente executar. 'except ValueError' — se o usuário digitar
+<p>‘try’ — tente executar. ‘except ValueError’ — se o usuário digitar
 texto onde esperava número, faça isso.</p>
 <p>É um protocolo de segurança. O Claude adicionou porque é boa prática.
 Você validou que funciona — digitou texto e viu a mensagem de erro. Isso
 é validar o que o Claude gerou.</p>
-<p>Um prompt. Um app clínico completo."</p>
+<p>Um prompt. Um app clínico completo.”</p>
 <hr />
-<h2 id="seção-55-frontend-engineer--validando-a-interface-2-min">SEÇÃO
+<h2 id="seção-5.5-frontend-engineer-validando-a-interface-2-min">SEÇÃO
 5.5: FRONTEND-ENGINEER — VALIDANDO A INTERFACE (2 min)</h2>
 <p><strong>Tom:</strong> Consulta especializada — o aluno tem um time
 técnico disponível</p>
-<p>"Você tem uma calculadora de IMC funcional com interface gráfica.</p>
+<p>“Você tem uma calculadora de IMC funcional com interface gráfica.</p>
 <p>Antes de encerrar: vamos consultar o frontend-engineer para validar a
 abordagem e antecipar melhorias.</p>
 <p>No Claude Code:</p>
@@ -164,11 +406,11 @@ exatamente o que a próxima aula vai resolver.</p>
 <p>Veja as pendências:</p>
 <pre><code>/tab_pendencias</code></pre>
 <p>[mostrar a tabela — layout e arquitetura vão aparecer como próximas
-tarefas]"</p>
+tarefas]”</p>
 <hr />
 <h2 id="seção-6-encerramento-3-min">SEÇÃO 6: ENCERRAMENTO (3 min)</h2>
 <p><strong>Tom:</strong> Resumo, motivação e o que vem a seguir</p>
-<p>"Resumo do que ficou pronto hoje.</p>
+<p>“Resumo do que ficou pronto hoje.</p>
 <p>Primeira janela Flet criada com cores TribeMD — via prompt ao Claude
 Code. Botão com evento e resposta — via prompt. Calculadora de IMC com
 interface gráfica completa — via prompt.</p>
@@ -180,12 +422,27 @@ descreveu o que queria. O Claude construiu. Você validou.</p>
 <p>Peça ao Claude Code:</p>
 <pre><code>No main.py da calculadora de IMC, adiciona um campo de texto
 para o nome do paciente. Quando calcular, o resultado deve incluir
-o nome: por exemplo &#39;Joao Silva — IMC: 26.8 — Sobrepeso&#39;.</code></pre>
+o nome: por exemplo &#39;Joao Silva - IMC: 26.8 - Sobrepeso&#39;.</code></pre>
 <p>Execute. Valide que o nome aparece no resultado. Se não estiver
 certo, corrija o prompt e peça de novo.</p>
 <p>Na próxima aula: layout. Você vai ver que a calculadora está
 funcional mas visualmente desorganizada — e vai pedir ao Claude para
 deixá-la com cara de software profissional.</p>
-<p>Até lá."</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

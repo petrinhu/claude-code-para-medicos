@@ -1,15 +1,242 @@
-<h1 id="aula-16--scaffold-do-clinmd-tribe-a-planta-e-o-prédio">Aula 16 —
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 16 — Scaffold do ClinMd-Tribe: A Planta e o Prédio</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 16 — Scaffold do ClinMd-Tribe: A Planta e o
+Prédio</h1>
+</header>
+<h1 id="aula-16-scaffold-do-clinmd-tribe-a-planta-e-o-prédio">Aula 16 —
 Scaffold do ClinMd-Tribe: A Planta e o Prédio</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~43 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — o mapa da
 aula_15 vira estrutura real de código</p>
 <hr />
-<h2 id="seção-1-abertura--a-planta-e-o-prédio-3-min">SEÇÃO 1: ABERTURA —
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />O <code>arquitetura.txt</code>
+(gerado ao vivo na aula 15) presente na pasta do projeto, com as 4
+camadas comentadas. É o gancho da Seção 1
+(<code>type arquitetura.txt</code>).</label></li>
+<li><label><input type="checkbox" />O <code>main.py</code> da
+calculadora de IMC estilizada (aula 14) presente e funcionando, pois o
+scaffold mantém a janela Flet abrindo.</label></li>
+<li><label><input type="checkbox" />Ambiente Python/uv pronto (o
+<code>uv run python main.py</code> roda sem erro).</label></li>
+<li><label><input type="checkbox" />A constelação de agents disponível:
+<code>software-architect</code>, <code>caetano-cto</code> e
+<code>capitolino-cpo</code> respondem (insumos das Seções 5, 6 e
+7).</label></li>
+<li><label><input type="checkbox" />A skill <code>/tab_pendencias</code>
+responde (insumo da Seção 8).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />As pastas
+<code>presentation/</code>, <code>application/</code>,
+<code>domain/</code>, <code>infrastructure/</code> ainda NÃO existem (a
+Seção 1 mostra <code>dir /s /b</code> provando que só há
+<code>main.py</code>, <code>pyproject.toml</code>, <code>uv.lock</code>
+e a venv). Se um ensaio anterior já criou o scaffold, apague essas 4
+pastas antes de gravar para o prompt da Seção 2 construir do
+zero.</label></li>
+<li><label><input type="checkbox" />Confira o conteúdo do
+<code>arquitetura.txt</code> antes de gravar: ele deve bater com o que
+aparece na Seção 1 (4 camadas com comentário clínico em cada
+linha).</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula.</p>
+<hr />
+<h2 id="seção-1-abertura-a-planta-e-o-prédio-3-min">SEÇÃO 1: ABERTURA —
 A PLANTA E O PRÉDIO (3 min)</h2>
 <p><strong>Tom:</strong> Contraste visual — o artefato da aula anterior
 como gancho</p>
-<p>"Na aula passada você criou esse arquivo.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Óculos de perto antes de começar. Hoje a gente vai ver pastas, nomes
+de arquivo e caminhos aparecendo no terminal, tudo em fonte miúda. É
+como ler o nome de uma medicação parecida com outra: um caractere de
+diferença muda tudo, e você não quer confundir ‘domain’ com ‘main’.”</p>
+<p>“Na aula passada você criou esse arquivo.</p>
 <p>[abrir o terminal na pasta do projeto]</p>
 <pre><code>type arquitetura.txt</code></pre>
 <p>[mostrar o conteúdo]</p>
@@ -26,14 +253,14 @@ internos]</p>
 <p>As pastas não existem. O arquitetura.txt descreve um hospital que
 ainda não foi construído.</p>
 <p>Hoje a gente constrói.</p>
-<p>Com um único prompt ao Claude Code."</p>
+<p>Com um único prompt ao Claude Code.”</p>
 <hr />
 <h2
-id="seção-2-prompt-de-scaffold--um-comando-quatro-andares-12-min">SEÇÃO
+id="seção-2-prompt-de-scaffold-um-comando-quatro-andares-12-min">SEÇÃO
 2: PROMPT DE SCAFFOLD — UM COMANDO, QUATRO ANDARES (12 min)</h2>
 <p><strong>Tom:</strong> Explore — o prompt gera, o professor valida
 junto com o aluno</p>
-<p>"Abra o Claude Code:</p>
+<p>“Abra o Claude Code:</p>
 <pre><code>cd Documents\projetos\clinmd-tribe
 claude</code></pre>
 <p>Agora o prompt:</p>
@@ -79,7 +306,7 @@ um]</p>
 Triagem pronta
 Médico pronto
 Laboratório pronto</code></pre>
-<p>[janela Flet abre — a calculadora de IMC da aula_13 ainda
+<p>[janela Flet abre - a calculadora de IMC estilizada da aula_14 ainda
 funciona]</p>
 <p>Quatro linhas. Janela abrindo. Sem linha vermelha de erro.</p>
 <p>Se apareceu assim: o scaffold está de pé.</p>
@@ -90,23 +317,23 @@ e cole direto no Claude Code:</p>
 <pre><code>Apareceu esse erro ao rodar uv run python main.py: [cole o erro aqui].
 Por favor, corrija.</code></pre>
 <p>O Claude identifica e corrige. Erro vermelho é informação, não
-catástrofe."</p>
+catástrofe.”</p>
 <hr />
 <h2 id="seção-3-tour-pelo-código-gerado-10-min">SEÇÃO 3: TOUR PELO
 CÓDIGO GERADO (10 min)</h2>
 <p><strong>Tom:</strong> Explain — professor narra cada arquivo, aluno
 reconhece a ala</p>
-<p>"Vamos abrir cada arquivo e entender o que o Claude criou.</p>
+<p>“Vamos abrir cada arquivo e entender o que o Claude criou.</p>
 <p>Começamos pelo mais importante.</p>
 <hr />
 <p><strong>O Médico — domain/calculadoras.py</strong></p>
 <pre><code>type domain\calculadoras.py</code></pre>
 <p>[mostrar — docstring + def camada()]</p>
 <p>O Claude escreveu uma docstring assim:</p>
-<p>'Camada de Domínio do ClinMd-Tribe. Aqui ficam os protocolos
+<p>‘Camada de Domínio do ClinMd-Tribe. Aqui ficam os protocolos
 clínicos: CHA2DS2-VASc, PHQ-9, GAD-7 e qualquer critério diagnóstico.
 Esta camada não sabe se há interface gráfica. Não sabe se há banco de
-dados. Só sabe medicina.'</p>
+dados. Só sabe medicina.’</p>
 <p>Você, médico, é o dono desta pasta. Quando a diretriz mudar, você vem
 aqui. Quando quiser adicionar um escore novo, você vem aqui. Tela,
 banco, arquivo — não é problema desta camada.</p>
@@ -151,13 +378,13 @@ pasta e chamou as 4 funções. Resultado: as 4 linhas no terminal antes da
 janela.</p>
 <p>O <code>main.py</code> é o único lugar onde as 4 camadas se encontram
 — e elas se encontram aqui, não diretamente entre si. Nenhuma pasta fala
-com outra diretamente. Tudo passa pelo corredor central."</p>
+com outra diretamente. Tudo passa pelo corredor central.”</p>
 <hr />
-<h2 id="seção-4-transferência--3-perguntas-4-min">SEÇÃO 4: TRANSFERÊNCIA
+<h2 id="seção-4-transferência-3-perguntas-4-min">SEÇÃO 4: TRANSFERÊNCIA
 — 3 PERGUNTAS (4 min)</h2>
 <p><strong>Tom:</strong> Retórico — professor pergunta e responde,
 reforça a independência entre camadas</p>
-<p>"Três perguntas. São perguntas que vão aparecer de novo quando o
+<p>“Três perguntas. São perguntas que vão aparecer de novo quando o
 projeto crescer.</p>
 <hr />
 <p><strong>Pergunta 1:</strong> O ClinMd-Tribe foi pedido para rodar
@@ -166,8 +393,9 @@ como página web em vez de app desktop. Qual pasta muda?</p>
 Flet ou HTML. O Laboratório não sabe se há botão roxo ou link azul. Você
 troca a Recepção. O hospital continua funcionando.</p>
 <hr />
-<p><strong>Pergunta 2:</strong> Nova diretriz: no CHA2DS2-VASc, idade
-maior que 75 anos agora vale 3 pontos. Qual pasta muda?</p>
+<p><strong>Pergunta 2:</strong> Mudança hipotética de critério: no
+CHA2DS2-VASc, idade maior que 75 anos passa a valer 3 pontos. Qual pasta
+muda?</p>
 <p>Só <code>domain/</code> — o Médico. A Recepção não recebeu nenhum
 memorando clínico. A Triagem continua orquestrando do mesmo jeito. O
 Laboratório continua salvando do mesmo jeito. Só o protocolo clínico
@@ -176,19 +404,21 @@ muda — e está isolado no lugar certo.</p>
 <p><strong>Pergunta 3:</strong> A clínica quer migrar o armazenamento
 local para um banco SQLite centralizado. Qual pasta muda?</p>
 <p>Só <code>infrastructure/</code> — o Laboratório. O Médico não sabe
-onde o resultado é guardado. A Triagem só pede 'salva isso' — não sabe
+onde o resultado é guardado. A Triagem só pede ‘salva isso’ — não sabe
 como. Você treina o Laboratório no novo sistema. O resto não muda.</p>
 <hr />
 <p>Três perguntas. Três vezes a mesma resposta: só uma pasta.</p>
 <p>Isso é o que a Clean Architecture compra para o ClinMd-Tribe. Cada
 mudança — clínica, visual ou técnica — tem um endereço certo. Sem varrer
-o código inteiro. Sem risco de quebrar o que não devia."</p>
+o código inteiro. Sem risco de quebrar o que não devia.”</p>
 <hr />
-<h2 id="seção-5-software-architect--validação-arquitetural-3-min">SEÇÃO
-5: @software-architect — VALIDAÇÃO ARQUITETURAL (3 min)</h2>
+<h2 id="seção-5-software-architect-validação-arquitetural-3-min">SEÇÃO
+5: <span class="citation"
+data-cites="software-architect">@software-architect</span> — VALIDAÇÃO
+ARQUITETURAL (3 min)</h2>
 <p><strong>Tom:</strong> Consulta especializada — decisão arquitetural
 validada antes de avançar</p>
-<p>"Antes de ir para as calculadoras, vamos consultar o arquiteto do
+<p>“Antes de ir para as calculadoras, vamos consultar o arquiteto do
 time.</p>
 <pre><code>@software-architect, o ClinMd-Tribe está usando Clean Architecture
 com 4 camadas: presentation, application, domain, infrastructure.
@@ -199,13 +429,14 @@ anotador e RAG local? Algum risco arquitetural a antecipar?</code></pre>
 <p>[mostrar a resposta do software-architect]</p>
 <p>O arquiteto vai validar as decisões estruturais e pode apontar
 padrões que aparecem nos próximos módulos — como onde colocar
-utilitários compartilhados entre camadas. Guarde as sugestões."</p>
+utilitários compartilhados entre camadas. Guarde as sugestões.”</p>
 <hr />
-<h2 id="seção-6-caetano-cto--validação-técnica-3-min">SEÇÃO 6:
-@caetano-cto — VALIDAÇÃO TÉCNICA (3 min)</h2>
+<h2 id="seção-6-caetano-cto-validação-técnica-3-min">SEÇÃO 6: <span
+class="citation" data-cites="caetano-cto">@caetano-cto</span> —
+VALIDAÇÃO TÉCNICA (3 min)</h2>
 <p><strong>Tom:</strong> Aprovação do CTO antes de avançar para
 features</p>
-<p>"Agora o CTO técnico do time:</p>
+<p>“Agora o CTO técnico do time:</p>
 <pre><code>@caetano-cto, o scaffold do ClinMd-Tribe está gerado e rodando.
 4 pastas, 4 __init__.py, 4 placeholders, main.py integrado.
 uv run python main.py imprime as 4 camadas e abre a janela Flet sem erro.
@@ -213,13 +444,15 @@ Validação técnica: estamos prontos para começar
 as calculadoras clínicas no próximo módulo?</code></pre>
 <p>[mostrar a resposta do Caetano]</p>
 <p>O Caetano vai confirmar a prontidão técnica e pode recomendar algum
-ajuste antes de entrar no módulo das calculadoras."</p>
+ajuste antes de entrar no módulo das calculadoras.”</p>
 <hr />
-<h2 id="seção-7-capitolino-cpo--validação-de-produto-3-min">SEÇÃO 7:
-@capitolino-cpo — VALIDAÇÃO DE PRODUTO (3 min)</h2>
+<h2 id="seção-7-capitolino-cpo-validação-de-produto-3-min">SEÇÃO 7:
+<span class="citation"
+data-cites="capitolino-cpo">@capitolino-cpo</span> — VALIDAÇÃO DE
+PRODUTO (3 min)</h2>
 <p><strong>Tom:</strong> Confirmação do roadmap de produto antes de
 fechar o módulo</p>
-<p>"E o CPO — para garantir que a estrutura que construímos suporta o
+<p>“E o CPO — para garantir que a estrutura que construímos suporta o
 produto que planejamos:</p>
 <pre><code>@capitolino-cpo, o scaffold do ClinMd-Tribe está pronto em Clean Architecture.
 presentation, application, domain, infrastructure.
@@ -229,26 +462,26 @@ Essa arquitetura suporta o roadmap completo do produto —
 incluindo o anotador e o RAG local que vêm depois?</code></pre>
 <p>[mostrar a resposta do Capitolino]</p>
 <p>O CPO olha pelo lado do produto — se a estrutura técnica serve o que
-o médico vai precisar usar no consultório."</p>
+o médico vai precisar usar no consultório.”</p>
 <hr />
 <h2 id="seção-8-tab_pendencias-2-min">SEÇÃO 8: /tab_pendencias (2
 min)</h2>
 <p><strong>Tom:</strong> Registro canônico — fechar o ciclo de
 trabalho</p>
-<p>"Atualize as pendências:</p>
+<p>“Atualize as pendências:</p>
 <pre><code>/tab_pendencias</code></pre>
 <p>[mostrar a tabela — scaffold concluído, calculadora CHA2DS2-VASc como
 próxima tarefa]</p>
-<p>Olha o que mudou de posição. 'Scaffold ClinMd-Tribe' passou para
-Concluído. 'Calculadora CHA2DS2-VASc' está no topo das próximas
+<p>Olha o que mudou de posição. ‘Scaffold ClinMd-Tribe’ passou para
+Concluído. ‘Calculadora CHA2DS2-VASc’ está no topo das próximas
 tarefas.</p>
-<p>Essa tabela é o placar do seu projeto. Cada aula move uma peça."</p>
+<p>Essa tabela é o placar do seu projeto. Cada aula move uma peça.”</p>
 <hr />
-<h2 id="seção-9-encerramento--dever-de-casa-3-min">SEÇÃO 9: ENCERRAMENTO
+<h2 id="seção-9-encerramento-dever-de-casa-3-min">SEÇÃO 9: ENCERRAMENTO
 + DEVER DE CASA (3 min)</h2>
 <p><strong>Tom:</strong> Síntese motivacional e ponte para as
 calculadoras</p>
-<p>"Resumo do que ficou pronto hoje.</p>
+<p>“Resumo do que ficou pronto hoje.</p>
 <p>Um único prompt ao Claude Code transformou o arquitetura.txt em
 estrutura real: 4 pastas, 4 credenciais, 4 placeholders clínicos,
 main.py integrado.</p>
@@ -272,6 +505,21 @@ Code?</p>
 <p>Na próxima aula: as calculadoras clínicas. O CHA2DS2-VASc sai do
 arquitetura.txt e entra no domain/calculadoras.py — como código real,
 isolado, testável.</p>
-<p>Até lá."</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,14 +1,41 @@
 # Aula 13 — Flet: Sua Primeira Tela Clínica
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~42 min  
 **Tom:** Colega com humor leve e didático — momento de revelar a interface do ClinMd-Tribe
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, dentro da pasta do projeto: `cd Documents\projetos\clinmd-tribe` e depois `claude` (é o que a Seção 3 mostra).
+- [ ] Projeto `clinmd-tribe` já existente com o uv funcionando e o Flet já instalado (`uv add flet`, feito na aula de Terminal + uv): a aula assume o Flet pronto e todos os `uv run python main.py` dependem disso.
+- [ ] Sessão do Claude Code limpa, sem conversa anterior carregada (a demo nasce do primeiro prompt, reescrevendo o `main.py` do zero).
+- [ ] Agent `frontend-engineer` instalado e disponível (é invocado na Seção 5.5 com `@frontend-engineer`); confirme que ele responde antes de gravar.
+- [ ] Skill `/tab_pendencias` instalada (é chamada no fim da Seção 5.5); confirme que o comando existe nesta sessão.
+
+**Confira antes de gravar:**
+
+- [ ] Ensaie antes os três prompts Flet (janela com identidade TribeMD, botão com evento, calculadora de IMC completa) e confirme que cada `uv run python main.py` ABRE de fato uma janela na sua máquina, esta aula depende da janela gráfica aparecer na captura de tela. Em alguns ambientes o Flet abre no navegador em vez de janela nativa; teste antes para saber onde a janela vai surgir e enquadrar a câmera/captura.
+- [ ] Confirme as cores TribeMD que o roteiro pede (`#5213B9` roxo, `#FAFAFA` fundo, `#646C6F` cinza, `#2E3233` texto escuro) aparecem corretas na janela gerada.
+- [ ] Teste o caso de erro da calculadora (Seção 5): digite texto onde se espera número e confirme que a mensagem de erro aparece (o Claude costuma adicionar `try/except`), pois o roteiro narra essa validação ao vivo.
+- [ ] O `main.py` desta aula é reescrito várias vezes pelos prompts; tudo bem ele já existir do `uv init`, o roteiro manda reescrever. Privacidade (LGPD): peso/altura/nome usados são fictícios, nenhum dado de paciente real.
+
+**Navegador:** nenhum site externo é necessário; observação: dependendo do ambiente, o próprio app Flet pode abrir numa aba do navegador local (não é um site, é o app rodando localmente).
 
 ---
 
 ## SEÇÃO 1: ABERTURA (2 min)
 
 **Tom:** Virada de página — do terminal para a tela
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Última checagem antes de abrir a tela: os óculos. Hoje é dia de janela com cores e botões, mas o código por trás ainda tem hex de cor e nome de campo em letra fina. Ajusta o foco igual quem vai conferir a cor de uma lâmina no microscópio: detalhe importa. Pronto? Primeira tela clínica chegando."
 
 "Na aula passada você entendeu os conceitos básicos de Python.
 Variáveis, funções, condições, listas.
@@ -21,7 +48,7 @@ Com botões. Com campos de texto. Com cores.
 Com a identidade visual do ClinMd-Tribe.
 
 A biblioteca que torna isso possível se chama Flet.
-E você já instalou ela na aula_11 com 'uv add flet'.
+E você já instalou ela na aula_10 com 'uv add flet'.
 
 Vamos abrir a primeira janela."
 
@@ -171,6 +198,8 @@ Você não escreveu esse padrão. Mas agora você reconhece quando o Claude usa.
 Você vai pedir ao Claude Code para construir uma calculadora de IMC com interface.
 Num único prompt, descrevendo o resultado que quer.
 
+> [CONFERIR CLÍNICO: faixas de IMC do prompt (<18.5 abaixo do peso, 18.5-24.9 normal, 25-29.9 sobrepeso, >30 obesidade) usadas como exemplo. Conferir contra a referência adotada antes de gravar.]
+
 Prompt:
 
 ```
@@ -282,7 +311,7 @@ Peça ao Claude Code:
 ```
 No main.py da calculadora de IMC, adiciona um campo de texto
 para o nome do paciente. Quando calcular, o resultado deve incluir
-o nome: por exemplo 'Joao Silva — IMC: 26.8 — Sobrepeso'.
+o nome: por exemplo 'Joao Silva - IMC: 26.8 - Sobrepeso'.
 ```
 
 Execute. Valide que o nome aparece no resultado.

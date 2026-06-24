@@ -1,14 +1,41 @@
 # Aula 09 — Git Remoto: Seu Código na Nuvem + Clone de Ferramentas
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~42 min  
 **Tom:** Colega com humor leve e didático — Git remoto e primeiro clone real
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] PowerShell aberto e limpo (esta aula é toda no PowerShell + navegador; o Claude Code não é usado nas demos).
+- [ ] Git já instalado e configurado (`git --version`, `user.name` e `user.email`) da aula_08, esse é o pré-requisito direto.
+- [ ] Repositório local da aula anterior pronto, com pelo menos um commit no histórico (`meu-primeiro-repo` ou `consultorio-digital`, o do dever de casa da aula_08): é ele que vai receber o `git remote add` e o primeiro `git push` na Seção 4.
+- [ ] Conta no GitHub: decida se grava a criação ao vivo (Seção 3) ou se já tem conta logada. Para gravar o `Sign up`, use uma conta nova; para pular, deixe o GitHub já logado no navegador.
+
+**Confira antes de gravar:**
+
+- [ ] Faça um ensaio do `git push` antes da gravação: a primeira autenticação do GitHub no Windows abre uma janela de login/token e pode travar a tomada. Deixe a credencial já memorizada (Git Credential Manager) para o push da Seção 4 sair fluido na câmera.
+- [ ] O GitHub não aceita mais senha pura no push: tenha um Personal Access Token ou o login pelo navegador (Git Credential Manager) pronto, caso a janela de autenticação apareça.
+- [ ] Confirme que o repositório `clinmd-tribe` ainda NÃO existe na sua conta GitHub (apague se sobrou de um teste), para criá-lo do zero na Seção 3 sem erro de nome duplicado.
+- [ ] Teste antes o `git clone` do Codeberg da Seção 5 (`https://codeberg.org/petrinhu/memo_persistente.git`) numa pasta de rascunho, para confirmar que o repositório está público e o clone funciona. Apague a cópia de teste depois, para o clone na gravação cair numa pasta `~\.claude\skills\memo_persistente` ainda inexistente.
+- [ ] Privacidade: na hora de criar o repositório, escolha mesmo `Private` como o roteiro manda, e evite expor na tela e-mail/token reais.
+
+**Navegador:** abra a aba: https://github.com (usada nas Seções 3 e 4 para criar a conta, criar o repositório e conferir o push). O Codeberg (Seção 5) é acessado só via `git clone` no terminal, não precisa de aba aberta.
 
 ---
 
 ## SEÇÃO 1: ABERTURA (2 min)
 
 **Tom:** Continuidade direta da aula anterior
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Rotina de hoje, primeiro item: óculos no rosto. A gente vai mexer em URLs e tokens cheios de caractere pequeno, e errar uma letra ali é tipo trocar mg por mcg na prescrição: muda tudo. Foco ajustado? Então bora subir código pra nuvem."
 
 "Na aula passada você instalou o Git e fez seus primeiros commits.
 
@@ -51,8 +78,8 @@ você baixa do servidor.
 A ferramenta que usamos para isso se chama GitHub.
 
 GitHub é gratuito, é o padrão da indústria, e é onde a maioria
-dos projetos de software do mundo vive — incluindo o código do Linux,
-do Python, e do próprio Claude Code.
+dos projetos de software do mundo vive, incluindo o código do Linux
+e do Python.
 
 Vamos criar sua conta e subir o projeto."
 
@@ -130,10 +157,11 @@ Cole e execute esse comando com o URL do SEU repositório
 git push -u origin main
 ```
 
-[aguardar — pode pedir login]
+[aguardar, pode pedir login]
 
-Se pedir usuário e senha: use o usuário e senha do GitHub.
-O Windows pode abrir uma janela de autenticação — pode autorizar.
+Na primeira vez, o Windows costuma abrir uma janela de autenticação do GitHub.
+O caminho mais simples é clicar em 'Sign in with your browser' e autorizar pelo navegador, onde você já está logado.
+Importante: o GitHub não aceita mais a senha da conta direto no terminal, então é por essa janela do navegador (ou por um token) que a autenticação acontece. Uma vez autorizado, o Windows guarda a credencial e os próximos push saem sem pedir nada.
 
 [mostrar o resultado no terminal]
 
@@ -196,8 +224,8 @@ git clone https://github.com/pallets/flask.git
 Claro que você não vai fazer isso agora. Mas é bom saber que
 o Git é a forma padrão de distribuir software no mundo inteiro.
 
-Quando o Claude Code instalar uma dependência Python usando uv,
-por baixo dos panos também tem Git envolvido.
+Boa parte das ferramentas e do código aberto que você vai usar no curso
+mora em repositórios Git, e é de lá que a gente baixa, com um clone.
 
 Git é invisível quando funciona. Você só percebe quando não está lá."
 

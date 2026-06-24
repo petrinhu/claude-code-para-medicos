@@ -1,6 +1,6 @@
 # Aula 22 — HAS-BLED: O Outro Lado da Balança
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~45 min  
 **Tom:** Colega com humor leve e didático — "agora você tem os dois lados"  
 **Módulo:** S05.02 — Calculadoras Médicas  
@@ -8,9 +8,37 @@
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/casos_teste_hasbled.md` : os dois casos clínicos fictícios com gabarito (HAS-BLED 1 com Decisão FA "Anticoagular"; HAS-BLED 7 com Decisão FA "individualizada"). Apoio das Seções 6 e 7. Só o instrutor vê; não aparece na aula.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O ClinMd-Tribe já com a calculadora CHA₂DS₂-VASc da aula_21 funcionando (esta aula adiciona o HAS-BLED e o painel Decisão FA). O `uv run python main.py` deve subir o app no navegador.
+
+**Confira antes de gravar:**
+
+- [ ] Tenha o prompt descritivo da Seção 3 à mão (está no roteiro) para colar de uma vez no terminal.
+- [ ] Dois arquivos novos e um modificado são gerados ao vivo (`domain/calculadoras/hasbled.py`, `presentation/telas/calculadora_hasbled.py`, e o `application/servicos/calculadora_service.py` ganha uma função). Saiba em que pastas caem para abri-los na leitura supervisionada.
+- [ ] Rode `uv run python main.py` uma vez antes de gravar para confirmar que o app abre sem erro.
+
+**Navegador:** o app Flet abre no navegador local (`uv run python main.py`); nenhum site externo é necessário.
+
+---
+
 ## SEÇÃO 1: ABERTURA — 2 min
 
 **Tom:** Continuação direta da aula_21 — retomar o caso, não começar do zero
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes da balança virar: óculos no nariz. Hoje a gente cruza dois scores na mesma tela, e confundir um 3 com um 8 por causa da fonte pequena é o tipo de erro que muda anticoagulação. Foca a tela, que aqui cada dígito pesa."
 
 "Na aula passada você ficou com metade da resposta.
 
@@ -54,6 +82,8 @@ D — Drogas antiagregantes, AINEs ou álcool: 1 ponto
 
 Score máximo: 7.
 
+> [CONFERIR CLÍNICO: 7 critérios HAS-BLED, 1 ponto cada, score máximo 7. Nota: o HAS-BLED original tem componentes que podem somar até 9 (função renal e hepática contam separado; drogas e álcool contam separado). Esta aula adota a versão simplificada de 7 itens / 7 pontos, coerente com o resource. Validar se essa simplificação é aceitável para o uso clínico pretendido.]
+
 ---
 
 Interpretação:
@@ -61,6 +91,8 @@ Interpretação:
 Score menor que 3: baixo risco de sangramento.
 Score igual a 3: risco moderado.
 Score maior que 3: alto risco.
+
+> [CONFERIR CLÍNICO: faixas de risco de sangramento (< 3 baixo, = 3 moderado, > 3 alto). Bate com o resource.]
 
 ---
 
@@ -89,6 +121,8 @@ D: sem AAS, AINE ou álcool → 0
 Total: 1 ponto.
 
 HAS-BLED de 1: baixo risco de sangramento.
+
+> [CONFERIR CLÍNICO: caso âncora 68a masculino, HAS controlada, só idade > 65 = HAS-BLED 1, baixo risco. Bate com o resource (Caso 1).]
 
 ---
 
@@ -161,6 +195,8 @@ presentation/telas/calculadora_hasbled.py
           "Sem indicação de anticoagulação" em cinza
       (cutoff: homem ≥ 2 · mulher ≥ 3)
 ```
+
+> [NOTA: o campo do critério L está nomeado `inr_labial` no prompt e na leitura da Seção 5; o termo clínico correto é "INR lábil". Nome de variável é interno (não aparece na tela do médico) e está consistente entre prompt e leitura, então a demo funciona. Padronizar para `inr_labil` numa rodada futura se quiser rigor terminológico.]
 
 ---
 
@@ -374,6 +410,8 @@ Sexo: feminino.
 ---
 
 Decisão individualizada — discutir risco/benefício.
+
+> [CONFERIR CLÍNICO: Caso 2 - 78a feminina, todos os 7 critérios = HAS-BLED 7 (alto risco); CHA₂DS₂-VASc 6 (AVC 2 + idade>=75 2 + HAS 1 + feminino 1). Combinação alto+alto = "Decisão individualizada". Bate com o resource (Caso 2).]
 
 ---
 

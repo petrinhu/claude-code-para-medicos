@@ -1,14 +1,42 @@
 # Aula 19 — BigTech Virtual: Montando o Time Completo
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~38 min  
 **Tom:** Colega com humor leve e didático — revelar que o residente de plantão tem um hospital inteiro atrás dele
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/prompts_aula19.md` : cola com todos os prompts da aula (`/bigtech`, `@narciso-ciso`, `@caetano-cto`, o pedido do ADR-001 e `/tab_pendencias`), prontos para copiar e não errar a digitação ao vivo. Apoio das Seções 3 a 7.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] A constelação de agents da BigTech Virtual disponível: a skill `/bigtech` e os agents `@narciso-ciso` e `@caetano-cto` devem aparecer no autocomplete.
+
+**Confira antes de gravar:**
+
+- [ ] Digite `/` e confirme que `/bigtech` e `/tab_pendencias` aparecem na lista de skills.
+- [ ] Digite `@` e confirme que `narciso-ciso` e `caetano-cto` autocompletam.
+- [ ] O arquivo `docs/decisoes/ADR-001-persistencia-local.md` é criado ao vivo pelo Claude na Seção 6; saiba em que pasta ele cai para abri-lo na tela.
+
+**Navegador:** nenhum site é necessário nesta aula.
 
 ---
 
 ## SEÇÃO 1: RECONEXÃO — O HOSPITAL INTEIRO (4 min)
 
 **Tom:** Promessa cumprida — conectar diretamente com o que o aluno acabou de aprender
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes de chamar a junta inteira: cola os óculos no nariz. Hoje vamos abrir o organograma do hospital no terminal, e nome de especialista em fonte pequena some que nem residente na hora da visita. Ajusta o zoom também, que a gente não perde ninguém de vista."
 
 "Na aula passada você equipou seu residente.
 

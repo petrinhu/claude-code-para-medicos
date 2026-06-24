@@ -1,6 +1,6 @@
 # Aula 21 — CHA₂DS₂-VASc: Sua Primeira Calculadora Clínica
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~55 min  
 **Tom:** Colega com humor leve e didático — "de hoje em diante você constrói ferramentas que outros usam"  
 **Módulo:** S05.01 — Calculadoras Médicas  
@@ -8,9 +8,37 @@
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/casos_teste_cha2ds2vasc.md` : os três casos clínicos fictícios com gabarito (score 3, 0 e 7) para conferir o app contra o cálculo à mão. Apoio das Seções 6 e 7. Só o instrutor vê; não aparece na aula.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O ClinMd-Tribe com o scaffold das 4 camadas pronto (`domain/`, `application/`, `presentation/`, `infrastructure/`) das aulas anteriores; ainda sem nenhuma calculadora (esta é a primeira). O `uv run python main.py` deve subir o app no navegador.
+
+**Confira antes de gravar:**
+
+- [ ] Tenha o prompt descritivo da Seção 3 à mão (está no roteiro) para colar de uma vez no terminal.
+- [ ] Os três arquivos da calculadora são criados ao vivo pelo Claude; saiba em que pastas caem (`domain/calculadoras/`, `application/servicos/`, `presentation/telas/`) para abri-los na leitura supervisionada.
+- [ ] Rode `uv run python main.py` uma vez antes de gravar para confirmar que o app abre sem erro.
+
+**Navegador:** o app Flet abre no navegador local (`uv run python main.py`); nenhum site externo é necessário.
+
+---
+
 ## SEÇÃO 1: ABERTURA DO MÓDULO S05 — 3 min
 
 **Tom:** Virada de marco — fechar o arco de setup e abrir o arco de produto real
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Primeiro a profilaxia de sempre: óculos no rosto. Hoje a gente lê código junto pra conferir score, e subscrito de CHA dois DS dois VASc na tela é miudinho que nem rubrica de receita: se passar batido, vira erro. Aproxima a tela que eu espero."
 
 "Vamos fazer um balanço rápido.
 
@@ -91,12 +119,16 @@ Os outros valem 1.
 
 Score máximo: 9 pontos se for mulher, 8 se for homem.
 
+> [CONFERIR CLÍNICO: pontuação dos 8 critérios (A₂=2, S₂=2, demais=1) e score máximo 9/8. Validar contra diretriz vigente.]
+
 ---
 
 Cutoff para anticoagular:
 
 Homem com score maior ou igual a 2: anticoagular.
 Mulher com score maior ou igual a 3: anticoagular.
+
+> [CONFERIR CLÍNICO: pontos de corte de anticoagulação (homem >= 2, mulher >= 3). Mesmo valor citado no resource e usado na Seção 5 e na interpretação do app.]
 
 ---
 
@@ -118,6 +150,8 @@ Total: 3 pontos.
 Homem com score 3. Cutoff é 2.
 
 Anticoagula.
+
+> [CONFERIR CLÍNICO: caso âncora 68a masculino, HAS+DM+idade 65-74 = score 3, conduta Anticoagular. Bate com o resource (Caso 1).]
 
 ---
 
@@ -413,6 +447,8 @@ Sem indicação no momento.
 
 Correto. Nenhum critério preenchido, nenhum ponto.
 
+> [CONFERIR CLÍNICO: Caso 2 - 55a masculino, sem fatores = score 0, Sem indicação. Bate com o resource.]
+
 ---
 
 Caso 3: paciente de 77 anos, feminina.
@@ -430,6 +466,8 @@ C: 1 + H: 1 + A₂: 2 (tem 77 anos) + S₂: 2 (AVC prévio) + Sc: 1 (feminino) =
 Bate.
 
 Recomendação: Anticoagular. Evidentemente.
+
+> [CONFERIR CLÍNICO: Caso 3 - 77a feminina, IC+HAS+AVC prévio = score 7, Anticoagular. Bate com o resource. Conferir que a soma 1+1+2+2+1=7 está clinicamente correta.]
 
 ---
 

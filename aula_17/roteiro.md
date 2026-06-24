@@ -1,14 +1,42 @@
 # Aula 17 — Claude Code: Seu Residente de Plantão 24h
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~44 min  
 **Tom:** Colega com humor leve e didático — aprofundar o que o aluno já usa sem perceber que usa errado
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada (a Seção 1 abre uma sessão nova de propósito).
+- [ ] O scaffold da aula 16 presente: as 4 pastas com os arquivos `presentation/tela_inicial.py`, `application/orquestrador.py`, `domain/calculadoras.py`, `infrastructure/armazenamento.py`. A Seção 6 manda o Claude ler esses 4 arquivos.
+- [ ] O `CLAUDE.md` do projeto presente (citado na Seção 3 como o "resumo de admissão" do plantão).
+- [ ] Ambiente Python/uv pronto.
+- [ ] A skill `/tab_pendencias` responde (insumo da Seção 9).
+
+**Confira antes de gravar:**
+
+- [ ] As demos A/B das Seções 1 e 5 ("prompt ruim") são feitas FORA da pasta do ClinMd-Tribe, numa sessão nova qualquer, para o Claude não ter contexto do projeto. Tenha uma pasta vazia de teste à mão para esses dois momentos.
+- [ ] A demo da Seção 6 (ler os 4 arquivos) é feita DENTRO da pasta do ClinMd-Tribe. Confira que os 4 arquivos do scaffold ainda têm só placeholder/docstring (nenhuma lógica clínica), pois a resposta esperada é "nenhuma camada tem lógica clínica ainda".
+- [ ] Os exemplos de anonimização LGPD da Seção 7 usam dados FICTÍCIOS já escritos no roteiro (paciente fictício, sem nome/CPF/data real). Não use dado de paciente real em nenhum prompt da gravação.
+- [ ] Teste `/clear` e `/help` antes de gravar para saber como a saída aparece no seu terminal (Seções 3 e 8).
+
+**Navegador:** nenhum site é necessário nesta aula.
 
 ---
 
 ## SEÇÃO 1: ABERTURA — ORÁCULO VS RESIDENTE (3 min)
 
 **Tom:** Dissonância produtiva — revelar o erro antes de ensinar o modelo certo
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Pausa de meio segundo: bota os óculos de perto. Hoje a aula é mais de conceito que de tela, mas tem demos com prompts e respostas em fonte pequena, e eu não quero que você esforce a vista igual quem tenta ler um ECG impresso na metade do tamanho. Pronto? Bora."
 
 "Desde a aula_01 você usa o Claude Code.
 
@@ -264,6 +292,8 @@ Está clinicamente correto? Não dá pra saber sem revisar tudo.
 
 Agora o mesmo pedido, do jeito certo.
 
+> [CONFERIR CLÍNICO: o prompt bom abaixo lista os parâmetros e pesos do CHA2DS2-VASc de forma resumida (sem o item "doença vascular"). Confira se quer incluir o escore completo ou se mantém a versão didática enxuta; o objetivo aqui é demonstrar prompt específico, não o escore canônico.]
+
 Prompt bom:
 
 ```
@@ -378,7 +408,7 @@ Em vez de:
 
 ```
 Paciente João Silva, 64 anos, CPF 123.456.789-00,
-internado em 15/03, com FA e HAS. Dr. Petrus, CRM 12345.
+internado em 15/03, com FA e HAS. Dr. Fulano, CRM 00000.
 ```
 
 Use:

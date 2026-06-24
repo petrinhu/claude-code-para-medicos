@@ -1,15 +1,244 @@
-<h1 id="aula-17--claude-code-seu-residente-de-plantão-24h">Aula 17 —
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 17 — Claude Code: Seu Residente de Plantão 24h</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 17 — Claude Code: Seu Residente de Plantão
+24h</h1>
+</header>
+<h1 id="aula-17-claude-code-seu-residente-de-plantão-24h">Aula 17 —
 Claude Code: Seu Residente de Plantão 24h</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~44 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — aprofundar o
 que o aluno já usa sem perceber que usa errado</p>
 <hr />
-<h2 id="seção-1-abertura--oráculo-vs-residente-3-min">SEÇÃO 1: ABERTURA
-— ORÁCULO VS RESIDENTE (3 min)</h2>
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada (a Seção 1 abre uma sessão nova de propósito).</label></li>
+<li><label><input type="checkbox" />O scaffold da aula 16 presente: as 4
+pastas com os arquivos <code>presentation/tela_inicial.py</code>,
+<code>application/orquestrador.py</code>,
+<code>domain/calculadoras.py</code>,
+<code>infrastructure/armazenamento.py</code>. A Seção 6 manda o Claude
+ler esses 4 arquivos.</label></li>
+<li><label><input type="checkbox" />O <code>CLAUDE.md</code> do projeto
+presente (citado na Seção 3 como o “resumo de admissão” do
+plantão).</label></li>
+<li><label><input type="checkbox" />Ambiente Python/uv
+pronto.</label></li>
+<li><label><input type="checkbox" />A skill <code>/tab_pendencias</code>
+responde (insumo da Seção 9).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />As demos A/B das Seções 1 e 5
+(“prompt ruim”) são feitas FORA da pasta do ClinMd-Tribe, numa sessão
+nova qualquer, para o Claude não ter contexto do projeto. Tenha uma
+pasta vazia de teste à mão para esses dois momentos.</label></li>
+<li><label><input type="checkbox" />A demo da Seção 6 (ler os 4
+arquivos) é feita DENTRO da pasta do ClinMd-Tribe. Confira que os 4
+arquivos do scaffold ainda têm só placeholder/docstring (nenhuma lógica
+clínica), pois a resposta esperada é “nenhuma camada tem lógica clínica
+ainda”.</label></li>
+<li><label><input type="checkbox" />Os exemplos de anonimização LGPD da
+Seção 7 usam dados FICTÍCIOS já escritos no roteiro (paciente fictício,
+sem nome/CPF/data real). Não use dado de paciente real em nenhum prompt
+da gravação.</label></li>
+<li><label><input type="checkbox" />Teste <code>/clear</code> e
+<code>/help</code> antes de gravar para saber como a saída aparece no
+seu terminal (Seções 3 e 8).</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula.</p>
+<hr />
+<h2 id="seção-1-abertura-oráculo-vs-residente-3-min">SEÇÃO 1: ABERTURA —
+ORÁCULO VS RESIDENTE (3 min)</h2>
 <p><strong>Tom:</strong> Dissonância produtiva — revelar o erro antes de
 ensinar o modelo certo</p>
-<p>"Desde a aula_01 você usa o Claude Code.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Pausa de meio segundo: bota os óculos de perto. Hoje a aula é mais
+de conceito que de tela, mas tem demos com prompts e respostas em fonte
+pequena, e eu não quero que você esforce a vista igual quem tenta ler um
+ECG impresso na metade do tamanho. Pronto? Bora.”</p>
+<p>“Desde a aula_01 você usa o Claude Code.</p>
 <p>Você pediu textos, criou código Python, montou interfaces Flet, gerou
 a arquitetura completa do ClinMd-Tribe.</p>
 <p>Mas deixa eu te fazer uma pergunta honesta:</p>
@@ -36,13 +265,13 @@ dor de cabeça.</p>
 <p>Hoje a gente corrige isso.</p>
 <p>Você vai entender o que o Claude Code é por dentro, por que ele erra,
 o que ele lembra e o que esquece — e como usar esse residente brilhante
-do jeito que ele foi feito pra ser usado."</p>
+do jeito que ele foi feito pra ser usado.”</p>
 <hr />
-<h2 id="seção-2-o-que-é-um-llm--analogia-médica-7-min">SEÇÃO 2: O QUE É
+<h2 id="seção-2-o-que-é-um-llm-analogia-médica-7-min">SEÇÃO 2: O QUE É
 UM LLM — ANALOGIA MÉDICA (7 min)</h2>
 <p><strong>Tom:</strong> Conceitual — explicar o mecanismo sem
 tecnicalismo</p>
-<p>"LLM. Large Language Model. Modelo de linguagem de grande escala.</p>
+<p>“LLM. Large Language Model. Modelo de linguagem de grande escala.</p>
 <p>Esse nome não ajuda muito. Então deixa eu traduzir.</p>
 <hr />
 <p>Pensa num radiologista que leu 100 milhões de laudos.</p>
@@ -60,7 +289,7 @@ artigos médicos, livros, fóruns.</p>
 <p>Quando você escreve um prompt, ele não consulta um banco de dados de
 verdades. Ele prevê: qual seria a próxima palavra mais provável? Qual
 seria o próximo bloco de código mais provável?</p>
-<p>Por isso ele 'sabe medicina' — leu o suficiente para reconhecer
+<p>Por isso ele ‘sabe medicina’ — leu o suficiente para reconhecer
 padrões. Mas também pode inventar uma dose de remédio que não existe em
 nenhuma diretriz.</p>
 <p>Não é malícia. Não é descuido. É o mecanismo.</p>
@@ -69,13 +298,13 @@ nenhuma diretriz.</p>
 brilhante pode errar num pedido impreciso.</p>
 <p>A diferença entre os dois e os que erram mais? O contexto que você
 fornece.</p>
-<p>Laudo bom vem de clínica boa. Código bom vem de prompt bom."</p>
+<p>Laudo bom vem de clínica boa. Código bom vem de prompt bom.”</p>
 <hr />
-<h2 id="seção-3-contexto-e-memória--troca-de-plantão-6-min">SEÇÃO 3:
+<h2 id="seção-3-contexto-e-memória-troca-de-plantão-6-min">SEÇÃO 3:
 CONTEXTO E MEMÓRIA — TROCA DE PLANTÃO (6 min)</h2>
 <p><strong>Tom:</strong> Prático — explicar o que persiste e o que
 some</p>
-<p>"Segunda coisa que você precisa entender: o que o Claude lembra.</p>
+<p>“Segunda coisa que você precisa entender: o que o Claude lembra.</p>
 <hr />
 <p>Pensa na memória de trabalho de um plantonista.</p>
 <p>Você entra às 7h. Recebe 12 pacientes. Durante aquele plantão, você
@@ -105,13 +334,13 @@ turno:</p>
 <p>[executar /clear no terminal]</p>
 <p>Contexto limpo. O Claude não lembra mais de nada do que foi dito
 nesta sessão. Útil quando a conversa ficou longa e confusa, quando você
-quer recomeçar sem vieses do histórico."</p>
+quer recomeçar sem vieses do histórico.”</p>
 <hr />
 <h2 id="seção-4-por-que-o-claude-erra-5-min">SEÇÃO 4: POR QUE O CLAUDE
 ERRA (5 min)</h2>
 <p><strong>Tom:</strong> Calibrar expectativa sem minar confiança — você
 é o atestante final</p>
-<p>"Você já conhece um colega assim.</p>
+<p>“Você já conhece um colega assim.</p>
 <p>Aquele que quando você pergunta qualquer coisa, responde
 imediatamente, com segurança absoluta.</p>
 <p>Às vezes está certo. Às vezes está completamente errado. Mas o tom é
@@ -120,7 +349,7 @@ sempre o mesmo.</p>
 <p>O Claude tem esse comportamento.</p>
 <p>Ele não sabe que não sabe. Não existe incerteza explícita na resposta
 dele a não ser que você peça.</p>
-<p>Ele não vai dizer 'olha, não tenho certeza sobre essa dose'. Vai
+<p>Ele não vai dizer ‘olha, não tenho certeza sobre essa dose’. Vai
 responder com a mesma confiança que usa quando sabe com certeza.</p>
 <hr />
 <p>Isso não é um defeito que vai ser corrigido. É uma característica do
@@ -137,13 +366,13 @@ assina.</p>
 <p>Peça a revisão antes de aceitar. Especialmente para qualquer coisa
 com dado numérico clínico: dose, escore, critério diagnóstico.</p>
 <p>O residente bom é o que você treina para ter dúvida. E o treino
-começa no seu prompt."</p>
+começa no seu prompt.”</p>
 <hr />
-<h2 id="seção-5-demo-ab--prompt-ruim-vs-bom-8-min">SEÇÃO 5: DEMO A/B —
+<h2 id="seção-5-demo-ab-prompt-ruim-vs-bom-8-min">SEÇÃO 5: DEMO A/B —
 PROMPT RUIM VS BOM (8 min)</h2>
 <p><strong>Tom:</strong> Demonstrar — o delta visível entre os dois
 resultados é o professor</p>
-<p>"Agora o momento mais importante da aula.</p>
+<p>“Agora o momento mais importante da aula.</p>
 <p>Vou fazer o mesmo pedido clínico duas vezes. Você vai ver a
 diferença.</p>
 <p>[abrir sessão nova no Claude Code — fora da pasta do
@@ -159,6 +388,13 @@ diferentes.</p>
 sem revisar tudo.</p>
 <hr />
 <p>Agora o mesmo pedido, do jeito certo.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: o prompt bom abaixo lista os parâmetros e pesos do
+CHA2DS2-VASc de forma resumida (sem o item “doença vascular”). Confira
+se quer incluir o escore completo ou se mantém a versão didática enxuta;
+o objetivo aqui é demonstrar prompt específico, não o escore
+canônico.]</p>
+</blockquote>
 <p>Prompt bom:</p>
 <pre><code>Cria uma função Python chamada calcular_cha2ds2vasc.
 Ela recebe os seguintes parâmetros:
@@ -185,17 +421,17 @@ Sem interface gráfica — só a função.</code></pre>
 sabe exatamente o que entra e o que sai.</p>
 <p>O que mudou?</p>
 <p>Você descreveu o resultado clínico, não o código. Você especificou os
-tipos de dado. Você disse o que não queria: 'sem interface'.</p>
+tipos de dado. Você disse o que não queria: ‘sem interface’.</p>
 <p>Você foi o médico que passou o caso. O residente executou o
 protocolo.</p>
 <p>Esse é o padrão para qualquer prompt de código clínico: descreva o
-resultado que você quer ver, não a solução que você imagina."</p>
+resultado que você quer ver, não a solução que você imagina.”</p>
 <hr />
-<h2 id="seção-6-demo-cli-vs-web--lendo-arquivos-5-min">SEÇÃO 6: DEMO CLI
+<h2 id="seção-6-demo-cli-vs-web-lendo-arquivos-5-min">SEÇÃO 6: DEMO CLI
 VS WEB — LENDO ARQUIVOS (5 min)</h2>
 <p><strong>Tom:</strong> Revelar o diferencial concreto do Claude Code
 sobre o Claude.ai web</p>
-<p>"Uma coisa que o Claude.ai no navegador não consegue fazer.</p>
+<p>“Uma coisa que o Claude.ai no navegador não consegue fazer.</p>
 <p>[entrar na pasta do ClinMd-Tribe e abrir o Claude Code]</p>
 <pre><code>cd Documents\projetos\clinmd-tribe
 claude</code></pre>
@@ -216,13 +452,13 @@ calculadoras implementadas — você vai usar esse padrão
 constantemente:</p>
 <pre><code>Leia [arquivo X] e [arquivo Y] e me diga [o que você quer saber]</code></pre>
 <p>O residente que lê o prontuário antes de fazer a visita é
-infinitamente mais útil do que o que entra no quarto sem contexto."</p>
+infinitamente mais útil do que o que entra no quarto sem contexto.”</p>
 <hr />
 <h2 id="seção-7-lgpd-como-skill-de-prompt-4-min">SEÇÃO 7: LGPD COMO
 SKILL DE PROMPT (4 min)</h2>
 <p><strong>Tom:</strong> Prático — ensinar a anonimizar como técnica,
 não como palestra</p>
-<p>"LGPD.</p>
+<p>“LGPD.</p>
 <p>Em toda aula você ouviu: dado de paciente não entra no Claude
 Code.</p>
 <p>Hoje você aprende como fazer isso na prática.</p>
@@ -232,7 +468,7 @@ contexto clínico que você precisa.</p>
 <p>O padrão de anonimização.</p>
 <p>Em vez de:</p>
 <pre><code>Paciente João Silva, 64 anos, CPF 123.456.789-00,
-internado em 15/03, com FA e HAS. Dr. Petrus, CRM 12345.</code></pre>
+internado em 15/03, com FA e HAS. Dr. Fulano, CRM 00000.</code></pre>
 <p>Use:</p>
 <pre><code>Paciente fictício: 64 anos, sexo masculino, FA + HAS.
 Sem nome real, sem CPF, sem data real.</code></pre>
@@ -245,16 +481,16 @@ diferente.</p>
 <hr />
 <p>Incorpore esse padrão como reflexo. Antes de qualquer prompt clínico,
 uma pergunta:</p>
-<p>'Tem algum dado que identifica uma pessoa real aqui?'</p>
+<p>‘Tem algum dado que identifica uma pessoa real aqui?’</p>
 <p>Se sim, substitua por dado fictício equivalente.</p>
 <p>O Claude não precisa saber que o paciente é o João. Ele precisa saber
 que é um homem de 64 anos com FA e HAS. Isso é suficiente para um prompt
-excelente."</p>
+excelente.”</p>
 <hr />
 <h2 id="seção-8-clear-e-help-3-min">SEÇÃO 8: /CLEAR E /HELP (3 min)</h2>
 <p><strong>Tom:</strong> Referência prática — dois comandos de higiene
 de sessão</p>
-<p>"/clear você já viu — troca de plantonista no meio do turno.</p>
+<p>“/clear você já viu — troca de plantonista no meio do turno.</p>
 <p>Quando usar: — a conversa ficou longa e confusa — você quer começar
 um assunto novo sem o contexto anterior interferindo — o Claude começou
 a repetir soluções que não funcionaram</p>
@@ -271,12 +507,12 @@ quer.</p>
 <hr />
 <p>Esses dois fazem parte da higiene de sessão. Como lavar as mãos antes
 de um procedimento — não são obrigatórios em cada momento, mas quando
-você precisa, precisa."</p>
+você precisa, precisa.”</p>
 <hr />
-<h2 id="seção-9-tab_pendencias--encerramento-3-min">SEÇÃO 9:
+<h2 id="seção-9-tab_pendencias-encerramento-3-min">SEÇÃO 9:
 /TAB_PENDENCIAS + ENCERRAMENTO (3 min)</h2>
 <p><strong>Tom:</strong> Registro canônico e ponte para a aula_18</p>
-<p>"Atualize as pendências:</p>
+<p>“Atualize as pendências:</p>
 <pre><code>/tab_pendencias</code></pre>
 <p>[mostrar a tabela — aula_17 concluída, aula_18
 MCP/Skills/Hooks/Plugins como próxima]</p>
@@ -307,6 +543,21 @@ residente.</p>
 estender o bisturi do Claude Code — como ele se conecta a ferramentas
 externas, como as skills do curso funcionam por dentro, e como os hooks
 automatizam ações no seu projeto.</p>
-<p>Até lá."</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

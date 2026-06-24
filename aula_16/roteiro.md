@@ -1,14 +1,41 @@
 # Aula 16 — Scaffold do ClinMd-Tribe: A Planta e o Prédio
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~43 min  
 **Tom:** Colega com humor leve e didático — o mapa da aula_15 vira estrutura real de código
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O `arquitetura.txt` (gerado ao vivo na aula 15) presente na pasta do projeto, com as 4 camadas comentadas. É o gancho da Seção 1 (`type arquitetura.txt`).
+- [ ] O `main.py` da calculadora de IMC estilizada (aula 14) presente e funcionando, pois o scaffold mantém a janela Flet abrindo.
+- [ ] Ambiente Python/uv pronto (o `uv run python main.py` roda sem erro).
+- [ ] A constelação de agents disponível: `software-architect`, `caetano-cto` e `capitolino-cpo` respondem (insumos das Seções 5, 6 e 7).
+- [ ] A skill `/tab_pendencias` responde (insumo da Seção 8).
+
+**Confira antes de gravar:**
+
+- [ ] As pastas `presentation/`, `application/`, `domain/`, `infrastructure/` ainda NÃO existem (a Seção 1 mostra `dir /s /b` provando que só há `main.py`, `pyproject.toml`, `uv.lock` e a venv). Se um ensaio anterior já criou o scaffold, apague essas 4 pastas antes de gravar para o prompt da Seção 2 construir do zero.
+- [ ] Confira o conteúdo do `arquitetura.txt` antes de gravar: ele deve bater com o que aparece na Seção 1 (4 camadas com comentário clínico em cada linha).
+
+**Navegador:** nenhum site é necessário nesta aula.
 
 ---
 
 ## SEÇÃO 1: ABERTURA — A PLANTA E O PRÉDIO (3 min)
 
 **Tom:** Contraste visual — o artefato da aula anterior como gancho
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Óculos de perto antes de começar. Hoje a gente vai ver pastas, nomes de arquivo e caminhos aparecendo no terminal, tudo em fonte miúda. É como ler o nome de uma medicação parecida com outra: um caractere de diferença muda tudo, e você não quer confundir 'domain' com 'main'."
 
 "Na aula passada você criou esse arquivo.
 
@@ -114,7 +141,7 @@ Médico pronto
 Laboratório pronto
 ```
 
-[janela Flet abre — a calculadora de IMC da aula_13 ainda funciona]
+[janela Flet abre - a calculadora de IMC estilizada da aula_14 ainda funciona]
 
 Quatro linhas. Janela abrindo. Sem linha vermelha de erro.
 
@@ -271,7 +298,7 @@ Você troca a Recepção. O hospital continua funcionando.
 ---
 
 **Pergunta 2:**
-Nova diretriz: no CHA2DS2-VASc, idade maior que 75 anos agora vale 3 pontos.
+Mudança hipotética de critério: no CHA2DS2-VASc, idade maior que 75 anos passa a valer 3 pontos.
 Qual pasta muda?
 
 Só `domain/` — o Médico.

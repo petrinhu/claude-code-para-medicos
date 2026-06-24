@@ -1,14 +1,41 @@
 # Aula 12 — Python com Analogias Clínicas
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~40 min  
 **Tom:** Colega com humor leve e didático — primeira aula de Python, zero presumido
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, dentro da pasta do projeto: `cd Documents\projetos\clinmd-tribe` e depois `claude` (é o que a Seção 3 mostra).
+- [ ] Projeto `clinmd-tribe` já existente, criado com `uv init` na aula_10, com o uv funcionando (`uv --version`): todos os `uv run python conceitos.py` desta aula dependem desse ambiente.
+- [ ] Sessão do Claude Code limpa, sem conversa anterior carregada (a demo nasce do primeiro prompt, criando o `conceitos.py` do zero).
+- [ ] Garanta que `conceitos.py` ainda NÃO existe na pasta do projeto (apague se sobrou de um teste): o primeiro prompt da Seção 3 deve criar o arquivo do zero, e cada seção seguinte vai acrescentando a ele.
+- [ ] Agent `engineering-coach` instalado e disponível (é invocado na Seção 7.5 com `@engineering-coach`); confirme que ele responde antes de gravar.
+- [ ] Skill `/tab_pendencias` instalada (é chamada no fim da Seção 7.5); confirme que o comando existe nesta sessão.
+
+**Confira antes de gravar:**
+
+- [ ] Ensaie antes a sequência de prompts inteira (variáveis, função `calcular_imc`, `classificar_pressao`, lista com loop, `avaliar_paciente`), conferindo que o Claude vai acrescentando ao mesmo `conceitos.py` e que cada `uv run python conceitos.py` mostra a saída que o roteiro narra (IMCs, classificações de pressão, lista percorrida).
+- [ ] O Claude pode gerar nomes de variáveis ou formatação ligeiramente diferentes do que o roteiro descreve; tenha em mente as quatro variáveis-chave (`nome` string, `idade` int, `peso` float, `diabetico` bool) para narrar mesmo que o texto gerado varie.
+- [ ] Privacidade (LGPD): todos os dados são fictícios (pacientes inventados); confirme que nenhum dado de paciente real entra nos prompts.
+
+**Navegador:** nenhum site é necessário nesta aula (tudo acontece no Claude Code e no terminal).
 
 ---
 
 ## SEÇÃO 1: ABERTURA (2 min)
 
 **Tom:** Desarmador — tirar o medo antes de começar
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Pequeno checklist antes da anamnese do Python: óculos de perto, se for o seu caso, agora. O código vai ter símbolo discreto, dois-pontos, parêntese, indentação, e perder isso de vista é como não enxergar a vírgula da posologia. Foco no ponto, e a gente começa leve."
 
 "Python.
 
@@ -179,6 +206,8 @@ Três IMCs calculados. A mesma função. Três pacientes."
 
 **Tom:** Lógica clínica direta — if/elif/else
 
+> [CONFERIR CLÍNICO: faixas de classificação de PA sistólica (>180 crise, 140-180 grau 2, 120-140 grau 1, <120 normal) usadas como exemplo didático. Conferir contra a diretriz adotada antes de gravar.]
+
 "Agora o conceito mais parecido com raciocínio clínico.
 
 Em medicina você faz isso o tempo todo:
@@ -339,6 +368,8 @@ Um mini protocolo completo gerado pelo Claude e rodando no terminal.
 ---
 
 Dever de casa.
+
+> [CONFERIR CLÍNICO: faixas de glicemia do dever (hipoglicemia <70, normal 70-99, pré-diabetes 100-125, diabetes >126) usadas como exemplo didático. Conferir contra a diretriz adotada antes de gravar.]
 
 Peça ao Claude Code:
 

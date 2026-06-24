@@ -174,16 +174,81 @@
 </header>
 <h1 id="aula-10-terminal-uv-o-bisturi-digital">Aula 10 — Terminal + uv:
 o Bisturi Digital</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~48 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — “você passa de
 usuário para construtor”<br />
 <strong>Módulo:</strong> S01.01 — Fundação da Fase Avançada<br />
 <strong>SO:</strong> Windows/PowerShell (padrão único do curso)</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />PowerShell aberto e limpo (esta aula
+é toda no PowerShell; o Claude Code é só citado, não usado nas
+demos).</label></li>
+<li><label><input type="checkbox" />Pasta
+<code>Documents\projetos</code> já criada (foi pedida na aula de
+abertura): a Seção 4 entra nela com
+<code>cd $HOME\Documents\projetos</code>. Se não existir, crie antes
+para o <code>cd</code> não falhar na câmera.</label></li>
+<li><label><input type="checkbox" />Garanta que
+<code>clinmd-tribe</code> ainda NÃO existe dentro de
+<code>projetos</code> (apague se sobrou de um teste): o
+<code>uv init clinmd-tribe</code> da Seção 4 precisa criar a pasta do
+zero, e o <code>type pyproject.toml</code> da Seção 5 deve mostrar
+<code>dependencies = []</code> antes do primeiro
+<code>uv add</code>.</label></li>
+<li><label><input type="checkbox" />Decida se grava a instalação do uv
+(Seção 4): se o uv já estiver instalado, o <code>winget install</code>
+não roda igual. Para gravar a instalação completa, use uma
+máquina/usuário sem uv; para pular, deixe instalado e foque no
+<code>uv --version</code>.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Teste antes, numa pasta de rascunho,
+o fluxo inteiro (<code>uv init</code>, <code>type pyproject.toml</code>,
+<code>uv add flet</code>, <code>dir</code>, <code>type uv.lock</code>,
+<code>uv run python main.py</code>), para confirmar cada saída. O
+primeiro <code>uv add flet</code> baixa pacotes da internet e pode
+demorar: garanta conexão estável e, se quiser, deixe o cache do uv já
+populado para o download sair rápido na gravação.</label></li>
+<li><label><input type="checkbox" />Confirme que o <code>dir</code> na
+Seção 4 mostra exatamente os três arquivos descritos
+(<code>.python-version</code>, <code>main.py</code>,
+<code>pyproject.toml</code>) e que, após o <code>uv add flet</code> na
+Seção 6, aparecem a pasta <code>.venv</code> e o <code>uv.lock</code>,
+como o roteiro narra.</label></li>
+<li><label><input type="checkbox" />Se o <code>winget</code> não estiver
+disponível na sua máquina, tenha o comando alternativo
+(<code>irm https://astral.sh/uv/install.ps1 | iex</code>) já testado,
+para não improvisar diante da câmera.</label></li>
+<li><label><input type="checkbox" />Lembre que após instalar o uv é
+preciso FECHAR e abrir um novo PowerShell para o
+<code>uv --version</code> reconhecer o comando, como o roteiro avisa;
+tenha esse segundo PowerShell pronto.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula (a
+instalação do uv é por comando no PowerShell, não por download manual no
+navegador).</p>
+<hr />
 <h2 id="seção-1-abertura-2-min">SEÇÃO 1: ABERTURA — 2 min</h2>
 <p><strong>Tom:</strong> Virada de página — a fase avançada começa
 aqui</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Recado de pré-consulta: ajuste os óculos antes da gente abrir o
+terminal. Hoje vai ter saída de instalação rolando rápido na tela, nome
+de pacote, número de versão, e essas letrinhas são finas que nem
+cateter. Vista o foco certo agora pra não perder nenhum sinal vital do
+uv.”</p>
 <p>“Nas últimas nove aulas você aprendeu a pedir.</p>
 <p>Você pesquisou no PubMed, resumiu guidelines, criou slides, gerou um
 pôster, publicou no Instagram, fez um dashboard de gestão do
@@ -480,5 +545,18 @@ anatomia — um sistema de cada vez.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

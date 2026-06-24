@@ -1,16 +1,245 @@
-<h1 id="aula-15--clean-architecture-quem-decide-o-quê-no-plantão">Aula
-15 — Clean Architecture: Quem Decide o Quê no Plantão</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Aula 15 — Clean Architecture: Quem Decide o Quê no Plantão</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Aula 15 — Clean Architecture: Quem Decide o Quê no
+Plantão</h1>
+</header>
+<h1 id="aula-15-clean-architecture-quem-decide-o-quê-no-plantão">Aula 15
+— Clean Architecture: Quem Decide o Quê no Plantão</h1>
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~46 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — o conceito que
 organiza tudo que vem depois</p>
 <hr />
-<h2 id="seção-1-abertura--o-código-embolado-5-min">SEÇÃO 1: ABERTURA — O
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />O <code>main.py</code> da
+calculadora de IMC já com o layout da aula 14 aplicado (Column com
+spacing, Card, AppBar roxo, Row). É a base do gancho da Seção
+1.</label></li>
+<li><label><input type="checkbox" />Ambiente Python/uv pronto (o
+<code>uv run python main.py</code> roda sem erro).</label></li>
+<li><label><input type="checkbox" />A constelação de agents disponível:
+o agent <code>caetano-cto</code> responde (insumo da Seção
+7).</label></li>
+<li><label><input type="checkbox" />A skill <code>/tab_pendencias</code>
+responde (insumo da Seção 7).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Esta aula NÃO altera o
+<code>main.py</code>. O único arquivo escrito ao vivo é o
+<code>arquitetura.txt</code>, gerado pelo Claude na Seção 7. Confira que
+ainda não existe um <code>arquitetura.txt</code> na pasta (se existir de
+um ensaio anterior, apague antes de gravar para a geração acontecer do
+zero).</label></li>
+<li><label><input type="checkbox" />Na Seção 1 você pede ao Claude para
+alterar o critério de obesidade só para mostrar o “código embolado”. Se
+quiser preservar o <code>main.py</code> limpo, faça esse teste numa
+cópia ou descarte a alteração depois (Seção 1 é demonstração do
+problema, não mudança definitiva).</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula.</p>
+<hr />
+<h2 id="seção-1-abertura-o-código-embolado-5-min">SEÇÃO 1: ABERTURA — O
 CÓDIGO EMBOLADO (5 min)</h2>
 <p><strong>Tom:</strong> Gancho da dor — mostrar o problema antes de
 nomear a solução</p>
-<p>"Você tem uma calculadora de IMC funcionando. Botão roxo, campos de
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Recado de plantão: óculos de perto na cara. Hoje a gente vai ler
+código embolado e depois código organizado, e a graça está em enxergar a
+diferença linha a linha. É tipo conferir a posologia na receita: ninguém
+quer errar a dose por causa de uma letra que não deu pra ler.”</p>
+<p>“Você tem uma calculadora de IMC funcionando. Botão roxo, campos de
 peso e altura, resultado na tela.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: a “diretriz nova” abaixo é um dispositivo didático
+fictício. Os pontos de corte de obesidade (grau 2 começando em 35, grau
+3 em 40) coincidem com a classificação usual; ao gravar, deixe claro que
+é um exemplo hipotético de mudança de critério, para não atribuir à
+ABESO uma diretriz que não existe.]</p>
+</blockquote>
 <p>Agora imagina que saiu uma diretriz nova da ABESO: obesidade grau 2
 agora começa em IMC &gt; 35, e grau 3 em IMC &gt; 40.</p>
 <p>Fácil, certo? Você pede ao Claude Code:</p>
@@ -34,13 +263,13 @@ dados da anamnese.</p>
 <p>Desenvolvimento de software com código embolado é exatamente isso.
 Funciona. Mas é frágil. Cada mudança é um risco.</p>
 <p>Existe uma solução para isso. Ela tem um nome. E é o que a gente vai
-aprender hoje."</p>
+aprender hoje.”</p>
 <hr />
-<h2 id="seção-2-ponte-da-analogia--do-corpo-ao-plantão-3-min">SEÇÃO 2:
+<h2 id="seção-2-ponte-da-analogia-do-corpo-ao-plantão-3-min">SEÇÃO 2:
 PONTE DA ANALOGIA — DO CORPO AO PLANTÃO (3 min)</h2>
 <p><strong>Tom:</strong> Transição narrada — upgrade pedagógico, não
 contradição</p>
-<p>"Lá na aula de setup eu dei a foto rápida de como o ClinMd-Tribe vai
+<p>“Lá na aula de setup eu dei a foto rápida de como o ClinMd-Tribe vai
 se organizar.</p>
 <p>Apresentação, Aplicação, Domínio, Infraestrutura. E eu usei a
 analogia do corpo: pele, tecido, músculo, osso.</p>
@@ -57,6 +286,11 @@ definida. O fluxo é direcional: o paciente entra, percorre o sistema,
 sai com diagnóstico e conduta.</p>
 <p>É exatamente como o código vai funcionar no ClinMd-Tribe.</p>
 <table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 32%" />
+<col style="width: 39%" />
+</colgroup>
 <thead>
 <tr>
 <th>Camada</th>
@@ -95,13 +329,13 @@ pensa.</td>
 <p>O protocolo clínico — o Domínio — existe independente de tela ou
 banco. Você pode trocar a recepção sem mudar o protocolo. Você pode
 trocar o laboratório sem mudar o diagnóstico.</p>
-<p>Isso é a Clean Architecture."</p>
+<p>Isso é a Clean Architecture.”</p>
 <hr />
-<h2 id="seção-3-as-4-camadas-no-plantão--um-fio-narrativo-9-min">SEÇÃO
-3: AS 4 CAMADAS NO PLANTÃO — UM FIO NARRATIVO (9 min)</h2>
+<h2 id="seção-3-as-4-camadas-no-plantão-um-fio-narrativo-9-min">SEÇÃO 3:
+AS 4 CAMADAS NO PLANTÃO — UM FIO NARRATIVO (9 min)</h2>
 <p><strong>Tom:</strong> Didático — um único caso percorrendo as 4
 camadas do início ao fim</p>
-<p>"Vamos seguir um caso clínico real pelo sistema.</p>
+<p>“Vamos seguir um caso clínico real pelo sistema.</p>
 <p>O caso: calcular o CHA2DS2-VASc de um paciente com fibrilação
 atrial.</p>
 <hr />
@@ -113,7 +347,7 @@ prévio, HAS, diabetes, ICC, sexo feminino.</p>
 escore. Não sabe onde os dados vão ser salvos. Só recebe e exibe.</p>
 <hr />
 <p><strong>Passo 2 — A Triagem recebe os dados (Aplicação).</strong></p>
-<p>O botão 'Calcular' é clicado. A Triagem acorda.</p>
+<p>O botão ‘Calcular’ é clicado. A Triagem acorda.</p>
 <p>Ela pega os dados do formulário, chama o protocolo CHA2DS2-VASc, pede
 para o Laboratório salvar o resultado depois.</p>
 <p>A Triagem orquestra. Ela não sabe calcular o escore. Ela sabe quem
@@ -121,6 +355,12 @@ sabe — e aciona.</p>
 <hr />
 <p><strong>Passo 3 — O Médico calcula (Domínio).</strong></p>
 <p>O protocolo CHA2DS2-VASc entra em ação.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: a lista de pontos do CHA2DS2-VASc abaixo está
+resumida para o exemplo e omite o item “doença vascular” (1 ponto).
+Decida se cita o escore completo na gravação ou se avisa que está
+simplificando para fins didáticos.]</p>
+</blockquote>
 <p>Idade &gt; 75 anos: 2 pontos. AVC ou TIA prévio: 2 pontos. Idade
 entre 65 e 74: 1 ponto. HAS, diabetes, ICC, sexo feminino: 1 ponto
 cada.</p>
@@ -130,27 +370,28 @@ o resultado vai para um arquivo ou para um banco de dados. Só sabe
 medicina.</p>
 <hr />
 <p><strong>Passo 4 — O Laboratório guarda (Infraestrutura).</strong></p>
-<p>A Triagem pede: 'salva esse resultado'. O Laboratório abre o arquivo
+<p>A Triagem pede: ‘salva esse resultado’. O Laboratório abre o arquivo
 local, salva, confirma.</p>
 <p>Ele não sabe calcular escore. Não sabe o que é fibrilação atrial. Só
 executa o pedido.</p>
 <hr />
 <p>Agora: voltando ao problema da diretriz nova.</p>
-<p>Mudou a diretriz: idade &gt; 75 agora vale 2 pontos em vez de 1.</p>
+<p>Imagina uma mudança hipotética de critério: idade &gt; 75 passaria a
+valer 3 pontos em vez dos 2 atuais.</p>
 <p>Onde você mexe?</p>
 <p>Só no Médico — no Domínio.</p>
 <p>A Recepção não sabe que existiu mudança. A Triagem continua
 orquestrando do mesmo jeito. O Laboratório continua salvando do mesmo
 jeito.</p>
 <p>Apenas o protocolo clínico mudou.</p>
-<p>Isso é o que a arquitetura em camadas compra para você."</p>
+<p>Isso é o que a arquitetura em camadas compra para você.”</p>
 <hr />
 <h2
-id="seção-4-mapa-de-arquiteturas--do-monólito-ao-microsserviço-9-min">SEÇÃO
+id="seção-4-mapa-de-arquiteturas-do-monólito-ao-microsserviço-9-min">SEÇÃO
 4: MAPA DE ARQUITETURAS — DO MONÓLITO AO MICROSSERVIÇO (9 min)</h2>
 <p><strong>Tom:</strong> Contextual — situar o Clean Architecture no
 landscape, não decorar definições</p>
-<p>"Antes de seguir, deixa eu mostrar o mapa completo.</p>
+<p>“Antes de seguir, deixa eu mostrar o mapa completo.</p>
 <p>Porque Clean Architecture não é a única forma de organizar código. É
 uma entre várias. E cada uma faz sentido num contexto diferente.</p>
 <hr />
@@ -165,7 +406,7 @@ monólito. É usar monólito num projeto que vai crescer.</p>
 <hr />
 <p><strong>3 camadas — a clínica simples.</strong></p>
 <p>Recepção, consultório, farmácia. Separação básica, mas a regra
-clínica ainda fica misturada no 'consultório'.</p>
+clínica ainda fica misturada no ‘consultório’.</p>
 <p>No código: front-end, back-end, banco de dados. O padrão mais comum
 na web. Funciona bem para sistemas de tamanho médio.</p>
 <hr />
@@ -196,13 +437,13 @@ seria maior que o benefício.</p>
 ser isolados, testáveis e independentes de interface.</p>
 <p>Quando a diretriz muda, só o protocolo muda. Quando o layout muda, o
 protocolo não sabe.</p>
-<p>Essa independência é o que torna o app seguro de manter."</p>
+<p>Essa independência é o que torna o app seguro de manter.”</p>
 <hr />
 <h2 id="seção-5-recuperação-ativa-3-min">SEÇÃO 5: RECUPERAÇÃO ATIVA (3
 min)</h2>
 <p><strong>Tom:</strong> Consolidação — o aluno verbaliza antes de
 aplicar</p>
-<p>"Fecha a tela por um momento.</p>
+<p>“Fecha a tela por um momento.</p>
 <p>Três perguntas rápidas.</p>
 <p><strong>Primeira: o que faz a Triagem — a camada de
 Aplicação?</strong></p>
@@ -222,51 +463,51 @@ CHA2DS2-VASc?</strong></p>
 Calcular escore é trabalho do Médico.</p>
 <hr />
 <p>Três respostas. Você acabou de descrever Clean Architecture sem
-precisar de definição formal."</p>
+precisar de definição formal.”</p>
 <hr />
-<h2 id="seção-6-jogo--em-que-camada-eu-mexo-10-min">SEÇÃO 6: JOGO — EM
+<h2 id="seção-6-jogo-em-que-camada-eu-mexo-10-min">SEÇÃO 6: JOGO — EM
 QUE CAMADA EU MEXO? (10 min)</h2>
 <p><strong>Tom:</strong> Prática ativa — o aluno classifica antes de ver
 a resposta</p>
-<p>"Agora a parte mais importante da aula.</p>
+<p>“Agora a parte mais importante da aula.</p>
 <p>Cinco pedidos clínicos reais. Para cada um você vai dizer: em que
 camada eu mexo — e por quê?</p>
 <p>Classifique antes de eu revelar.</p>
 <hr />
-<p><strong>Pedido 1:</strong> 'Quero o botão Calcular em roxo escuro em
-vez de roxo claro.'</p>
+<p><strong>Pedido 1:</strong> ‘Quero o botão Calcular em roxo escuro em
+vez de roxo claro.’</p>
 <p>[pausa para o aluno classificar]</p>
 <p><strong>Apresentação.</strong> A cor do botão é responsabilidade do
 balcão — da recepção. O protocolo clínico não sabe que o botão
 existe.</p>
 <hr />
-<p><strong>Pedido 2:</strong> 'Saiu nova diretriz: no CHA2DS2-VASc,
-idade &gt; 75 agora vale 2 pontos.'</p>
+<p><strong>Pedido 2:</strong> ‘Mudança hipotética de critério: no
+CHA2DS2-VASc, idade &gt; 75 passa a valer 3 pontos.’</p>
 <p>[pausa]</p>
 <p><strong>Domínio.</strong> É exatamente a dor do gancho desta aula. A
 regra clínica mudou — só o Médico precisa saber disso. Recepção, Triagem
 e Laboratório não mudam uma linha.</p>
 <hr />
-<p><strong>Pedido 3:</strong> 'Quero que o resultado do cálculo seja
-salvo num arquivo TXT no Desktop.'</p>
+<p><strong>Pedido 3:</strong> ‘Quero que o resultado do cálculo seja
+salvo num arquivo TXT no Desktop.’</p>
 <p>[pausa]</p>
 <p><strong>Infraestrutura.</strong> Onde e como salvar é
 responsabilidade do Laboratório. O Médico não precisa saber se é TXT,
 SQLite ou PDF.</p>
 <hr />
-<p><strong>Pedido 4:</strong> 'Ao salvar o resultado, quero que apareça
-uma mensagem de confirmação na tela.'</p>
+<p><strong>Pedido 4:</strong> ‘Ao salvar o resultado, quero que apareça
+uma mensagem de confirmação na tela.’</p>
 <p>[pausa — este é propositalmente ambíguo]</p>
 <p><strong>Aplicação + Apresentação.</strong></p>
-<p>A Triagem orquestra: 'ao salvar com sucesso, peça à Recepção para
-exibir a confirmação.' A Recepção exibe o texto de confirmação.</p>
+<p>A Triagem orquestra: ‘ao salvar com sucesso, peça à Recepção para
+exibir a confirmação.’ A Recepção exibe o texto de confirmação.</p>
 <p>Dois papéis. Um fluxo.</p>
 <p>Não existe resposta errada aqui — o importante é entender que salvar
 e exibir confirmação são responsabilidades separadas que se
 coordenam.</p>
 <hr />
-<p><strong>Pedido 5:</strong> 'Quero adicionar o PHQ-9 ao app, do lado
-do CHA2DS2-VASc.'</p>
+<p><strong>Pedido 5:</strong> ‘Quero adicionar o PHQ-9 ao app, do lado
+do CHA2DS2-VASc.’</p>
 <p>[pausa]</p>
 <p><strong>Atravessa tudo.</strong></p>
 <p>Apresentação: novo formulário com os campos do PHQ-9. Aplicação: nova
@@ -282,13 +523,13 @@ Claude Code:</p>
 <pre><code>Em que camada da Clean Architecture fica a feature de [descreva aqui]?
 Por que essa camada e não outra?</code></pre>
 <p>O Claude explica. Você valida. Você aprende. Não saber a camada de
-cabeça é normal — saber como descobrir é o skill."</p>
+cabeça é normal — saber como descobrir é o skill.”</p>
 <hr />
-<h2 id="seção-7-mini-demo--prompt-ao-claude-code-5-min">SEÇÃO 7:
+<h2 id="seção-7-mini-demo-prompt-ao-claude-code-5-min">SEÇÃO 7:
 MINI-DEMO — PROMPT AO CLAUDE CODE (5 min)</h2>
 <p><strong>Tom:</strong> Conectar conceito ao uso real — o mapa de
 referência do projeto</p>
-<p>"Agora vamos registrar essa estrutura no projeto.</p>
+<p>“Agora vamos registrar essa estrutura no projeto.</p>
 <p>No Claude Code:</p>
 <pre><code>Cria um arquivo chamado arquitetura.txt mostrando a estrutura de pastas
 do ClinMd-Tribe com as 4 camadas da Clean Architecture.
@@ -316,17 +557,17 @@ scaffold do ClinMd-Tribe como próxima tarefa]</p>
 <pre><code>@caetano-cto, vamos usar Clean Architecture com 4 camadas
 (presentation, application, domain, infrastructure) para o ClinMd-Tribe.
 Essa estrutura é adequada para um app clínico local em Python + Flet?</code></pre>
-<p>[mostrar a validação do Caetano]"</p>
+<p>[mostrar a validação do Caetano]”</p>
 <hr />
 <h2 id="seção-8-encerramento-2-min">SEÇÃO 8: ENCERRAMENTO (2 min)</h2>
 <p><strong>Tom:</strong> Síntese pelo aluno, motivação e dever de
 casa</p>
-<p>"Resumo do que ficou pronto hoje.</p>
+<p>“Resumo do que ficou pronto hoje.</p>
 <p>Você entendeu por que separar o código em camadas — não como teoria,
 mas como solução para um problema que você viu acontecer.</p>
 <p>Você conheceu a analogia do plantão: recepção, triagem, médico,
 laboratório.</p>
-<p>Você posicionou o Clean Architecture no mapa de seis abordagens — do
+<p>Você posicionou o Clean Architecture no mapa de cinco abordagens, do
 monólito ao microsserviço.</p>
 <p>E você jogou o jogo das cinco features — classificando onde cada
 mudança mexe.</p>
@@ -341,6 +582,21 @@ feature sabendo a camada.</p>
 <p>Na próxima aula: o scaffold real. O Claude Code vai gerar a estrutura
 completa de pastas e arquivos do ClinMd-Tribe — e você vai ver o
 arquitetura.txt desta aula se tornar código vivo.</p>
-<p>Até lá."</p>
+<p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
+</body>
+</html>

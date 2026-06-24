@@ -1,8 +1,30 @@
 # Aula 15 — Clean Architecture: Quem Decide o Quê no Plantão
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~46 min  
 **Tom:** Colega com humor leve e didático — o conceito que organiza tudo que vem depois
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O `main.py` da calculadora de IMC já com o layout da aula 14 aplicado (Column com spacing, Card, AppBar roxo, Row). É a base do gancho da Seção 1.
+- [ ] Ambiente Python/uv pronto (o `uv run python main.py` roda sem erro).
+- [ ] A constelação de agents disponível: o agent `caetano-cto` responde (insumo da Seção 7).
+- [ ] A skill `/tab_pendencias` responde (insumo da Seção 7).
+
+**Confira antes de gravar:**
+
+- [ ] Esta aula NÃO altera o `main.py`. O único arquivo escrito ao vivo é o `arquitetura.txt`, gerado pelo Claude na Seção 7. Confira que ainda não existe um `arquitetura.txt` na pasta (se existir de um ensaio anterior, apague antes de gravar para a geração acontecer do zero).
+- [ ] Na Seção 1 você pede ao Claude para alterar o critério de obesidade só para mostrar o "código embolado". Se quiser preservar o `main.py` limpo, faça esse teste numa cópia ou descarte a alteração depois (Seção 1 é demonstração do problema, não mudança definitiva).
+
+**Navegador:** nenhum site é necessário nesta aula.
 
 ---
 
@@ -10,8 +32,14 @@
 
 **Tom:** Gancho da dor — mostrar o problema antes de nomear a solução
 
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Recado de plantão: óculos de perto na cara. Hoje a gente vai ler código embolado e depois código organizado, e a graça está em enxergar a diferença linha a linha. É tipo conferir a posologia na receita: ninguém quer errar a dose por causa de uma letra que não deu pra ler."
+
 "Você tem uma calculadora de IMC funcionando.
 Botão roxo, campos de peso e altura, resultado na tela.
+
+> [CONFERIR CLÍNICO: a "diretriz nova" abaixo é um dispositivo didático fictício. Os pontos de corte de obesidade (grau 2 começando em 35, grau 3 em 40) coincidem com a classificação usual; ao gravar, deixe claro que é um exemplo hipotético de mudança de critério, para não atribuir à ABESO uma diretriz que não existe.]
 
 Agora imagina que saiu uma diretriz nova da ABESO:
 obesidade grau 2 agora começa em IMC > 35, e grau 3 em IMC > 40.
@@ -136,6 +164,8 @@ Ela sabe quem sabe — e aciona.
 
 O protocolo CHA2DS2-VASc entra em ação.
 
+> [CONFERIR CLÍNICO: a lista de pontos do CHA2DS2-VASc abaixo está resumida para o exemplo e omite o item "doença vascular" (1 ponto). Decida se cita o escore completo na gravação ou se avisa que está simplificando para fins didáticos.]
+
 Idade > 75 anos: 2 pontos.
 AVC ou TIA prévio: 2 pontos.
 Idade entre 65 e 74: 1 ponto.
@@ -162,7 +192,7 @@ Só executa o pedido.
 
 Agora: voltando ao problema da diretriz nova.
 
-Mudou a diretriz: idade > 75 agora vale 2 pontos em vez de 1.
+Imagina uma mudança hipotética de critério: idade > 75 passaria a valer 3 pontos em vez dos 2 atuais.
 
 Onde você mexe?
 
@@ -319,7 +349,7 @@ O protocolo clínico não sabe que o botão existe.
 
 ---
 
-**Pedido 2:** 'Saiu nova diretriz: no CHA2DS2-VASc, idade > 75 agora vale 2 pontos.'
+**Pedido 2:** 'Mudança hipotética de critério: no CHA2DS2-VASc, idade > 75 passa a valer 3 pontos.'
 
 [pausa]
 
@@ -455,7 +485,7 @@ não como teoria, mas como solução para um problema que você viu acontecer.
 Você conheceu a analogia do plantão:
 recepção, triagem, médico, laboratório.
 
-Você posicionou o Clean Architecture no mapa de seis abordagens —
+Você posicionou o Clean Architecture no mapa de cinco abordagens,
 do monólito ao microsserviço.
 
 E você jogou o jogo das cinco features — classificando onde cada mudança mexe.

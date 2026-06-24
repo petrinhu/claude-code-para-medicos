@@ -175,17 +175,69 @@ Clínica</h1>
 </header>
 <h1 id="aula-21-cha₂ds₂-vasc-sua-primeira-calculadora-clínica">Aula 21 —
 CHA₂DS₂-VASc: Sua Primeira Calculadora Clínica</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio<br />
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no
+Kdenlive<br />
 <strong>Duração:</strong> ~55 min<br />
 <strong>Tom:</strong> Colega com humor leve e didático — “de hoje em
 diante você constrói ferramentas que outros usam”<br />
 <strong>Módulo:</strong> S05.01 — Calculadoras Médicas<br />
 <strong>Persona:</strong> Cardiologista</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Já preparado em <code>resources/</code> (é só
+usar):</strong></p>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>resources/casos_teste_cha2ds2vasc.md</code> : os
+três casos clínicos fictícios com gabarito (score 3, 0 e 7) para
+conferir o app contra o cálculo à mão. Apoio das Seções 6 e 7. Só o
+instrutor vê; não aparece na aula.</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />O ClinMd-Tribe com o scaffold das 4
+camadas pronto (<code>domain/</code>, <code>application/</code>,
+<code>presentation/</code>, <code>infrastructure/</code>) das aulas
+anteriores; ainda sem nenhuma calculadora (esta é a primeira). O
+<code>uv run python main.py</code> deve subir o app no
+navegador.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Tenha o prompt descritivo da Seção 3
+à mão (está no roteiro) para colar de uma vez no terminal.</label></li>
+<li><label><input type="checkbox" />Os três arquivos da calculadora são
+criados ao vivo pelo Claude; saiba em que pastas caem
+(<code>domain/calculadoras/</code>, <code>application/servicos/</code>,
+<code>presentation/telas/</code>) para abri-los na leitura
+supervisionada.</label></li>
+<li><label><input type="checkbox" />Rode
+<code>uv run python main.py</code> uma vez antes de gravar para
+confirmar que o app abre sem erro.</label></li>
+</ul>
+<p><strong>Navegador:</strong> o app Flet abre no navegador local
+(<code>uv run python main.py</code>); nenhum site externo é
+necessário.</p>
+<hr />
 <h2 id="seção-1-abertura-do-módulo-s05-3-min">SEÇÃO 1: ABERTURA DO
 MÓDULO S05 — 3 min</h2>
 <p><strong>Tom:</strong> Virada de marco — fechar o arco de setup e
 abrir o arco de produto real</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Primeiro a profilaxia de sempre: óculos no rosto. Hoje a gente lê
+código junto pra conferir score, e subscrito de CHA dois DS dois VASc na
+tela é miudinho que nem rubrica de receita: se passar batido, vira erro.
+Aproxima a tela que eu espero.”</p>
 <p>“Vamos fazer um balanço rápido.</p>
 <p>Nas últimas dez aulas você montou o laboratório.</p>
 <p>Instalou o uv. Aprendeu Python com analogias clínicas. Criou a
@@ -232,10 +284,19 @@ pontos V — Doença vascular: 1 ponto A — Idade entre 65 e 74 anos: 1
 ponto Sc — Sexo feminino: 1 ponto</p>
 <p>Dois critérios valem 2 pontos: o A₂ e o S₂. Os outros valem 1.</p>
 <p>Score máximo: 9 pontos se for mulher, 8 se for homem.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: pontuação dos 8 critérios (A₂=2, S₂=2, demais=1) e
+score máximo 9/8. Validar contra diretriz vigente.]</p>
+</blockquote>
 <hr />
 <p>Cutoff para anticoagular:</p>
 <p>Homem com score maior ou igual a 2: anticoagular. Mulher com score
 maior ou igual a 3: anticoagular.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: pontos de corte de anticoagulação (homem &gt;= 2,
+mulher &gt;= 3). Mesmo valor citado no resource e usado na Seção 5 e na
+interpretação do app.]</p>
+</blockquote>
 <hr />
 <p>Agora: o caso do nosso paciente.</p>
 <p>[calcular ao vivo]</p>
@@ -246,6 +307,10 @@ doença vascular → 0 A: 68 anos, está na faixa 65-74 → 1 Sc: masculino →
 <p>Total: 3 pontos.</p>
 <p>Homem com score 3. Cutoff é 2.</p>
 <p>Anticoagula.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: caso âncora 68a masculino, HAS+DM+idade 65-74 =
+score 3, conduta Anticoagular. Bate com o resource (Caso 1).]</p>
+</blockquote>
 <hr />
 <p>Anote esse número: 3.</p>
 <p>É o gabarito.</p>
@@ -428,6 +493,10 @@ masculino]</p>
 <p>[clicar Calcular]</p>
 <p>Score: 0. Sem indicação no momento.</p>
 <p>Correto. Nenhum critério preenchido, nenhum ponto.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: Caso 2 - 55a masculino, sem fatores = score 0, Sem
+indicação. Bate com o resource.]</p>
+</blockquote>
 <hr />
 <p>Caso 3: paciente de 77 anos, feminina. Insuficiência cardíaca.
 Hipertensa. AVC prévio.</p>
@@ -439,6 +508,11 @@ feminino]</p>
 prévio) + Sc: 1 (feminino) = 7.</p>
 <p>Bate.</p>
 <p>Recomendação: Anticoagular. Evidentemente.</p>
+<blockquote>
+<p>[CONFERIR CLÍNICO: Caso 3 - 77a feminina, IC+HAS+AVC prévio = score
+7, Anticoagular. Bate com o resource. Conferir que a soma 1+1+2+2+1=7
+está clinicamente correta.]</p>
+</blockquote>
 <hr />
 <p>Três casos. Três acertos.</p>
 <p>Agora você tem razão para confiar.</p>
@@ -491,5 +565,18 @@ intuição e vira dado.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

@@ -1,8 +1,29 @@
 # Aula 08 — Git: O Prontuário do Seu Código
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~40 min  
 **Tom:** Colega com humor leve e didático — primeiro contato com versionamento
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] PowerShell aberto e limpo (esta aula é toda no PowerShell; o Claude Code não é usado nas demos de Git, mas pode estar aberto numa aba à parte se você quiser).
+- [ ] Pasta `Documents` (Documentos) acessível: a demo cria `meu-primeiro-repo` dentro dela na Seção 4.
+- [ ] Garanta que `meu-primeiro-repo` NÃO existe ainda (apague se sobrou de um teste), para o `git init` nascer do zero limpo na frente da câmera.
+- [ ] Decida se vai gravar a instalação do Git de fato ou se ela já está feita: se o Git já estiver instalado, o instalador da Seção 3 não roda igual. Para gravar a instalação completa, use uma máquina/usuário sem Git; para pular, deixe instalado e foque no `git --version`.
+
+**Confira antes de gravar:**
+
+- [ ] Teste antes o fluxo inteiro numa pasta de rascunho (`git init`, `echo`, `git add`, `git commit -m`, `git log --oneline`) para confirmar que cada comando devolve a saída que o roteiro descreve.
+- [ ] Se você ainda NÃO configurou `user.name` e `user.email` nesta máquina, o `git commit` da Seção 4 pode pedir essa configuração antes de deixar commitar. Para o commit sair limpo na demo, ou configure antes (e então a Seção 5 vira reforço) ou tenha o texto de erro à mão para explicar e configurar na hora.
+- [ ] Tenha em mente o nome e e-mail que vai digitar na Seção 5 (pode ser fictício para a gravação: `Dr. Exemplo` / `dr.exemplo@gmail.com`), para não expor dado pessoal real na tela.
+
+**Navegador:** abra a aba: https://git-scm.com/download/win (usada na Seção 3 para baixar o Git for Windows).
 
 ---
 
@@ -10,7 +31,11 @@
 
 **Tom:** Direto, contextualizando a posição no curso
 
-"Chegamos na aula 08 — a porta de entrada da fase avançada.
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes da gente começar: se você usa óculos de perto, é hora de calibrar a acomodação. O terminal hoje vai cuspir umas saídas com fonte miudinha, e eu não quero você forçando a vista igual quem tenta ler hemograma no plantão da madrugada. Põe os óculos, ajusta o foco, e vamos."
+
+"Chegamos na aula 08, a porta de entrada da fase avançada.
 
 Até aqui você usou o Claude Code sem programar. Pesquisa de literatura,
 flashcards, dashboard de consultório, pôster de congresso.

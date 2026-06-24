@@ -1,14 +1,40 @@
 # Aula 14 — Layout Flet: Do Caos à Clareza Clínica
 
-**Formato:** Gravada em um take no OBS Studio  
+**Formato:** Gravada no OBS Studio, editada no Kdenlive  
 **Duração:** ~42 min  
 **Tom:** Colega com humor leve e didático — transformar o funcional em profissional
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O `main.py` da calculadora de IMC (resultado da aula 13) presente na pasta e funcionando: campos de Peso e Altura, botão roxo 'Calcular IMC', área de resultado com a classificação.
+- [ ] Ambiente Python/uv pronto (o comando `uv run python main.py` roda sem erro de dependência).
+
+**Confira antes de gravar:**
+
+- [ ] Rode `uv run python main.py` uma vez antes de gravar: a janela abre, e a calculadora ainda está no visual "feio" (elementos colados, sem espaçamento). Esse estado inicial é o gancho da Seção 1. Depois feche a janela.
+- [ ] Se você já tinha aplicado layout neste `main.py` em outro teste, restaure a versão crua da aula 13 antes de gravar (o "antes" precisa parecer dos anos 90).
+- [ ] O agent `ux-ui-designer` está disponível na sessão (insumo da Seção 6.5).
+- [ ] A skill `/tab_pendencias` responde (insumo da Seção 6.5).
+
+**Navegador:** nenhum site é necessário nesta aula.
 
 ---
 
 ## SEÇÃO 1: ABERTURA (2 min)
 
 **Tom:** Diagnóstico visual — a calculadora funciona mas não impressiona
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes de começar: se você usa óculos para perto, coloca agora. Hoje a gente vai ficar olhando a tela de perto, comparando o 'antes feio' com o 'depois bonito', e os detalhes de espaçamento são finos. Pensa neles como aquelas microcalcificações na mamografia: o diagnóstico está nos detalhes pequenos."
 
 "Na aula passada você criou uma calculadora de IMC com interface gráfica.
 
@@ -175,7 +201,7 @@ Leia o código gerado comigo.
 `ft.Card(elevation=2, shape=ft.RoundedRectangleBorder(radius=12), content=...)`
 
 `elevation=2` — sombra sutil que destaca do fundo. Não é pesada, é discreta.
-`border_radius=12` — cantos arredondados. Dá leveza ao componente.
+`radius=12` (dentro do shape) — cantos arredondados. Dá leveza ao componente.
 
 A armadilha: Card não tem padding automático.
 Se você colocar o conteúdo direto no Card, ele encosta nas bordas do Card.

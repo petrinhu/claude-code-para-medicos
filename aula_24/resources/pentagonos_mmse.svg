@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="330" viewBox="0 0 540 330">
+  <rect width="540" height="330" fill="#FFFFFF"/>
+  <path d="M 220.00,70.00 L 305.60,132.19 L 272.90,232.81 L 167.10,232.81 L 134.40,132.19 Z" fill="none" stroke="#2E3233" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M 320.00,70.00 L 405.60,132.19 L 372.90,232.81 L 267.10,232.81 L 234.40,132.19 Z" fill="none" stroke="#2E3233" stroke-width="3" stroke-linejoin="round"/>
+  <text x="270.0" y="314" font-family="Inter, 'Open Sans', sans-serif" font-size="15" fill="#646C6F" text-anchor="middle">MMSE - figura de referencia: copie os dois pentagonos sobrepostos</text>
+</svg>

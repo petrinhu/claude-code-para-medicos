@@ -1,15 +1,50 @@
 # Aula 28 — PubMed → knowledge_base/ → Banco Vetorial
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Cardiologista que transforma sua biblioteca de artigos em memória do app
 **Módulo:** S07.02 — Construindo a Biblioteca do Residente
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar, plano B):**
+
+- [ ] `resources/knowledge_base_teste/` : 3 artigos FICTÍCIOS sobre anticoagulação em FA (PMIDs e dados inventados). NÃO são insumo padrão da aula. São só o plano B: se a internet ou o MCP do PubMed falharem na hora da gravação, copie estes `.txt` para a pasta `knowledge_base/` do projeto e siga a partir da Seção 4 (indexação). Veja `LEIA-ME_bastidor.txt` na mesma pasta. Preferência: gravar com artigos REAIS do PubMed.
+
+**Você providencia / baixado ao vivo:**
+
+- [ ] Os 3 artigos REAIS são baixados AO VIVO pelo Claude via MCP do PubMed na Seção 2 (não pré-baixe; é conteúdo de terceiros). A pasta `knowledge_base/` é preenchida durante a gravação.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na raiz do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] MCP do PubMed ativo e funcionando (o mesmo da aula_03). Teste uma busca rápida antes de gravar.
+- [ ] App com tudo das aulas anteriores funcionando (calculadoras + módulo financeiro). As 4 camadas existem: `domain/`, `application/`, `infrastructure/`, `presentation/`.
+- [ ] Estado do RAG ZERADO para a aula nascer do zero: pasta `knowledge_base/` vazia (ou inexistente) e SEM banco vetorial anterior em `data/chroma_db/` (apague restos de testes para a Seção 6 mostrar a indexação acontecendo pela primeira vez).
+- [ ] Modelo de embeddings (`all-MiniLM-L6-v2`, ~90 MB) JÁ baixado em cache de um teste anterior, para a Seção 6 não travar com download longo. Se quiser mostrar o download ao vivo de propósito, decida isso antes e ajuste o tempo da seção.
+
+**Confira antes de gravar:**
+
+- [ ] `uv run python main.py` abre o app sem erro (estado pré-aula).
+- [ ] VS Code com o comando `code` no PATH (Seção 2 abre um `.txt`); ou tenha pronto o plano alternativo do roteiro (explorador de arquivos, ou `cat ... | head -60`).
+- [ ] Você fez um ensaio completo (download + indexação) para anotar os números REAIS: nomes/tamanhos dos arquivos (Seção 2) e número de trechos indexados (Seção 6, o "141" é só estimativa).
+
+**Navegador:** nenhum site é necessário nesta aula. O Claude usa o MCP do PubMed direto, sem abrir o navegador.
+
+---
+
 ## SEÇÃO 1: ABERTURA — BRIDGE COM AULA_03 — 5 min
 
 **Tom:** Reconhecimento de conquista passada — o aluno já usou o MCP do PubMed; hoje esse mesmo MCP alimenta o app
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Aula longa hoje, e cheia de nome de arquivo comprido passando no terminal, daqueles PMID com oito dígitos. Antes que você force a vista feito quem lê posologia no rodapé da caixa: pega os óculos de perto, deixa do lado, e vamos."
 
 "Na aula 03 você usou o MCP do PubMed pela primeira vez.
 
@@ -454,7 +489,7 @@ O indexador está pronto para rodar."
 
 "Antes de rodar, um aviso importante.
 
-Na primeira execução, o indexador vai baixar um modelo de linguagem.
+Na primeira execução, o indexador vai baixar um modelo de embeddings.
 O nome é `all-MiniLM-L6-v2`.
 Tamanho: aproximadamente 90 MB.
 
@@ -469,8 +504,9 @@ Não interrompa enquanto o progresso aparecer no terminal.
 
 Uma nota sobre LGPD.
 
-Esse download é o único momento nesta aula em que algo sai da sua máquina.
-É o modelo que desce — não o seu dado.
+A aula teve duas idas à internet: a busca dos artigos no PubMed, lá na Seção 2, e agora o download deste modelo. As duas baixam coisa pública para a sua máquina: artigos abertos e um modelo. Nenhuma das duas subiu dado de paciente para lugar nenhum.
+
+E depois deste download, acabou. A indexação em si não usa internet.
 
 Os artigos do PubMed estão na sua pasta.
 A indexação acontece localmente.

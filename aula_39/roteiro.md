@@ -1,15 +1,43 @@
 # Aula 39 — A Conferência Final: o Lote Sai do Laboratório
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Orgulho contido de quem fecha um produto. "Funcionar é metade; liberar é assumir a responsabilidade pelo que vai pra mão do outro." Ritual de conferência, e o gesto adulto de assinar a liberação.
 **Módulo:** S11.03 — Auditoria final e distribuição (última do polimento)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] git em dia (trabalho salvo e enviado).
+- [ ] O .exe gerado na aula passada existe e está localizado na pasta dist/.
+
+**Confira antes de gravar:**
+
+- [ ] O veredito honesto do LACRE é "limpo" (o app é offline e não usa token de API); NÃO invente um token falso. Se a conta-piloto tiver um token real no histórico de algum teste antigo, o cenário "ATENÇÃO GRAVE, gancho aula 40" fica mais forte; grave a fala pronta nos dois cenários (achou / não achou).
+- [ ] A pasta data/ já está excluída desde a aula 38; o item PUREZA confirma, não refaz.
+- [ ] O gate de tamanho do SOBRA reusa o da aula 38 (.exe acima de uns 300 MB = peça pesada vazou); o Claude reporta o tamanho real.
+- [ ] A bula é gerada como LEIA-ME.txt (não .md, pra o colega zero-TI abrir com dois cliques no Bloco de Notas), no máximo 1 página, salva na mesma pasta do .exe.
+- [ ] A versão é carimbada SÓ depois do laudo "liberado": git tag v1.0 (o Claude cria) com o nome EXATO v1.0, e git push origin v1.0 (você cola).
+- [ ] PROIBIDO nesta aula: mostrar .env, qualquer string de chave (sk-...), git log/histórico cru, ou explicar variável de ambiente; isso é 100% da aula 40.
+
+**Navegador:** nenhum site é necessário ao vivo (o git push origin v1.0 vai pela linha de comando; o GitHub Release pra anexar o .exe é só mencionado, não executado).
+
+---
+
 ## SEÇÃO 1: ABERTURA — O REMÉDIO FUNCIONA. MAS O LOTE NÃO SAIU AINDA. — 5 min
 
 **Tom:** Reflexivo, orgulho contido. Retoma a ponte herdada da aula_38 e nomeia o que falta.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Última conferência do produto pede última conferência da sua vista também: põe os óculos. Hoje você vai ler um laudo linha por linha, igual hemograma, e quem libera lote não confere com a tela embaçada. Visão nítida, assinatura tranquila."
 
 "Na aula passada você fez a caixa. Ela abre com dois cliques, o remédio funciona, na mão de qualquer médico. Para um segundo e sente o tamanho disso — no começo do curso você não sabia o que era um terminal.
 

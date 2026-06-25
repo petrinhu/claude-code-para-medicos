@@ -175,7 +175,7 @@ Token</h1>
 </header>
 <h1 id="aula-40-a-chave-que-vale-ouro-nunca-suba-seu-token">Aula 40 — A
 Chave que Vale Ouro: Nunca Suba seu Token</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~55 min <strong>Tom:</strong> Abertura de um
 arco novo — os hábitos de quem entrega. Sério sobre o risco (chave
 vazada custa caro), tranquilizador sobre a prática. O reflexo de
@@ -183,10 +183,59 @@ segurança ancorado no que o médico já vive: a chave do armário de
 controlados. <strong>Módulo:</strong> S12.01 — Segurança: nunca suba seu
 token de API (1ª aula de Boas Práticas)</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />App-piloto com o trabalho salvo e em
+dia (nada pendente para commitar), porque o Prompt 0 pergunta “o meu
+trabalho está salvo e em dia?”.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />App offline confirmado: o
+ClinMd-Tribe não usa nenhum token de API quando roda (é a resposta
+esperada do Prompt 0); o cofre nasce vazio de propósito.</label></li>
+<li><label><input type="checkbox" />Conta-piloto sem nenhuma chave de
+verdade exposta: o laudo da Seção 4 (itens PROJETO e HISTÓRICO) deve
+voltar limpo. Confira fora de gravação se nenhum token (GitHub, Claude
+Code) ficou solto dentro da pasta do projeto ou em algum commit antigo;
+se ficou, grave a fala alternativa “achou” (notas da Seção 5) e trate
+como rotação.</label></li>
+<li><label><input type="checkbox" />Chaves reais (Claude Code, GitHub)
+moram no sistema/usuário, FORA da pasta do projeto: é o que o Prompt 1
+vai confirmar; valide a resposta do Claude antes de gravar.</label></li>
+<li><label><input type="checkbox" />NADA de chave ou token na tela:
+nenhum valor de chave (sk-ant-…, ghp_…), nenhum .env aberto, nenhum
+comando que ecoe segredo. A regra do Prompt 0 proíbe; confira que o seu
+ambiente não mostra nada por acidente.</label></li>
+</ul>
+<p><strong>Navegador:</strong> abra a página de tokens do GitHub
+(Configuracoes, Developer settings, Personal access tokens) só para
+mostrar onde fica o botão “Revoke” na Seção 5. NÃO clique em Revoke
+(quebraria a conexão do repositório) e garanta que nenhuma chave fique
+visível na tela (conta-piloto sem tokens valiosos, ou captura com o
+valor tarjado).</p>
+<hr />
 <h2 id="seção-1-abertura-a-chave-que-vale-ouro-5-min">SEÇÃO 1: ABERTURA
 — A CHAVE QUE VALE OURO — 5 min</h2>
 <p><strong>Tom:</strong> Reflexivo, retoma o gancho da aula_39 com peso
 e vira a chave do tema.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes de começar: a aula de hoje é sobre uma chave pequenininha que
+vale ouro, e no terminal ela aparece em letras igualmente pequenininhas.
+Então faz o favor de aproximar a cadeira, ou pôr os óculos de perto.
+Hoje a gente não quer que NADA escape do seu campo de visão.</p>
+<hr />
 <p>“Na aula passada você liberou o seu produto. E no meio da
 conferência, lembra do item LACRE? A gente procurou por uma chave
 secreta na sua entrega — e, ainda bem, não achou nenhuma, porque o seu
@@ -564,5 +613,18 @@ o peso de fechamento da aula_39.</li>
 (e zero comando de terminal do aluno, ver acima).</li>
 </ul>
 </blockquote>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

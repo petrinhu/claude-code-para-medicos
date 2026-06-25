@@ -1,0 +1,43 @@
+FICTITIOUS ARTICLE FOR COURSE DEMO ONLY - NOT A REAL PUBMED RECORD.
+
+PMID: 00000001 (fictitious)
+Title: Oral Anticoagulation in Atrial Fibrillation: A Practical Overview
+
+Abstract:
+Atrial fibrillation is associated with an increased risk of thromboembolic
+stroke. Oral anticoagulation reduces this risk substantially in patients with
+an elevated risk profile. This overview summarizes the general principles of
+anticoagulation in atrial fibrillation, including risk stratification and the
+choice between vitamin K antagonists and direct oral anticoagulants.
+
+Introduction:
+The decision to start anticoagulation in atrial fibrillation rests on the
+balance between the risk of stroke and the risk of bleeding. Clinical risk
+scores are commonly used to estimate stroke risk and to guide the decision.
+Patients with a low estimated risk may not benefit from anticoagulation, while
+patients with a moderate to high estimated risk usually do.
+
+Methods:
+This is a fictitious narrative overview created solely to provide sample text
+for a teaching exercise. No real patients, datasets, or studies are described.
+All values and statements below are invented for demonstration.
+
+Results:
+In this fictitious dataset, anticoagulation was associated with a reduction in
+the simulated stroke rate from a baseline of about five events per hundred
+patient-years to about two events per hundred patient-years. The simulated
+major bleeding rate increased modestly. The net clinical benefit favored
+anticoagulation in the simulated moderate to high risk group.
+
+Discussion:
+The choice of agent should consider renal function, drug interactions, patient
+preference, and adherence. Direct oral anticoagulants do not require routine
+coagulation monitoring, which can improve convenience. Vitamin K antagonists
+remain an option in specific situations, such as mechanical heart valves and
+significant renal impairment, where direct oral anticoagulants are not advised.
+
+Conclusion:
+In this fictitious overview, oral anticoagulation provided a favorable net
+clinical benefit in atrial fibrillation patients at moderate to high estimated
+stroke risk. Individualized assessment of bleeding risk and renal function
+remains essential. This text is for demonstration purposes only.

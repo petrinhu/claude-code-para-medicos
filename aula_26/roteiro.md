@@ -1,9 +1,35 @@
 # Aula 26 — Dashboard Financeiro: KPIs e Gráficos
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~48 min
 **Tom:** Ortopedista que já tem os dados e agora quer ler a curva
 **Módulo:** S06.02 — Dashboard Financeiro
+
+---
+
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/dados_6_meses_bastidor.csv` : os seis meses fictícios do ortopedista (março a agosto de 2025). Use como cola para cadastrar os meses ANTES de gravar (esta aula começa com o banco já cheio).
+- [ ] `resources/gabarito_kpis_bastidor.csv` : o gabarito dos KPIs (receita líquida, taxa de glosa, ticket médio) mês a mês. Confira contra a tela na Seção 5 e 6: agosto deve dar líquida R$ 22.400, glosa 18,5%, ticket R$ 246,15.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] App com o módulo financeiro da aula_25 funcionando (formulário + tabela + banco em `data/clinmd.db`).
+- [ ] Banco `data/clinmd.db` JÁ POPULADO com os SEIS meses (março a agosto), não só os três da aula_25. Cadastre março, abril e maio pelo formulário antes de gravar, usando a cola `dados_6_meses_bastidor.csv`.
+
+**Confira antes de gravar:**
+
+- [ ] `uv run python main.py` abre o app e o formulário da aula_25 lista os seis meses na tabela.
+- [ ] Os seis meses na tabela batem com a cola (março 32000/3200/112 ... agosto 27500/5100/91).
+- [ ] Você consegue calcular os KPIs de agosto na cabeça/calculadora na Seção 2 e bater com o gabarito (líquida 22.400; glosa 18,5%; ticket 246,15).
+
+**Navegador:** nenhum site é necessário nesta aula. O navegador só abre para exibir o dashboard Flet (via `uv run python main.py`).
 
 ---
 
@@ -11,12 +37,15 @@
 
 **Tom:** Retrieval — puxar o que foi feito na aula_25 antes de avançar
 
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Recadinho de sempre: hoje a gente vai ler gráfico e número pequeno na tela, e eixo de gráfico não perdoa vista cansada. Coloca os óculos de perto, ajusta o foco, que a curva de hoje merece ser vista nítida."
+
 "Na aula passada você construiu a memória do consultório.
 
-Seis meses de dados.
-Março a agosto de 2025.
-
 O app salva. O app lembra. O arquivo mora em `data/clinmd.db`.
+
+E desde então a memória encheu: agora são seis meses de dados, março a agosto de 2025, todos cadastrados pelo mesmo formulário.
 
 Mas agora você tem uma tabela de números.
 

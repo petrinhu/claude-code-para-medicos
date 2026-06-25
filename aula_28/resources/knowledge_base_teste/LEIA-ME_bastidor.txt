@@ -1,0 +1,19 @@
+PASTA DE BASTIDOR - NAO E FALADA NA AULA.
+
+Estes 3 arquivos .txt sao artigos FICTICIOS sobre anticoagulacao em fibrilacao
+atrial. Nao sao registros reais do PubMed. PMIDs e dados sao inventados.
+
+Para que servem:
+- Plano B de gravacao. A aula_28 baixa artigos REAIS do PubMed ao vivo, via MCP
+  (Secao 2). Se a internet cair ou o MCP falhar na hora da gravacao, copie estes
+  3 arquivos para a pasta knowledge_base/ do projeto ClinMd-Tribe e siga a aula
+  a partir da indexacao (Secao 4 em diante).
+
+Como usar o plano B:
+  cp aula_28/resources/knowledge_base_teste/0000000*_*.txt  <projeto>/knowledge_base/
+
+Observacao: com estes 3 arquivos curtos o numero de trechos indexados sera bem
+menor que os "141 trechos" do roteiro (que pressupoe artigos reais de ~40KB).
+Se usar o plano B, anote o numero real que aparecer e ajuste a fala da Secao 6.
+
+Preferencia: gravar com os artigos REAIS do PubMed sempre que a rede permitir.

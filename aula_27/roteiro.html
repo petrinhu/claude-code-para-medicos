@@ -175,14 +175,63 @@ Guidelines</h1>
 </header>
 <h1 id="aula-27-rag-o-residente-que-leu-todos-os-guidelines">Aula 27 —
 RAG: O Residente que Leu Todos os Guidelines</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~42 min <strong>Tom:</strong> Cardiologista
 que quer que o app saiba o que está nos artigos que ele lê
 <strong>Módulo:</strong> S07.01 — RAG: O que é e por que importa</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Já preparado em <code>resources/</code> (é só
+usar):</strong></p>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>resources/demo_embedding.py</code> : script de
+demonstração de embedding usado na Seção 4. NÃO abra o arquivo na tela
+(o aluno não lê código); apenas rode no terminal e mostre o output (as
+barras de similaridade). Confirme que ele produz o ranking esperado:
+angina pectoris no topo, diabetes por último.</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />Terminal posicionado na raiz do
+projeto, de onde o comando
+<code>uv run python aula_27/resources/demo_embedding.py</code>
+funciona.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />CRÍTICO: rode o
+<code>demo_embedding.py</code> UMA VEZ antes de gravar. Na primeira
+execução o modelo de embeddings (<code>all-MiniLM-L6-v2</code>, ~90 MB)
+é baixado; deixe baixar para já estar em cache na gravação.</label></li>
+<li><label><input type="checkbox" />Numa segunda execução de teste, o
+script roda em segundos, sem barra de download. Se aparecer download
+durante a gravação, pause o OBS e refaça o take da Seção 4.</label></li>
+<li><label><input type="checkbox" />O output das barras está legível na
+fonte/zoom do terminal que você vai gravar.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula. É
+conceitual; o único uso de máquina é rodar o script de demo no
+terminal.</p>
+<hr />
 <h2 id="seção-1-abertura-3-min">SEÇÃO 1: ABERTURA — 3 min</h2>
 <p><strong>Tom:</strong> Contraste direto com S06 — o app que calcula e
 guarda, mas não lê</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes da gente começar: hoje tem barrinha de similaridade rodando no
+terminal, com numerozinho de duas casas decimais do lado. É tipo ler
+hemograma na contraluz. Se a vista reclama, é a deixa pros óculos de
+perto entrarem agora.”</p>
 <p>“Nas últimas seis aulas você construiu um app que calcula e
 guarda.</p>
 <p>Seis calculadoras clínicas. Um dashboard financeiro que persiste
@@ -401,5 +450,18 @@ indexador.</p>
 <p>Vejo você lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

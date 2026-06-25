@@ -1,15 +1,42 @@
 # Aula 40 — A Chave que Vale Ouro: Nunca Suba seu Token
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Abertura de um arco novo — os hábitos de quem entrega. Sério sobre o risco (chave vazada custa caro), tranquilizador sobre a prática. O reflexo de segurança ancorado no que o médico já vive: a chave do armário de controlados.
 **Módulo:** S12.01 — Segurança: nunca suba seu token de API (1ª aula de Boas Práticas)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] App-piloto com o trabalho salvo e em dia (nada pendente para commitar), porque o Prompt 0 pergunta "o meu trabalho está salvo e em dia?".
+
+**Confira antes de gravar:**
+
+- [ ] App offline confirmado: o ClinMd-Tribe não usa nenhum token de API quando roda (é a resposta esperada do Prompt 0); o cofre nasce vazio de propósito.
+- [ ] Conta-piloto sem nenhuma chave de verdade exposta: o laudo da Seção 4 (itens PROJETO e HISTÓRICO) deve voltar limpo. Confira fora de gravação se nenhum token (GitHub, Claude Code) ficou solto dentro da pasta do projeto ou em algum commit antigo; se ficou, grave a fala alternativa "achou" (notas da Seção 5) e trate como rotação.
+- [ ] Chaves reais (Claude Code, GitHub) moram no sistema/usuário, FORA da pasta do projeto: é o que o Prompt 1 vai confirmar; valide a resposta do Claude antes de gravar.
+- [ ] NADA de chave ou token na tela: nenhum valor de chave (sk-ant-..., ghp_...), nenhum .env aberto, nenhum comando que ecoe segredo. A regra do Prompt 0 proíbe; confira que o seu ambiente não mostra nada por acidente.
+
+**Navegador:** abra a página de tokens do GitHub (Configuracoes, Developer settings, Personal access tokens) só para mostrar onde fica o botão "Revoke" na Seção 5. NÃO clique em Revoke (quebraria a conexão do repositório) e garanta que nenhuma chave fique visível na tela (conta-piloto sem tokens valiosos, ou captura com o valor tarjado).
+
+---
+
 ## SEÇÃO 1: ABERTURA — A CHAVE QUE VALE OURO — 5 min
 
 **Tom:** Reflexivo, retoma o gancho da aula_39 com peso e vira a chave do tema.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes de começar: a aula de hoje é sobre uma chave pequenininha que vale ouro, e no terminal ela aparece em letras igualmente pequenininhas. Então faz o favor de aproximar a cadeira, ou pôr os óculos de perto. Hoje a gente não quer que NADA escape do seu campo de visão.
+
+---
 
 "Na aula passada você liberou o seu produto. E no meio da conferência, lembra do item LACRE? A gente procurou por uma chave secreta na sua entrega — e, ainda bem, não achou nenhuma, porque o seu app é offline.
 

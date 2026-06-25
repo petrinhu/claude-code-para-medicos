@@ -1,15 +1,43 @@
 # Aula 27 — RAG: O Residente que Leu Todos os Guidelines
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~42 min
 **Tom:** Cardiologista que quer que o app saiba o que está nos artigos que ele lê
 **Módulo:** S07.01 — RAG: O que é e por que importa
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/demo_embedding.py` : script de demonstração de embedding usado na Seção 4. NÃO abra o arquivo na tela (o aluno não lê código); apenas rode no terminal e mostre o output (as barras de similaridade). Confirme que ele produz o ranking esperado: angina pectoris no topo, diabetes por último.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] Terminal posicionado na raiz do projeto, de onde o comando `uv run python aula_27/resources/demo_embedding.py` funciona.
+
+**Confira antes de gravar:**
+
+- [ ] CRÍTICO: rode o `demo_embedding.py` UMA VEZ antes de gravar. Na primeira execução o modelo de embeddings (`all-MiniLM-L6-v2`, ~90 MB) é baixado; deixe baixar para já estar em cache na gravação.
+- [ ] Numa segunda execução de teste, o script roda em segundos, sem barra de download. Se aparecer download durante a gravação, pause o OBS e refaça o take da Seção 4.
+- [ ] O output das barras está legível na fonte/zoom do terminal que você vai gravar.
+
+**Navegador:** nenhum site é necessário nesta aula. É conceitual; o único uso de máquina é rodar o script de demo no terminal.
+
+---
+
 ## SEÇÃO 1: ABERTURA — 3 min
 
 **Tom:** Contraste direto com S06 — o app que calcula e guarda, mas não lê
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes da gente começar: hoje tem barrinha de similaridade rodando no terminal, com numerozinho de duas casas decimais do lado. É tipo ler hemograma na contraluz. Se a vista reclama, é a deixa pros óculos de perto entrarem agora."
 
 "Nas últimas seis aulas você construiu um app que calcula e guarda.
 

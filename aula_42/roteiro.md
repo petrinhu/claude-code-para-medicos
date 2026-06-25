@@ -1,15 +1,43 @@
 # Aula 42 — A Junta: Você Bate o Martelo
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** A última aula do curso. Ensina o hábito final — discutir com o time antes de decidir grande — e, no fim, fecha a jornada. Sério sobre a responsabilidade (a decisão é sua), caloroso no encerramento, sem pieguice. O médico entra aluno e sai líder.
 **Módulo:** S12.03 — Workflow com agentes: sempre discuta com o time (C-levels + devs) · FINALE (aula 52 de 52)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] Constelação de agents disponível no projeto: o /bigtech responde e os titulares atendem por menção (@caetano-cto, @narciso-ciso), porque a junta inteira (Seções 4 a 8) depende disso.
+- [ ] App-piloto com as calculadoras modulares no Domínio (MELD, CHA2DS2-VASc, PHQ-9, GAD-7), herdado da aula_41, para o recap da Seção 9 e a fala dos testes na Seção 6 terem lastro real.
+
+**Confira antes de gravar:**
+
+- [ ] /bigtech enxuga o time para esta pauta: para um app solo de saúde, o Cósimo deve manter Caetano e Narciso na frente (e Cláudio para LGPD se preciso) e deixar os demais dormentes. Confira fora de gravação que a convocação não traz os doze.
+- [ ] Os titulares discordam de verdade ao cruzar pareceres: ensaie o Prompt 2 (levar o parecer do Caetano ao Narciso) e confirme que o atrito aparece sem ser suavizado; é o coração da aula.
+- [ ] Testes verdes herdados da aula_41: a partir da pasta clinmd_tribe/, "uv run --with pytest --no-project pytest -q" deve voltar verde (referência: 26 testes), para a fala dos guardiões na Seção 6 ser verdadeira.
+- [ ] Pasta de decisões pronta para o ADR: o Prompt 6 grava um ADR em docs/decisoes/; confirme que o Claude consegue criar o arquivo ali (o aluno pede, não lê o conteúdo na tela).
+
+**Navegador:** nenhum site é necessário nesta aula.
+
+---
+
 ## SEÇÃO 1: ABERTURA — A SALA QUE PEDIU UMA REUNIÃO — 5 min
 
 **Tom:** Pega a bola da aula_41, sinaliza peso de finale sem ainda fechar. Honesto sobre a fronteira com a aula_19 logo de cara.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Última vez que eu vou te pedir isso, então capriche: ponha os óculos de perto. A gente passou o curso inteiro forçando a vista nessas letrinhas de terminal, e hoje, no encerramento, eu quero você enxergando cada palavra. Ajeitou os óculos? Então vem, que essa é a nossa última reunião.
+
+---
 
 "Na aula passada você fez a ronda. Sozinho, com o Claude do lado, você bancou o chefe de plantão que vistoria a enfermaria e decide o que arrumar.
 

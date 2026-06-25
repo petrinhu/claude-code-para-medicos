@@ -240,12 +240,56 @@ Laboratório</h1>
 </header>
 <h1 id="aula-39-a-conferência-final-o-lote-sai-do-laboratório">Aula 39 —
 A Conferência Final: o Lote Sai do Laboratório</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~55 min <strong>Tom:</strong> Orgulho contido
 de quem fecha um produto. “Funcionar é metade; liberar é assumir a
 responsabilidade pelo que vai pra mão do outro.” Ritual de conferência,
 e o gesto adulto de assinar a liberação. <strong>Módulo:</strong> S11.03
 — Auditoria final e distribuição (última do polimento)</p>
+<hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />git em dia (trabalho salvo e
+enviado).</label></li>
+<li><label><input type="checkbox" />O .exe gerado na aula passada existe
+e está localizado na pasta dist/.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />O veredito honesto do LACRE é
+“limpo” (o app é offline e não usa token de API); NÃO invente um token
+falso. Se a conta-piloto tiver um token real no histórico de algum teste
+antigo, o cenário “ATENÇÃO GRAVE, gancho aula 40” fica mais forte; grave
+a fala pronta nos dois cenários (achou / não achou).</label></li>
+<li><label><input type="checkbox" />A pasta data/ já está excluída desde
+a aula 38; o item PUREZA confirma, não refaz.</label></li>
+<li><label><input type="checkbox" />O gate de tamanho do SOBRA reusa o
+da aula 38 (.exe acima de uns 300 MB = peça pesada vazou); o Claude
+reporta o tamanho real.</label></li>
+<li><label><input type="checkbox" />A bula é gerada como LEIA-ME.txt
+(não .md, pra o colega zero-TI abrir com dois cliques no Bloco de
+Notas), no máximo 1 página, salva na mesma pasta do .exe.</label></li>
+<li><label><input type="checkbox" />A versão é carimbada SÓ depois do
+laudo “liberado”: git tag v1.0 (o Claude cria) com o nome EXATO v1.0, e
+git push origin v1.0 (você cola).</label></li>
+<li><label><input type="checkbox" />PROIBIDO nesta aula: mostrar .env,
+qualquer string de chave (sk-…), git log/histórico cru, ou explicar
+variável de ambiente; isso é 100% da aula 40.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário ao vivo (o git
+push origin v1.0 vai pela linha de comando; o GitHub Release pra anexar
+o .exe é só mencionado, não executado).</p>
 <hr />
 <h2
 id="seção-1-abertura-o-remédio-funciona.-mas-o-lote-não-saiu-ainda.-5-min">SEÇÃO
@@ -253,6 +297,11 @@ id="seção-1-abertura-o-remédio-funciona.-mas-o-lote-não-saiu-ainda.-5-min">S
 min</h2>
 <p><strong>Tom:</strong> Reflexivo, orgulho contido. Retoma a ponte
 herdada da aula_38 e nomeia o que falta.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Última conferência do produto pede última conferência da sua vista
+também: põe os óculos. Hoje você vai ler um laudo linha por linha, igual
+hemograma, e quem libera lote não confere com a tela embaçada. Visão
+nítida, assinatura tranquila.”</p>
 <p>“Na aula passada você fez a caixa. Ela abre com dois cliques, o
 remédio funciona, na mão de qualquer médico. Para um segundo e sente o
 tamanho disso — no começo do curso você não sabia o que era um
@@ -607,5 +656,18 @@ de liberar/carimbar, não um artefato novo. Segurar o respiro na
 <code>LEIA-ME.txt</code> lado a lado.</li>
 </ul>
 </blockquote>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

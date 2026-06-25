@@ -1,15 +1,42 @@
 # Aula 30 — Integração Flet + Qualidade da Busca
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~46 min
 **Tom:** Cardiologista usando o app e aprendendo a confiar (ou não) na busca
 **Módulo:** S07.04 — Integração e Qualidade
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O buscador semântico da aula_29 já implementado e funcionando no terminal (`busca_service.buscar()` nas 4 camadas, com o corte de relevância). Esta aula liga esse buscador na tela; não há busca nova a construir.
+- [ ] O `knowledge_base/` montado e o banco vetorial indexado na aula_28, em `data/chroma_db/`. O modelo de embeddings já baixado e em cache.
+- [ ] O ClinMd-Tribe abrindo com `uv run flet run main.py` (seis calculadoras e o dashboard das aulas anteriores no menu).
+
+**Confira antes de gravar:**
+
+- [ ] `data/chroma_db/` existe e tem conteúdo; se vazio, reindexe com o módulo da aula_28 antes de gravar.
+- [ ] Confirme que `buscar("anticoagulação em FA")` devolve resultados (a tela da Seção 2 precisa mostrar trechos, não lista vazia).
+- [ ] Tenha à mão os comandos de reindexação da Seção 6 (`rm -rf data/chroma_db/` seguido do módulo indexador da aula_28) e, depois de testar os diagnósticos na pré-gravação, reindexe de novo para deixar o banco íntegro no momento de gravar.
+- [ ] Para o Diagnóstico 2 (busca em inglês funciona melhor): confirme na pré-gravação que `buscar("warfarin dosing elderly")` em inglês traz resultado, para a demonstração bater.
+
+**Navegador:** o app Flet abre no navegador local (`uv run flet run main.py`); nenhum site externo é necessário.
+
+---
+
 ## SEÇÃO 1: ABERTURA — BUSCADOR FUNCIONA NO TERMINAL. HORA DE LIGAR NA TELA. — 3 min
 
 **Tom:** Bridge com aula_29 — celebrar os três gabaritos e anunciar a virada: terminal → interface
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes de tudo: óculos no rosto. Hoje a gente sai do terminal e vai pra tela do app, mas no meio do caminho ainda tem terminal com letra de tamanho capilar. Foco calibrado, igual antes de uma fundoscopia? Bora."
 
 "Na aula anterior você validou três gabaritos.
 
@@ -141,22 +168,18 @@ uv run flet run main.py
 
 **[TELA: mostrar o app abrindo no navegador]**
 
-Navegue até a tela de busca — ela ainda não está no menu.
-Por enquanto rode direto: `uv run flet run presentation/telas/tela_busca_rag.py`
+A tela de busca ainda não está no menu; isso a gente liga na próxima seção. Por enquanto, o que importa é confirmar que o app subiu inteiro, com as calculadoras e o dashboard intactos: nada quebrou com o arquivo novo.
 
-Digite: `anticoagulação em FA`
-Clique em Buscar.
+O teste da tela de busca com a pergunta `anticoagulação em FA` vem logo depois da Seção 3, quando ela já estiver acessível pelo menu.
 
-**[NOTA DE PRODUÇÃO: confirmar que a busca retorna resultados antes de gravar — se a tela abre mas retorna lista vazia, verificar que data/chroma_db/ existe e que os artigos foram indexados na aula_28]**
+**[NOTA DE PRODUÇÃO: nesta execução o app abre normalmente, mas a tela de busca ainda NÃO aparece no menu (entra na Seção 3). Não tentar rodar o arquivo da tela isolado com `flet run presentation/telas/tela_busca_rag.py`: uma tela embarcada no app não tem ponto de entrada próprio e o comando falharia. O teste com 'anticoagulação em FA' é feito na Seção 3, já pelo menu. Confirmar que o app sobe sem erro antes de gravar.]**
 
 ---
 
-O trecho aparece.
-O nome do arquivo aparece embaixo.
-O número do trecho aparece.
+O arquivo da tela já existe e o app sobe sem reclamar. Daqui a pouco, com a tela no menu, você vai ver o resultado completo: o trecho aparece, o nome do arquivo aparece embaixo, o número do trecho aparece.
 
-O médico sabe o que o app encontrou.
-O médico sabe de onde veio.
+O médico vai saber o que o app encontrou.
+O médico vai saber de onde veio.
 
 Isso é o que você construiu."
 

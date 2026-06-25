@@ -1,15 +1,41 @@
 # Aula 33 — O Guardião que Não Dorme: o App que Confere as Próprias Regras
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Clínico-arquiteto que aprende a fazer o app provar as próprias regras — calmo, depois visceral no clímax
 **Módulo:** S09.01 — Testes Automatizados (TDD + pytest)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O ClinMd-Tribe com a calculadora CHA₂DS₂-VASc (serviço `calcular_cha2ds2vasc`) e o checklist cirúrgico da aula_31 (serviço `marcar_item` com o horário-testemunha imutável) já funcionando. Os testes desta aula cobrem essas duas regras.
+- [ ] `pytest` disponível no ambiente do projeto (`uv run pytest` deve rodar; ainda sem testes, ele só não acha nada).
+
+**Confira antes de gravar:**
+
+- [ ] Working tree limpo e commitado ANTES de gravar (a sabotagem da Seção 6 mexe na regra do AVC prévio). Se o conserto divergir do original, `git checkout -- <arquivo da regra>` restaura na hora. Nunca encerre a gravação com o app divergente do último commit.
+- [ ] Na pré-gravação, rode o Prompt 1 e anote quantos testes o Claude gera e como o `-v` os lista (podem ser agrupados ou parametrizados). Ajuste as falas "quatro guardiões / quatro passaram" (Seção 4) e a contagem da Seção 5 ao que aparecer na tela.
+- [ ] Confirme que, antes da sabotagem, `uv run pytest -v` está todo verde (calculadora + timestamp).
+- [ ] Confirme que a sabotagem do AVC prévio (1 ponto em vez de 2) faz o teste do AVC ficar vermelho, e que o conserto volta tudo a verde. A fala foi mantida agnóstica ("dois contra um"); aponte para a tela, sem ler a string em inglês do `assert`.
+
+**Navegador:** nenhum site é necessário nesta aula; tudo roda no terminal.
+
+---
+
 ## SEÇÃO 1: ABERTURA — O CONTROLE DA MANHÃ — 5 min
 
 **Tom:** Reflexivo, reconhecível. Retoma o gancho da aula_31 e ancora num ritual que o médico já confia cegamente.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Detalhe operacional antes de começar: óculos de perto, por favor. Hoje a gente vai ler barrinhas verdes e vermelhas no terminal, e a diferença entre um PASSED e um FAILED é coisa de poucos pixels. Igual ler um leucograma sem os óculos: o número está lá, mas você não jura. Foco no lugar? Seguimos."
 
 "Na aula do checklist cirúrgico, eu te fiz uma promessa.
 

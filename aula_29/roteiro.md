@@ -1,15 +1,42 @@
 # Aula 29 — Busca Semântica: Perguntando ao Arquivo
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~42 min
 **Tom:** Cardiologista testando se o app realmente aprendeu o que está nos artigos
 **Módulo:** S07.03 — Busca Semântica em Produção
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O ClinMd-Tribe já com o `knowledge_base/` montado e o banco vetorial indexado na aula_28 (os três artigos do PubMed sobre anticoagulação em FA, cortados em trechos e gravados em `data/chroma_db/`). Esta aula consome esse estado; não há nada novo a indexar.
+- [ ] O modelo de embeddings (cerca de 90 MB) já baixado e em cache. Rode uma busca qualquer na pré-gravação para ele carregar agora, e não no meio da aula.
+
+**Confira antes de gravar:**
+
+- [ ] `data/chroma_db/` existe e tem conteúdo. Se estiver vazio, reindexe com o módulo da aula_28 antes de gravar.
+- [ ] LIMIAR_DISTANCIA calibrado (passo crítico do clímax da Seção 6): rode 3 a 4 perguntas que ESTÃO nos artigos (devem trazer trechos) e 3 a 4 que NÃO estão (devem cair para vazio), observe os scores de distância e fixe o corte num ponto conservador que separe os dois grupos.
+- [ ] Confirme que `buscar("anticoagulação em fibrilação atrial")` devolve trechos com fonte (gabaritos das Seções 4 e 5).
+- [ ] Confirme que `buscar("como tratar diabetes tipo 2 com metformina")` devolve lista vazia (clímax da Seção 6). Se vier trecho, o limiar está frouxo: aperte antes de gravar.
+- [ ] Anote os nomes reais dos arquivos e os trechos que aparecem, para casar com os exemplos da Seção 4 (os blocos do roteiro são só ilustrativos).
+
+**Navegador:** nenhum site é necessário nesta aula.
+
+---
+
 ## SEÇÃO 1: ABERTURA — A BIBLIOTECA EXISTE. HORA DE PERGUNTAR. — 3 min
 
 **Tom:** Bridge com aula_28 — celebrar o que foi construído e antecipar o clímax
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Rapidinho antes de começar: se você usa óculos para ler bula, é a hora de pôr. A gente vai ler trechos de artigo no terminal, e ali a letra é miudinha que nem rodapé de consentimento. Ajustado o foco? Então vamos."
 
 "Na aula anterior você fez algo que nenhuma das nossas calculadoras havia feito antes.
 

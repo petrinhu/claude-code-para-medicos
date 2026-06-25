@@ -174,7 +174,7 @@
 </header>
 <h1 id="aula-41-a-ronda-não-deixe-a-casa-virar-bagunça">Aula 41 — A
 Ronda: Não Deixe a Casa Virar Bagunça</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~55 min <strong>Tom:</strong> Segunda aula dos
 hábitos de quem entrega. Sobre MANUTENÇÃO, não construção. A casa que
 você montou não fica arrumada sozinha — e hoje você aprende a ronda que
@@ -182,10 +182,61 @@ impede a bagunça. Clínico, prático, com o alívio no fim.
 <strong>Módulo:</strong> S12.02 — Arquitetura modular: evitando o
 monolito (2ª aula de Boas Práticas)</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />App-piloto com as quatro
+calculadoras modulares no Domínio, uma por arquivo (MELD, CHA2DS2-VASc,
+PHQ-9, GAD-7), em clinmd_tribe/src/domain/, porque toda a ronda (Seções
+5 e 6) depende disso.</label></li>
+<li><label><input type="checkbox" />Trabalho salvo e em dia (nada
+pendente para commitar): o Prompt 0 pergunta “o meu trabalho está salvo
+e em dia?”.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Testes verdes ANTES de gravar: a
+partir da pasta clinmd_tribe/, rode “uv run –with pytest –no-project
+pytest -q” e confirme tudo verde (referência: 26 testes passando). É a
+rede de segurança que prova a arrumação da Seção 6 não quebrou
+nada.</label></li>
+<li><label><input type="checkbox" />Casa limpa para o laudo da Seção 5:
+as camadas apresentação, aplicação e infraestrutura não têm regra
+clínica dentro (estão sem lógica de cálculo), então a ronda volta “casa
+arrumada” de verdade. Confira fora de gravação antes de gravar a fala
+“todo verde”.</label></li>
+<li><label><input type="checkbox" />Demo do clímax MELD pronta: mudar o
+piso de creatinina no arquivo do MELD toca 1 arquivo só, e o pytest
+continua verde. Ensaie fora de gravação e reverta a mudança antes de
+gravar, para a fala “Toquei um arquivo. O do MELD, no Domínio. Mais
+nada.” ser literal.</label></li>
+<li><label><input type="checkbox" />(Opcional) Se for demonstrar uma
+“sala virando depósito”, cole temporariamente uma regra clínica num
+arquivo de apresentação fora de gravação, grave a fala “achou um
+amarelo”, e reverta logo depois.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula.</p>
+<hr />
 <h2 id="seção-1-abertura-a-sala-que-virou-depósito-5-min">SEÇÃO 1:
 ABERTURA — A SALA QUE VIROU DEPÓSITO — 5 min</h2>
 <p><strong>Tom:</strong> Pega a bola da aula_40 e abre com uma imagem
 clínica visceral. Zero código.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Pequeno ritual de sempre antes da ronda: ponha os óculos de perto. A
+gente vai vistoriar a casa do app, e numa boa vistoria você quer
+enxergar até o canto do armário. Letrinha de terminal não perdoa quem
+esquece os óculos no bolso do jaleco.</p>
+<hr />
 <p>“Na aula passada você guardou a chave no cômodo certo, fora do
 código. E eu te fiz uma promessa: que hoje a gente arruma a casa
 inteira.</p>
@@ -654,5 +705,18 @@ data-cites="caetano-cto">@caetano-cto</span>, a ronda apontou X — vale
 refatorar agora ou registro como débito técnico?”.</li>
 </ul>
 </blockquote>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

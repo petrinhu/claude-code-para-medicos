@@ -1,15 +1,43 @@
 # Aula 37 — A Roupa do App: Vestindo o ClinMd-Tribe de Uma Vez Só
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~60 min
 **Tom:** Clínico-zeloso com a forma; do orgulho da engenharia sólida ao cuidado com a forma. "Por dentro é à prova de bala — agora a cara precisa dizer isso." A virada emocional é ver várias telas desconjuntadas virarem uma família visual com um único pedido.
 **Módulo:** S11.01 — UI médica: paleta, tipografia, ícones (Flet)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] Projeto conectado ao repositório clinmd-tribe no GitHub, com o último trabalho já enviado (push), branch main em dia.
+- [ ] As telas das aulas anteriores (calculadora, checklist, busca, painel) já estão montadas num app único navegável, e uv run flet run main.py abre a janela.
+
+**Confira antes de gravar:**
+
+- [ ] Existe um "antes" feio real: grave o 1o uv run flet run main.py ANTES de aplicar o tema (telas com a cor default do Flet) e o 2o depois.
+- [ ] A fonte Inter você providencia via Google Fonts: o prompt já pede ao Claude carregar a Inter pela internet (page.fonts) e registrar como fonte do app; NÃO baixe a fonte aqui.
+- [ ] A URL da Inter é de versão ESTÁTICA (o Flet só renderiza fontes estáticas; a Inter padrão do Google Fonts é variável e pode não aparecer). Se a conexão for instável, considere baixar a Inter estática para assets/fonts/ e usar assets_dir; ajuste a fala do "flash" se for o caso.
+- [ ] git push direto na main é aceito pra o dono-admin (a aula passada ligou branch protection sem trancar o admin); se a proteção barrar o admin, reescreva as entregas como micro-PR.
+- [ ] O pipeline (aula 35/36) fica verde após o push do tema e do acabamento da Seção 7 (mudança só visual não pode quebrar teste); a narração promete "verde".
+- [ ] O par texto #2E3233 sobre fundo #FAFAFA tem contraste seguro; mantenha o secundário #646C6F só sobre fundos claros.
+
+**Navegador:** nenhum site é necessário nesta aula (o trabalho é no terminal e na janela do app; a Inter chega da internet sozinha pelo prompt).
+
+---
+
 ## SEÇÃO 1: ABERTURA — O JALECO AMASSADO — 5 min
 
 **Tom:** Reflexivo. Retoma o gancho da aula_36 e nomeia o desconforto da forma.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Hoje a aula é sobre cor, letra e o que dá gosto de olhar, então convém olhar bem: põe os óculos. Seria irônico passar a aula inteira falando de legibilidade com o terminal embaçado, não acha? Olho descansado pra julgar a roupa nova do app."
 
 "Nas últimas aulas a gente blindou o seu app por dentro. As contas estão certas e guardadas por testes. O checklist é imutável. A busca é honesta. E um porteiro tranca a porta pra qualquer coisa quebrada, sozinho, a cada entrega. Por dentro, o ClinMd-Tribe é sólido como poucos sistemas que você usa no hospital.
 

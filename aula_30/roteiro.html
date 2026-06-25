@@ -239,10 +239,58 @@
 </header>
 <h1 id="aula-30-integração-flet-qualidade-da-busca">Aula 30 — Integração
 Flet + Qualidade da Busca</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~46 min <strong>Tom:</strong> Cardiologista
 usando o app e aprendendo a confiar (ou não) na busca
 <strong>Módulo:</strong> S07.04 — Integração e Qualidade</p>
+<hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />O buscador semântico da aula_29 já
+implementado e funcionando no terminal
+(<code>busca_service.buscar()</code> nas 4 camadas, com o corte de
+relevância). Esta aula liga esse buscador na tela; não há busca nova a
+construir.</label></li>
+<li><label><input type="checkbox" />O <code>knowledge_base/</code>
+montado e o banco vetorial indexado na aula_28, em
+<code>data/chroma_db/</code>. O modelo de embeddings já baixado e em
+cache.</label></li>
+<li><label><input type="checkbox" />O ClinMd-Tribe abrindo com
+<code>uv run flet run main.py</code> (seis calculadoras e o dashboard
+das aulas anteriores no menu).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>data/chroma_db/</code> existe
+e tem conteúdo; se vazio, reindexe com o módulo da aula_28 antes de
+gravar.</label></li>
+<li><label><input type="checkbox" />Confirme que
+<code>buscar("anticoagulação em FA")</code> devolve resultados (a tela
+da Seção 2 precisa mostrar trechos, não lista vazia).</label></li>
+<li><label><input type="checkbox" />Tenha à mão os comandos de
+reindexação da Seção 6 (<code>rm -rf data/chroma_db/</code> seguido do
+módulo indexador da aula_28) e, depois de testar os diagnósticos na
+pré-gravação, reindexe de novo para deixar o banco íntegro no momento de
+gravar.</label></li>
+<li><label><input type="checkbox" />Para o Diagnóstico 2 (busca em
+inglês funciona melhor): confirme na pré-gravação que
+<code>buscar("warfarin dosing elderly")</code> em inglês traz resultado,
+para a demonstração bater.</label></li>
+</ul>
+<p><strong>Navegador:</strong> o app Flet abre no navegador local
+(<code>uv run flet run main.py</code>); nenhum site externo é
+necessário.</p>
 <hr />
 <h2
 id="seção-1-abertura-buscador-funciona-no-terminal.-hora-de-ligar-na-tela.-3-min">SEÇÃO
@@ -250,6 +298,11 @@ id="seção-1-abertura-buscador-funciona-no-terminal.-hora-de-ligar-na-tela.-3-m
 min</h2>
 <p><strong>Tom:</strong> Bridge com aula_29 — celebrar os três gabaritos
 e anunciar a virada: terminal → interface</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes de tudo: óculos no rosto. Hoje a gente sai do terminal e vai
+pra tela do app, mas no meio do caminho ainda tem terminal com letra de
+tamanho capilar. Foco calibrado, igual antes de uma fundoscopia?
+Bora.”</p>
 <p>“Na aula anterior você validou três gabaritos.</p>
 <p>Pergunta dentro do knowledge_base — trechos retornados com fonte.
 Busca por sentido — sinônimos e paráfrases funcionaram. Pergunta fora do
@@ -333,18 +386,26 @@ execução é para confirmar que o app não quebrou.]</strong></p>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> run flet run main.py</span></code></pre></div>
 <p><strong>[TELA: mostrar o app abrindo no navegador]</strong></p>
-<p>Navegue até a tela de busca — ela ainda não está no menu. Por
-enquanto rode direto:
-<code>uv run flet run presentation/telas/tela_busca_rag.py</code></p>
-<p>Digite: <code>anticoagulação em FA</code> Clique em Buscar.</p>
-<p><strong>[NOTA DE PRODUÇÃO: confirmar que a busca retorna resultados
-antes de gravar — se a tela abre mas retorna lista vazia, verificar que
-data/chroma_db/ existe e que os artigos foram indexados na
-aula_28]</strong></p>
+<p>A tela de busca ainda não está no menu; isso a gente liga na próxima
+seção. Por enquanto, o que importa é confirmar que o app subiu inteiro,
+com as calculadoras e o dashboard intactos: nada quebrou com o arquivo
+novo.</p>
+<p>O teste da tela de busca com a pergunta
+<code>anticoagulação em FA</code> vem logo depois da Seção 3, quando ela
+já estiver acessível pelo menu.</p>
+<p><strong>[NOTA DE PRODUÇÃO: nesta execução o app abre normalmente, mas
+a tela de busca ainda NÃO aparece no menu (entra na Seção 3). Não tentar
+rodar o arquivo da tela isolado com
+<code>flet run presentation/telas/tela_busca_rag.py</code>: uma tela
+embarcada no app não tem ponto de entrada próprio e o comando falharia.
+O teste com ‘anticoagulação em FA’ é feito na Seção 3, já pelo menu.
+Confirmar que o app sobe sem erro antes de gravar.]</strong></p>
 <hr />
-<p>O trecho aparece. O nome do arquivo aparece embaixo. O número do
-trecho aparece.</p>
-<p>O médico sabe o que o app encontrou. O médico sabe de onde veio.</p>
+<p>O arquivo da tela já existe e o app sobe sem reclamar. Daqui a pouco,
+com a tela no menu, você vai ver o resultado completo: o trecho aparece,
+o nome do arquivo aparece embaixo, o número do trecho aparece.</p>
+<p>O médico vai saber o que o app encontrou. O médico vai saber de onde
+veio.</p>
 <p>Isso é o que você construiu.”</p>
 <hr />
 <h2
@@ -644,5 +705,18 @@ trechos que você via antes do ajuste.</p>
 hoje.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+FICTITIOUS ARTICLE FOR COURSE DEMO ONLY - NOT A REAL PUBMED RECORD.
+
+PMID: 00000003 (fictitious)
+Title: Anticoagulation Around Cardioversion in Atrial Fibrillation: A Fictitious Review
+
+Abstract:
+This fictitious review describes general principles of anticoagulation before
+and after cardioversion in atrial fibrillation. All statements are invented for
+a teaching exercise and must not be used for clinical decisions.
+
+Introduction:
+Cardioversion of atrial fibrillation carries a risk of thromboembolism around
+the time of the procedure. Anticoagulation before and after cardioversion is
+used to reduce this risk. The duration of arrhythmia and the imaging strategy
+influence the approach.
+
+Periprocedural anticoagulation:
+In this fictitious review, patients with atrial fibrillation lasting beyond a
+short threshold were anticoagulated for a simulated period before elective
+cardioversion, or underwent transesophageal imaging to exclude thrombus before
+the procedure. Anticoagulation was continued for a simulated period afterward
+because the risk of thromboembolism persists during the recovery of atrial
+mechanical function.
+
+Methods:
+This is a fictitious narrative review. No real patients or studies are included.
+The numbers and timeframes below are invented for demonstration only.
+
+Results:
+In this fictitious cohort, a structured periprocedural anticoagulation strategy
+was associated with a low simulated rate of post-cardioversion thromboembolic
+events. Bleeding events were uncommon in the simulated data.
+
+Discussion:
+The fictitious findings underscore the principle of bridging the higher risk
+window around cardioversion. The exact agent, duration, and imaging strategy
+should follow current guidelines and individual patient assessment.
+
+Conclusion:
+In this fictitious review, anticoagulation around cardioversion was associated
+with a low simulated event rate. This text is for demonstration purposes only.

@@ -1,15 +1,45 @@
 # Aula 31 — Cirurgia Segura: o Checklist que Não Esquece
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Cirurgião construindo, dentro do app, o ritual de segurança que ele já vive na sala
 **Módulo:** S08 — Checklists de Segurança (condensa S08.01 + S08.02)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/checklist_oms_19_itens.md` : folha de conferência com os 19 itens da OMS nas 3 fases (7 / 7 / 5), idênticos aos do Prompt 1. Use para conferir na Seção 5 que o app semeou a contagem certa e para localizar o item 10 (antibiótico), usado no clímax da Seção 7. Só o instrutor vê; não aparece na aula.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O ClinMd-Tribe nas 4 camadas (domain, application, infrastructure, presentation) e o banco local `data/clinmd.db` já em uso pelas calculadoras das aulas anteriores. O checklist desta aula é semeado nesse mesmo banco.
+- [ ] O app abrindo com `uv run flet run main.py`.
+
+**Confira antes de gravar:**
+
+- [ ] Tenha os dois prompts à mão (Prompt 1 do motor na Seção 4, Prompt 2 da tela na Seção 6) para colar de uma vez.
+- [ ] Antes de gravar a Seção 4, garanta que o checklist ainda NÃO foi semeado (ou que a semeadura é idempotente), para o aluno ver os 19 itens nascerem do zero. Se já rodou na pré-gravação, parta de um `data/clinmd.db` sem o checklist semeado.
+- [ ] Na Seção 5, confirme que a contagem responde 7 / 7 / 5 (total 19), batendo com `resources/checklist_oms_19_itens.md`. Comando forense opcional: `sqlite3 data/clinmd.db "SELECT fase, COUNT(*) FROM item_checklist GROUP BY fase;"`.
+- [ ] Na pré-gravação, ensaie os três experimentos do clímax (Seção 7) com o item 10: marcar gera horário; fechar e reabrir mantém o horário; tocar de novo NÃO altera o horário. Os três devem se comportar como descrito antes de gravar.
+
+**Navegador:** o app Flet abre no navegador local (`uv run flet run main.py`); nenhum site externo é necessário.
+
+---
+
 ## SEÇÃO 1: ABERTURA — TRÊS PAUSAS QUE SALVAM VIDAS — 4 min
 
 **Tom:** Grave, quase ritualístico. O cirurgião sente o peso da pausa cirúrgica. Sem humor aqui — o humor entra depois.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Um pedido antes de começar, e depois fico sério: ponha os óculos de perto. A gente vai conferir item por item de um checklist no terminal, e errar a leitura ali é o tipo de coisa que esse checklist existe justamente pra evitar. Foco ajustado? Então vamos com calma."
 
 "Antes da indução.
 

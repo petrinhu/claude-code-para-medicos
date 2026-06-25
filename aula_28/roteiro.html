@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Aula 28 — PubMed para knowledge_base para Banco Vetorial</title>
+  <title>Aula 28 — PubMed → knowledge_base/ → Banco Vetorial</title>
   <style>
     html {
       color: #1a1a1a;
@@ -170,21 +170,91 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Aula 28 — PubMed para knowledge_base para Banco
+<h1 class="title">Aula 28 — PubMed → knowledge_base/ → Banco
 Vetorial</h1>
 </header>
 <h1 id="aula-28-pubmed-knowledge_base-banco-vetorial">Aula 28 — PubMed →
 knowledge_base/ → Banco Vetorial</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~55 min <strong>Tom:</strong> Cardiologista
 que transforma sua biblioteca de artigos em memória do app
 <strong>Módulo:</strong> S07.02 — Construindo a Biblioteca do
 Residente</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Já preparado em <code>resources/</code> (é só usar, plano
+B):</strong></p>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>resources/knowledge_base_teste/</code> : 3
+artigos FICTÍCIOS sobre anticoagulação em FA (PMIDs e dados inventados).
+NÃO são insumo padrão da aula. São só o plano B: se a internet ou o MCP
+do PubMed falharem na hora da gravação, copie estes <code>.txt</code>
+para a pasta <code>knowledge_base/</code> do projeto e siga a partir da
+Seção 4 (indexação). Veja <code>LEIA-ME_bastidor.txt</code> na mesma
+pasta. Preferência: gravar com artigos REAIS do PubMed.</label></li>
+</ul>
+<p><strong>Você providencia / baixado ao vivo:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Os 3 artigos REAIS são baixados AO
+VIVO pelo Claude via MCP do PubMed na Seção 2 (não pré-baixe; é conteúdo
+de terceiros). A pasta <code>knowledge_base/</code> é preenchida durante
+a gravação.</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+raiz do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />MCP do PubMed ativo e funcionando (o
+mesmo da aula_03). Teste uma busca rápida antes de gravar.</label></li>
+<li><label><input type="checkbox" />App com tudo das aulas anteriores
+funcionando (calculadoras + módulo financeiro). As 4 camadas existem:
+<code>domain/</code>, <code>application/</code>,
+<code>infrastructure/</code>, <code>presentation/</code>.</label></li>
+<li><label><input type="checkbox" />Estado do RAG ZERADO para a aula
+nascer do zero: pasta <code>knowledge_base/</code> vazia (ou
+inexistente) e SEM banco vetorial anterior em
+<code>data/chroma_db/</code> (apague restos de testes para a Seção 6
+mostrar a indexação acontecendo pela primeira vez).</label></li>
+<li><label><input type="checkbox" />Modelo de embeddings
+(<code>all-MiniLM-L6-v2</code>, ~90 MB) JÁ baixado em cache de um teste
+anterior, para a Seção 6 não travar com download longo. Se quiser
+mostrar o download ao vivo de propósito, decida isso antes e ajuste o
+tempo da seção.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>uv run python main.py</code>
+abre o app sem erro (estado pré-aula).</label></li>
+<li><label><input type="checkbox" />VS Code com o comando
+<code>code</code> no PATH (Seção 2 abre um <code>.txt</code>); ou tenha
+pronto o plano alternativo do roteiro (explorador de arquivos, ou
+<code>cat ... | head -60</code>).</label></li>
+<li><label><input type="checkbox" />Você fez um ensaio completo
+(download + indexação) para anotar os números REAIS: nomes/tamanhos dos
+arquivos (Seção 2) e número de trechos indexados (Seção 6, o “141” é só
+estimativa).</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula. O
+Claude usa o MCP do PubMed direto, sem abrir o navegador.</p>
+<hr />
 <h2 id="seção-1-abertura-bridge-com-aula_03-5-min">SEÇÃO 1: ABERTURA —
 BRIDGE COM AULA_03 — 5 min</h2>
 <p><strong>Tom:</strong> Reconhecimento de conquista passada — o aluno
 já usou o MCP do PubMed; hoje esse mesmo MCP alimenta o app</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Aula longa hoje, e cheia de nome de arquivo comprido passando no
+terminal, daqueles PMID com oito dígitos. Antes que você force a vista
+feito quem lê posologia no rodapé da caixa: pega os óculos de perto,
+deixa do lado, e vamos.”</p>
 <p>“Na aula 03 você usou o MCP do PubMed pela primeira vez.</p>
 <p>Lembra o que você fez?</p>
 <p>Digitou uma pergunta em português. O Claude Code foi até o PubMed,
@@ -497,7 +567,7 @@ min</h2>
 <p><strong>Tom:</strong> Aviso crítico antes de executar — modelo, LGPD,
 output esperado</p>
 <p>“Antes de rodar, um aviso importante.</p>
-<p>Na primeira execução, o indexador vai baixar um modelo de linguagem.
+<p>Na primeira execução, o indexador vai baixar um modelo de embeddings.
 O nome é <code>all-MiniLM-L6-v2</code>. Tamanho: aproximadamente 90
 MB.</p>
 <p>Pense como a calibração inicial de um equipamento novo. Um
@@ -507,8 +577,12 @@ coisa.</p>
 <p>Não interrompa enquanto o progresso aparecer no terminal.</p>
 <hr />
 <p>Uma nota sobre LGPD.</p>
-<p>Esse download é o único momento nesta aula em que algo sai da sua
-máquina. É o modelo que desce — não o seu dado.</p>
+<p>A aula teve duas idas à internet: a busca dos artigos no PubMed, lá
+na Seção 2, e agora o download deste modelo. As duas baixam coisa
+pública para a sua máquina: artigos abertos e um modelo. Nenhuma das
+duas subiu dado de paciente para lugar nenhum.</p>
+<p>E depois deste download, acabou. A indexação em si não usa
+internet.</p>
 <p>Os artigos do PubMed estão na sua pasta. A indexação acontece
 localmente. O banco vetorial fica no seu computador.</p>
 <p>Depois que o modelo baixar: 100% offline. Dado de paciente não entra,
@@ -601,5 +675,18 @@ artigos anteriores não vão duplicar.</p>
 também.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

@@ -1,15 +1,42 @@
 # Aula 35 — O Guardião que Acorda Sozinho: o Controle que Roda a Cada Entrega
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Clínico-arquiteto; o alívio de não depender mais da própria memória, e o impacto de ver o robô pegar o erro sozinho, longe do paciente
 **Módulo:** S10.01 — Integração Contínua (CI) com GitHub Actions
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] Projeto conectado ao repositório clinmd-tribe no GitHub, com o último commit já enviado (push), branch main em dia.
+- [ ] Os testes da calculadora e do checklist passam na sua máquina com uv run pytest (verdes).
+
+**Confira antes de gravar:**
+
+- [ ] Os testes da busca/RAG estão isolados de forma limpa (por caminho, por marcador ou por nome), pra o robô conseguir pulá-los sem baixar o modelo grande.
+- [ ] git push simples funciona (upstream origin/main já configurado); se não, rode git push -u origin main uma vez antes.
+- [ ] A conta de gravação tem saldo de minutos de GitHub Actions (repo privado consome cota); se apertar, grave no clinmd-tribe-demo.
+- [ ] A aba Actions do repositório aparece e executa (Actions vem habilitado por padrão; basta o arquivo do robô existir e dar push).
+- [ ] Working tree limpo/commitado antes do clímax da sabotagem (o conserto restaura; não encerre com o app quebrado).
+
+**Navegador:** abra a aba: https://github.com (logado na conta de gravação, no repositório clinmd-tribe, pronto pra ir na aba Actions).
+
+---
+
 ## SEÇÃO 1: ABERTURA — O CONTROLE QUE AINDA PRECISA DE VOCÊ — 5 min
 
 **Tom:** Reflexivo. Retoma literalmente o gancho da aula_34 e nomeia o problema humano.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Rapidinho antes de começar: hoje a gente vai ler bolinhas verdes e vermelhas no servidor, mas tem texto miúdo no terminal também. Se você usa óculos pra ler ECG de papel, é a mesma coisa aqui: põe os óculos agora. Diagnóstico de tela embaçada também subtrata."
 
 "Nas últimas duas aulas você construiu os guardiões. O da calculadora, o do checklist, o da busca. Pequenas testemunhas automáticas que conferem, em meio segundo, se as regras que importam continuam de pé.
 

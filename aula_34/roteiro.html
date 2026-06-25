@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Aula 34 — O Guardião do Aproximado</title>
+  <title>Aula 34 — O Guardião do Aproximado: Controle de Qualidade de uma Busca que Muda</title>
   <style>
     html {
       color: #1a1a1a;
@@ -235,22 +235,88 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Aula 34 — O Guardião do Aproximado</h1>
+<h1 class="title">Aula 34 — O Guardião do Aproximado: Controle de
+Qualidade de uma Busca que Muda</h1>
 </header>
 <h1
 id="aula-34-o-guardião-do-aproximado-controle-de-qualidade-de-uma-busca-que-muda">Aula
 34 — O Guardião do Aproximado: Controle de Qualidade de uma Busca que
 Muda</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~55 min <strong>Tom:</strong>
 Clínico-arquiteto que aprende a testar o que não tem resposta cravada —
 calmo, depois visceral no clímax da honestidade <strong>Módulo:</strong>
 S09.02 — Testes do RAG (busca semântica não-determinística)</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />O buscador semântico das aulas 29 e
+30 funcionando (<code>busca_service.buscar(consulta, n)</code>
+devolvendo <code>ResultadoBusca</code> com trecho, fonte, numero_trecho
+e score), com o corte de relevância (LIMIAR_DISTANCIA) já implementado
+lá. É ele que permite o clímax da honestidade.</label></li>
+<li><label><input type="checkbox" />Os guardiões da aula_33 (calculadora
+e checklist) já criados em <code>tests/</code> e verdes. Os testes de
+hoje se somam a eles.</label></li>
+<li><label><input type="checkbox" />O modelo de embeddings
+(sentence-transformers) aquecido: rode uma busca uma vez antes de
+gravar, porque a 1ª execução carrega/baixa o modelo e
+demora.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Working tree limpo e commitado ANTES
+de gravar (a sabotagem da Seção 6 mexe em
+<code>application/servicos/busca_service.py</code>). Se o conserto
+divergir,
+<code>git checkout -- application/servicos/busca_service.py</code>
+restaura. Nunca encerre a gravação com o serviço divergente do
+commit.</label></li>
+<li><label><input type="checkbox" />Corpus de teste isolado (crítico):
+confirme que os testes criam o próprio knowledge_base de teste e NÃO
+apontam para o <code>data/chroma_db/</code> real. Prova: apague
+<code>data/chroma_db/</code> e rode; os testes do RAG devem seguir
+verdes. Se falharem por ambiente, repita o Prompt 1 enfatizando “banco
+vetorial separado, não o data/chroma_db real”.</label></li>
+<li><label><input type="checkbox" />Confirme que
+<code>buscar("como tratar diabetes tipo 2 com metformina")</code> no
+corpus de teste devolve lista vazia ANTES de gravar (pré-condição do
+clímax). Se não vier vazio de forma estável, aperte o limiar ou use um
+tema mais distante como fallback.</label></li>
+<li><label><input type="checkbox" />Triagem (Seção 5): rode o guardião
+do top-3 umas 5 vezes; se não passar de forma estável, afrouxe para
+top-5 ou troque a consulta por um tema mais concentrado em um texto. Não
+grave antes de passar consistente.</label></li>
+<li><label><input type="checkbox" />Ajuste as falas que citam contagem e
+nomes de testes ao que o <code>-v</code> listar na pré-gravação. Na
+forma do FAILED da honestidade, aponte para a tela (“ele trouxe um
+resultado, e o guardião exigia nenhum”), sem ler a string em
+inglês.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula; tudo
+roda no terminal.</p>
+<hr />
 <h2 id="seção-1-abertura-o-exame-que-não-dá-um-número-6-min">SEÇÃO 1:
 ABERTURA — O EXAME QUE NÃO DÁ UM NÚMERO — 6 min</h2>
 <p><strong>Tom:</strong> Reflexivo, instigante. Retoma literalmente o
 gancho que a aula anterior deixou no ar.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes da primeira ideia: bota os óculos de leitura. A gente continua
+no terminal, lendo verde e vermelho miudinho, e hoje ainda entra a
+palavra reagente e não-reagente no meio. Confundir os dois por causa do
+foco seria um diagnóstico errado por motivo bobo. Ajustado? Vamos
+nessa.”</p>
 <p>“Na aula passada eu te deixei no ar com uma pergunta.</p>
 <p>A calculadora é exata. Sessenta e oito anos, hipertenso e diabético,
 dá três. Sempre três. O gabarito é cravado, e o guardião só precisa
@@ -662,5 +728,18 @@ como <code>assert 1 == 0</code>. Fala mantida agnóstica (“um, quando
 tinha que ser zero”) — apontar a tela, sem citar string em inglês.</li>
 </ul>
 </blockquote>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

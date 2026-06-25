@@ -239,14 +239,68 @@
 </header>
 <h1 id="aula-25-dashboard-financeiro-entrada-de-dados">Aula 25 —
 Dashboard Financeiro: Entrada de Dados</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~48 min <strong>Tom:</strong> Ortopedista que
 fecha o mês e quer entender o que está acontecendo com as glosas
 <strong>Módulo:</strong> S06.01 — Dashboard Financeiro</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Já preparado em <code>resources/</code> (é só
+usar):</strong></p>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>resources/dados_3_meses_bastidor.csv</code> : os
+três meses fictícios do ortopedista (junho, julho, agosto de 2025), com
+receita bruta, glosas e consultas. Cola de bastidor para você digitar os
+valores certos na Seção 5; o app NÃO importa esse arquivo, você digita
+campo a campo no formulário.</label></li>
+</ul>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />Projeto ClinMd-Tribe com as features
+das aulas anteriores (as seis calculadoras do S05) já
+funcionando.</label></li>
+<li><label><input type="checkbox" />Pasta <code>data/</code> ainda SEM o
+arquivo <code>clinmd.db</code> (apague um <code>data/clinmd.db</code> de
+testes anteriores, se existir, para a Seção 6 mostrar o banco nascendo
+do zero).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>uv run python main.py</code>
+abre o app no navegador sem erro (estado pré-aula).</label></li>
+<li><label><input type="checkbox" />As 4 camadas existem como pastas:
+<code>domain/</code>, <code>application/</code>,
+<code>infrastructure/</code>, <code>presentation/</code>.</label></li>
+<li><label><input type="checkbox" />Você sabe onde fica a pasta
+<code>data/</code> para mostrá-la no explorador de arquivos na Seção
+6.</label></li>
+<li><label><input type="checkbox" />Os três valores da cola batem com a
+tabela da Seção 2 do roteiro (jun: 28000 / 4200 / 95; jul: 31000 / 3800
+/ 108; ago: 27500 / 5100 / 91).</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula. O
+navegador só abre para exibir o app Flet (via
+<code>uv run python main.py</code>).</p>
+<hr />
 <h2 id="seção-1-abertura-4-min">SEÇÃO 1: ABERTURA — 4 min</h2>
 <p><strong>Tom:</strong> Contraste direto com S05 — o app que esquece vs
 o app que lembra</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes de começar: se os óculos de perto andam na mesa, é agora que
+eles entram em campo. Hoje a gente abre arquivo de banco de dados, e o
+terminal escreve em corpo de exame de rotina, daquele tamanho que
+ninguém pediu. Põe os óculos e bora.”</p>
 <p>“Nas últimas quatro aulas você construiu seis calculadoras.</p>
 <p>Cada uma delas fazia a mesma coisa: você digitava os valores, clicava
 calcular, recebia o resultado.</p>
@@ -604,5 +658,18 @@ fluxo — cadastrar, fechar, reabrir, ver os dados.</p>
 <p>Até lá.”</p>
 <hr />
 <p><strong>FIM DO ROTEIRO</strong></p>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

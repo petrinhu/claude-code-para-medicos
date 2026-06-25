@@ -1,15 +1,44 @@
 # Aula 38 — Da Bancada pra Prateleira: o App que Anda Sozinho
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~58 min
 **Tom:** Do orgulho de construir ao orgulho de entregar. "Você não é mais só quem usa software — é quem entrega software." Honesto sobre os limites (é grande, o antivírus cheira), encantado com o resultado (dois cliques, na mão de qualquer um).
 **Módulo:** S11.02 — Empacotar o app como .exe de Windows (flet pack)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] Você está gravando num computador Windows (gerar .exe com flet pack só funciona no Windows).
+- [ ] O app está pronto e com a identidade visual da aula passada aplicada; uv run flet run main.py abre a janela.
+- [ ] git em dia (trabalho salvo e enviado).
+
+**Confira antes de gravar:**
+
+- [ ] flet/flet pack instalado e funcionando no ambiente de gravação.
+- [ ] A versão de bolso exclui a busca/RAG: ponto de entrada de distribuição que NÃO importa o módulo de busca, mais excludes do torch, chromadb e sentence-transformers; o item de busca é removido do menu (não só desabilitado).
+- [ ] O .exe gerado fica abaixo de uns 300 MB (acima disso, uma biblioteca pesada vazou); confirme o tamanho real ANTES de gravar e ajuste a fala da Seção 7.
+- [ ] Calculadoras, checklist e painel funcionam offline no .exe (teste com o Wi-Fi desligado).
+- [ ] Se possível, tenha uma 2a máquina Windows SEM Python pra provar o "abre na máquina de qualquer um".
+- [ ] A saída do pack fica em dist/; o aviso azul do SmartScreen pode ou não aparecer (varia por reputação); grave a fala "pode acontecer, e se acontecer é isto".
+
+**Navegador:** nenhum site é necessário nesta aula (todo o trabalho é no terminal e na janela do app; nenhum acesso ao GitHub web).
+
+---
+
 ## SEÇÃO 1: ABERTURA — A FÓRMULA NA BANCADA — 5 min
 
 **Tom:** Reflexivo. Retoma o gancho da aula_37 e nomeia o desconforto: o app lindo está preso.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes de embalar a caixa: cadê os óculos? O empacotamento cospe um monte de texto miúdo correndo na tela, e lá no fim aparece o tamanho do arquivo numa linha pequena que importa. Bota os óculos pra não confundir 80 mega com 800. Pronto, pode seguir."
 
 "Na aula passada você passou o ferro no jaleco do app. Paleta da TribeMD, fonte Inter, ícones, tudo respirando. Por dentro é à prova de bala, por fora tem a cara disso. E aí eu te deixei com uma farpa no fim. Lembra?
 

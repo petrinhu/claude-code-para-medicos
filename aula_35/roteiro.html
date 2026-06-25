@@ -242,18 +242,64 @@ que Roda a Cada Entrega</h1>
 id="aula-35-o-guardião-que-acorda-sozinho-o-controle-que-roda-a-cada-entrega">Aula
 35 — O Guardião que Acorda Sozinho: o Controle que Roda a Cada
 Entrega</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~55 min <strong>Tom:</strong>
 Clínico-arquiteto; o alívio de não depender mais da própria memória, e o
 impacto de ver o robô pegar o erro sozinho, longe do paciente
 <strong>Módulo:</strong> S10.01 — Integração Contínua (CI) com GitHub
 Actions</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />Projeto conectado ao repositório
+clinmd-tribe no GitHub, com o último commit já enviado (push), branch
+main em dia.</label></li>
+<li><label><input type="checkbox" />Os testes da calculadora e do
+checklist passam na sua máquina com uv run pytest (verdes).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Os testes da busca/RAG estão
+isolados de forma limpa (por caminho, por marcador ou por nome), pra o
+robô conseguir pulá-los sem baixar o modelo grande.</label></li>
+<li><label><input type="checkbox" />git push simples funciona (upstream
+origin/main já configurado); se não, rode git push -u origin main uma
+vez antes.</label></li>
+<li><label><input type="checkbox" />A conta de gravação tem saldo de
+minutos de GitHub Actions (repo privado consome cota); se apertar, grave
+no clinmd-tribe-demo.</label></li>
+<li><label><input type="checkbox" />A aba Actions do repositório aparece
+e executa (Actions vem habilitado por padrão; basta o arquivo do robô
+existir e dar push).</label></li>
+<li><label><input type="checkbox" />Working tree limpo/commitado antes
+do clímax da sabotagem (o conserto restaura; não encerre com o app
+quebrado).</label></li>
+</ul>
+<p><strong>Navegador:</strong> abra a aba: https://github.com (logado na
+conta de gravação, no repositório clinmd-tribe, pronto pra ir na aba
+Actions).</p>
+<hr />
 <h2
 id="seção-1-abertura-o-controle-que-ainda-precisa-de-você-5-min">SEÇÃO
 1: ABERTURA — O CONTROLE QUE AINDA PRECISA DE VOCÊ — 5 min</h2>
 <p><strong>Tom:</strong> Reflexivo. Retoma literalmente o gancho da
 aula_34 e nomeia o problema humano.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Rapidinho antes de começar: hoje a gente vai ler bolinhas verdes e
+vermelhas no servidor, mas tem texto miúdo no terminal também. Se você
+usa óculos pra ler ECG de papel, é a mesma coisa aqui: põe os óculos
+agora. Diagnóstico de tela embaçada também subtrata.”</p>
 <p>“Nas últimas duas aulas você construiu os guardiões. O da
 calculadora, o do checklist, o da busca. Pequenas testemunhas
 automáticas que conferem, em meio segundo, se as regras que importam
@@ -630,5 +676,18 @@ aula_09 (token/credencial guardada); nenhuma chave é colada em arquivo —
 gancho para S12.01 (“nunca suba seu token”).</li>
 </ul>
 </blockquote>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

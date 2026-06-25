@@ -240,7 +240,7 @@ Sozinho</h1>
 </header>
 <h1 id="aula-38-da-bancada-pra-prateleira-o-app-que-anda-sozinho">Aula
 38 — Da Bancada pra Prateleira: o App que Anda Sozinho</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~58 min <strong>Tom:</strong> Do orgulho de
 construir ao orgulho de entregar. “Você não é mais só quem usa software
 — é quem entrega software.” Honesto sobre os limites (é grande, o
@@ -248,10 +248,60 @@ antivírus cheira), encantado com o resultado (dois cliques, na mão de
 qualquer um). <strong>Módulo:</strong> S11.02 — Empacotar o app como
 .exe de Windows (flet pack)</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />Você está gravando num computador
+Windows (gerar .exe com flet pack só funciona no Windows).</label></li>
+<li><label><input type="checkbox" />O app está pronto e com a identidade
+visual da aula passada aplicada; uv run flet run main.py abre a
+janela.</label></li>
+<li><label><input type="checkbox" />git em dia (trabalho salvo e
+enviado).</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />flet/flet pack instalado e
+funcionando no ambiente de gravação.</label></li>
+<li><label><input type="checkbox" />A versão de bolso exclui a
+busca/RAG: ponto de entrada de distribuição que NÃO importa o módulo de
+busca, mais excludes do torch, chromadb e sentence-transformers; o item
+de busca é removido do menu (não só desabilitado).</label></li>
+<li><label><input type="checkbox" />O .exe gerado fica abaixo de uns 300
+MB (acima disso, uma biblioteca pesada vazou); confirme o tamanho real
+ANTES de gravar e ajuste a fala da Seção 7.</label></li>
+<li><label><input type="checkbox" />Calculadoras, checklist e painel
+funcionam offline no .exe (teste com o Wi-Fi desligado).</label></li>
+<li><label><input type="checkbox" />Se possível, tenha uma 2a máquina
+Windows SEM Python pra provar o “abre na máquina de qualquer
+um”.</label></li>
+<li><label><input type="checkbox" />A saída do pack fica em dist/; o
+aviso azul do SmartScreen pode ou não aparecer (varia por reputação);
+grave a fala “pode acontecer, e se acontecer é isto”.</label></li>
+</ul>
+<p><strong>Navegador:</strong> nenhum site é necessário nesta aula (todo
+o trabalho é no terminal e na janela do app; nenhum acesso ao GitHub
+web).</p>
+<hr />
 <h2 id="seção-1-abertura-a-fórmula-na-bancada-5-min">SEÇÃO 1: ABERTURA —
 A FÓRMULA NA BANCADA — 5 min</h2>
 <p><strong>Tom:</strong> Reflexivo. Retoma o gancho da aula_37 e nomeia
 o desconforto: o app lindo está preso.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Antes de embalar a caixa: cadê os óculos? O empacotamento cospe um
+monte de texto miúdo correndo na tela, e lá no fim aparece o tamanho do
+arquivo numa linha pequena que importa. Bota os óculos pra não confundir
+80 mega com 800. Pronto, pode seguir.”</p>
 <p>“Na aula passada você passou o ferro no jaleco do app. Paleta da
 TribeMD, fonte Inter, ícones, tudo respirando. Por dentro é à prova de
 bala, por fora tem a cara disso. E aí eu te deixei com uma farpa no fim.
@@ -666,5 +716,18 @@ cruzar com a discussão de peso da Seção 7.</li>
 distribuição responsável.</li>
 </ul>
 </blockquote>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

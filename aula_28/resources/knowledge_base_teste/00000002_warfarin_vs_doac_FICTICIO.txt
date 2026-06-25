@@ -1,0 +1,42 @@
+FICTITIOUS ARTICLE FOR COURSE DEMO ONLY - NOT A REAL PUBMED RECORD.
+
+PMID: 00000002 (fictitious)
+Title: Warfarin Versus Direct Oral Anticoagulants in Atrial Fibrillation: A Fictitious Comparison
+
+Abstract:
+This fictitious comparison contrasts a vitamin K antagonist with direct oral
+anticoagulants for stroke prevention in atrial fibrillation. The simulated
+results are invented for teaching and do not reflect any real trial.
+
+Introduction:
+Warfarin has a long history of use for stroke prevention in atrial fibrillation
+but requires routine monitoring of the international normalized ratio and has
+many food and drug interactions. Direct oral anticoagulants offer fixed dosing
+and fewer interactions, at the cost of higher acquisition price in some settings.
+
+Methods:
+A fictitious population of simulated patients was followed for a simulated
+period. Outcomes of interest were simulated stroke, simulated major bleeding,
+and simulated all-cause mortality. No real data were used.
+
+Results:
+In this fictitious comparison, direct oral anticoagulants showed a simulated
+stroke rate similar to warfarin and a lower simulated rate of intracranial
+bleeding. Time in therapeutic range for the simulated warfarin group was modest,
+which is a known limitation in everyday practice.
+
+Dosing considerations:
+Dose adjustment of direct oral anticoagulants may be required in patients with
+reduced renal function, advanced age, or low body weight. Renal function should
+be reassessed periodically, especially in older patients, because clearance can
+decline over time and affect drug exposure.
+
+Discussion:
+Patient selection matters. Patients with mechanical valves or severe renal
+impairment may still require a vitamin K antagonist. Shared decision making and
+attention to adherence improve outcomes regardless of the agent chosen.
+
+Conclusion:
+In this fictitious comparison, direct oral anticoagulants offered a convenient
+profile with a favorable simulated bleeding outcome. This text is for
+demonstration purposes only.

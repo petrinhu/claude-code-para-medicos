@@ -1,15 +1,43 @@
 # Aula 41 — A Ronda: Não Deixe a Casa Virar Bagunça
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Segunda aula dos hábitos de quem entrega. Sobre MANUTENÇÃO, não construção. A casa que você montou não fica arrumada sozinha — e hoje você aprende a ronda que impede a bagunça. Clínico, prático, com o alívio no fim.
 **Módulo:** S12.02 — Arquitetura modular: evitando o monolito (2ª aula de Boas Práticas)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] App-piloto com as quatro calculadoras modulares no Domínio, uma por arquivo (MELD, CHA2DS2-VASc, PHQ-9, GAD-7), em clinmd_tribe/src/domain/, porque toda a ronda (Seções 5 e 6) depende disso.
+- [ ] Trabalho salvo e em dia (nada pendente para commitar): o Prompt 0 pergunta "o meu trabalho está salvo e em dia?".
+
+**Confira antes de gravar:**
+
+- [ ] Testes verdes ANTES de gravar: a partir da pasta clinmd_tribe/, rode "uv run --with pytest --no-project pytest -q" e confirme tudo verde (referência: 26 testes passando). É a rede de segurança que prova a arrumação da Seção 6 não quebrou nada.
+- [ ] Casa limpa para o laudo da Seção 5: as camadas apresentação, aplicação e infraestrutura não têm regra clínica dentro (estão sem lógica de cálculo), então a ronda volta "casa arrumada" de verdade. Confira fora de gravação antes de gravar a fala "todo verde".
+- [ ] Demo do clímax MELD pronta: mudar o piso de creatinina no arquivo do MELD toca 1 arquivo só, e o pytest continua verde. Ensaie fora de gravação e reverta a mudança antes de gravar, para a fala "Toquei um arquivo. O do MELD, no Domínio. Mais nada." ser literal.
+- [ ] (Opcional) Se for demonstrar uma "sala virando depósito", cole temporariamente uma regra clínica num arquivo de apresentação fora de gravação, grave a fala "achou um amarelo", e reverta logo depois.
+
+**Navegador:** nenhum site é necessário nesta aula.
+
+---
+
 ## SEÇÃO 1: ABERTURA — A SALA QUE VIROU DEPÓSITO — 5 min
 
 **Tom:** Pega a bola da aula_40 e abre com uma imagem clínica visceral. Zero código.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Pequeno ritual de sempre antes da ronda: ponha os óculos de perto. A gente vai vistoriar a casa do app, e numa boa vistoria você quer enxergar até o canto do armário. Letrinha de terminal não perdoa quem esquece os óculos no bolso do jaleco.
+
+---
 
 "Na aula passada você guardou a chave no cômodo certo, fora do código. E eu te fiz uma promessa: que hoje a gente arruma a casa inteira.
 

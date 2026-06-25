@@ -241,17 +241,70 @@ Só Acende a Luz</h1>
 <h1
 id="aula-36-o-porteiro-o-robô-que-tranca-a-porta-não-só-acende-a-luz">Aula
 36 — O Porteiro: o Robô que Tranca a Porta, Não Só Acende a Luz</h1>
-<p><strong>Formato:</strong> Gravada em um take no OBS Studio
+<p><strong>Formato:</strong> Gravada no OBS Studio, editada no Kdenlive
 <strong>Duração:</strong> ~55 min <strong>Tom:</strong>
 Clínico-arquiteto; do alívio da aula passada ao rigor inegociável —
 “agora ele não me deixa errar nem se eu insistir”. Visceral no instante
 em que a entrega é recusada. <strong>Módulo:</strong> S10.02 — Branch
 protection: o CI que bloqueia (GitHub)</p>
 <hr />
+<h2 id="antes-de-começar-preparo-de-bastidor">📋 ANTES DE COMEÇAR
+(preparo de bastidor)</h2>
+<blockquote>
+<p>Marque cada item antes de gravar. Nada aqui é falado na aula; é só o
+seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá
+marcando durante a gravação para não se perder.</p>
+</blockquote>
+<p><strong>Aberto e pronto:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />Claude Code aberto no terminal, na
+pasta do projeto ClinMd-Tribe.</label></li>
+<li><label><input type="checkbox" />Sessão limpa, sem conversa anterior
+carregada.</label></li>
+<li><label><input type="checkbox" />Projeto conectado ao repositório
+clinmd-tribe no GitHub, com o último trabalho já enviado (push), branch
+main em dia.</label></li>
+<li><label><input type="checkbox" />O robô de CI da aula passada (que
+roda calculadora e checklist a cada push) está no projeto e
+funcionando.</label></li>
+</ul>
+<p><strong>Confira antes de gravar:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />O robô completo, agora também com a
+busca/RAG, fica verde ANTES de gravar; cache do modelo configurado (a 1a
+execução baixa, as próximas reaproveitam).</label></li>
+<li><label><input type="checkbox" />O caminho exato da proteção de
+branch (Settings, Branches OU Settings, Rules, Rulesets) confirmado na
+conta-piloto, com os rótulos exatos da tela.</label></li>
+<li><label><input type="checkbox" />O status check do robô só aparece na
+lista DEPOIS de o CI ter rodado ao menos 1 vez; selecione o check com o
+nome do job idêntico ao do robô.</label></li>
+<li><label><input type="checkbox" />NÃO ligar “Include administrators”
+nem “Do not allow bypassing” (senão o dono solo se tranca fora da
+própria main sem rota de correção).</label></li>
+<li><label><input type="checkbox" />Marque como obrigatório ao menos o
+check do job rápido (calculadora e checklist); é ele que pega a
+sabotagem do AVC no clímax.</label></li>
+<li><label><input type="checkbox" />O 2o push (conserto) vai pra MESMA
+branch teste-do-porteiro; o PR existente reavalia sozinho (não abrir PR
+novo).</label></li>
+<li><label><input type="checkbox" />A conta de gravação tem saldo de
+minutos de GitHub Actions (2 jobs + cache consomem mais); se apertar,
+grave no clinmd-tribe-demo.</label></li>
+</ul>
+<p><strong>Navegador:</strong> abra a aba: https://github.com (logado na
+conta de gravação, no repositório clinmd-tribe, pronto pra ir em
+Settings, na aba Actions e na aba Pull requests).</p>
+<hr />
 <h2 id="seção-1-abertura-o-alerta-que-você-pode-ignorar-5-min">SEÇÃO 1:
 ABERTURA — O ALERTA QUE VOCÊ PODE IGNORAR — 5 min</h2>
 <p><strong>Tom:</strong> Reflexivo. Retoma o gancho da aula_35 e nomeia
 o defeito.</p>
+<p><strong>[Aviso rápido dos óculos, antes de mergulhar]</strong></p>
+<p>“Um segundo antes de trancar portas: confere se os óculos estão no
+nariz. A gente vai clicar em telas do GitHub com botões pequenos e
+avisos em letra fina, e eu não quero que você aperte o ‘merge’ achando
+que apertou outra coisa. Visão nítida agora, dedo certo depois.”</p>
 <p>“Aula passada foi uma vitória. Você criou um robô que roda os
 guardiões sozinho, no servidor, toda vez que você entrega. Nunca mais
 precisa lembrar.</p>
@@ -668,5 +721,18 @@ quebrado — sem working tree sujo no fim.</li>
 minutos; usar <code>clinmd-tribe-demo</code> se apertar.</li>
 </ul>
 </blockquote>
+<script>
+// Torna os checkboxes da secao "Antes de comecar" clicaveis e lembra o estado
+// (localStorage por pagina). Marque durante a gravacao sem se perder.
+document.querySelectorAll('input[type="checkbox"]').forEach(function (cb, i) {
+  cb.disabled = false;
+  cb.style.cursor = 'pointer';
+  var key = 'chk:' + location.pathname + ':' + i;
+  if (localStorage.getItem(key) === '1') cb.checked = true;
+  cb.addEventListener('change', function () {
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+  });
+});
+</script>
 </body>
 </html>

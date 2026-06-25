@@ -1,15 +1,43 @@
 # Aula 34 — O Guardião do Aproximado: Controle de Qualidade de uma Busca que Muda
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Clínico-arquiteto que aprende a testar o que não tem resposta cravada — calmo, depois visceral no clímax da honestidade
 **Módulo:** S09.02 — Testes do RAG (busca semântica não-determinística)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] O buscador semântico das aulas 29 e 30 funcionando (`busca_service.buscar(consulta, n)` devolvendo `ResultadoBusca` com trecho, fonte, numero_trecho e score), com o corte de relevância (LIMIAR_DISTANCIA) já implementado lá. É ele que permite o clímax da honestidade.
+- [ ] Os guardiões da aula_33 (calculadora e checklist) já criados em `tests/` e verdes. Os testes de hoje se somam a eles.
+- [ ] O modelo de embeddings (sentence-transformers) aquecido: rode uma busca uma vez antes de gravar, porque a 1ª execução carrega/baixa o modelo e demora.
+
+**Confira antes de gravar:**
+
+- [ ] Working tree limpo e commitado ANTES de gravar (a sabotagem da Seção 6 mexe em `application/servicos/busca_service.py`). Se o conserto divergir, `git checkout -- application/servicos/busca_service.py` restaura. Nunca encerre a gravação com o serviço divergente do commit.
+- [ ] Corpus de teste isolado (crítico): confirme que os testes criam o próprio knowledge_base de teste e NÃO apontam para o `data/chroma_db/` real. Prova: apague `data/chroma_db/` e rode; os testes do RAG devem seguir verdes. Se falharem por ambiente, repita o Prompt 1 enfatizando "banco vetorial separado, não o data/chroma_db real".
+- [ ] Confirme que `buscar("como tratar diabetes tipo 2 com metformina")` no corpus de teste devolve lista vazia ANTES de gravar (pré-condição do clímax). Se não vier vazio de forma estável, aperte o limiar ou use um tema mais distante como fallback.
+- [ ] Triagem (Seção 5): rode o guardião do top-3 umas 5 vezes; se não passar de forma estável, afrouxe para top-5 ou troque a consulta por um tema mais concentrado em um texto. Não grave antes de passar consistente.
+- [ ] Ajuste as falas que citam contagem e nomes de testes ao que o `-v` listar na pré-gravação. Na forma do FAILED da honestidade, aponte para a tela ("ele trouxe um resultado, e o guardião exigia nenhum"), sem ler a string em inglês.
+
+**Navegador:** nenhum site é necessário nesta aula; tudo roda no terminal.
+
+---
+
 ## SEÇÃO 1: ABERTURA — O EXAME QUE NÃO DÁ UM NÚMERO — 6 min
 
 **Tom:** Reflexivo, instigante. Retoma literalmente o gancho que a aula anterior deixou no ar.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes da primeira ideia: bota os óculos de leitura. A gente continua no terminal, lendo verde e vermelho miudinho, e hoje ainda entra a palavra reagente e não-reagente no meio. Confundir os dois por causa do foco seria um diagnóstico errado por motivo bobo. Ajustado? Vamos nessa."
 
 "Na aula passada eu te deixei no ar com uma pergunta.
 

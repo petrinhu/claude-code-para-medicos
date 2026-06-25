@@ -1,15 +1,44 @@
 # Aula 36 — O Porteiro: o Robô que Tranca a Porta, Não Só Acende a Luz
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~55 min
 **Tom:** Clínico-arquiteto; do alívio da aula passada ao rigor inegociável — "agora ele não me deixa errar nem se eu insistir". Visceral no instante em que a entrega é recusada.
 **Módulo:** S10.02 — Branch protection: o CI que bloqueia (GitHub)
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] Projeto conectado ao repositório clinmd-tribe no GitHub, com o último trabalho já enviado (push), branch main em dia.
+- [ ] O robô de CI da aula passada (que roda calculadora e checklist a cada push) está no projeto e funcionando.
+
+**Confira antes de gravar:**
+
+- [ ] O robô completo, agora também com a busca/RAG, fica verde ANTES de gravar; cache do modelo configurado (a 1a execução baixa, as próximas reaproveitam).
+- [ ] O caminho exato da proteção de branch (Settings, Branches OU Settings, Rules, Rulesets) confirmado na conta-piloto, com os rótulos exatos da tela.
+- [ ] O status check do robô só aparece na lista DEPOIS de o CI ter rodado ao menos 1 vez; selecione o check com o nome do job idêntico ao do robô.
+- [ ] NÃO ligar "Include administrators" nem "Do not allow bypassing" (senão o dono solo se tranca fora da própria main sem rota de correção).
+- [ ] Marque como obrigatório ao menos o check do job rápido (calculadora e checklist); é ele que pega a sabotagem do AVC no clímax.
+- [ ] O 2o push (conserto) vai pra MESMA branch teste-do-porteiro; o PR existente reavalia sozinho (não abrir PR novo).
+- [ ] A conta de gravação tem saldo de minutos de GitHub Actions (2 jobs + cache consomem mais); se apertar, grave no clinmd-tribe-demo.
+
+**Navegador:** abra a aba: https://github.com (logado na conta de gravação, no repositório clinmd-tribe, pronto pra ir em Settings, na aba Actions e na aba Pull requests).
+
+---
+
 ## SEÇÃO 1: ABERTURA — O ALERTA QUE VOCÊ PODE IGNORAR — 5 min
 
 **Tom:** Reflexivo. Retoma o gancho da aula_35 e nomeia o defeito.
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Um segundo antes de trancar portas: confere se os óculos estão no nariz. A gente vai clicar em telas do GitHub com botões pequenos e avisos em letra fina, e eu não quero que você aperte o 'merge' achando que apertou outra coisa. Visão nítida agora, dedo certo depois."
 
 "Aula passada foi uma vitória. Você criou um robô que roda os guardiões sozinho, no servidor, toda vez que você entrega. Nunca mais precisa lembrar.
 

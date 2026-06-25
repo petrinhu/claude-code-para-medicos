@@ -1,15 +1,45 @@
 # Aula 25 — Dashboard Financeiro: Entrada de Dados
 
-**Formato:** Gravada em um take no OBS Studio
+**Formato:** Gravada no OBS Studio, editada no Kdenlive
 **Duração:** ~48 min
 **Tom:** Ortopedista que fecha o mês e quer entender o que está acontecendo com as glosas
 **Módulo:** S06.01 — Dashboard Financeiro
 
 ---
 
+## 📋 ANTES DE COMEÇAR (preparo de bastidor)
+
+> Marque cada item antes de gravar. Nada aqui é falado na aula; é só o seu setup de bastidor. No HTML desta página as caixas são clicáveis: vá marcando durante a gravação para não se perder.
+
+**Já preparado em `resources/` (é só usar):**
+
+- [ ] `resources/dados_3_meses_bastidor.csv` : os três meses fictícios do ortopedista (junho, julho, agosto de 2025), com receita bruta, glosas e consultas. Cola de bastidor para você digitar os valores certos na Seção 5; o app NÃO importa esse arquivo, você digita campo a campo no formulário.
+
+**Aberto e pronto:**
+
+- [ ] Claude Code aberto no terminal, na pasta do projeto ClinMd-Tribe.
+- [ ] Sessão limpa, sem conversa anterior carregada.
+- [ ] Projeto ClinMd-Tribe com as features das aulas anteriores (as seis calculadoras do S05) já funcionando.
+- [ ] Pasta `data/` ainda SEM o arquivo `clinmd.db` (apague um `data/clinmd.db` de testes anteriores, se existir, para a Seção 6 mostrar o banco nascendo do zero).
+
+**Confira antes de gravar:**
+
+- [ ] `uv run python main.py` abre o app no navegador sem erro (estado pré-aula).
+- [ ] As 4 camadas existem como pastas: `domain/`, `application/`, `infrastructure/`, `presentation/`.
+- [ ] Você sabe onde fica a pasta `data/` para mostrá-la no explorador de arquivos na Seção 6.
+- [ ] Os três valores da cola batem com a tabela da Seção 2 do roteiro (jun: 28000 / 4200 / 95; jul: 31000 / 3800 / 108; ago: 27500 / 5100 / 91).
+
+**Navegador:** nenhum site é necessário nesta aula. O navegador só abre para exibir o app Flet (via `uv run python main.py`).
+
+---
+
 ## SEÇÃO 1: ABERTURA — 4 min
 
 **Tom:** Contraste direto com S05 — o app que esquece vs o app que lembra
+
+**[Aviso rápido dos óculos, antes de mergulhar]**
+
+"Antes de começar: se os óculos de perto andam na mesa, é agora que eles entram em campo. Hoje a gente abre arquivo de banco de dados, e o terminal escreve em corpo de exame de rotina, daquele tamanho que ninguém pediu. Põe os óculos e bora."
 
 "Nas últimas quatro aulas você construiu seis calculadoras.
 

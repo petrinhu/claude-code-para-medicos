@@ -17,7 +17,7 @@
 
 **Você providencia (material de terceiros):**
 
-- [ ] O guideline da APA sobre depressão, em PDF. Baixe do site oficial (psychiatry.org) e deixe à mão. Não foi incluído no projeto por ter direitos autorais. Insumo das Seções 2 e 3.
+- [ ] O guideline da APA sobre depressão (Practice Guideline for the Treatment of Patients With Major Depressive Disorder), em PDF. Baixe da página oficial: [psychiatry.org, Clinical Practice Guidelines](https://www.psychiatry.org/psychiatrists/practice/clinical-practice-guidelines) (procure por "Major Depressive Disorder"). Não foi incluído no projeto por ter direitos autorais. Insumo das Seções 2 e 3.
 
 **Aberto e pronto:**
 

@@ -12,7 +12,7 @@
 
 **Você providencia:**
 
-- [ ] Conta no Canva já logada (gratuita serve). Necessária para a Seção 5 (design do carrossel). Faça o login antes de gravar para não mostrar tela de senha.
+- [ ] Conta no Canva já logada (gratuita serve): [canva.com](https://www.canva.com). Necessária para a Seção 5 (design do carrossel). Faça o login antes de gravar para não mostrar tela de senha.
 
 **Aberto e pronto:**
 

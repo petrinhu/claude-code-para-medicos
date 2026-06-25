@@ -12,8 +12,8 @@
 
 **Você providencia (material de terceiros):**
 
-- [ ] O guideline da ADA "Standards of Care in Diabetes 2024", em PDF. Baixe do site oficial (diabetesjournals.org/care, seção Standards of Care) e deixe à mão. Não foi incluído no projeto por ter direitos autorais. Insumo da Seção 3.
-- [ ] Anki instalado no computador. Baixe do site oficial (apps.ankiweb.net), gratuito. Insumo da Seção 3 (importação dos flashcards).
+- [ ] O guideline da ADA "Standards of Care in Diabetes" (use a edição vigente; em 2026, a "Standards of Care in Diabetes 2026"), em PDF. Baixe da página oficial: [professional.diabetes.org/standards-of-care](https://professional.diabetes.org/standards-of-care). Não foi incluído no projeto por ter direitos autorais. Insumo da Seção 3.
+- [ ] Anki instalado no computador (gratuito). Baixe do site oficial: [apps.ankiweb.net](https://apps.ankiweb.net/). Insumo da Seção 3 (importação dos flashcards).
 
 **Aberto e pronto:**
 
@@ -107,7 +107,7 @@ frente e verso separados por ponto-e-vírgula.
 
 Agora vamos gerar esses cards com o Claude Code.
 
-Vou usar o guideline da ADA 2024 sobre Standards of Care in Diabetes.
+Vou usar o guideline da ADA, o Standards of Care in Diabetes (edição mais recente).
 É documento público, em PDF.
 
 [mostrar PDF anexado]
@@ -116,7 +116,7 @@ Prompt:
 
 ```
 Você é um especialista em educação médica e em diabetes.
-Analise este guideline da ADA (Standards of Care in Diabetes 2024) e gere
+Analise este guideline da ADA (Standards of Care in Diabetes) e gere
 20 flashcards para uma prova de título em endocrinologia.
 
 Regras dos flashcards:

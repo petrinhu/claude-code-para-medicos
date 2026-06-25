@@ -6,6 +6,7 @@
 ![Local](https://img.shields.io/badge/100%25%20local-LGPD-2E8B57)
 ![MDlife](https://img.shields.io/badge/MDlife-Academy-F47920)
 ![Conteudo](https://img.shields.io/badge/conteudo-completo-brightgreen)
+![Licenca](https://img.shields.io/badge/licenca-AGPL--3.0-blue)
 
 > Do "nunca toquei num terminal" até construir um aplicativo clínico do zero.
 > Curso prático de Claude Code para médicos: sem programação nas fases iniciante e intermediária, Python completo na fase avançada (opcional).
@@ -37,14 +38,30 @@ São **40 aulas** (encontros gravados) em **3 fases**, do zero absoluto ao app c
 ## 📂 Estrutura do repositório
 
 ```
-aula_01/ ... aula_42/   # roteiros das aulas (cada uma: roteiro.md + roteiro.html)
+aula_01/ ... aula_42/   # roteiros (cada uma: roteiro.md + roteiro.html + resources/)
 aula_abertura/          # aula de abertura do curso
 aulas/                  # atalhos por fase (iniciante, intermediario, avancado)
 clinmd_tribe/           # app-piloto da fase avancada (Python, Flet, Clean Architecture)
 docs/                   # specs, planos e a wiki (docs/wiki/)
 arvore_aulas.html       # arvore visual de aulas
+checkbox-persist.html   # script que torna clicaveis os checkboxes dos roteiros em HTML
 TODO.md                 # sequencia e status do curso
 CLAUDE.md               # instrucoes do projeto
+LICENSE                 # AGPL-3.0
+```
+
+## 🎬 Como cada roteiro é organizado
+
+Cada `aula_NN/` traz o `roteiro.md` (fonte) e o `roteiro.html` (versão de leitura, boa para abrir na hora de gravar). Todo roteiro segue o mesmo padrão:
+
+- **📋 Antes de começar:** um checklist de bastidor no topo (artefatos a ter à mão, Claude Code aberto, sites no navegador). No HTML os itens são **caixas clicáveis que lembram o que você já marcou** (salvas no navegador), para ir conferindo durante a gravação sem se perder.
+- **Lembrete dos óculos:** logo no início, um aviso leve para a audiência (os caracteres do terminal às vezes são pequenos).
+- **Artefatos das demos** ficam em `aula_NN/resources/`: planilhas, casos de teste e exemplos. **Todo dado de paciente é fictício.** Material de terceiros com direitos autorais não é redistribuído (o roteiro indica onde baixar).
+
+Para regenerar um HTML a partir do `.md` (precisa do `pandoc`):
+
+```bash
+pandoc aula_NN/roteiro.md -s --metadata title="Aula NN" --include-after-body=checkbox-persist.html -o aula_NN/roteiro.html
 ```
 
 ## ▶️ Rodar o app-piloto (fase avançada)
@@ -97,6 +114,10 @@ O capstone da fase avançada é o **ClinMd-Tribe**: um app clínico 100% local (
 ## 🛡️ Privacidade e LGPD
 
 Eixo transversal de todas as 40 aulas: **dado de paciente nunca entra no Claude Code, e o app roda 100% na máquina do médico.** Nada sobe para a nuvem.
+
+## 📄 Licença
+
+Distribuído sob a licença **AGPL-3.0** (veja [`LICENSE`](LICENSE)).
 
 ---
 

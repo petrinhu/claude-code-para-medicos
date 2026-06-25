@@ -7,3 +7,10 @@ workshop_iago/
 # Artefato auxiliar de geracao (script de checkbox usado pelo pandoc) fica no repo;
 # nao ignorar. (checkbox-persist.html versionado de proposito.)
 
+# Recursos de imagem grandes / pre-existentes do instrutor: ficam FORA do repo por
+# decisao do dono (fundos de gravacao, logo). Versionar PNG pesado incha o git.
+aula_01/resources/clawd.png
+aula_01/resources/fundo.png
+aula_abertura/resources/fundo1.png
+resources/tribelogo.webp
+

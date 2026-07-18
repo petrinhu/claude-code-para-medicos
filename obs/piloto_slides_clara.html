@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piloto de Slides, Clara Editorial, Aula 03, TribeMD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  /* ==============================================================
+     PILOTO: DECK "CLARA EDITORIAL" - Aula 03 (PubMed + Fichamento)
+     TribeMD, 1920x1080, autocontido, 7 tipos de slide, sem lorem ipsum.
+     Unidades em vw/vh calculadas sobre a base 1920x1080
+     (1vw = 19.2px | 1vh = 10.8px) para nao quebrar em zoom/F11.
+     ============================================================== */
+
+  :root{
+    /* Paleta Clara Editorial */
+    --bg:            #FAFAFA;
+    --surface:       #FFFFFF;
+    --text-1:        #2E3233;
+    --text-2:        #646C6F;
+    --brand:         #5213B9;
+    --chip-bg:       #E9E1F5;
+    --footer-dark:   #1F0646;
+    --border:        rgba(82,19,185,0.14);
+
+    --font-display: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-body:    "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* Escala tipografica (base 1920px) */
+    --fs-capa:     3.75vw;   /* 72px */
+    --fs-title:    2.5vw;    /* 48px */
+    --fs-body-lg:  1.667vw;  /* 32px */
+    --fs-body:     1.4583vw; /* 28px */
+    --fs-caption:  0.9375vw; /* 18px */
+    --fs-micro:    0.729vw;  /* 14px */
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0; padding:0;
+    width:100%; height:100%;
+    background:#0d0d0d;
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .stage{
+    position:relative;
+    width:100vw; height:100vh;
+    overflow:hidden;
+    background:var(--bg);
+  }
+
+  .slide{
+    position:absolute; inset:0;
+    display:none;
+    flex-direction:column;
+    color:var(--text-1);
+    /* corte seco: nenhuma transicao entre slides */
+  }
+  .slide.is-active{ display:flex; }
+
+  /* --------------------------------------------------------------
+     Rodape padrao (todas as fatias, exceto a capa, que ja e escura)
+     -------------------------------------------------------------- */
+  .footer-meta{
+    position:absolute;
+    left:5.2vw; right:5.2vw; bottom:2.6vh;
+    display:flex; align-items:center; justify-content:space-between;
+    z-index:5;
+  }
+  .footer-meta img{
+    height:1.458vw; /* ~28px */
+    opacity:0.8;
+    display:block;
+  }
+  .footer-indicator{
+    font-size:var(--fs-micro);
+    color:var(--text-2);
+    letter-spacing:0.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .footer-accent{
+    position:absolute; left:0; right:0; bottom:0;
+    height:0.55vh;
+    background:var(--footer-dark);
+    z-index:4;
+  }
+
+  /* --------------------------------------------------------------
+     Navegacao: chevrons discretos, nunca sobre o conteudo
+     -------------------------------------------------------------- */
+  .nav-btn{
+    position:fixed;
+    bottom:1.6vh;
+    width:2.1vw; height:3.7vh;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.8vw; font-weight:700;
+    color:var(--brand);
+    background:transparent; border:none; cursor:pointer;
+    opacity:0.35;
+    transition:opacity .15s ease;
+    z-index:20; padding:0;
+  }
+  .nav-btn:hover, .nav-btn:focus-visible{ opacity:1; }
+  .nav-btn--next{ right:0.6vw; }
+  .nav-btn--prev{ left:0.6vw; opacity:0.2; }
+  .nav-btn--prev:hover, .nav-btn--prev:focus-visible{ opacity:0.85; }
+
+  /* ================================================================
+     SLIDE 1: CAPA (paleta invertida)
+     ================================================================ */
+  .slide--capa{
+    background:var(--footer-dark);
+    color:#FFFFFF;
+    justify-content:center;
+    padding:0 8vw;
+  }
+  .capa-numero{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:9vw;
+    line-height:0.9;
+    color:rgba(255,255,255,0.14);
+    position:absolute;
+    top:6vh; left:5.2vw;
+    letter-spacing:-0.02em;
+  }
+  .capa-chip{
+    display:inline-flex;
+    align-self:flex-start;
+    background:var(--chip-bg);
+    color:var(--brand);
+    font-weight:700;
+    font-size:var(--fs-caption);
+    padding:0.6vh 1.1vw;
+    border-radius:999px;
+    margin-bottom:3.2vh;
+    letter-spacing:0.01em;
+  }
+  .capa-titulo{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-capa);
+    line-height:1.08;
+    max-width:70vw;
+    margin:0 0 2.4vh 0;
+  }
+  .capa-titulo em{
+    font-style:normal;
+    color:#B79CF0;
+  }
+  .capa-subtitulo{
+    font-size:var(--fs-body-lg);
+    font-weight:400;
+    color:rgba(255,255,255,0.82);
+    max-width:52vw;
+    line-height:1.4;
+    margin:0;
+  }
+  .capa-logo{
+    position:absolute;
+    right:5.2vw; bottom:6vh;
+    background:#FFFFFF;
+    border-radius:16px;
+    padding:1.6vh 1.6vw;
+    display:flex; align-items:center;
+  }
+  .capa-logo img{ height:4.6vh; display:block; }
+
+  /* ================================================================
+     SLIDE 2: "VOCE VAI SAIR FAZENDO"
+     ================================================================ */
+  .slide--outcomes{ padding:7vh 6vw 0 6vw; }
+  .body-center{ flex:1; display:flex; flex-direction:column; justify-content:center; padding-bottom:8vh; }
+  .slide-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:var(--fs-title);
+    color:var(--text-1);
+    margin:0 0 1vh 0;
+  }
+  .slide-eyebrow{
+    font-size:var(--fs-caption);
+    font-weight:700;
+    color:var(--brand);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin:0 0 1.4vh 0;
+  }
+  .outcomes-list{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:3.6vh;
+    max-width:64vw;
+  }
+  .outcomes-list li{
+    display:flex; align-items:flex-start; gap:2vw;
+  }
+  .outcomes-num{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:3.2vw;
+    color:var(--brand);
+    line-height:1;
+    min-width:4.2vw;
+  }
+  .outcomes-text{
+    font-size:var(--fs-body-lg);
+    font-weight:500;
+    color:var(--text-1);
+    line-height:1.4;
+    padding-top:0.6vh;
+  }
+
+  /* ================================================================
+     SLIDE 3: CONCEITO COM ANALOGIA CLINICA (MCP)
+     ================================================================ */
+  .slide--concept{ padding:7vh 6vw 0 6vw; }
+  .concept-bridge{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:var(--fs-title);
+    color:var(--text-1);
+    max-width:80vw;
+    margin:0;
+  }
+  .concept-bridge .accent{ color:var(--brand); }
+  .concept-cols{
+    display:flex; gap:2.6vw;
+    align-items:stretch;
+  }
+  .concept-card{
+    flex:1;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:3.4vh 2.6vw;
+  }
+  .concept-card .card-eyebrow{
+    font-size:var(--fs-caption);
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin:0 0 2vh 0;
+  }
+  .concept-card--clinica{ border-top:5px solid var(--text-2); }
+  .concept-card--clinica .card-eyebrow{ color:var(--text-2); }
+  .concept-card--tecnico{ border-top:5px solid var(--brand); }
+  .concept-card--tecnico .card-eyebrow{ color:var(--brand); }
+  .concept-card p{
+    font-size:var(--fs-body);
+    line-height:1.5;
+    margin:0;
+    color:var(--text-1);
+  }
+
+  /* ================================================================
+     SLIDE 4: DIAGRAMA (fluxo pergunta -> PubMed -> triagem -> ficha)
+     ================================================================ */
+  .slide--diagram{ padding:7vh 6vw 0 6vw; }
+  .diagram-wrap{
+    flex:1;
+    display:flex; align-items:center; justify-content:center;
+    margin-top:1vh;
+  }
+  .diagram-row{
+    display:flex; align-items:center; justify-content:center;
+    gap:1vw;
+    width:100%;
+  }
+  .diagram-box{
+    background:var(--surface);
+    border:1.5px solid var(--border);
+    border-radius:18px;
+    padding:3.4vh 1.6vw;
+    text-align:center;
+    min-width:13vw;
+    box-shadow:0 2px 10px rgba(31,6,70,0.05);
+  }
+  .diagram-box .box-label{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.35vw;
+    color:var(--text-1);
+    line-height:1.25;
+  }
+  .diagram-box .box-caption{
+    display:block;
+    font-size:var(--fs-micro);
+    color:var(--brand);
+    font-weight:600;
+    margin-top:0.9vh;
+  }
+  .diagram-box--dest{
+    border-color:var(--brand);
+    box-shadow:0 4px 18px rgba(82,19,185,0.14);
+  }
+  .diagram-arrow{
+    font-size:2vw;
+    color:var(--brand);
+    font-weight:700;
+    flex-shrink:0;
+  }
+
+  /* ================================================================
+     SLIDE 5: "O QUE VAI ACONTECER NO TERMINAL"
+     ================================================================ */
+  .slide--terminal{ padding:7vh 6vw 0 6vw; }
+  .terminal-card{
+    margin-top:0;
+    max-width:72vw;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 2px 14px rgba(31,6,70,0.06);
+  }
+  .terminal-chrome{
+    display:flex; align-items:center; gap:0.6vw;
+    padding:1.6vh 1.6vw;
+    background:#F1EEF7;
+    border-bottom:1px solid var(--border);
+  }
+  .terminal-chrome .dot{
+    width:0.7vw; height:0.7vw; border-radius:50%;
+    background:rgba(82,19,185,0.25);
+  }
+  .terminal-chrome .chrome-label{
+    margin-left:1vw;
+    font-size:var(--fs-caption);
+    color:var(--text-2);
+    font-weight:500;
+  }
+  .terminal-list{
+    list-style:none; margin:0; padding:3vh 2.6vw 3.4vh 2.6vw;
+    display:flex; flex-direction:column; gap:2.4vh;
+  }
+  .terminal-list li{
+    display:flex; align-items:flex-start; gap:1.2vw;
+    font-size:var(--fs-body);
+    line-height:1.45;
+    color:var(--text-1);
+  }
+  .terminal-list li .bullet{
+    color:var(--brand);
+    font-weight:800;
+    font-size:var(--fs-body);
+    line-height:1.45;
+  }
+  .terminal-list li.repare{
+    color:var(--brand);
+    font-weight:600;
+  }
+  .terminal-list li.repare .bullet{ color:var(--brand); }
+
+  /* ================================================================
+     SLIDE 6: RESPIRO / HUMOR
+     ================================================================ */
+  .slide--respiro{
+    align-items:center; justify-content:center;
+    text-align:center;
+    padding:0 10vw;
+  }
+  .respiro-chip{
+    background:var(--chip-bg);
+    color:var(--brand);
+    font-weight:700;
+    font-size:var(--fs-caption);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    padding:0.7vh 1.4vw;
+    border-radius:999px;
+    margin-bottom:5vh;
+  }
+  .respiro-frase{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:var(--fs-title);
+    line-height:1.45;
+    color:var(--text-1);
+    max-width:56vw;
+  }
+  .respiro-rodape{
+    position:absolute;
+    left:0; right:0; bottom:8vh;
+    text-align:center;
+    font-style:italic;
+    font-size:var(--fs-caption);
+    color:var(--text-2);
+  }
+
+  /* ================================================================
+     SLIDE 7: FECHAMENTO
+     ================================================================ */
+  .slide--closing{ padding:7vh 6vw 0 6vw; }
+  .closing-checks{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:2.6vh;
+    max-width:60vw;
+  }
+  .closing-checks li{
+    display:flex; align-items:flex-start; gap:1.2vw;
+    font-size:var(--fs-body-lg);
+    color:var(--text-1);
+    line-height:1.4;
+  }
+  .closing-checks li .check{
+    color:var(--brand);
+    font-weight:800;
+  }
+  .closing-next{
+    margin-top:5.5vh;
+    max-width:64vw;
+  }
+  .closing-next .eyebrow{
+    font-size:var(--fs-caption);
+    font-weight:700;
+    color:var(--text-2);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin:0 0 1vh 0;
+  }
+  .closing-next .destaque{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-body-lg);
+    color:var(--brand);
+    line-height:1.4;
+    margin:0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .nav-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+  <!-- ============================================================
+       SLIDE 1/7: CAPA
+       ============================================================ -->
+  <section class="slide slide--capa is-active" data-slide="1">
+    <div class="capa-numero">03</div>
+    <span class="capa-chip">Intermediário &middot; Módulo 2</span>
+    <h1 class="capa-titulo">PubMed no terminal,<br>sem abrir o navegador</h1>
+    <p class="capa-subtitulo">Da pergunta do chefe de equipe à ficha de leitura crítica pronta para a reunião clínica.</p>
+    <div class="capa-logo"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2/7: VOCE VAI SAIR FAZENDO
+       ============================================================ -->
+  <section class="slide slide--outcomes" data-slide="2">
+    <p class="slide-eyebrow">Nesta aula</p>
+    <h2 class="slide-title">Você vai sair fazendo</h2>
+    <div class="body-center">
+      <ol class="outcomes-list">
+        <li><span class="outcomes-num">1</span><span class="outcomes-text">Conectar o Claude Code ao PubMed via MCP</span></li>
+        <li><span class="outcomes-num">2</span><span class="outcomes-text">Buscar evidência filtrada por ano, tipo e idioma</span></li>
+        <li><span class="outcomes-num">3</span><span class="outcomes-text">Fichar leitura crítica: PICO, evidência e vieses</span></li>
+      </ol>
+    </div>
+    <div class="footer-meta">
+      <img src="assets/logo_transp.png" alt="TribeMD">
+      <span class="footer-indicator">2 / 7</span>
+    </div>
+    <div class="footer-accent"></div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3/7: CONCEITO COM ANALOGIA CLINICA (MCP)
+       ============================================================ -->
+  <section class="slide slide--concept" data-slide="3">
+    <h2 class="concept-bridge">MCP: o <span class="accent">cabo</span> que liga o Claude a fontes externas</h2>
+    <div class="body-center">
+      <div class="concept-cols">
+        <div class="concept-card concept-card--clinica">
+          <p class="card-eyebrow">Analogia clínica</p>
+          <p>O eletrocardiógrafo já sabe interpretar sinais elétricos. Mas só registra o traçado do paciente através dos eletrodos: os cabos que o conectam à máquina.</p>
+        </div>
+        <div class="concept-card concept-card--tecnico">
+          <p class="card-eyebrow">Conceito técnico</p>
+          <p>MCP é o cabo que conecta o Claude Code a fontes externas de dados, como o PubMed. Instala-se uma vez; fica plugado para sempre.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <img src="assets/logo_transp.png" alt="TribeMD">
+      <span class="footer-indicator">3 / 7</span>
+    </div>
+    <div class="footer-accent"></div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4/7: DIAGRAMA
+       ============================================================ -->
+  <section class="slide slide--diagram" data-slide="4">
+    <p class="slide-eyebrow">O fluxo de ponta a ponta</p>
+    <h2 class="slide-title">Do pedido do chefe à ficha pronta</h2>
+    <div class="diagram-wrap">
+      <div class="diagram-row">
+        <div class="diagram-box"><span class="box-label">Pergunta<br>clínica</span></div>
+        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-box"><span class="box-label">PubMed</span><span class="box-caption">via MCP</span></div>
+        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-box"><span class="box-label">Artigos<br>filtrados</span></div>
+        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-box"><span class="box-label">Triagem<br>clínica</span></div>
+        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-box diagram-box--dest"><span class="box-label">Fichamento<br>PICO</span></div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <img src="assets/logo_transp.png" alt="TribeMD">
+      <span class="footer-indicator">4 / 7</span>
+    </div>
+    <div class="footer-accent"></div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5/7: O QUE VAI ACONTECER NO TERMINAL
+       ============================================================ -->
+  <section class="slide slide--terminal" data-slide="5">
+    <p class="slide-eyebrow">Coadjuvante do terminal</p>
+    <h2 class="slide-title">O que vai acontecer no terminal</h2>
+    <div class="body-center">
+      <div class="terminal-card">
+        <div class="terminal-chrome">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="chrome-label">Claude Code, ao vivo</span>
+        </div>
+        <ol class="terminal-list">
+          <li><span class="bullet">&rarr;</span> O Claude busca direto no PubMed, sem sair do terminal</li>
+          <li><span class="bullet">&rarr;</span> Ele lista os artigos com título, ano e abstract em bullets</li>
+          <li><span class="bullet">&rarr;</span> Ele aplica hierarquia de evidência e justifica a escolha</li>
+          <li class="repare"><span class="bullet">&#9679;</span> Repare em: o fichamento completo sai pronto em menos de 1 minuto</li>
+        </ol>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <img src="assets/logo_transp.png" alt="TribeMD">
+      <span class="footer-indicator">5 / 7</span>
+    </div>
+    <div class="footer-accent"></div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6/7: RESPIRO / HUMOR
+       ============================================================ -->
+  <section class="slide slide--respiro" data-slide="6">
+    <span class="respiro-chip">Respiro</span>
+    <p class="respiro-frase">"Hoje a letra encolhe que nem rótulo de ampola: quem usa óculos para perto, separa eles agora."</p>
+    <p class="respiro-rodape">*O MCP não mede pressão, mas conecta tudo que importa.</p>
+    <div class="footer-meta">
+      <img src="assets/logo_transp.png" alt="TribeMD">
+      <span class="footer-indicator">6 / 7</span>
+    </div>
+    <div class="footer-accent"></div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7/7: FECHAMENTO
+       ============================================================ -->
+  <section class="slide slide--closing" data-slide="7">
+    <p class="slide-eyebrow">Fechamento</p>
+    <h2 class="slide-title">Hoje você fez:</h2>
+    <div class="body-center">
+      <ul class="closing-checks">
+        <li><span class="check">&#10003;</span> Conectou o Claude Code ao PubMed via MCP</li>
+        <li><span class="check">&#10003;</span> Buscou evidência filtrada por ano, tipo e idioma</li>
+        <li><span class="check">&#10003;</span> Fichou leitura crítica: PICO, evidência e vieses</li>
+      </ul>
+      <div class="closing-next">
+        <p class="eyebrow">Próxima aula</p>
+        <p class="destaque">Os artigos viram flashcards de Anki, e um briefing automático chega toda manhã com as novidades do seu tema.</p>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <img src="assets/logo_transp.png" alt="TribeMD">
+      <span class="footer-indicator">7 / 7</span>
+    </div>
+    <div class="footer-accent"></div>
+  </section>
+
+  <button class="nav-btn nav-btn--prev" id="btnPrev" aria-label="Slide anterior" type="button">&#8249;</button>
+  <button class="nav-btn nav-btn--next" id="btnNext" aria-label="Próximo slide" type="button">&#8250;</button>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 1;
+
+  function clamp(n){ return Math.min(Math.max(n,1), total); }
+
+  function show(n){
+    n = clamp(n);
+    current = n;
+    slides.forEach(function(s){
+      var idx = parseInt(s.getAttribute('data-slide'), 10);
+      s.classList.toggle('is-active', idx === n);
+    });
+    if (history.replaceState) {
+      history.replaceState(null, '', '#' + n);
+    } else {
+      location.hash = '#' + n;
+    }
+  }
+
+  function next(){ show(current + 1); }
+  function prev(){ show(current - 1); }
+
+  function toggleFullscreen(){
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen && document.exitFullscreen();
+    }
+  }
+
+  document.getElementById('btnNext').addEventListener('click', next);
+  document.getElementById('btnPrev').addEventListener('click', prev);
+
+  document.addEventListener('keydown', function(e){
+    switch(e.key){
+      case 'ArrowRight':
+      case ' ':
+        e.preventDefault(); next(); break;
+      case 'ArrowLeft':
+        e.preventDefault(); prev(); break;
+      case 'Home':
+        e.preventDefault(); show(1); break;
+      case 'End':
+        e.preventDefault(); show(total); break;
+      case 'f':
+      case 'F':
+        e.preventDefault(); toggleFullscreen(); break;
+    }
+  });
+
+  // Estado lembrado: abre no slide indicado pela ancora da URL (#3)
+  var initial = parseInt((location.hash || '').replace('#',''), 10);
+  show(isNaN(initial) ? 1 : initial);
+})();
+</script>
+</body>
+</html>

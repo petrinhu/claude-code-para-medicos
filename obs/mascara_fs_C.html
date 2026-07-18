@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Mascara Fullscreen C - Minimalista Cirurgica - TribeMD</title>
+<style>
+  /* ================================================================
+     MASCARA FULLSCREEN C - "Minimalista Cirurgica" - TribeMD - 1920x1080
+     Moldura fina quase invisivel + 4 cantos em L (brackets) por dentro
+     do buraco, com respiro (pulso de opacidade) defasado.
+     Miolo 100% transparente: outline gigante pinta so a moldura ao redor.
+     Toggles via query string: ?breathe=0 desliga o respiro, ?logo=0
+     esconde o chip do logo.
+     ================================================================ */
+  :root{
+    --frame-width: 12px;                  /* espessura da moldura */
+    --frame-color: #16043a;               /* cor base da moldura */
+    --frame-opacity: 0.92;                /* opacidade da moldura (via rgba) */
+    --hole-radius: 20px;                  /* arredondamento do buraco */
+    --bracket-color: #8a52ff;             /* cor dos cantos em L */
+    --bracket-length: 56px;               /* comprimento de cada perna do L */
+    --bracket-stroke: 3px;                /* espessura do traco do L */
+    --chip-bg: rgba(22,4,58,0.78);        /* fundo do chip do logo */
+    --chip-logo-height: 22px;             /* altura do logo dentro do chip */
+    --breathe-duration: 10s;              /* ciclo do respiro dos brackets */
+    --breathe-stagger: 1s;                /* defasagem entre brackets */
+    --breathe-min-opacity: 0.5;           /* opacidade minima do pulso */
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0; padding:0;
+    width:1920px; height:1080px;
+    background: transparent;
+    overflow: hidden;
+    font-family: Inter, "Open Sans", sans-serif;
+  }
+
+  .overlay{
+    position:absolute; inset:0;
+    pointer-events:none;
+  }
+
+  /* O buraco transparente. O outline gigante pinta toda a moldura ao
+     redor com a cor/opacidade da direcao C; o miolo (inset) fica com
+     background transparente de verdade (alpha 0), sem filete contínuo
+     na borda: nenhum box-shadow/border adicional aqui. */
+  .buraco{
+    position:absolute; inset: var(--frame-width);
+    border-radius: var(--hole-radius);
+    background: transparent;
+    outline: 3000px solid rgba(22,4,58,var(--frame-opacity));
+    pointer-events:none;
+  }
+
+  /* --------------------------------------------------------------
+     4 cantos em L, por dentro do buraco. Cada bracket comeca exatamente
+     no mesmo inset (--frame-width) e usa o mesmo --hole-radius do
+     .buraco, garantindo alinhamento pixel-perfect com a curva do
+     canto do buraco (a curvatura do border-radius do bracket coincide
+     com a curvatura do outline que forma o buraco).
+     -------------------------------------------------------------- */
+  .bracket{
+    position:absolute;
+    width: var(--bracket-length);
+    height: var(--bracket-length);
+    pointer-events:none;
+    opacity:1;
+  }
+
+  .bracket--tl{
+    top: var(--frame-width); left: var(--frame-width);
+    border-top: var(--bracket-stroke) solid var(--bracket-color);
+    border-left: var(--bracket-stroke) solid var(--bracket-color);
+    border-top-left-radius: var(--hole-radius);
+  }
+  .bracket--tr{
+    top: var(--frame-width); right: var(--frame-width);
+    border-top: var(--bracket-stroke) solid var(--bracket-color);
+    border-right: var(--bracket-stroke) solid var(--bracket-color);
+    border-top-right-radius: var(--hole-radius);
+  }
+  .bracket--bl{
+    bottom: var(--frame-width); left: var(--frame-width);
+    border-bottom: var(--bracket-stroke) solid var(--bracket-color);
+    border-left: var(--bracket-stroke) solid var(--bracket-color);
+    border-bottom-left-radius: var(--hole-radius);
+  }
+  .bracket--br{
+    bottom: var(--frame-width); right: var(--frame-width);
+    border-bottom: var(--bracket-stroke) solid var(--bracket-color);
+    border-right: var(--bracket-stroke) solid var(--bracket-color);
+    border-bottom-right-radius: var(--hole-radius);
+  }
+
+  /* Respiro: opacidade 1.0 -> 0.5 -> 1.0, defasado por bracket
+     (0s, 1s, 2s, 3s), ciclo de --breathe-duration. Ligado por default. */
+  body.breathe-on .bracket--tl{ animation: respiro var(--breathe-duration) ease-in-out infinite; animation-delay: 0s; }
+  body.breathe-on .bracket--tr{ animation: respiro var(--breathe-duration) ease-in-out infinite; animation-delay: var(--breathe-stagger); }
+  body.breathe-on .bracket--bl{ animation: respiro var(--breathe-duration) ease-in-out infinite; animation-delay: calc(var(--breathe-stagger) * 2); }
+  body.breathe-on .bracket--br{ animation: respiro var(--breathe-duration) ease-in-out infinite; animation-delay: calc(var(--breathe-stagger) * 3); }
+
+  @keyframes respiro{
+    0%{ opacity:1; }
+    50%{ opacity: var(--breathe-min-opacity); }
+    100%{ opacity:1; }
+  }
+
+  /* Toggle ?breathe=0 -> body sem a classe breathe-on -> sem animacao */
+  body.breathe-off .bracket{ animation:none; opacity:1; }
+
+  /* Respeita usuarios com preferencia por menos movimento */
+  @media (prefers-reduced-motion: reduce){
+    .bracket{ animation:none !important; opacity:1 !important; }
+  }
+
+  /* Chip flutuante do logo, canto inferior direito, sobre o conteudo */
+  .logo-chip{
+    position:absolute; right:28px; bottom:28px; z-index:10;
+    background: var(--chip-bg);
+    border-radius:12px; padding:8px 14px;
+    opacity:0.85;
+    display:flex; align-items:center;
+    pointer-events:none;
+  }
+  .logo-chip img{
+    height: var(--chip-logo-height);
+    display:block;
+    filter: brightness(0) invert(1);
+  }
+
+  /* Toggle ?logo=0 -> esconde o chip */
+  body.logo-off .logo-chip{ display:none; }
+</style>
+</head>
+<body class="breathe-on">
+  <div class="overlay">
+    <div class="buraco"></div>
+    <div class="bracket bracket--tl"></div>
+    <div class="bracket bracket--tr"></div>
+    <div class="bracket bracket--bl"></div>
+    <div class="bracket bracket--br"></div>
+  </div>
+  <div class="logo-chip"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+
+  <script>
+    // Toggles via query string, lidos no load do Browser Source do OBS:
+    //   ?breathe=0  -> desliga o pulso de opacidade dos 4 cantos em L
+    //   ?logo=0     -> esconde o chip do logo no canto inferior direito
+    (function(){
+      var params = new URLSearchParams(window.location.search);
+      var body = document.body;
+
+      if (params.get('breathe') === '0') {
+        body.classList.remove('breathe-on');
+        body.classList.add('breathe-off');
+      }
+      if (params.get('logo') === '0') {
+        body.classList.add('logo-off');
+      }
+    })();
+  </script>
+</body>
+</html>

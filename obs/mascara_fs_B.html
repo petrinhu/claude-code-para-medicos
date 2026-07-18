@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Mascara FS B - Corporativa Editorial - TribeMD</title>
+<style>
+  /* ==================================================================
+     MASCARA FULLSCREEN - Direcao B: "Corporativa Editorial"
+     TribeMD - Curso Claude Code para Medicos - 1920x1080
+     Moldura assimetrica solida em gradiente (base maior tipo bancada
+     de telejornal), filete interno que respira, lower-third de titulo
+     de secao, logo TribeMD na base. Miolo (buraco) 100% transparente
+     via mascara SVG aplicada ao preenchimento gradiente.
+     Ajuste rapido: mude as variaveis em :root abaixo.
+     ================================================================== */
+  :root{
+    --frame-top: 24px;              /* espessura da moldura no topo */
+    --frame-side: 24px;             /* espessura da moldura nas laterais */
+    --frame-bottom: 72px;           /* espessura da moldura na base (bancada) */
+    --frame-grad-a: #1F0646;        /* gradiente 135deg, inicio */
+    --frame-grad-b: #16043a;        /* gradiente 135deg, meio (60%) */
+    --frame-grad-c: #2a0b5e;        /* gradiente 135deg, fim */
+    --hole-radius: 16px;            /* raio do buraco (canto do terminal) */
+    --edge-line-color: #5213B9;     /* cor do filete interno na borda do buraco */
+    --edge-line-width: 2px;         /* espessura do filete interno */
+    --logo-height: 36px;            /* altura do logo TribeMD na base */
+    --logo-margin: 24px;            /* margem do logo ate a borda direita/base */
+    --logo-opacity: 0.9;            /* opacidade do logo (versao branca) */
+    --title-color: #FFFFFF;         /* cor do texto do titulo (lower-third) */
+    --title-accent: #B794F6;        /* cor do prefixo/numero do titulo */
+    --title-bar-color: #5213B9;     /* cor da barra vertical do lower-third */
+    --title-bar-width: 3px;         /* espessura da barra vertical */
+    --title-bar-height: 28px;       /* altura da barra vertical */
+    --title-font-size: 22px;        /* tamanho da fonte do titulo */
+    --title-left-pad: 28px;         /* distancia do titulo ate a borda esquerda da moldura */
+    --title-gap: 14px;              /* espaco entre a barra vertical e o texto */
+    --title-fade-ms: 300ms;         /* duracao da transicao de troca de titulo */
+    --breathe-duration: 8s;         /* ciclo completo do respiro do filete */
+    --breathe-min-opacity: 0.55;    /* opacidade minima do respiro */
+  }
+
+  *{ box-sizing: border-box; pointer-events: none; }
+
+  html,body{
+    margin:0; padding:0;
+    width:1920px; height:1080px;
+    background: transparent;
+    overflow: hidden;
+    font-family: Inter, "Open Sans", sans-serif;
+  }
+
+  /* ------------------------------------------------------------------
+     Preenchimento da moldura (gradiente solido, assimetrico) com o
+     miolo recortado por uma mascara SVG (rect central + raio), assim
+     o buraco fica com alpha 0 de verdade (nao e so "parecer" vazio).
+     ------------------------------------------------------------------ */
+  .frame-fill{
+    position:absolute; inset:0;
+    background: linear-gradient(135deg,
+      var(--frame-grad-a) 0%,
+      var(--frame-grad-b) 60%,
+      var(--frame-grad-c) 100%);
+    -webkit-mask-image: url(#frameHoleMask);
+    mask-image: url(#frameHoleMask);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    z-index: 1;
+  }
+
+  /* Rect da mascara: define o buraco (area transparente) usando as
+     mesmas variaveis da moldura, para ficar sempre coerente. */
+  #holeShape{
+    x: var(--frame-side);
+    y: var(--frame-top);
+    width: calc(1920px - (2 * var(--frame-side)));
+    height: calc(1080px - var(--frame-top) - var(--frame-bottom));
+    rx: var(--hole-radius);
+    ry: var(--hole-radius);
+    fill: #000;
+  }
+
+  /* ------------------------------------------------------------------
+     Filete interno na borda do buraco. E um div comum com border
+     (nao usa a mascara), entao o respiro anima so a opacidade dele.
+     ------------------------------------------------------------------ */
+  .edge-line{
+    position:absolute;
+    left: var(--frame-side);
+    top: var(--frame-top);
+    right: var(--frame-side);
+    bottom: var(--frame-bottom);
+    border: var(--edge-line-width) solid var(--edge-line-color);
+    border-radius: var(--hole-radius);
+    background: transparent;
+    z-index: 2;
+    opacity: 1;
+  }
+
+  body.breathing .edge-line{
+    animation: respiro var(--breathe-duration) ease-in-out infinite;
+  }
+
+  @keyframes respiro{
+    0%, 100% { opacity: 1; }
+    50%      { opacity: var(--breathe-min-opacity); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    body.breathing .edge-line{ animation: none; opacity: 1; }
+  }
+
+  /* ------------------------------------------------------------------
+     Logo TribeMD - canto inferior direito, sobre a bancada escura,
+     versao branca (filter) discreta.
+     ------------------------------------------------------------------ */
+  .logo{
+    position:absolute;
+    right: var(--logo-margin);
+    bottom: calc((var(--frame-bottom) - var(--logo-height)) / 2);
+    z-index: 3;
+  }
+  .logo img{
+    display:block;
+    height: var(--logo-height);
+    width:auto;
+    filter: brightness(0) invert(1);
+    opacity: var(--logo-opacity);
+  }
+
+  /* ------------------------------------------------------------------
+     Lower-third de titulo de secao - canto inferior esquerdo, dentro
+     da bancada de 72px.
+     ------------------------------------------------------------------ */
+  .lower-third{
+    position:absolute;
+    left: calc(var(--frame-side) + var(--title-left-pad));
+    bottom: 0;
+    height: var(--frame-bottom);
+    display:flex;
+    align-items:center;
+    gap: var(--title-gap);
+    z-index: 3;
+    opacity: 0;
+    transition: opacity var(--title-fade-ms) ease;
+  }
+  .lower-third.visible{ opacity: 1; }
+
+  .lower-third .bar{
+    width: var(--title-bar-width);
+    height: var(--title-bar-height);
+    background: var(--title-bar-color);
+    flex-shrink: 0;
+  }
+
+  .lower-third .text{
+    font-family: Inter, "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: var(--title-font-size);
+    color: var(--title-color);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .lower-third .text .prefix{
+    color: var(--title-accent);
+  }
+</style>
+</head>
+<body class="breathing">
+
+  <!-- SVG oculto so para fornecer a mascara do buraco (miolo transparente) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <mask id="frameHoleMask">
+        <rect x="0" y="0" width="1920" height="1080" fill="#fff"></rect>
+        <rect id="holeShape"></rect>
+      </mask>
+    </defs>
+  </svg>
+
+  <div class="frame-fill"></div>
+  <div class="edge-line"></div>
+
+  <div class="logo">
+    <img src="assets/logo_transp.png" alt="TribeMD">
+  </div>
+
+  <div class="lower-third" id="lowerThird">
+    <div class="bar"></div>
+    <div class="text" id="lowerThirdText"></div>
+  </div>
+
+  <script>
+    (function(){
+      var DEFAULT_TITLE = "Aula 12: Subagentes na pratica";
+      var params = new URLSearchParams(window.location.search);
+
+      // respiro: ?breathe=0 desliga a animacao do filete interno
+      var breatheParam = params.get('breathe');
+      if (breatheParam === '0' || breatheParam === 'false'){
+        document.body.classList.remove('breathing');
+      }
+
+      function splitPrefix(raw){
+        // Divide no primeiro ":" para colorir o numero/prefixo (ex.: "Aula 12:").
+        // Sem ":" no texto, tudo fica na cor padrao do titulo.
+        var idx = raw.indexOf(':');
+        if (idx === -1){
+          return { prefix: '', rest: raw };
+        }
+        return {
+          prefix: raw.slice(0, idx + 1) + ' ',
+          rest: raw.slice(idx + 1).trim()
+        };
+      }
+
+      function renderTitle(raw){
+        var el = document.getElementById('lowerThirdText');
+        var wrap = document.getElementById('lowerThird');
+
+        if (!raw){
+          wrap.classList.remove('visible');
+          return;
+        }
+
+        var parts = splitPrefix(raw);
+        el.innerHTML = '';
+        if (parts.prefix){
+          var span = document.createElement('span');
+          span.className = 'prefix';
+          span.textContent = parts.prefix;
+          el.appendChild(span);
+        }
+        el.appendChild(document.createTextNode(parts.rest));
+        wrap.classList.add('visible');
+      }
+
+      // window.setMascaraTitle(texto) permite trocar o titulo ao vivo
+      // (ex.: via console do dock de navegador do OBS), com fade de
+      // saida (300ms) antes de trocar o conteudo e voltar a aparecer.
+      window.setMascaraTitle = function(novoTitulo){
+        var wrap = document.getElementById('lowerThird');
+        wrap.classList.remove('visible');
+        window.setTimeout(function(){
+          renderTitle(novoTitulo);
+        }, 300);
+      };
+
+      // string vazia explicita (?title=) oculta a faixa; parametro
+      // ausente usa o titulo padrao embutido.
+      var titleValue = params.has('title') ? params.get('title') : DEFAULT_TITLE;
+      renderTitle(titleValue);
+    })();
+  </script>
+
+</body>
+</html>

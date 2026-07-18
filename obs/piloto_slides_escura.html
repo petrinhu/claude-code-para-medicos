@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Deck Piloto - Aula 03 - Escura Bancada - TribeMD</title>
+<style>
+  /* ==================================================================
+     DECK PILOTO DE SLIDES - Estilo "Escura Bancada"
+     TribeMD - Curso Claude Code para Medicos - Aula 03
+     Canvas fixo 1920x1080. Base de escala: html{font-size:1vw}, entao
+     1rem = 19.2px quando o browser source do OBS esta em 1920px de
+     largura. Espacamentos verticais usam vh; horizontais usam vw/rem.
+     Navegacao: teclado, chevrons discretos, indicador N/7, ancora #N.
+     Sem transicoes entre slides (corte seco).
+     ================================================================== */
+  :root{
+    --bg: #1F0646;              /* fundo base do deck */
+    --surface: #2A0D57;         /* superficie um tom acima do fundo */
+    --surface-2: #33116A;       /* superficie auxiliar (caixas de diagrama) */
+    --text-1: #FAFAFA;          /* texto principal sobre fundo escuro */
+    --text-2: #C9BFE0;          /* texto secundario, lavanda acinzentado */
+    --accent: #5213B9;          /* roxo de marca: destaques, numerais, faixa */
+    --accent-light: #8B6FD6;    /* variante clara do accent p/ traco em fundo escuro */
+    --chip-bg: #E9E1F5;         /* chip lavanda claro */
+    --chip-text: #1F0646;       /* texto sobre chip lavanda */
+    --stroke: #B7A9DC;          /* traco claro consistente (caixas/setas do diagrama) */
+    --ok: #2FBF71;              /* check de conclusao (nao carrega significado sozinho: sempre com icone + texto) */
+
+    /* invertido (slide 6, unico slide claro do deck) */
+    --inv-bg: #E9E1F5;
+    --inv-text-1: #1F0646;
+    --inv-text-2: rgba(31,6,70,0.68);
+
+    --nav-color: rgba(250,250,250,0.35);
+    --nav-color-hover: rgba(250,250,250,1);
+    --nav-color-weak: rgba(250,250,250,0.16);
+    --nav-color-weak-hover: rgba(250,250,250,0.70);
+    --indicator-color: var(--text-2);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{
+    font-size: 1vw; /* base de escala relativa ao canvas 1920px */
+  }
+
+  html, body{
+    margin:0; padding:0;
+    width:100vw; height:100vh;
+    overflow:hidden;
+    background: var(--bg);
+    font-family: Inter, "Open Sans", sans-serif;
+    color: var(--text-1);
+  }
+
+  body.light-slide{
+    --nav-color: rgba(31,6,70,0.35);
+    --nav-color-hover: rgba(31,6,70,1);
+    --nav-color-weak: rgba(31,6,70,0.16);
+    --nav-color-weak-hover: rgba(31,6,70,0.70);
+    --indicator-color: var(--inv-text-2);
+  }
+
+  /* ------------------------------------------------------------------
+     Slides: um por vez, sem transicao (corte seco)
+     ------------------------------------------------------------------ */
+  .deck{ position:relative; width:100vw; height:100vh; }
+
+  .slide{
+    position:absolute; inset:0;
+    display:none;
+    width:100vw; height:100vh;
+    padding: 6vh 6vw;
+    flex-direction: column;
+  }
+  .slide.active{ display:flex; }
+
+  .slide.slide-light{
+    background: var(--inv-bg);
+    color: var(--inv-text-1);
+  }
+
+  /* Kicker de orientacao, topo-esquerda, presente nos slides de corpo
+     (nao na capa, nem no respiro humoristico). */
+  .kicker{
+    display:flex; align-items:center; gap: 0.6rem;
+    font-size: 0.9375rem;
+    font-weight:700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 3vh;
+  }
+  .kicker .dot{ width:0.45rem; height:0.45rem; border-radius:50%; background: var(--accent-light); }
+
+  /* Chip lavanda (modulo, tags) */
+  .chip{
+    display:inline-flex; align-items:center;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    font-weight:700;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    padding: 0.55rem 1.2rem;
+    border-radius: 999px;
+    width: fit-content;
+  }
+
+  /* Chip do logo (chip claro sempre, pois o logo e colorido/escuro) */
+  .logo-chip{
+    position:absolute;
+    top: 3.2vh; right: 3vw;
+    display:flex; align-items:center; justify-content:center;
+    background:#FFFFFF;
+    border-radius: 0.7rem;
+    padding: 0.55rem 1rem;
+    box-shadow: 0 0.3rem 1rem rgba(0,0,0,0.28);
+    z-index: 5;
+  }
+  .logo-chip img{ display:block; height: 1.7rem; width:auto; }
+  .logo-chip.big img{ height: 3rem; }
+  .logo-chip.big{ padding: 0.9rem 1.5rem; border-radius: 1rem; }
+
+  /* ==================================================================
+     SLIDE 1 - CAPA
+     ================================================================== */
+  #slide-1 .capa-wrap{
+    flex:1; display:flex; flex-direction:column; justify-content:center;
+    max-width: 74vw;
+  }
+  #slide-1 .aula-num{
+    font-size: 10rem;
+    font-weight: 800;
+    line-height:1;
+    color: var(--accent-light);
+    letter-spacing: -0.02em;
+    margin-bottom: 1vh;
+  }
+  #slide-1 .aula-num small{
+    display:block;
+    font-size: 1.1rem;
+    font-weight:700;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color: var(--text-2);
+    margin-bottom: 1.2vh;
+  }
+  #slide-1 h1{
+    font-size: 3.75rem;
+    font-weight: 700;
+    line-height:1.12;
+    margin: 0 0 2.4vh 0;
+    max-width: 66vw;
+  }
+  #slide-1 .subtitulo{
+    font-size: 1.667rem;
+    font-weight:500;
+    color: var(--text-2);
+    margin: 0 0 4vh 0;
+    max-width: 58vw;
+  }
+  /* Faixa horizontal roxa, eco da mascara B (lower-third de secao) */
+  #slide-1 .faixa{
+    display:flex; align-items:center; gap:1.2rem;
+    background: var(--accent);
+    width: 46vw;
+    padding: 1.1rem 1.8rem;
+    border-radius: 0.6rem;
+  }
+  #slide-1 .faixa .bar{ width:0.28rem; height:1.6rem; background: var(--text-1); flex-shrink:0; }
+  #slide-1 .faixa .faixa-text{ font-size:1.1rem; font-weight:700; letter-spacing:0.04em; color:#FFFFFF; }
+
+  /* ==================================================================
+     SLIDE 2 - "VOCE VAI SAIR FAZENDO"
+     ================================================================== */
+  #slide-2 h2, #slide-3 h2, #slide-4 h2, #slide-5 h2, #slide-7 h2{
+    font-size: 2.5rem; font-weight:600; margin: 0 0 4vh 0;
+  }
+  #slide-2 .outcomes{
+    flex:1; display:flex; flex-direction:column; justify-content:center;
+    gap: 4.5vh;
+    max-width: 68vw;
+  }
+  #slide-2 .outcome{ display:flex; align-items:flex-start; gap:2rem; }
+  #slide-2 .outcome .n{
+    font-size: 3rem; font-weight:800; color: var(--accent-light);
+    line-height:1; min-width: 4.5rem;
+  }
+  #slide-2 .outcome .t{ font-size: 1.833rem; font-weight:500; line-height:1.3; padding-top:0.3rem; }
+
+  /* ==================================================================
+     SLIDE 3 - CONCEITO COM ANALOGIA CLINICA
+     ================================================================== */
+  #slide-3 .ponte-title{
+    font-size: 2.5rem; font-weight:600; margin: 0 0 5vh 0; max-width: 80vw;
+  }
+  #slide-3 .duas-colunas{
+    flex:1; display:flex; gap: 3.5vw; align-items:stretch;
+  }
+  #slide-3 .coluna{
+    flex:1;
+    background: var(--surface);
+    border-radius: 1rem;
+    padding: 3.5vh 2.6vw;
+    display:flex; flex-direction:column;
+    justify-content:center;
+  }
+  #slide-3 .coluna.tecnica{ background: var(--surface-2); border: 1px solid var(--accent-light); }
+  #slide-3 .coluna .rotulo{
+    font-size:0.9375rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    color: var(--accent-light); margin-bottom:2.2vh;
+  }
+  #slide-3 .coluna .corpo{ font-size:1.667rem; font-weight:500; line-height:1.45; color: var(--text-1); }
+
+  /* ==================================================================
+     SLIDE 4 - DIAGRAMA
+     ================================================================== */
+  #slide-4 .diagrama{
+    flex:1 1 70vh; display:flex; align-items:center; justify-content:center;
+    gap: 1.4vw;
+  }
+  #slide-4 .no{
+    background: var(--surface-2);
+    border: 0.14rem solid var(--stroke);
+    border-radius: 0.9rem;
+    padding: 2.4vh 1.6vw;
+    min-width: 13vw;
+    min-height: 9vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    font-size: 1.5rem; font-weight:600; color: var(--text-1);
+  }
+  #slide-4 .no .sub{ display:block; font-size:0.9375rem; font-weight:500; color: var(--text-2); margin-top:0.5rem; }
+  #slide-4 .seta{
+    font-size: 2.2rem; color: var(--stroke); line-height:1; padding: 0 0.2vw;
+  }
+
+  /* ==================================================================
+     SLIDE 5 - O QUE VAI ACONTECER NO TERMINAL
+     ================================================================== */
+  #slide-5 .passos{
+    flex:1; display:flex; flex-direction:column; justify-content:center;
+    gap: 3.2vh; max-width: 70vw;
+  }
+  #slide-5 .passo{ display:flex; gap:1.4rem; align-items:flex-start; }
+  #slide-5 .passo .marca{ font-size:1.7rem; color: var(--accent-light); font-weight:700; line-height:1.3; }
+  #slide-5 .passo .txt{ font-size:1.667rem; font-weight:500; line-height:1.35; }
+  #slide-5 .passo.repare{
+    background: var(--surface);
+    border-left: 0.28rem solid var(--accent-light);
+    border-radius: 0.5rem;
+    padding: 2vh 1.6vw;
+  }
+  #slide-5 .passo.repare .txt b{ color: var(--accent-light); }
+
+  /* Sinal discreto de "trocar para o terminal" (apos o ultimo bullet).
+     Reutilizavel: adicione <div class="ir-terminal">...</div> ao fim de
+     qualquer slide que antecede uma demonstracao ao vivo no terminal. */
+  .ir-terminal{
+    align-self:flex-end;
+    margin-top: 2.4vh;
+    display:flex; align-items:center; gap:0.6rem;
+    font-size: 1.05rem; font-weight:600;
+    letter-spacing:0.02em;
+    color: var(--accent-light);
+    opacity: 0.7;
+  }
+  .ir-terminal .emoji{ font-size:1.5rem; line-height:1; }
+  .slide-light .ir-terminal{ color: var(--inv-text-2); }
+
+  /* ==================================================================
+     SLIDE 6 - RESPIRO / HUMOR (unico slide claro do deck)
+     ================================================================== */
+  #slide-6{
+    align-items:center; justify-content:center;
+  }
+  #slide-6 .centro{
+    display:flex; flex-direction:column; align-items:center; gap: 3vh;
+    text-align:center;
+  }
+  #slide-6 .oculos{ width: 9rem; height:auto; }
+  #slide-6 .frase{
+    font-size: 2rem; font-weight:600; color: var(--inv-text-1); max-width: 46vw; line-height:1.35;
+  }
+  #slide-6 .rodape-humor{
+    position:absolute; bottom: 5vh; left:0; right:0;
+    text-align:center;
+    font-size: 1.1rem; font-weight:600;
+    color: var(--accent);
+  }
+
+  /* ==================================================================
+     SLIDE 7 - FECHAMENTO
+     ================================================================== */
+  #slide-7 .corpo-fechamento{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:5vh; }
+  #slide-7 .checks{ display:flex; flex-direction:column; gap:2.6vh; max-width:70vw; }
+  #slide-7 .check{ display:flex; align-items:flex-start; gap:1.4rem; }
+  #slide-7 .check .icone{
+    width:1.9rem; height:1.9rem; border-radius:50%;
+    background: var(--ok); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; font-weight:800; color:#0B2A1B; margin-top:0.15rem;
+  }
+  #slide-7 .check .txt{ font-size:1.667rem; font-weight:500; line-height:1.3; }
+  #slide-7 .proxima{
+    background: var(--accent);
+    border-radius: 0.8rem;
+    padding: 2.6vh 2.2vw;
+    max-width: 74vw;
+  }
+  #slide-7 .proxima .rotulo{
+    font-size:0.9375rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    color: rgba(255,255,255,0.75); margin-bottom:1vh;
+  }
+  #slide-7 .proxima .linha{ font-size:1.833rem; font-weight:700; color:#FFFFFF; line-height:1.3; }
+
+  /* ------------------------------------------------------------------
+     Navegacao: chevrons discretos + indicador N/7
+     ------------------------------------------------------------------ */
+  .nav-btn{
+    position:fixed; bottom:0; width:4.5vh; height:4.5vh;
+    min-width:40px; min-height:40px;
+    display:flex; align-items:center; justify-content:center;
+    background:transparent; border:none; cursor:pointer;
+    font-size:1.9rem; font-weight:700; font-family:inherit;
+    z-index: 20;
+    transition: color 120ms ease, opacity 120ms ease;
+  }
+  .nav-next{ right:0; color: var(--nav-color); }
+  .nav-next:hover{ color: var(--nav-color-hover); }
+  .nav-prev{ left:0; color: var(--nav-color-weak); }
+  .nav-prev:hover{ color: var(--nav-color-weak-hover); }
+
+  .slide-indicator{
+    position:fixed; bottom:1.8vh; left:0; right:0;
+    text-align:center;
+    font-size:0.9375rem; font-weight:600;
+    letter-spacing:0.04em;
+    color: var(--indicator-color);
+    z-index: 15;
+    pointer-events:none;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .nav-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="deck">
+
+    <!-- ============================================================
+         SLIDE 1 / 7 - CAPA
+         ============================================================ -->
+    <section class="slide active" id="slide-1">
+      <div class="logo-chip big"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+      <div class="capa-wrap">
+        <div class="aula-num"><small>Aula</small>03</div>
+        <h1>PubMed e Fichamento de Leitura Critica</h1>
+        <p class="subtitulo">Evidencia cientifica direto no terminal, sem abrir o navegador.</p>
+        <div class="faixa">
+          <div class="bar"></div>
+          <div class="faixa-text">Intermediario &middot; M2</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SLIDE 2 / 7 - VOCE VAI SAIR FAZENDO
+         ============================================================ -->
+    <section class="slide" id="slide-2">
+      <div class="kicker"><span class="dot"></span>Aula 03 &middot; PubMed e fichamento</div>
+      <div class="logo-chip"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+      <h2>Voce vai sair fazendo</h2>
+      <div class="outcomes">
+        <div class="outcome"><div class="n">01</div><div class="t">Conectar o Claude Code ao PubMed em minutos</div></div>
+        <div class="outcome"><div class="n">02</div><div class="t">Buscar artigos com filtros de ano e desenho</div></div>
+        <div class="outcome"><div class="n">03</div><div class="t">Fichar leitura critica com PICO e vieses</div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SLIDE 3 / 7 - CONCEITO COM ANALOGIA CLINICA (MCP)
+         ============================================================ -->
+    <section class="slide" id="slide-3">
+      <div class="kicker"><span class="dot"></span>Aula 03 &middot; PubMed e fichamento</div>
+      <div class="logo-chip"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+      <h2 class="ponte-title">O eletrodo entre o Claude e o PubMed</h2>
+      <div class="duas-colunas">
+        <div class="coluna clinica">
+          <div class="rotulo">Analogia clinica</div>
+          <div class="corpo">O eletrocardiografo ja sabe interpretar o sinal eletrico. Falta o eletrodo que conecta o paciente a maquina.</div>
+        </div>
+        <div class="coluna tecnica">
+          <div class="rotulo">Conceito tecnico: MCP</div>
+          <div class="corpo">MCP e o protocolo que liga o Claude Code a fontes externas, como o PubMed. Instala-se uma vez e fica disponivel sempre.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SLIDE 4 / 7 - DIAGRAMA
+         ============================================================ -->
+    <section class="slide" id="slide-4">
+      <div class="kicker"><span class="dot"></span>Aula 03 &middot; PubMed e fichamento</div>
+      <div class="logo-chip"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+      <h2>Do pedido do chefe a ficha pronta</h2>
+      <div class="diagrama">
+        <div class="no">Pergunta<span class="sub">clinica</span></div>
+        <div class="seta">&#8594;</div>
+        <div class="no">PubMed<span class="sub">via MCP</span></div>
+        <div class="seta">&#8594;</div>
+        <div class="no">Busca<span class="sub">filtrada</span></div>
+        <div class="seta">&#8594;</div>
+        <div class="no">Triagem</div>
+        <div class="seta">&#8594;</div>
+        <div class="no">Fichamento</div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SLIDE 5 / 7 - O QUE VAI ACONTECER NO TERMINAL
+         ============================================================ -->
+    <section class="slide" id="slide-5">
+      <div class="kicker"><span class="dot"></span>Aula 03 &middot; PubMed e fichamento</div>
+      <div class="logo-chip"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+      <h2>O que vai acontecer no terminal</h2>
+      <div class="passos">
+        <div class="passo"><div class="marca">&#9656;</div><div class="txt">O Claude vai buscar artigos direto no PubMed, sem abrir navegador.</div></div>
+        <div class="passo"><div class="marca">&#9656;</div><div class="txt">Ele vai aplicar os filtros de ano, idioma e tipo de estudo.</div></div>
+        <div class="passo"><div class="marca">&#9656;</div><div class="txt">Vai triar os 2 artigos mais relevantes, com justificativa clinica.</div></div>
+        <div class="passo repare"><div class="marca">&#9656;</div><div class="txt"><b>Repare em:</b> o fichamento final ja sai com PICO, nivel de evidencia e vieses avaliados.</div></div>
+      </div>
+      <div class="ir-terminal"><span class="emoji">&#128187;</span> vamos ao terminal</div>
+    </section>
+
+    <!-- ============================================================
+         SLIDE 6 / 7 - RESPIRO / HUMOR (fundo claro, unico do deck)
+         ============================================================ -->
+    <section class="slide slide-light" id="slide-6">
+      <div class="centro">
+        <svg class="oculos" viewBox="0 0 160 60" fill="none" stroke="#1F0646" stroke-width="4" stroke-linecap="round">
+          <circle cx="40" cy="30" r="22"></circle>
+          <circle cx="120" cy="30" r="22"></circle>
+          <line x1="62" y1="26" x2="98" y2="26"></line>
+          <line x1="18" y1="22" x2="2" y2="14"></line>
+          <line x1="142" y1="22" x2="158" y2="14"></line>
+        </svg>
+        <div class="frase">Oculos no lugar? Hoje a leitura de abstract e de perto.</div>
+      </div>
+      <div class="rodape-humor">&gt; Calibrar o MCP da menos trabalho do que calibrar o ECG da ala.</div>
+    </section>
+
+    <!-- ============================================================
+         SLIDE 7 / 7 - FECHAMENTO
+         ============================================================ -->
+    <section class="slide" id="slide-7">
+      <div class="kicker"><span class="dot"></span>Aula 03 &middot; PubMed e fichamento</div>
+      <div class="logo-chip"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+      <h2>Hoje voce fez:</h2>
+      <div class="corpo-fechamento">
+        <div class="checks">
+          <div class="check"><div class="icone">&#10003;</div><div class="txt">Conectou o Claude Code ao PubMed via MCP</div></div>
+          <div class="check"><div class="icone">&#10003;</div><div class="txt">Buscou artigos com filtros clinicos precisos</div></div>
+          <div class="check"><div class="icone">&#10003;</div><div class="txt">Gerou fichamento com PICO, evidencia e vieses</div></div>
+        </div>
+        <div class="proxima">
+          <div class="rotulo">Proxima aula</div>
+          <div class="linha">Aula 04: flashcards do Anki e briefing automatico diario com as novidades do seu tema.</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="nav-btn nav-prev" id="btnPrev" aria-label="Slide anterior" type="button">&#8249;</button>
+  <button class="nav-btn nav-next" id="btnNext" aria-label="Proximo slide" type="button">&#8250;</button>
+  <div class="slide-indicator"><span id="curNum">1</span> / <span id="totalNum">7</span></div>
+
+  <script>
+    (function(){
+      var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+      var total = slides.length;
+      var curNumEl = document.getElementById('curNum');
+      var totalNumEl = document.getElementById('totalNum');
+      totalNumEl.textContent = String(total);
+
+      function clamp(n){
+        if (n < 1) return 1;
+        if (n > total) return total;
+        return n;
+      }
+
+      function goto(n, updateHash){
+        n = clamp(n);
+        slides.forEach(function(s, i){
+          s.classList.toggle('active', (i + 1) === n);
+        });
+        document.body.classList.toggle('light-slide', slides[n - 1].classList.contains('slide-light'));
+        curNumEl.textContent = String(n);
+        if (updateHash !== false){
+          history.replaceState(null, '', '#' + n);
+        }
+      }
+
+      function current(){
+        var m = /^#(\d+)$/.exec(window.location.hash);
+        var n = m ? parseInt(m[1], 10) : 1;
+        return clamp(isNaN(n) ? 1 : n);
+      }
+
+      function next(){ goto(current() + 1); }
+      function prev(){ goto(current() - 1); }
+
+      document.getElementById('btnNext').addEventListener('click', next);
+      document.getElementById('btnPrev').addEventListener('click', prev);
+
+      window.addEventListener('keydown', function(ev){
+        switch (ev.key){
+          case 'ArrowRight':
+          case ' ':
+          case 'Spacebar':
+            ev.preventDefault();
+            next();
+            break;
+          case 'ArrowLeft':
+            ev.preventDefault();
+            prev();
+            break;
+          case 'Home':
+            ev.preventDefault();
+            goto(1);
+            break;
+          case 'End':
+            ev.preventDefault();
+            goto(total);
+            break;
+          case 'f':
+          case 'F':
+            ev.preventDefault();
+            if (!document.fullscreenElement){
+              document.documentElement.requestFullscreen().catch(function(){});
+            } else {
+              document.exitFullscreen().catch(function(){});
+            }
+            break;
+        }
+      });
+
+      window.addEventListener('hashchange', function(){
+        goto(current(), false);
+      });
+
+      goto(current(), false);
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Mascara Fullscreen TribeMD</title>
+<style>
+  /* ================================================================
+     MASCARA FULLSCREEN - TribeMD - 1920x1080
+     Moldura fina com glow, miolo transparente (buraco), logo discreto.
+     Ajuste rapido: mude as variaveis em :root abaixo.
+     ================================================================ */
+  :root{
+    --margem: 20px;              /* espessura da moldura (quanto ela invade a tela) */
+    --radius: 26px;              /* arredondamento do buraco onde entra o terminal */
+    --moldura: #16043a;          /* cor da faixa escura da borda */
+    --linha: #8a52ff;            /* linha roxa brilhante na borda do buraco */
+    --glow: rgba(122,63,240,.75);
+    --glow-amplo: rgba(82,19,185,.32);
+    --logo-altura: 44px;         /* tamanho do logo no canto */
+  }
+  *{ box-sizing: border-box; }
+  html,body{
+    margin:0; padding:0;
+    width:1920px; height:1080px;
+    background: transparent;
+    overflow: hidden;
+    font-family: Inter, "Open Sans", sans-serif;
+  }
+
+  /* O buraco transparente. O 'outline' gigante pinta toda a moldura
+     ao redor; o box-shadow faz a linha roxa e o glow. */
+  .buraco{
+    position:absolute; inset: var(--margem);
+    border-radius: var(--radius);
+    background: transparent;
+    outline: 3000px solid var(--moldura);
+    box-shadow:
+      inset 0 0 0 2px rgba(255,255,255,.92),   /* fio branco interno */
+      0 0 0 3px var(--linha),                  /* linha roxa na borda */
+      0 0 30px 6px var(--glow),                /* glow proximo */
+      0 0 90px 26px var(--glow-amplo);         /* glow amplo e suave */
+    animation: respiro 7s ease-in-out infinite;
+  }
+
+  /* Respiro: o glow pulsa de leve. Discreto, para os momentos parados. */
+  @keyframes respiro{
+    0%,100%{
+      box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,.90),
+        0 0 0 3px var(--linha),
+        0 0 24px 5px rgba(122,63,240,.62),
+        0 0 78px 22px rgba(82,19,185,.26);
+    }
+    50%{
+      box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,.99),
+        0 0 0 3px var(--linha),
+        0 0 42px 9px rgba(122,63,240,.85),
+        0 0 112px 34px rgba(82,19,185,.42);
+    }
+  }
+
+  /* Logo discreto no canto inferior direito, numa pilula branca. */
+  .logo{
+    position:absolute; right:30px; bottom:24px; z-index:10;
+    background:#fff; border-radius:12px; padding:8px 15px;
+    box-shadow: 0 6px 22px rgba(0,0,0,.45);
+    display:flex; align-items:center;
+  }
+  .logo img{ height: var(--logo-altura); display:block; }
+</style>
+</head>
+<body>
+  <div class="buraco"></div>
+  <div class="logo"><img src="assets/logo_transp.png" alt="TribeMD"></div>
+</body>
+</html>

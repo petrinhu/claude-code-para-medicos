@@ -5,73 +5,56 @@
 <title>Texto ao vivo - TribeMD</title>
 <style>
   /* =================================================================
-     TEXTO AO VIVO para OBS (Browser Source + Interagir).
-     Voce digita pela janela "Interagir" da fonte e o texto aparece
-     na cena em tempo real. Ajustes pela URL:
-       ?size=64     tamanho da fonte (px)
-       ?color=ffcc00  cor do texto (hex sem #)
+     TEXTO AO VIVO para OBS (funciona no Wayland).
+     MODO PADRAO: le um arquivo de texto e mostra na tela. Voce edita
+     esse arquivo num bloco de notas comum, salva (Ctrl+S), e aparece.
+     Nao usa a janela Interagir (que o Wayland bloqueia o teclado).
+
+     Ajustes pela URL do Browser Source:
+       ?file=texto.txt   qual arquivo ler (padrao: texto.txt, na mesma pasta)
+       ?size=64          tamanho da fonte (px)
+       ?color=ffcc00     cor do texto (hex sem #)
        ?pos=top|meio|baixo   posicao vertical (padrao: baixo)
-       ?bg=1        liga uma faixa escura atras do texto (mais legivel)
+       ?bg=1             faixa escura atras do texto (mais legivel)
        ?align=left|center|right  alinhamento (padrao: center)
+       ?edit=1           MODO DIGITACAO (contenteditable + Interagir); so use no X11
      ================================================================= */
-  :root{
-    --tam: 60px;
-    --cor: #FFFFFF;
-    --roxo: #8a52ff;
-  }
+  :root{ --tam: 60px; --cor: #FFFFFF; --roxo: #8a52ff; }
   *{ box-sizing: border-box; }
   html, body{
-    margin:0; padding:0;
-    width:1920px; height:1080px;
-    background: transparent;
-    overflow: hidden;
+    margin:0; padding:0; width:1920px; height:1080px;
+    background: transparent; overflow: hidden;
     font-family: Inter, "Open Sans", "Segoe UI", sans-serif;
   }
-  .palco{
-    position:absolute; inset:0;
-    display:flex;
-    padding: 5vh 6vw;
-  }
+  .palco{ position:absolute; inset:0; display:flex; padding: 5vh 6vw; }
   .palco.baixo{ align-items:flex-end; }
   .palco.meio{ align-items:center; }
   .palco.top{ align-items:flex-start; }
 
   .campo{
     width:100%;
-    font-size: var(--tam);
-    font-weight: 800;
-    line-height: 1.22;
-    color: var(--cor);
-    text-align: center;
-    outline: none;
-    caret-color: var(--roxo);
-    /* sombra forte: legivel sobre qualquer fundo, sem precisar de caixa */
+    font-size: var(--tam); font-weight: 800; line-height: 1.22;
+    color: var(--cor); text-align: center;
+    white-space: pre-wrap; word-break: break-word;
+    outline: none; caret-color: var(--roxo);
     text-shadow: 0 2px 10px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.95);
-    word-break: break-word;
-    min-height: 1.2em;
-    border-radius: 14px;
-    padding: 6px 10px;
+    min-height: 1.2em; border-radius: 14px; padding: 6px 10px;
   }
-  /* faixa opcional (?bg=1) */
   body.bg .campo{
     background: rgba(20, 5, 45, 0.72);
-    text-shadow: none;
-    box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    text-shadow: none; box-shadow: 0 8px 30px rgba(0,0,0,.35);
     padding: 18px 28px;
   }
-  /* placeholder so aparece com o campo em foco (janela Interagir),
-     nunca na cena/gravacao quando vazio */
-  .campo:focus:empty:before{
-    content: attr(data-ph);
-    color: rgba(255,255,255,.45);
-    font-weight: 600;
+  body.bg .campo:empty{ background: transparent; box-shadow: none; }
+  /* dica so no modo edicao com foco (X11) */
+  body.edit .campo:focus:empty:before{
+    content: "Digite aqui (Interagir)"; color: rgba(255,255,255,.45); font-weight:600;
   }
 </style>
 </head>
 <body>
   <div class="palco baixo" id="palco">
-    <div class="campo" id="campo" contenteditable="true" spellcheck="false"
-         data-ph="Digite aqui (janela Interagir)"></div>
+    <div class="campo" id="campo"></div>
   </div>
 <script>
   var q = new URLSearchParams(location.search);
@@ -79,31 +62,44 @@
   var palco = document.getElementById('palco');
   var root = document.documentElement;
 
-  // ajustes por URL
   if (q.get('size')) root.style.setProperty('--tam', parseInt(q.get('size'),10) + 'px');
   if (q.get('color')) root.style.setProperty('--cor', '#' + q.get('color').replace('#',''));
   if (q.get('align')) campo.style.textAlign = q.get('align');
   if (q.get('bg') === '1') document.body.classList.add('bg');
   var pos = q.get('pos');
-  if (pos === 'top' || pos === 'meio' || pos === 'baixo'){
-    palco.className = 'palco ' + pos;
-  }
+  if (pos === 'top' || pos === 'meio' || pos === 'baixo') palco.className = 'palco ' + pos;
 
-  // persistencia: o texto sobrevive a um refresh da fonte
-  var KEY = 'obs_texto_ao_vivo';
-  var salvo = localStorage.getItem(KEY);
-  if (salvo) campo.textContent = salvo;
-  campo.addEventListener('input', function(){
-    localStorage.setItem(KEY, campo.textContent);
-  });
-  // Ctrl+L limpa tudo rapido
-  document.addEventListener('keydown', function(e){
-    if ((e.ctrlKey || e.metaKey) && (e.key === 'l' || e.key === 'L')){
-      e.preventDefault();
-      campo.textContent = '';
-      localStorage.removeItem(KEY);
+  if (q.get('edit') === '1') {
+    // MODO DIGITACAO (so funciona no X11): contenteditable + Interagir
+    document.body.classList.add('edit');
+    campo.setAttribute('contenteditable', 'true');
+    campo.setAttribute('spellcheck', 'false');
+    var KEY = 'obs_texto_ao_vivo';
+    var salvo = localStorage.getItem(KEY);
+    if (salvo) campo.textContent = salvo;
+    campo.addEventListener('input', function(){ localStorage.setItem(KEY, campo.textContent); });
+    document.addEventListener('keydown', function(e){
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'l' || e.key === 'L')) {
+        e.preventDefault(); campo.textContent = ''; localStorage.removeItem(KEY);
+      }
+    });
+  } else {
+    // MODO ARQUIVO (padrao, funciona no Wayland): le um .txt e atualiza sozinho
+    var FILE = q.get('file') || 'texto.txt';
+    var ultimo = null;
+    function ler(){
+      fetch(FILE + '?_=' + new Date().getTime(), { cache: 'no-store' })
+        .then(function(r){ return r.ok ? r.text() : ''; })
+        .then(function(t){
+          // remove uma quebra de linha final (o editor costuma salvar com \n no fim)
+          t = t.replace(/\n$/, '');
+          if (t !== ultimo) { ultimo = t; campo.textContent = t; }
+        })
+        .catch(function(){ /* arquivo ainda nao existe: ignora */ });
     }
-  });
+    ler();
+    setInterval(ler, 350);
+  }
 </script>
 </body>
 </html>

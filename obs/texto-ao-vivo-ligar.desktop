@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Texto ao vivo (ligar)
+Comment=Inicia o servidor do texto ao vivo e abre a janela de controle
+Exec=/home/petrus/IDrive/Vídeos/Dieckmann/aulas_claude_dieckmann/obs/iniciar_texto.sh
+Icon=/home/petrus/IDrive/Vídeos/Dieckmann/aulas_claude_dieckmann/obs/assets/logo_trim.png
+Terminal=false
+Categories=Utility;
+Keywords=obs;texto;legenda;tribemd;

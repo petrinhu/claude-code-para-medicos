@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Texto ao vivo (parar)
+Comment=Desliga o servidor do texto ao vivo
+Exec=/home/petrus/IDrive/Vídeos/Dieckmann/aulas_claude_dieckmann/obs/parar_texto.sh
+Icon=process-stop
+Terminal=false
+Categories=Utility;
+Keywords=obs;texto;parar;tribemd;

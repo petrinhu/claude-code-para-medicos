@@ -49,8 +49,7 @@
       "uuid": "88888888-8888-4888-8888-888888888888",
       "id": "browser_source", "versioned_id": "browser_source",
       "settings": {
-        "is_local_file": true,
-        "local_file": "/home/petrus/IDrive/Vídeos/Dieckmann/aulas_claude_dieckmann/obs/texto_ao_vivo.html",
+        "url": "http://localhost:4466/",
         "width": 1920, "height": 1080, "reroute_audio": false, "restart_when_active": false
       },
       "mixers": 0, "sync": 0, "flags": 0, "volume": 1.0, "balance": 0.5,

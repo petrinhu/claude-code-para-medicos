@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formatar o texto ao vivo - TribeMD</title>
+<style>
+  :root{ --roxo:#5213B9; --roxo-esc:#1F0646; --texto:#2E3233; --sec:#646C6F; --bg:#F4F2F8; --card:#fff; --chip:#E9E1F5; --linha:#E7E1F1; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; }
+  body{ background:var(--bg); color:var(--texto); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  header{ max-width:1200px; margin:0 auto; padding:22px 22px 4px; }
+  h1{ font-size:23px; margin:0 0 3px; }
+  .sub{ color:var(--sec); font-size:14px; }
+  main{ max-width:1200px; margin:0 auto; padding:14px 22px 50px; display:grid; grid-template-columns: 320px 1fr; gap:22px; }
+  @media(max-width:860px){ main{ grid-template-columns:1fr; } }
+  .painel{ background:var(--card); border:1px solid var(--linha); border-radius:14px; padding:16px 18px; align-self:start; }
+  .grupo{ margin-bottom:14px; }
+  .grupo > label{ display:block; font-size:12.5px; font-weight:700; color:var(--roxo-esc); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+  select, input[type=range], input[type=text]{ width:100%; }
+  select, input[type=text]{ padding:8px 10px; border:1px solid var(--linha); border-radius:8px; font:inherit; background:#fff; }
+  input[type=color]{ width:46px; height:32px; border:1px solid var(--linha); border-radius:8px; background:#fff; padding:2px; cursor:pointer; vertical-align:middle; }
+  .linha2{ display:flex; align-items:center; gap:10px; }
+  .val{ font-variant-numeric:tabular-nums; color:var(--sec); font-size:13px; min-width:44px; }
+  .check{ display:flex; align-items:center; gap:8px; font-size:14px; }
+  .check input{ width:18px; height:18px; }
+  .previewwrap{ display:flex; flex-direction:column; gap:14px; }
+  .stage-wrap{ width:100%; aspect-ratio:16/9; position:relative; overflow:hidden; border-radius:12px; background:#0d1117; box-shadow:0 8px 26px rgba(31,6,70,.16); border:1px solid var(--linha); }
+  .stage{ position:absolute; top:0; left:0; width:1920px; height:1080px; transform-origin:top left; }
+  .stage .palco{ position:absolute; inset:0; display:flex; padding:5vh 6vw; }
+  .stage .palco.baixo{ align-items:flex-end; } .stage .palco.meio{ align-items:center; } .stage .palco.top{ align-items:flex-start; }
+  .stage .campo{ width:100%; line-height:1.22; white-space:pre-wrap; word-break:break-word; border-radius:14px; padding:6px 10px; }
+  .urlbox{ background:#1b0740; color:#d9c8ff; border-radius:10px; padding:12px 14px; font-family:"DejaVu Sans Mono",monospace; font-size:12px; word-break:break-all; }
+  .acoes{ display:flex; gap:10px; align-items:center; }
+  button{ background:var(--roxo); color:#fff; border:0; font:inherit; font-weight:700; padding:10px 18px; border-radius:8px; cursor:pointer; }
+  button:hover{ filter:brightness(1.08); }
+  .ok{ color:#2E8B57; font-weight:700; font-size:13px; }
+  .nota{ background:var(--chip); border-radius:10px; padding:10px 14px; font-size:13px; color:#3d2a63; }
+  .nota b{ color:var(--roxo-esc); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Formatar o texto ao vivo</h1>
+  <p class="sub">Ajuste no menu, veja no preview, copie a URL e cole no Browser Source do OBS (com "Arquivo local" DESMARCADO). Depois, o texto voce digita no arquivo texto.txt.</p>
+</header>
+<main>
+  <div class="painel">
+    <div class="grupo">
+      <label>Texto de exemplo (so no preview)</label>
+      <input type="text" id="exemplo" value="Anticoagulacao em FA: comece pelo CHA2DS2-VASc">
+    </div>
+    <div class="grupo">
+      <label>Fonte</label>
+      <select id="font">
+        <option value="sans">Sem serifa (Inter)</option>
+        <option value="serif">Com serifa (Georgia)</option>
+        <option value="mono">Monoespacada (terminal)</option>
+        <option value="cond">Condensada (estreita)</option>
+        <option value="round">Arredondada (Trebuchet)</option>
+      </select>
+    </div>
+    <div class="grupo">
+      <label>Tamanho</label>
+      <div class="linha2"><input type="range" id="size" min="28" max="120" value="60"><span class="val" id="sizeval">60px</span></div>
+    </div>
+    <div class="grupo">
+      <label>Cor do texto</label>
+      <div class="linha2"><input type="color" id="color" value="#ffffff"><span class="val" id="colorval">#ffffff</span></div>
+    </div>
+    <div class="grupo">
+      <label>Estilo</label>
+      <div class="linha2" style="gap:18px">
+        <span class="check"><input type="checkbox" id="bold" checked><label for="bold">Negrito</label></span>
+        <span class="check"><input type="checkbox" id="italic"><label for="italic">Italico</label></span>
+      </div>
+    </div>
+    <div class="grupo">
+      <label>Posicao na tela</label>
+      <select id="pos"><option value="baixo">Embaixo</option><option value="meio">No meio</option><option value="top">Em cima</option></select>
+    </div>
+    <div class="grupo">
+      <label>Alinhamento</label>
+      <select id="align"><option value="center">Centralizado</option><option value="left">A esquerda</option><option value="right">A direita</option></select>
+    </div>
+    <div class="grupo">
+      <label>Fundo</label>
+      <div class="linha2" style="gap:14px">
+        <span class="check"><input type="checkbox" id="shadow" checked><label for="shadow">Sombra</label></span>
+        <span class="check"><input type="checkbox" id="bg"><label for="bg">Faixa</label></span>
+        <input type="color" id="bgcolor" value="#140529" title="Cor da faixa">
+      </div>
+    </div>
+  </div>
+
+  <div class="previewwrap">
+    <div class="stage-wrap"><div class="stage" id="stage">
+      <div class="palco baixo" id="ppalco"><div class="campo" id="pcampo"></div></div>
+    </div></div>
+    <div>
+      <label style="font-size:12.5px;font-weight:700;color:var(--roxo-esc);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:6px">URL para o OBS</label>
+      <div class="urlbox" id="url"></div>
+      <div class="acoes" style="margin-top:10px"><button id="copiar">Copiar URL</button><span class="ok" id="copiado" style="display:none">copiado!</span></div>
+    </div>
+    <div class="nota"><b>Como usar:</b> no OBS, na fonte "Texto ao vivo", clique em Propriedades, deixe <b>"Arquivo local" desmarcado</b>, e cole essa URL no campo URL. Depois digite o texto no arquivo <b>texto.txt</b> e salve.</div>
+  </div>
+</main>
+<script>
+  var FONTES = {
+    sans: 'Inter, "Open Sans", "Segoe UI", Arial, sans-serif',
+    serif: 'Georgia, "Times New Roman", serif',
+    mono: '"JetBrains Mono", "DejaVu Sans Mono", monospace',
+    cond: '"Arial Narrow", "Roboto Condensed", sans-serif',
+    round: '"Trebuchet MS", "Segoe UI", sans-serif'
+  };
+  var el = function(id){ return document.getElementById(id); };
+  var stage = el('stage'), ppalco = el('ppalco'), pcampo = el('pcampo');
+
+  function escala(){ stage.style.transform = 'scale(' + (stage.parentElement.clientWidth/1920) + ')'; }
+  addEventListener('resize', escala);
+
+  function base(){ return location.href.replace(/formatar\.html.*$/, 'texto_ao_vivo.html'); }
+
+  function atualiza(){
+    var size = +el('size').value;
+    var color = el('color').value;
+    var font = el('font').value;
+    var bold = el('bold').checked;
+    var italic = el('italic').checked;
+    var pos = el('pos').value;
+    var align = el('align').value;
+    var shadow = el('shadow').checked;
+    var bg = el('bg').checked;
+    var bgcolor = el('bgcolor').value;
+
+    el('sizeval').textContent = size + 'px';
+    el('colorval').textContent = color;
+
+    // preview
+    ppalco.className = 'palco ' + pos;
+    pcampo.textContent = el('exemplo').value;
+    pcampo.style.fontFamily = FONTES[font];
+    pcampo.style.fontSize = size + 'px';
+    pcampo.style.color = color;
+    pcampo.style.fontWeight = bold ? 800 : 400;
+    pcampo.style.fontStyle = italic ? 'italic' : 'normal';
+    pcampo.style.textAlign = align;
+    if (bg){
+      pcampo.style.background = bgcolor; pcampo.style.textShadow = 'none';
+      pcampo.style.padding = '18px 28px'; pcampo.style.boxShadow = '0 8px 30px rgba(0,0,0,.35)';
+    } else {
+      pcampo.style.background = 'transparent'; pcampo.style.boxShadow = 'none'; pcampo.style.padding = '6px 10px';
+      pcampo.style.textShadow = shadow ? '0 2px 10px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.95)' : 'none';
+    }
+
+    // URL: so parametros diferentes do padrao
+    var p = [];
+    if (size !== 60) p.push('size=' + size);
+    if (color.toLowerCase() !== '#ffffff') p.push('color=' + color.replace('#',''));
+    if (font !== 'sans') p.push('font=' + font);
+    if (!bold) p.push('weight=400');
+    if (italic) p.push('italic=1');
+    if (pos !== 'baixo') p.push('pos=' + pos);
+    if (align !== 'center') p.push('align=' + align);
+    if (!shadow && !bg) p.push('shadow=0');
+    if (bg){ p.push('bg=1'); if (bgcolor.toLowerCase() !== '#140529') p.push('bgcolor=' + bgcolor.replace('#','')); }
+    el('url').textContent = base() + (p.length ? '?' + p.join('&') : '');
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('input,select'), function(c){
+    c.addEventListener('input', atualiza); c.addEventListener('change', atualiza);
+  });
+  el('copiar').addEventListener('click', function(){
+    navigator.clipboard.writeText(el('url').textContent).then(function(){
+      var ok = el('copiado'); ok.style.display='inline'; setTimeout(function(){ ok.style.display='none'; }, 1500);
+    });
+  });
+  escala(); atualiza();
+</script>
+</body>
+</html>

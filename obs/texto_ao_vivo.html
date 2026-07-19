@@ -6,25 +6,39 @@
 <style>
   /* =================================================================
      TEXTO AO VIVO para OBS (funciona no Wayland).
-     MODO PADRAO: le um arquivo de texto e mostra na tela. Voce edita
-     esse arquivo num bloco de notas comum, salva (Ctrl+S), e aparece.
-     Nao usa a janela Interagir (que o Wayland bloqueia o teclado).
+     Le um arquivo de texto e mostra na tela; voce edita o arquivo num
+     bloco de notas, salva, e aparece. Nao usa a janela Interagir.
+     USE NO OBS COM "ARQUIVO LOCAL" DESMARCADO (modo URL), para os
+     parametros ?... funcionarem. Gere a URL no configurador (formatar.html).
 
-     Ajustes pela URL do Browser Source:
-       ?file=texto.txt   qual arquivo ler (padrao: texto.txt, na mesma pasta)
-       ?size=64          tamanho da fonte (px)
-       ?color=ffcc00     cor do texto (hex sem #)
-       ?pos=top|meio|baixo   posicao vertical (padrao: baixo)
-       ?bg=1             faixa escura atras do texto (mais legivel)
-       ?align=left|center|right  alinhamento (padrao: center)
-       ?edit=1           MODO DIGITACAO (contenteditable + Interagir); so use no X11
+     Parametros:
+       ?file=texto.txt   arquivo a ler (padrao: texto.txt)
+       ?size=64          tamanho (px)
+       ?color=ffffff     cor do texto (hex sem #)
+       ?font=sans|serif|mono|cond|round   familia da fonte
+       ?weight=400..900  espessura (700 = negrito)
+       ?italic=1         italico
+       ?pos=top|meio|baixo   posicao vertical
+       ?align=left|center|right
+       ?shadow=0|1       sombra do texto (padrao 1)
+       ?bg=1             faixa atras do texto
+       ?bgcolor=140529   cor da faixa (hex sem #)
+       ?edit=1           modo digitacao (Interagir) - so no X11
      ================================================================= */
-  :root{ --tam: 60px; --cor: #FFFFFF; --roxo: #8a52ff; }
+  :root{
+    --tam: 60px;
+    --cor: #FFFFFF;
+    --peso: 800;
+    --fonte: Inter, "Open Sans", "Segoe UI", sans-serif;
+    --bgcor: rgba(20, 5, 45, 0.72);
+    --sombra: 0 2px 10px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.95);
+    --roxo: #8a52ff;
+  }
   *{ box-sizing: border-box; }
   html, body{
     margin:0; padding:0; width:1920px; height:1080px;
     background: transparent; overflow: hidden;
-    font-family: Inter, "Open Sans", "Segoe UI", sans-serif;
+    font-family: var(--fonte);
   }
   .palco{ position:absolute; inset:0; display:flex; padding: 5vh 6vw; }
   .palco.baixo{ align-items:flex-end; }
@@ -33,20 +47,25 @@
 
   .campo{
     width:100%;
-    font-size: var(--tam); font-weight: 800; line-height: 1.22;
-    color: var(--cor); text-align: center;
+    font-size: var(--tam);
+    font-weight: var(--peso);
+    font-family: var(--fonte);
+    line-height: 1.22;
+    color: var(--cor);
+    text-align: center;
     white-space: pre-wrap; word-break: break-word;
     outline: none; caret-color: var(--roxo);
-    text-shadow: 0 2px 10px rgba(0,0,0,.9), 0 0 3px rgba(0,0,0,.95);
+    text-shadow: var(--sombra);
     min-height: 1.2em; border-radius: 14px; padding: 6px 10px;
   }
+  body.italic .campo{ font-style: italic; }
   body.bg .campo{
-    background: rgba(20, 5, 45, 0.72);
-    text-shadow: none; box-shadow: 0 8px 30px rgba(0,0,0,.35);
+    background: var(--bgcor);
+    text-shadow: none;
+    box-shadow: 0 8px 30px rgba(0,0,0,.35);
     padding: 18px 28px;
   }
   body.bg .campo:empty{ background: transparent; box-shadow: none; }
-  /* dica so no modo edicao com foco (X11) */
   body.edit .campo:focus:empty:before{
     content: "Digite aqui (Interagir)"; color: rgba(255,255,255,.45); font-weight:600;
   }
@@ -62,15 +81,27 @@
   var palco = document.getElementById('palco');
   var root = document.documentElement;
 
+  var FONTES = {
+    sans: 'Inter, "Open Sans", "Segoe UI", Arial, sans-serif',
+    serif: 'Georgia, "Times New Roman", serif',
+    mono: '"JetBrains Mono", "DejaVu Sans Mono", monospace',
+    cond: '"Arial Narrow", "Roboto Condensed", sans-serif',
+    round: '"Trebuchet MS", "Segoe UI", sans-serif'
+  };
+
   if (q.get('size')) root.style.setProperty('--tam', parseInt(q.get('size'),10) + 'px');
   if (q.get('color')) root.style.setProperty('--cor', '#' + q.get('color').replace('#',''));
+  if (q.get('weight')) root.style.setProperty('--peso', q.get('weight'));
+  if (q.get('font') && FONTES[q.get('font')]) root.style.setProperty('--fonte', FONTES[q.get('font')]);
   if (q.get('align')) campo.style.textAlign = q.get('align');
+  if (q.get('italic') === '1') document.body.classList.add('italic');
+  if (q.get('shadow') === '0') root.style.setProperty('--sombra', 'none');
+  if (q.get('bgcolor')) root.style.setProperty('--bgcor', '#' + q.get('bgcolor').replace('#',''));
   if (q.get('bg') === '1') document.body.classList.add('bg');
   var pos = q.get('pos');
   if (pos === 'top' || pos === 'meio' || pos === 'baixo') palco.className = 'palco ' + pos;
 
   if (q.get('edit') === '1') {
-    // MODO DIGITACAO (so funciona no X11): contenteditable + Interagir
     document.body.classList.add('edit');
     campo.setAttribute('contenteditable', 'true');
     campo.setAttribute('spellcheck', 'false');
@@ -84,18 +115,16 @@
       }
     });
   } else {
-    // MODO ARQUIVO (padrao, funciona no Wayland): le um .txt e atualiza sozinho
     var FILE = q.get('file') || 'texto.txt';
     var ultimo = null;
     function ler(){
       fetch(FILE + '?_=' + new Date().getTime(), { cache: 'no-store' })
         .then(function(r){ return r.ok ? r.text() : ''; })
         .then(function(t){
-          // remove uma quebra de linha final (o editor costuma salvar com \n no fim)
           t = t.replace(/\n$/, '');
           if (t !== ultimo) { ultimo = t; campo.textContent = t; }
         })
-        .catch(function(){ /* arquivo ainda nao existe: ignora */ });
+        .catch(function(){});
     }
     ler();
     setInterval(ler, 350);

@@ -21,16 +21,14 @@
             pointer-events:none; mix-blend-mode:screen; }
   canvas#letreiro{ position:absolute; left:558px; top:98px; }
 
-  /* respiracao visivel: amplitude maior e ciclos mais curtos */
-  @keyframes resp      { 0%,100%{ opacity:.50 } 50%{ opacity:1 } }
-  @keyframes respFraco { 0%,100%{ opacity:.38 } 50%{ opacity:.85 } }
-  @keyframes respQuente{ 0%,100%{ opacity:.55 } 50%{ opacity:1 } }
-  .r1{ animation: resp 6s ease-in-out infinite; }
-  .r2{ animation: resp 7.5s ease-in-out infinite; animation-delay:-2s; }
-  .r3{ animation: respFraco 9s ease-in-out infinite; animation-delay:-4s; }
-  .q1{ animation: respQuente 6.5s ease-in-out infinite; }
-  .q2{ animation: respQuente 8.5s ease-in-out infinite; animation-delay:-3s; }
-  @media (prefers-reduced-motion: reduce){ .r1,.r2,.r3,.q1,.q2{ animation:none; opacity:.8 } }
+  /* NEON: cada zona = halo largo + nucleo quase branco, os dois respirando
+     em fases levemente diferentes (o nucleo "acende" antes do halo). */
+  @keyframes neon{ 0%,100%{ opacity:.38 } 50%{ opacity:1 } }
+  .z{ animation-name:neon; animation-timing-function:ease-in-out;
+      animation-iteration-count:infinite; }
+  .n1{ animation-duration:4.2s } .n2{ animation-duration:5.6s }
+  .n3{ animation-duration:6.8s } .n4{ animation-duration:3.6s }
+  @media (prefers-reduced-motion: reduce){ .z{ animation:none; opacity:.9 } }
 </style>
 </head>
 <body>
@@ -39,40 +37,76 @@
 
   <svg class="leds" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <filter id="b60" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="60"/></filter>
-      <filter id="b34" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="34"/></filter>
-      <filter id="b18" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="18"/></filter>
-      <filter id="b10" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="10"/></filter>
+      <!-- sRGB: blur previsivel, sem estourar o branco -->
+      <filter id="halo60" x="-70%" y="-70%" width="240%" height="240%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="60"/></filter>
+      <filter id="halo34" x="-70%" y="-70%" width="240%" height="240%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="34"/></filter>
+      <filter id="halo22" x="-70%" y="-70%" width="240%" height="240%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="22"/></filter>
+      <filter id="core12" x="-70%" y="-70%" width="240%" height="240%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="12"/></filter>
+      <filter id="core6"  x="-70%" y="-70%" width="240%" height="240%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="core3"  x="-70%" y="-70%" width="240%" height="240%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="3"/></filter>
+
+      <!-- geometria de cada zona, definida UMA vez (sem fill/stroke: a cor
+           vem do <use>, para reaproveitar como halo e como nucleo) -->
+      <g id="gSancaE"><rect x="-60" y="-70" width="470" height="150"/></g>
+      <g id="gSancaD"><rect x="1540" y="-70" width="440" height="130"/></g>
+      <g id="gSpots"><circle cx="300" cy="16" r="34"/><circle cx="1518" cy="18" r="34"/></g>
+      <g id="gTelao"><rect x="540" y="226" width="866" height="516" rx="10" fill="none" stroke-width="22"/></g>
+      <g id="gPratA"><rect x="150" y="298" width="330" height="10"/><rect x="150" y="612" width="330" height="10"/></g>
+      <g id="gPratB"><rect x="150" y="452" width="330" height="10"/><rect x="150" y="788" width="330" height="10"/></g>
+      <g id="gHex"><ellipse cx="1832" cy="500" rx="80" ry="118"/></g>
+      <g id="gLum"><rect x="1540" y="400" width="14" height="330"/></g>
+      <g id="gCadeira"><rect x="810" y="906" width="16" height="100" rx="8"/><rect x="1120" y="906" width="16" height="100" rx="8"/></g>
     </defs>
 
-    <!-- (1) sanca de teto, ciano: esquerda e direita -->
-    <rect class="r1" x="-60" y="-70" width="470" height="150" fill="#3fe3ea" filter="url(#b60)"/>
-    <rect class="r2" x="1540" y="-70" width="440" height="130" fill="#3fe3ea" filter="url(#b60)"/>
+    <!-- (1) sanca de teto -->
+    <g class="z n2">
+      <use href="#gSancaE" fill="#12d8e6" filter="url(#halo60)"/>
+      <use href="#gSancaE" fill="#d6feff" filter="url(#core12)"/>
+    </g>
+    <g class="z n3" style="animation-delay:-2.2s">
+      <use href="#gSancaD" fill="#12d8e6" filter="url(#halo60)"/>
+      <use href="#gSancaD" fill="#d6feff" filter="url(#core12)"/>
+    </g>
 
     <!-- (2) spots embutidos no teto (luz quente) -->
-    <circle class="q1" cx="300"  cy="16" r="34" fill="#ffd9a8" filter="url(#b18)"/>
-    <circle class="q2" cx="1518" cy="18" r="34" fill="#ffd9a8" filter="url(#b18)"/>
+    <g class="z n1" style="animation-delay:-1.1s">
+      <use href="#gSpots" fill="#ffab3d" filter="url(#halo22)"/>
+      <use href="#gSpots" fill="#fff3dc" filter="url(#core6)"/>
+    </g>
 
-    <!-- (4) glow ciano em volta do telao -->
-    <rect class="r1" x="540" y="226" width="866" height="516" rx="10"
-          fill="none" stroke="#4ae0e8" stroke-width="26" filter="url(#b34)"/>
+    <!-- (3) moldura de neon do telao -->
+    <g class="z n2" style="animation-delay:-3.4s">
+      <use href="#gTelao" stroke="#0fd4e8" filter="url(#halo34)"/>
+      <use href="#gTelao" stroke="#ccfdff" filter="url(#core6)"/>
+    </g>
 
-    <!-- (5) LEDs quentes das 4 prateleiras da estante -->
-    <rect class="q1" x="150" y="298" width="330" height="12" fill="#ffb765" filter="url(#b18)"/>
-    <rect class="q2" x="150" y="452" width="330" height="12" fill="#ffb765" filter="url(#b18)"/>
-    <rect class="q1" x="150" y="612" width="330" height="12" fill="#ffb765" filter="url(#b18)" style="animation-delay:-5s"/>
-    <rect class="q2" x="150" y="788" width="330" height="12" fill="#ffb765" filter="url(#b18)" style="animation-delay:-7s"/>
+    <!-- (4) LEDs quentes das prateleiras (dois ritmos alternados) -->
+    <g class="z n3" style="animation-delay:-.8s">
+      <use href="#gPratA" fill="#ff9a24" filter="url(#halo22)"/>
+      <use href="#gPratA" fill="#ffeac2" filter="url(#core3)" opacity=".5"/>
+    </g>
+    <g class="z n2" style="animation-delay:-4.1s">
+      <use href="#gPratB" fill="#ff9a24" filter="url(#halo22)"/>
+      <use href="#gPratB" fill="#ffeac2" filter="url(#core3)" opacity=".5"/>
+    </g>
 
-    <!-- (6) painel hexagonal (direita), ciano: discreto, sem lavar a parede -->
-    <ellipse class="r3" cx="1832" cy="500" rx="84" ry="124" fill="#46dfe8" filter="url(#b18)"/>
+    <!-- (5) painel hexagonal (direita) -->
+    <g class="z n3" style="animation-delay:-5.3s">
+      <use href="#gHex" fill="#16d9e8" filter="url(#halo34)"/>
+      <use href="#gHex" fill="#c6fdff" filter="url(#core12)" opacity=".45"/>
+    </g>
 
-    <!-- (7) luminaria vertical + borda da mesa -->
-    <rect class="q2" x="1540" y="400" width="16" height="330" fill="#ffe0b0" filter="url(#b18)"/>
-    <rect class="r3" x="1470" y="872" width="400" height="4" fill="#4fb9bf" filter="url(#b18)"/>
+    <!-- (6) luminaria vertical + borda da mesa -->
+    <g class="z n1" style="animation-delay:-2.6s">
+      <use href="#gLum" fill="#ffb445" filter="url(#halo22)"/>
+      <use href="#gLum" fill="#fff0d4" filter="url(#core3)" opacity=".6"/>
+    </g>
 
-    <!-- (8) filetes ciano da cadeira -->
-    <rect class="r2" x="806" y="900" width="26" height="112" rx="12" fill="#5fe4ea" filter="url(#b10)"/>
-    <rect class="r2" x="1116" y="900" width="26" height="112" rx="12" fill="#5fe4ea" filter="url(#b10)" style="animation-delay:-2s"/>
+    <!-- (7) filetes de neon da cadeira -->
+    <g class="z n4" style="animation-delay:-1.7s">
+      <use href="#gCadeira" fill="#22dbe6" filter="url(#halo22)" opacity=".65"/>
+      <use href="#gCadeira" fill="#d2feff" filter="url(#core3)" opacity=".3"/>
+    </g>
   </svg>
 
   <!-- (3) letreiro de LED vermelho -->

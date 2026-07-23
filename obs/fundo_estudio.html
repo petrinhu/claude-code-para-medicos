@@ -82,7 +82,9 @@
 <script>
 (function(){
   var q = new URLSearchParams(location.search);
-  var TEXTO = (q.get('texto') || 'CLAUDE CODE PARA MEDICOS   *   TRIBEMD   *   DO ZERO AO AVANCADO   *').toUpperCase();
+  // underscore vale como espaco: ?texto=AULA_07_EVIDENCIA  (evita %20 na URL)
+  var TEXTO = (q.get('texto') || 'CLAUDE CODE PARA MEDICOS   *   TRIBEMD   *   DO ZERO AO AVANCADO   *')
+                .replace(/_/g, ' ').toUpperCase();
 
   // ---- apelidos em portugues (aceita acento, maiuscula e hex/numero) ----
   function normaliza(s){

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Fundo estudio - TribeMD</title>
+<style>
+  /* ==================================================================
+     FUNDO DE ESTUDIO ANIMADO (1920x1080) para OBS.
+     Foto de fundo + LEDs vivos (SVG) + letreiro de LED vermelho (canvas).
+     Texto do letreiro pela URL:  fundo_estudio.html?texto=SUA FRASE
+     Extras: &vel=55 (velocidade)  &cor=ff2a10 (tom do vermelho)
+     Letreiro rola da DIREITA para a ESQUERDA. LEDs discretos (respiram).
+     ================================================================== */
+  html,body{ margin:0; padding:0; width:1920px; height:1080px; overflow:hidden; background:#000; }
+  .cena{ position:relative; width:1920px; height:1080px; }
+  .foto{ position:absolute; inset:0; width:1920px; height:1080px; object-fit:cover; }
+  svg.leds{ position:absolute; inset:0; width:1920px; height:1080px; pointer-events:none; }
+  canvas#letreiro{ position:absolute; left:558px; top:98px; }
+
+  /* respiracao discreta: variacao pequena de opacidade, bem lenta */
+  @keyframes resp   { 0%,100%{ opacity:.42 } 50%{ opacity:.70 } }
+  @keyframes respFraco { 0%,100%{ opacity:.28 } 50%{ opacity:.48 } }
+  @keyframes respQuente{ 0%,100%{ opacity:.50 } 50%{ opacity:.72 } }
+  .r1{ animation: resp 8s ease-in-out infinite; }
+  .r2{ animation: resp 11s ease-in-out infinite; animation-delay:-3s; }
+  .r3{ animation: respFraco 13s ease-in-out infinite; animation-delay:-6s; }
+  .q1{ animation: respQuente 9s ease-in-out infinite; }
+  .q2{ animation: respQuente 12s ease-in-out infinite; animation-delay:-4s; }
+  @media (prefers-reduced-motion: reduce){ .r1,.r2,.r3,.q1,.q2{ animation:none; opacity:.55 } }
+</style>
+</head>
+<body>
+<div class="cena">
+  <img class="foto" src="fundo_16x9.png" alt="">
+
+  <svg class="leds" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="b60" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="60"/></filter>
+      <filter id="b34" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="34"/></filter>
+      <filter id="b18" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="18"/></filter>
+      <filter id="b10" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="10"/></filter>
+    </defs>
+
+    <!-- (1) sanca de teto, ciano: esquerda e direita -->
+    <rect class="r1" x="-60" y="-70" width="470" height="150" fill="#3fe3ea" filter="url(#b60)"/>
+    <rect class="r2" x="1540" y="-70" width="440" height="130" fill="#3fe3ea" filter="url(#b60)"/>
+
+    <!-- (2) spots embutidos no teto (luz quente) -->
+    <circle class="q1" cx="300"  cy="16" r="34" fill="#ffd9a8" filter="url(#b18)"/>
+    <circle class="q2" cx="1518" cy="18" r="34" fill="#ffd9a8" filter="url(#b18)"/>
+
+    <!-- (4) glow ciano em volta do telao -->
+    <rect class="r1" x="540" y="226" width="866" height="516" rx="10"
+          fill="none" stroke="#4ae0e8" stroke-width="26" filter="url(#b34)"/>
+
+    <!-- (5) LEDs quentes das 4 prateleiras da estante -->
+    <rect class="q1" x="150" y="298" width="330" height="12" fill="#ffb765" filter="url(#b18)"/>
+    <rect class="q2" x="150" y="452" width="330" height="12" fill="#ffb765" filter="url(#b18)"/>
+    <rect class="q1" x="150" y="612" width="330" height="12" fill="#ffb765" filter="url(#b18)" style="animation-delay:-5s"/>
+    <rect class="q2" x="150" y="788" width="330" height="12" fill="#ffb765" filter="url(#b18)" style="animation-delay:-7s"/>
+
+    <!-- (6) painel hexagonal (direita), ciano: discreto, sem lavar a parede -->
+    <ellipse class="r3" cx="1832" cy="500" rx="84" ry="124" fill="#46dfe8" filter="url(#b18)"/>
+
+    <!-- (7) luminaria vertical + borda da mesa -->
+    <rect class="q2" x="1540" y="400" width="16" height="330" fill="#ffe0b0" filter="url(#b18)"/>
+    <rect class="r3" x="1470" y="874" width="400" height="6" fill="#7fe6ea" filter="url(#b10)"/>
+
+    <!-- (8) filetes ciano da cadeira -->
+    <rect class="r2" x="806" y="900" width="26" height="112" rx="12" fill="#5fe4ea" filter="url(#b10)"/>
+    <rect class="r2" x="1116" y="900" width="26" height="112" rx="12" fill="#5fe4ea" filter="url(#b10)" style="animation-delay:-2s"/>
+  </svg>
+
+  <!-- (3) letreiro de LED vermelho -->
+  <canvas id="letreiro" width="826" height="72"></canvas>
+</div>
+
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  var TEXTO = (q.get('texto') || 'CLAUDE CODE PARA MEDICOS   *   TRIBEMD   *   DO ZERO AO AVANCADO   *').toUpperCase();
+  var VEL   = parseFloat(q.get('vel') || '55');            // pixels por segundo
+  var COR   = '#' + (q.get('cor') || 'ff2a10').replace('#','');
+
+  var cv = document.getElementById('letreiro'), ctx = cv.getContext('2d');
+  var LINHAS = 9, PASSO = 7, DOT = 5;                       // matriz de LEDs
+  var COLS = Math.floor(cv.width / PASSO);
+
+  // desenha o texto num buffer do tamanho exato da matriz e amostra os pixels
+  var off = document.createElement('canvas');
+  var octx = off.getContext('2d');
+  octx.font = 'bold ' + LINHAS + 'px "DejaVu Sans Mono", monospace';
+  var larguraTexto = Math.ceil(octx.measureText(TEXTO).width);
+  off.width = larguraTexto + COLS;                          // folga para o loop
+  off.height = LINHAS;
+  var o2 = off.getContext('2d');
+  o2.font = 'bold ' + LINHAS + 'px "DejaVu Sans Mono", monospace';
+  o2.textBaseline = 'top';
+  o2.fillStyle = '#fff';
+  o2.fillText(TEXTO, 0, 0);
+  var px = o2.getImageData(0, 0, off.width, off.height).data;
+
+  function aceso(c, r){
+    if (c < 0 || c >= off.width) return false;
+    return px[((r * off.width) + c) * 4 + 3] > 110;         // alpha do texto
+  }
+
+  var offset = 0, last = 0;
+  var x0 = (cv.width - COLS * PASSO) / 2;
+  var y0 = (cv.height - LINHAS * PASSO) / 2;
+
+  function frame(t){
+    var dt = (t - last) / 1000; last = t;
+    offset += VEL * dt;                                     // texto anda para a ESQUERDA
+    if (offset > off.width) offset -= off.width;
+
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.fillStyle = 'rgba(0,0,0,.34)';                      // painel do letreiro
+    ctx.fillRect(0, 0, cv.width, cv.height);
+
+    var base = Math.floor(offset);
+    for (var c = 0; c < COLS; c++){
+      var src = (base + c) % off.width;
+      for (var r = 0; r < LINHAS; r++){
+        var on = aceso(src, r);
+        ctx.beginPath();
+        ctx.arc(x0 + c * PASSO + DOT / 2, y0 + r * PASSO + DOT / 2, DOT / 2, 0, 6.2832);
+        if (on){ ctx.fillStyle = COR; ctx.shadowColor = COR; ctx.shadowBlur = 7; }
+        else   { ctx.fillStyle = 'rgba(66,12,8,.5)'; ctx.shadowBlur = 0; }
+        ctx.fill();
+      }
+    }
+    ctx.shadowBlur = 0;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(function(t){ last = t; frame(t); });
+})();
+</script>
+</body>
+</html>

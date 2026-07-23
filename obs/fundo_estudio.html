@@ -8,25 +8,29 @@
      FUNDO DE ESTUDIO ANIMADO (1920x1080) para OBS.
      Foto de fundo + LEDs vivos (SVG) + letreiro de LED vermelho (canvas).
      Texto do letreiro pela URL:  fundo_estudio.html?texto=SUA FRASE
-     Extras: &vel=55 (velocidade)  &cor=ff2a10 (tom do vermelho)
-     Letreiro rola da DIREITA para a ESQUERDA. LEDs discretos (respiram).
+     Cor por NOME:   &cor=vermelho | ambar | laranja | amarelo | verde |
+                     ciano | azul | roxo | rosa | branco   (hex tambem vale)
+     Velocidade por NOME: &vel=lento | medio | rapido | turbo  (numero tambem)
+     Letreiro rola da DIREITA para a ESQUERDA. LEDs respiram (luz aditiva).
      ================================================================== */
   html,body{ margin:0; padding:0; width:1920px; height:1080px; overflow:hidden; background:#000; }
   .cena{ position:relative; width:1920px; height:1080px; }
   .foto{ position:absolute; inset:0; width:1920px; height:1080px; object-fit:cover; }
-  svg.leds{ position:absolute; inset:0; width:1920px; height:1080px; pointer-events:none; }
+  /* screen = luz ADITIVA: o brilho soma na foto (nao lava, so acende) */
+  svg.leds{ position:absolute; inset:0; width:1920px; height:1080px;
+            pointer-events:none; mix-blend-mode:screen; }
   canvas#letreiro{ position:absolute; left:558px; top:98px; }
 
-  /* respiracao discreta: variacao pequena de opacidade, bem lenta */
-  @keyframes resp   { 0%,100%{ opacity:.42 } 50%{ opacity:.70 } }
-  @keyframes respFraco { 0%,100%{ opacity:.28 } 50%{ opacity:.48 } }
-  @keyframes respQuente{ 0%,100%{ opacity:.50 } 50%{ opacity:.72 } }
-  .r1{ animation: resp 8s ease-in-out infinite; }
-  .r2{ animation: resp 11s ease-in-out infinite; animation-delay:-3s; }
-  .r3{ animation: respFraco 13s ease-in-out infinite; animation-delay:-6s; }
-  .q1{ animation: respQuente 9s ease-in-out infinite; }
-  .q2{ animation: respQuente 12s ease-in-out infinite; animation-delay:-4s; }
-  @media (prefers-reduced-motion: reduce){ .r1,.r2,.r3,.q1,.q2{ animation:none; opacity:.55 } }
+  /* respiracao visivel: amplitude maior e ciclos mais curtos */
+  @keyframes resp      { 0%,100%{ opacity:.50 } 50%{ opacity:1 } }
+  @keyframes respFraco { 0%,100%{ opacity:.38 } 50%{ opacity:.85 } }
+  @keyframes respQuente{ 0%,100%{ opacity:.55 } 50%{ opacity:1 } }
+  .r1{ animation: resp 6s ease-in-out infinite; }
+  .r2{ animation: resp 7.5s ease-in-out infinite; animation-delay:-2s; }
+  .r3{ animation: respFraco 9s ease-in-out infinite; animation-delay:-4s; }
+  .q1{ animation: respQuente 6.5s ease-in-out infinite; }
+  .q2{ animation: respQuente 8.5s ease-in-out infinite; animation-delay:-3s; }
+  @media (prefers-reduced-motion: reduce){ .r1,.r2,.r3,.q1,.q2{ animation:none; opacity:.8 } }
 </style>
 </head>
 <body>
@@ -64,7 +68,7 @@
 
     <!-- (7) luminaria vertical + borda da mesa -->
     <rect class="q2" x="1540" y="400" width="16" height="330" fill="#ffe0b0" filter="url(#b18)"/>
-    <rect class="r3" x="1470" y="874" width="400" height="6" fill="#7fe6ea" filter="url(#b10)"/>
+    <rect class="r3" x="1470" y="872" width="400" height="4" fill="#4fb9bf" filter="url(#b18)"/>
 
     <!-- (8) filetes ciano da cadeira -->
     <rect class="r2" x="806" y="900" width="26" height="112" rx="12" fill="#5fe4ea" filter="url(#b10)"/>
@@ -79,8 +83,27 @@
 (function(){
   var q = new URLSearchParams(location.search);
   var TEXTO = (q.get('texto') || 'CLAUDE CODE PARA MEDICOS   *   TRIBEMD   *   DO ZERO AO AVANCADO   *').toUpperCase();
-  var VEL   = parseFloat(q.get('vel') || '55');            // pixels por segundo
-  var COR   = '#' + (q.get('cor') || 'ff2a10').replace('#','');
+
+  // ---- apelidos em portugues (aceita acento, maiuscula e hex/numero) ----
+  function normaliza(s){
+    return (s || '').trim().toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');   // tira acentos
+  }
+  var CORES = {
+    vermelho:'ff2a10', rubro:'ff2a10',
+    ambar:'ffa000',    laranja:'ff6a00',  amarelo:'ffd400',
+    verde:'2ae04a',    limao:'9bef2a',
+    ciano:'20e0e8',    turquesa:'20e0e8',
+    azul:'3a7bff',     roxo:'a24bff',     violeta:'a24bff',
+    rosa:'ff3ea5',     magenta:'ff2ad0',  branco:'ffffff'
+  };
+  var VELS = { parado:0, lento:28, medio:55, normal:55, rapido:95, turbo:150 };
+
+  var pCor = normaliza(q.get('cor'));
+  var COR  = '#' + (CORES[pCor] || pCor.replace('#','') || 'ff2a10');
+
+  var pVel = normaliza(q.get('vel'));
+  var VEL  = (pVel in VELS) ? VELS[pVel] : (parseFloat(pVel) || 55);   // px por segundo
 
   var cv = document.getElementById('letreiro'), ctx = cv.getContext('2d');
   var LINHAS = 9, PASSO = 7, DOT = 5;                       // matriz de LEDs

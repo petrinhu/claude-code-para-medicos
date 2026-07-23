@@ -1,0 +1,285 @@
+<meta charset="utf-8">
+<title>Fundo de estúdio: guia dos parâmetros</title>
+<style>
+  :root{
+    --tinta:#2E3233; --tinta2:#646C6F; --tinta3:#8A9295;
+    --fundo:#FAFAFA; --papel:#FFFFFF; --secao:#E5E9EA;
+    --roxo:#5213B9; --roxo-fraco:#E9E1F5; --escuro:#1F0646;
+    --led-painel:#160A18; --linha:#DFE3E4;
+    --mono: "DejaVu Sans Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: Inter, "Open Sans", system-ui, -apple-system, sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --tinta:#ECEEEF; --tinta2:#A8B0B3; --tinta3:#7C8487;
+      --fundo:#141018; --papel:#1C1722; --secao:#241D2E;
+      --roxo:#B79BF0; --roxo-fraco:#2C2140; --escuro:#0E0418; --linha:#332A40;
+    }
+  }
+  :root[data-theme="dark"]{
+    --tinta:#ECEEEF; --tinta2:#A8B0B3; --tinta3:#7C8487;
+    --fundo:#141018; --papel:#1C1722; --secao:#241D2E;
+    --roxo:#B79BF0; --roxo-fraco:#2C2140; --escuro:#0E0418; --linha:#332A40;
+  }
+  :root[data-theme="light"]{
+    --tinta:#2E3233; --tinta2:#646C6F; --tinta3:#8A9295;
+    --fundo:#FAFAFA; --papel:#FFFFFF; --secao:#E5E9EA;
+    --roxo:#5213B9; --roxo-fraco:#E9E1F5; --escuro:#1F0646; --linha:#DFE3E4;
+  }
+
+  body{ margin:0; background:var(--fundo); color:var(--tinta);
+        font-family:var(--sans); font-size:16px; line-height:1.6; }
+  .folha{ max-width:820px; margin:0 auto; padding:56px 32px 72px;
+          display:flex; flex-direction:column; gap:38px; }
+
+  header{ display:flex; flex-direction:column; gap:10px;
+          border-bottom:2px solid var(--roxo); padding-bottom:22px; }
+  .eyebrow{ font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--roxo); font-weight:600; }
+  h1{ font-size:33px; line-height:1.15; margin:0; font-weight:700;
+      letter-spacing:-.02em; text-wrap:balance; }
+  .sub{ color:var(--tinta2); max-width:62ch; margin:0; }
+
+  section{ display:flex; flex-direction:column; gap:14px; }
+  h2{ font-size:20px; margin:0; font-weight:650; letter-spacing:-.01em; }
+  h2 .num{ color:var(--roxo); font-family:var(--mono); font-size:15px;
+           margin-right:10px; font-weight:700; }
+  h3{ font-size:14px; margin:0; font-weight:600; color:var(--tinta2);
+      letter-spacing:.04em; text-transform:uppercase; }
+  p{ margin:0; max-width:66ch; }
+  .nota{ color:var(--tinta2); font-size:14.5px; }
+
+  code{ font-family:var(--mono); font-size:14px; background:var(--secao);
+        padding:1px 6px; border-radius:3px; color:var(--tinta); }
+  .url{ font-family:var(--mono); font-size:13px; line-height:1.7;
+        background:var(--escuro); color:#EADFFF; padding:14px 16px;
+        border-radius:6px; overflow-x:auto; white-space:pre-wrap;
+        word-break:break-all; }
+  .url b{ color:#C9A6FF; font-weight:700; }
+
+  .rolar{ overflow-x:auto; }
+  table{ border-collapse:collapse; width:100%; font-size:14.5px; }
+  th,td{ text-align:left; padding:9px 12px; border-bottom:1px solid var(--linha);
+         vertical-align:top; }
+  th{ font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--tinta2); font-weight:600; border-bottom:1.5px solid var(--tinta3); }
+  td.p{ font-family:var(--mono); color:var(--roxo); font-weight:700; white-space:nowrap; }
+  td.n{ font-variant-numeric:tabular-nums; white-space:nowrap; }
+
+  /* faixa de cores: nomes em cima, amostra acesa embaixo */
+  table.cores{ table-layout:fixed; }
+  table.cores td, table.cores th{ border:0; padding:0; }
+  table.cores tr.nomes td{ font-family:var(--mono); font-size:12.5px;
+       padding:0 4px 7px; color:var(--tinta); text-align:center; }
+  table.cores tr.amostras td{ padding:0 4px; }
+  .led{ height:46px; border-radius:5px; background:var(--led-painel);
+        display:flex; align-items:center; justify-content:center; }
+  .led i{ display:block; width:60%; height:9px; border-radius:5px;
+          background:var(--c); box-shadow:0 0 7px var(--c), 0 0 16px var(--c); }
+  tr.hex td{ font-family:var(--mono); font-size:11px; color:var(--tinta3);
+             text-align:center; padding:6px 4px 0; }
+
+  .avisos{ background:var(--roxo-fraco); border-left:3px solid var(--roxo);
+           border-radius:0 6px 6px 0; padding:16px 18px;
+           display:flex; flex-direction:column; gap:10px; }
+  .avisos p{ font-size:14.5px; }
+  .avisos strong{ color:var(--roxo); }
+
+  footer{ border-top:1px solid var(--linha); padding-top:16px;
+          color:var(--tinta3); font-size:12.5px; display:flex;
+          justify-content:space-between; gap:16px; flex-wrap:wrap; }
+
+  @media print{
+    :root{ --fundo:#fff; --papel:#fff; --tinta:#2E3233; --tinta2:#646C6F;
+           --tinta3:#8A9295; --secao:#E5E9EA; --roxo:#5213B9;
+           --roxo-fraco:#F2ECFB; --escuro:#1F0646; --linha:#DFE3E4; }
+    @page{ size:A4; margin:14mm 15mm; }
+    body{ font-size:11.2pt; }
+    .folha{ padding:0; max-width:none; gap:15px; }
+    section{ break-inside:auto; }
+    table.cores, .url, .avisos, tr, footer{ break-inside:avoid; }
+    h2, h3{ break-inside:avoid; break-after:avoid; }
+    h1{ font-size:23pt; }
+    h2{ font-size:13.5pt; }
+    .url{ font-size:8.6pt; }
+    table{ font-size:9.6pt; }
+    /* no papel o rodape vira uma linha so, senao o flex de duas
+       colunas nao cabe no pe da pagina e cria uma folha extra */
+    footer{ display:block; padding-top:9px; font-size:8.4pt; }
+    footer span + span::before{ content:"  \00b7  "; }
+  }
+</style>
+
+<div class="folha">
+
+<header>
+  <div class="eyebrow">Curso Claude Code para Médicos &middot; TribeMD</div>
+  <h1>Fundo de estúdio animado: guia dos parâmetros</h1>
+  <p class="sub">O fundo do OBS é uma página que aceita instruções pelo próprio endereço.
+  Trocar a frase do letreiro, a cor dos LEDs e a velocidade da rolagem é editar uma
+  linha de texto, sem abrir editor de imagem e sem reiniciar a transmissão.</p>
+</header>
+
+<section>
+  <h2><span class="num">01</span>O endereço, em partes</h2>
+  <p>Tudo depois do <code>?</code> são ajustes. Cada ajuste é <code>nome=valor</code>,
+  separados por <code>&amp;</code>. A ordem não importa e todos são opcionais.</p>
+  <div class="url">file:///home/petrus/obs_tribemd/fundo.html?<b>texto</b>=AULA_07_*_BUSCA_DE_EVIDENCIA&amp;<b>cor</b>=ambar&amp;<b>vel</b>=lento</div>
+  <div class="rolar">
+  <table>
+    <tr><th>Ajuste</th><th>O que faz</th><th>Se você não escrever</th></tr>
+    <tr>
+      <td class="p">texto=</td>
+      <td>A frase que rola no letreiro. Use <strong>underscore no lugar do espaço</strong>.</td>
+      <td>CLAUDE CODE PARA MEDICOS * TRIBEMD * DO ZERO AO AVANCADO *</td>
+    </tr>
+    <tr>
+      <td class="p">cor=</td>
+      <td>A cor dos LEDs do letreiro. Nome em português (tabela abaixo) ou hex.</td>
+      <td>vermelho</td>
+    </tr>
+    <tr>
+      <td class="p">vel=</td>
+      <td>A velocidade da rolagem, sempre da direita para a esquerda.</td>
+      <td>medio</td>
+    </tr>
+  </table>
+  </div>
+  <p class="nota">O letreiro escreve em maiúsculas e sem acento, como um painel de LED de
+  verdade. Escrever <code>Evidência</code> ou <code>EVIDENCIA</code> dá no mesmo.</p>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Cores disponíveis</h2>
+  <h3>Quentes</h3>
+  <div class="rolar">
+  <table class="cores">
+    <tr class="nomes">
+      <td>vermelho</td><td>rubro</td><td>ambar</td><td>laranja</td><td>amarelo</td><td>limao</td>
+    </tr>
+    <tr class="amostras">
+      <td><div class="led"><i style="--c:#ff2a10"></i></div></td>
+      <td><div class="led"><i style="--c:#ff2a10"></i></div></td>
+      <td><div class="led"><i style="--c:#ffa000"></i></div></td>
+      <td><div class="led"><i style="--c:#ff6a00"></i></div></td>
+      <td><div class="led"><i style="--c:#ffd400"></i></div></td>
+      <td><div class="led"><i style="--c:#9bef2a"></i></div></td>
+    </tr>
+    <tr class="hex">
+      <td>ff2a10</td><td>= vermelho</td><td>ffa000</td><td>ff6a00</td><td>ffd400</td><td>9bef2a</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3>Frias e claras</h3>
+  <div class="rolar">
+  <table class="cores">
+    <tr class="nomes">
+      <td>verde</td><td>ciano</td><td>turquesa</td><td>azul</td><td>roxo</td><td>violeta</td>
+    </tr>
+    <tr class="amostras">
+      <td><div class="led"><i style="--c:#2ae04a"></i></div></td>
+      <td><div class="led"><i style="--c:#20e0e8"></i></div></td>
+      <td><div class="led"><i style="--c:#20e0e8"></i></div></td>
+      <td><div class="led"><i style="--c:#3a7bff"></i></div></td>
+      <td><div class="led"><i style="--c:#a24bff"></i></div></td>
+      <td><div class="led"><i style="--c:#a24bff"></i></div></td>
+    </tr>
+    <tr class="hex">
+      <td>2ae04a</td><td>20e0e8</td><td>= ciano</td><td>3a7bff</td><td>a24bff</td><td>= roxo</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="rolar">
+  <table class="cores">
+    <tr class="nomes">
+      <td>rosa</td><td>magenta</td><td>branco</td><td></td><td></td><td></td>
+    </tr>
+    <tr class="amostras">
+      <td><div class="led"><i style="--c:#ff3ea5"></i></div></td>
+      <td><div class="led"><i style="--c:#ff2ad0"></i></div></td>
+      <td><div class="led"><i style="--c:#ffffff"></i></div></td>
+      <td></td><td></td><td></td>
+    </tr>
+    <tr class="hex">
+      <td>ff3ea5</td><td>ff2ad0</td><td>ffffff</td><td></td><td></td><td></td>
+    </tr>
+  </table>
+  </div>
+  <p class="nota">Quer um tom que não está na lista? Escreva o hex direto:
+  <code>&amp;cor=5213B9</code> (o roxo da marca TribeMD). Com ou sem <code>#</code>.</p>
+</section>
+
+<section>
+  <h2><span class="num">03</span>Velocidades</h2>
+  <div class="rolar">
+  <table>
+    <tr><th>Nome</th><th class="n">Pixels por segundo</th><th class="n">Uma letra cruza o painel em</th><th>Quando usar</th></tr>
+    <tr><td class="p">parado</td><td class="n">0</td><td class="n">n/a</td><td>Frase fixa, sem movimento</td></tr>
+    <tr><td class="p">lento</td><td class="n">28</td><td class="n">30 s</td><td>Aula longa: presente sem puxar o olho</td></tr>
+    <tr><td class="p">medio</td><td class="n">55</td><td class="n">15 s</td><td>Padrão</td></tr>
+    <tr><td class="p">rapido</td><td class="n">95</td><td class="n">9 s</td><td>Abertura, chamada, aviso curto</td></tr>
+    <tr><td class="p">turbo</td><td class="n">150</td><td class="n">6 s</td><td>Efeito. Cansa se ficar muito tempo</td></tr>
+  </table>
+  </div>
+  <p class="nota">Também aceita número puro em pixels por segundo:
+  <code>&amp;vel=40</code>.</p>
+</section>
+
+<section>
+  <h2><span class="num">04</span>Exemplos prontos</h2>
+  <h3>Abertura da aula</h3>
+  <div class="url">file:///home/petrus/obs_tribemd/fundo.html?texto=AULA_07_*_BUSCA_DE_EVIDENCIA_CLINICA&amp;cor=ambar&amp;vel=lento</div>
+  <h3>Aviso durante a gravação</h3>
+  <div class="url">file:///home/petrus/obs_tribemd/fundo.html?texto=INTERVALO_*_JA_VOLTAMOS&amp;cor=amarelo&amp;vel=medio</div>
+  <h3>Frase fixa, cor da marca</h3>
+  <div class="url">file:///home/petrus/obs_tribemd/fundo.html?texto=TRIBEMD_*_MDLIFE_ACADEMY&amp;cor=5213B9&amp;vel=parado</div>
+</section>
+
+<section>
+  <h2><span class="num">05</span>Como colocar no OBS</h2>
+  <div class="rolar">
+  <table>
+    <tr><th>Passo</th><th>O quê</th></tr>
+    <tr><td class="n">1</td><td>Nas Fontes, <strong>+</strong> e depois <strong>Navegador</strong></td></tr>
+    <tr><td class="n">2</td><td>Deixe <strong>“Arquivo local” DESMARCADO</strong></td></tr>
+    <tr><td class="n">3</td><td>Cole o endereço inteiro no campo <strong>URL</strong></td></tr>
+    <tr><td class="n">4</td><td>Largura <strong>1920</strong>, Altura <strong>1080</strong></td></tr>
+    <tr><td class="n">5</td><td>Arraste a fonte para o <strong>fim da lista</strong> (é o fundo de tudo)</td></tr>
+  </table>
+  </div>
+  <p class="nota">Para trocar a frase depois: clique duas vezes na fonte, edite o
+  endereço, OK. Muda na hora, mesmo transmitindo.</p>
+</section>
+
+<section>
+  <h2><span class="num">06</span>Três coisas que quebram</h2>
+  <div class="avisos">
+    <p><strong>“Arquivo local” marcado.</strong> Com a caixa marcada, o OBS trata o
+    <code>?texto=…</code> como parte do nome do arquivo e não acha nada. Sempre desmarcada.</p>
+    <p><strong>Espaço de verdade no texto.</strong> Use underscore. Espaço solto vira
+    <code>%20</code> ou simplesmente corta a frase.</p>
+    <p><strong>Caminho com acento.</strong> Use sempre
+    <code>/home/petrus/obs_tribemd/</code>. O caminho original do curso tem
+    “Vídeos”, e o acento derruba o carregamento. Essa pasta são atalhos para os
+    arquivos do repositório: editar lá atualiza aqui.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">07</span>O que é animado sozinho</h2>
+  <p>Fora o letreiro, nove zonas de neon pulsam sem nenhum ajuste seu: a sanca do
+  teto, os spots embutidos, a moldura do telão, as quatro prateleiras da estante,
+  o painel hexagonal, a luminária e os filetes da cadeira. Cada uma tem ritmo
+  próprio, entre 3,6 e 6,8 segundos, para nada pulsar em bloco, que é o que
+  denuncia animação artificial. A moldura do telão é aberta embaixo, então o tubo
+  de luz passa por trás da cadeira em vez de cruzar por cima dela.</p>
+</section>
+
+<footer>
+  <span>Fundo: <code>obs/fundo_estudio.html</code> &middot; atalhos em <code>/home/petrus/obs_tribemd/</code></span>
+  <span>TribeMD &middot; MDlife Academy</span>
+</footer>
+
+</div>
